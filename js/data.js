@@ -5,7 +5,7 @@
 
 window.STUDY_DATA = {
   siteName: 'Study with Tiago',
-  youtubeChannel: 'https://www.youtube.com/@TiagoNursing',
+  youtubeChannel: 'https://www.youtube.com/@life-ofstudy',
   gumroadUrl: 'https://medpro3.gumroad.com/l/wcoda',
   gumroadOverlay: 'https://medpro3.gumroad.com/l/wcoda',
 

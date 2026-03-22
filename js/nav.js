@@ -15,7 +15,7 @@
     { label: 'Exam Prep', href: base + 'exam2/index.html', icon: '📋' },
     { label: 'Resources', href: base + 'resources.html', icon: '📦' },
     { label: 'About', href: base + 'about.html', icon: '👤' },
-    { label: 'YouTube', href: 'https://www.youtube.com/@TiagoNursing', icon: '▶', external: true },
+    { label: 'YouTube', href: 'https://www.youtube.com/@life-ofstudy', icon: '▶', external: true },
   ];
 
   // Determine active page
