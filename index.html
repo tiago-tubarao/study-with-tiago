@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study with Tiago — Pharmacology Exam Prep</title>
+  <meta name="description" content="Watch the video. Check the syllabus. See the proof. Interactive pharmacology study tools built by a nursing student, for nursing students.">
+  <meta property="og:title" content="Study with Tiago — Pharmacology Exam Prep">
+  <meta property="og:description" content="Free pharmacology study tools built by a nursing student. Practice questions, video walkthroughs, and study guides.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero" style="padding:48px 16px">
+    <h1 class="hero-title" style="font-size:2.4em;line-height:1.15">I study for my exams<br>and teach it to you.</h1>
+    <p class="hero-sub" style="font-size:1.05em;margin-top:12px;max-width:540px;margin-left:auto;margin-right:auto">Watch the video. Check the syllabus. See the proof. Every drug, every detail, every exam trap — aligned with standard pharmacology curricula and the NCLEX-RN&reg; test plan.</p>
+    <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="exam2/index.html" class="cta-button" style="font-size:1.05em">Start Studying — Exam 2 →</a>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:12px;border:2px solid var(--gold);color:var(--gold);font-weight:700;text-decoration:none;transition:all 0.2s;background:transparent">Free Study Bundle</a>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:8px 0 24px">
+    <p style="font-size:0.85em;color:var(--muted)">Currently covering: Pharmacology Exam 2 (Diabetes, Endocrine, Antimicrobials, Hematology)</p>
+  </div>
+
+  <div class="deck-grid" id="examCards"></div>
+
+  <div class="video-section" style="margin-top:32px">
+    <div class="video-header" style="background:var(--navy)">
+      <h2>How This Works</h2>
+      <div class="meta">Three columns. Triple verification. No guessing.</div>
+    </div>
+    <div class="verify-wrap" style="padding:24px">
+      <div class="compare-table">
+        <div class="compare-row compare-header-row">
+          <div class="compare-cell-header">1. Watch the Video</div>
+          <div class="compare-cell-header">2. Check the Coverage</div>
+          <div class="compare-cell-header">3. Test Yourself</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell" style="font-size:0.88em">I break down every drug, every side effect, every nursing action — with timestamps so you can jump to exactly what you need.</div>
+          <div class="compare-cell" style="font-size:0.88em;border-left:2px solid var(--border)">See a side-by-side comparison of what I covered vs. what standard pharmacology curricula typically require. No gaps, no guessing.</div>
+          <div class="compare-cell" style="font-size:0.88em;border-left:2px solid var(--border)">Rate your confidence. Answer NCLEX-style scenario questions. Get immediate feedback with rationales for every answer.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="download-cta" style="margin-top:32px">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge">FREE</div>
+      <h3 class="cta-title">Download the Study Bundle</h3>
+      <p class="cta-sub">7 PDF study guides covering every drug on Exam 2. Print them. Mark them up. Bring them to the exam.</p>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Get It Free →</a>
+      <p class="cta-note">No credit card. No catch. Just enter $0. This is Tiago's own product — not a sponsorship or affiliate link.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student — always verify against current guidelines and your instructor's direction.
+    <a href="terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@TiagoNursing" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Free Study Bundle</a> &bull;
+    <a href="about.html">About</a> &bull;
+    <a href="privacy.html">Privacy</a> &bull;
+    <a href="terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script>
+  const pages = { deck3: 'exam2/diabetes.html', deck4: 'exam2/endocrine.html', deck2: 'exam2/antimicrobials.html', deck1: 'exam2/hematology.html' };
+  const statusMap = { uploaded: 'status-uploaded', 'not-recorded': 'status-not-recorded', 'no-video': 'status-no-video' };
+  const statusLabel = { uploaded: 'UPLOADED', 'not-recorded': 'NOT RECORDED', 'no-video': 'COMING SOON' };
+  document.getElementById('examCards').innerHTML = STUDY_DATA.videos.map(v => {
+    const totalItems = v.said.length + (v.slidesHave || []).length + v.gaps.length;
+    const coveredItems = v.said.length;
+    const pct = totalItems > 0 ? Math.round((coveredItems / totalItems) * 100) : 0;
+    return `<a href="${pages[v.id]}" class="deck-card">
+      <div class="deck-card-header" style="background:${v.color}">
+        <h3>${v.title}</h3>
+        <div class="meta">${v.questionCount} exam questions</div>
+        <span class="video-status ${statusMap[v.status]}">${statusLabel[v.status]}</span>
+      </div>
+      <div class="deck-card-body">
+        <div class="deck-card-stat"><strong>${pct}%</strong> syllabus coverage</div>
+        <div style="height:6px;background:#e9ecef;border-radius:3px;overflow:hidden;margin-top:6px">
+          <div style="height:100%;width:${pct}%;background:${v.color};border-radius:3px"></div>
+        </div>
+      </div>
+    </a>`;
+  }).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infectious Disease & Antimicrobials — Study with Tiago</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Infectious Disease & Antimicrobials</h1>
+    <p class="hero-sub">~48 slides &bull; ~18-22 exam questions &bull; LARGEST section &bull; Blueprint-aligned</p>
+    <p><span class="video-status status-not-recorded">SLIDES READY — VIDEO COMING SOON</span></p>
+  </div>
+  <div class="video-section">
+    <div class="video-header" style="background:#0B7285">
+      <h2>Video Coming Soon</h2>
+      <div class="meta">Slides are blueprint-aligned and ready to record</div>
+    </div>
+    <div class="no-video-box">
+      <div class="icon">🎬</div>
+      <div class="msg">48 slides + narrator script ready — video will be recorded after Exam 2</div>
+      <div class="reason">This section covers the most exam questions (18-22). Slides and script are complete.</div>
+    </div>
+  </div>
+  <div class="video-section">
+    <div class="video-header" style="background:var(--navy)">
+      <h2>What the Slides Cover</h2>
+      <div class="meta">Content ready in the slides — will be in the video when recorded</div>
+    </div>
+    <div class="verify-wrap" id="slidesWrap"></div>
+  </div>
+  <div class="video-section">
+    <div class="video-header" style="background:var(--red)">
+      <h2>Blueprint Gaps — Still Missing</h2>
+      <div class="meta">These items are on the syllabus but NOT yet in the slides</div>
+    </div>
+    <div class="verify-wrap" id="gapsWrap"></div>
+  </div>
+  <div class="video-section" id="offbpSection" style="display:none">
+    <div class="video-header" style="background:#868E96">
+      <h2>Off-Blueprint — Remove Before Recording</h2>
+      <div class="meta">These are in the slides but NOT on the exam blueprint</div>
+    </div>
+    <div class="verify-wrap" id="offbpWrap"></div>
+  </div>
+  <div class="download-cta">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge">FREE</div>
+      <h3 class="cta-title">Download the Study Sheet</h3>
+      <p class="cta-sub">7 PDF study guides covering every drug on Exam 2.</p>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Download Free Bundle →</a>
+      <p class="cta-note">No credit card needed. Just enter $0. This is Tiago's own product — not a sponsorship.</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student — always verify against current guidelines and your instructor's direction.
+    <a href="../terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@TiagoNursing" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Free Study Bundle</a> &bull;
+    <a href="../privacy.html">Privacy</a> &bull;
+    <a href="../terms.html">Terms</a>
+  </div>
+</footer>
+<script src="../js/data.js"></script>
+<script src="../js/tracker.js"></script>
+<script src="../js/nav.js"></script>
+<script>
+  const deck = STUDY_DATA.videos.find(v => v.id === 'deck2');
+  // Slides content
+  document.getElementById('slidesWrap').innerHTML = (deck.slidesHave || []).map(s =>
+    `<div class="topic-card ${s.isWeak ? 'weak' : 'covered'}">
+      ${s.isWeak ? '<span class="topic-badge badge-w">WEAK</span>' : ''}
+      <div class="topic-name">${s.name}</div>
+      <div class="topic-detail">${s.detail}</div>
+    </div>`
+  ).join('');
+  // Gaps
+  document.getElementById('gapsWrap').innerHTML = deck.gaps.map(g =>
+    `<div class="topic-card missing">
+      <span class="topic-badge badge-m">MISSING</span>
+      <div class="topic-name">${g.name}</div>
+      <div class="topic-detail">${g.detail}</div>
+    </div>`
+  ).join('');
+  // Off-blueprint
+  if (deck.offbp && deck.offbp.length > 0) {
+    document.getElementById('offbpSection').style.display = 'block';
+    document.getElementById('offbpWrap').innerHTML = deck.offbp.map(o =>
+      `<div class="topic-card offbp">
+        <span class="topic-badge badge-o">NOT TESTED</span>
+        <div class="topic-name">${o.name}</div>
+        <div class="topic-detail">${o.detail}</div>
+      </div>`
+    ).join('');
+  }
+</script>
+</body>
+</html>

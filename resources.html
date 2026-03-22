@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Resources — Study with Tiago</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Free Study Resources</h1>
+    <p class="hero-sub">Download, print, mark up, bring to the exam.</p>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:linear-gradient(135deg, var(--navy), var(--teal))">
+      <h2>Pharmacology Exam 2 — Study Bundle</h2>
+      <div class="meta">7 PDF study guides covering every drug category</div>
+      <span class="video-status status-uploaded">FREE</span>
+    </div>
+    <div style="padding:24px">
+      <h3 style="margin-bottom:12px;color:var(--navy)">What's Inside:</h3>
+      <ul style="list-style:none;padding:0;margin:0">
+        <li style="padding:8px 0;border-bottom:1px solid var(--border)">✅ <strong>Diabetes Drugs</strong> — Insulins, oral antidiabetics, DKA/HHS protocols</li>
+        <li style="padding:8px 0;border-bottom:1px solid var(--border)">✅ <strong>Thyroid, Pituitary & Adrenal</strong> — Levothyroxine, antithyroids, steroids, pituitary drugs</li>
+        <li style="padding:8px 0;border-bottom:1px solid var(--border)">✅ <strong>Antimicrobials</strong> — Antibiotics, TB drugs, antifungals, antivirals, HIV</li>
+        <li style="padding:8px 0;border-bottom:1px solid var(--border)">✅ <strong>Hematology</strong> — Anticoagulants, antiplatelets, thrombolytics, growth factors</li>
+        <li style="padding:8px 0;border-bottom:1px solid var(--border)">✅ <strong>Drug Comparison Charts</strong> — Side-by-side for quick reference</li>
+        <li style="padding:8px 0;border-bottom:1px solid var(--border)">✅ <strong>Nursing Mnemonics</strong> — TIRED, FKI-D, RN rule, and more</li>
+        <li style="padding:8px 0">✅ <strong>Quick-Reference Lab Values</strong> — K+ thresholds, INR ranges, glucose targets</li>
+      </ul>
+      <div style="text-align:center;margin-top:24px">
+        <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button" style="font-size:1.1em;padding:16px 40px">Download Free Bundle →</a>
+        <p style="font-size:0.8em;color:var(--muted);margin-top:10px">No credit card needed. Pay $0 — or tip if you found it helpful. This is Tiago's own product, not a sponsorship.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-section" style="margin-top:24px">
+    <div class="video-header" style="background:#5F3DC4">
+      <h2>YouTube Videos</h2>
+      <div class="meta">Watch the full walkthroughs for each drug category</div>
+    </div>
+    <div style="padding:16px" id="videoList"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student — always verify against current guidelines and your instructor's direction.
+    <a href="terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@TiagoNursing" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="about.html">About</a> &bull;
+    <a href="privacy.html">Privacy</a> &bull;
+    <a href="terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script>
+  document.getElementById('videoList').innerHTML = STUDY_DATA.videos.filter(v => v.youtubeId).map(v =>
+    `<div style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)">
+      <img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" style="width:160px;border-radius:8px" alt="YouTube thumbnail for ${v.title} pharmacology study video">
+      <div>
+        <div style="font-weight:700;margin-bottom:4px">${v.title}</div>
+        <div style="font-size:0.85em;color:var(--muted)">${v.subtitle}</div>
+        <a href="https://www.youtube.com/watch?v=${v.youtubeId}" target="_blank" rel="noopener" style="font-size:0.85em;color:var(--teal);font-weight:600">Watch on YouTube →</a>
+      </div>
+    </div>`
+  ).join('');
+</script>
+</body>
+</html>

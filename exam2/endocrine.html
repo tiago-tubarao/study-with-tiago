@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thyroid, Pituitary & Adrenal Made Simple — Study with Tiago</title>
+  <meta name="description" content="Thyroid, pituitary, and adrenal drugs for your pharmacology exam. Watch the video, check the syllabus, see the proof.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Thyroid, Pituitary & Adrenal Made Simple</h1>
+    <p class="hero-sub">32 slides &bull; ~12-13 exam questions &bull; Chapters 42-44</p>
+    <p><span class="video-status status-uploaded">UPLOADED</span></p>
+  </div>
+
+  <div class="score-bar" id="scoreBar"></div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> I covered this</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Mentioned but weak</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Missing from my video</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#adb5bd"></div> Not on the exam</div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#5F3DC4">
+      <h2>Watch the Video</h2>
+      <div class="meta">Full walkthrough — thyroid, pituitary, and adrenal drugs with clinical mnemonics</div>
+    </div>
+    <div class="video-embed">
+      <iframe id="yt-9nmNgaX8ndo" src="https://www.youtube.com/embed/9nmNgaX8ndo?enablejsapi=1" title="Thyroid Pituitary Adrenal Made Simple" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="timestamps-toggle" id="tsToggle">Show/Hide Timestamps (<span id="tsCount"></span>)</div>
+    <div class="timestamps-panel" id="tsPanel"></div>
+  </div>
+
+  <div class="download-cta">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge">FREE</div>
+      <h3 class="cta-title">Download the Study Sheet</h3>
+      <p class="cta-sub">7 PDF study guides covering every drug on Exam 2. Review along with the video.</p>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Download Free Bundle →</a>
+      <p class="cta-note">No credit card needed. Just enter $0.</p>
+    </div>
+  </div>
+
+  <div class="master-score" id="masterScoreBar" style="display:none"></div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:var(--navy)">
+      <h2>Video vs Syllabus — Side by Side</h2>
+      <div class="meta">What I covered in the video &bull; matched against standard pharmacology curriculum topics</div>
+    </div>
+    <div class="verify-wrap" id="verifyWrap"></div>
+  </div>
+
+  <div class="video-section" id="offbpSection" style="display:none">
+    <div class="video-header" style="background:#868E96">
+      <h2>Not on the Exam</h2>
+      <div class="meta">Covered in the video but NOT on the syllabus blueprint</div>
+    </div>
+    <div class="verify-wrap" id="offbpWrap"></div>
+  </div>
+
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="if(confirm('Reset all checkmarks and confidence for this page?')){LS.clear();location.reload();}">Reset Progress</button>
+  </div>
+</div>
+
+<button class="quiz-float" onclick="openQuiz()">?</button>
+<div class="quiz-modal" id="quizModal">
+  <div class="quiz-box" style="position:relative">
+    <button class="quiz-close" onclick="closeQuiz()">&times;</button>
+    <div class="quiz-label">Quick Quiz</div>
+    <div class="quiz-drug" id="qDrug">...</div>
+    <div class="quiz-prompt">Which video did I talk about this in?</div>
+    <div class="quiz-opts" id="qOpts"></div>
+    <div id="qReveal" style="display:none"></div>
+    <div class="quiz-score-line" id="qScore"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  Study with Tiago &copy; 2026 &bull;
+  <a href="https://www.youtube.com/@TiagoNursing" target="_blank" rel="noopener">YouTube</a> &bull;
+  <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Free Study Bundle</a>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/questions-insulins.js"></script>
+<script src="../js/questions-orals.js"></script>
+<script src="../js/questions-emergencies.js"></script>
+<script src="../js/questions-endocrine.js"></script>
+<script src="../js/hints.js"></script>
+<script src="../js/questions.js"></script>
+<script src="../js/tracker.js"></script>
+<script src="../js/player.js"></script>
+<script src="../js/quiz.js"></script>
+<script src="../js/nav.js"></script>
+<script>
+  window._currentDeckId = 'deck4';
+  const deck = STUDY_DATA.videos.find(v => v.id === 'deck4');
+
+  document.getElementById('tsCount').textContent = deck.timestamps.length;
+  document.getElementById('tsPanel').innerHTML = deck.timestamps.map(([t, topic]) =>
+    `<div class="ts-item"><span class="ts-time" onclick="jumpTo('${deck.youtubeId}','${t}')">${t}</span><span class="ts-topic">${topic}</span></div>`
+  ).join('');
+  document.getElementById('tsToggle').onclick = () =>
+    document.getElementById('tsPanel').classList.toggle('show');
+
+  function renderDeck() {
+    const wrap = document.getElementById('verifyWrap');
+    if (!deck.syllabus) { wrap.innerHTML = '<p style="padding:20px;text-align:center;color:var(--muted)">Syllabus comparison data loading...</p>'; return; }
+    let html = '';
+    deck.syllabus.forEach(section => {
+      html += `<div class="compare-section">
+        <h3 class="compare-section-title">${section.topic}</h3>
+        <div class="compare-table">
+          <div class="compare-row compare-header-row">
+            <div class="compare-cell-header cell-syllabus">Standard Curriculum Topics</div>
+            <div class="compare-cell-header cell-video">What I Said in the Video</div>
+            <div class="compare-cell-header cell-status">Match</div>
+          </div>
+          ${section.items.map((item, idx) => {
+            const match = item.coveredBy ? deck.said.find(s => s.name === item.coveredBy) : null;
+            const matchIdx = match ? deck.said.indexOf(match) : -1;
+            const covered = !!match;
+            return `<div class="compare-row ${covered ? 'row-covered' : 'row-missing'}" data-conf-id="${matchIdx >= 0 ? deck.id+'_s_'+matchIdx : ''}" data-drug-name="${match ? match.name.replace(/"/g, '&amp;quot;') : ''}">
+              <div class="compare-cell cell-syllabus">
+                <div class="cell-name">${item.name}</div>
+                <div class="cell-detail">${item.detail}</div>
+              </div>
+              <div class="compare-cell cell-video">
+                ${covered ? `
+                  <div class="cell-name">${match.name}</div>
+                  <div class="cell-detail">${match.detail}</div>
+                  ${match.ts && deck.youtubeId ? `<div class="topic-timestamp" onclick="jumpTo('${deck.youtubeId}','${match.ts}')">▶ ${match.ts} — watch this part</div>` : ''}
+                  ${matchIdx >= 0 ? `<div class="conf-dots">
+                    <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='g'?'sel sel-g':''}" data-level="g" onclick="setConf('${deck.id}_s_${matchIdx}','g')">&#x1F7E2;</div>
+                    <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='y'?'sel sel-y':''}" data-level="y" onclick="setConf('${deck.id}_s_${matchIdx}','y')">&#x1F7E1;</div>
+                    <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='r'?'sel sel-r':''}" data-level="r" onclick="setConf('${deck.id}_s_${matchIdx}','r')">&#x1F534;</div>
+                  </div>` : ''}
+                ` : `<div class="cell-not-covered">Not in this video</div>`}
+              </div>
+              <div class="compare-cell cell-status">
+                ${covered ? '<span class="match-badge match-yes">✓ Covered</span>' : '<span class="match-badge match-no">✗ Missing</span>'}
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+    });
+    const matchedNames = new Set();
+    deck.syllabus.forEach(s => s.items.forEach(i => { if(i.coveredBy) matchedNames.add(i.coveredBy); }));
+    const extras = deck.said.filter(s => !matchedNames.has(s.name));
+    if (extras.length > 0) {
+      html += `<div class="compare-section">
+        <h3 class="compare-section-title">Bonus Content (in video, beyond syllabus requirements)</h3>
+        <div class="compare-table">
+          ${extras.map(s => `<div class="compare-row row-bonus">
+            <div class="compare-cell cell-syllabus"><div class="cell-detail" style="color:var(--muted);font-style:italic">Not a specific syllabus item</div></div>
+            <div class="compare-cell cell-video">
+              <div class="cell-name">${s.name}</div>
+              <div class="cell-detail">${s.detail}</div>
+              ${s.ts && deck.youtubeId ? `<div class="topic-timestamp" onclick="jumpTo('${deck.youtubeId}','${s.ts}')">▶ ${s.ts} — watch this part</div>` : ''}
+            </div>
+            <div class="compare-cell cell-status"><span class="match-badge match-bonus">+ Extra</span></div>
+          </div>`).join('')}
+        </div>
+      </div>`;
+    }
+    wrap.innerHTML = html;
+    if (deck.offbp && deck.offbp.length > 0) {
+      document.getElementById('offbpSection').style.display = 'block';
+      document.getElementById('offbpWrap').innerHTML = deck.offbp.map(o => renderOffbpCard(o)).join('');
+    }
+  }
+  renderDeck();
+  renderScores('scoreBar', 'deck4');
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student — always verify against current guidelines and your instructor's direction.
+    <a href="../terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@TiagoNursing" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="../privacy.html">Privacy</a> &bull;
+    <a href="../terms.html">Terms</a>
+  </div>
+</footer>
+</body>
+</html>

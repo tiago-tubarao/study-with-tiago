@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood, Immunity & Clotting Made Simple — Study with Tiago</title>
+  <meta name="description" content="Anticoagulants, vaccines, transfusions, and growth factors for your pharmacology exam. Interactive NCLEX questions with scoring.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Blood, Immunity & Clotting Made Simple</h1>
+    <p class="hero-sub">32 slides &bull; ~4-6 exam questions &bull; ATI Modules + Ch 9, 11, 32</p>
+    <p><span class="video-status status-no-video">SLIDES READY — VIDEO COMING SOON</span></p>
+  </div>
+
+  <div class="score-bar" id="scoreBar"></div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> I know this</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Need review</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Don't know yet</div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#C92A2A">
+      <h2>Video Coming Soon</h2>
+      <div class="meta">Slides and script are ready — recording is next. In the meantime, test yourself below!</div>
+    </div>
+    <div class="no-video-box">
+      <div class="icon">🎬</div>
+      <div class="msg">32 slides built, narrator script ready — video will be recorded after Exam 2</div>
+      <div class="reason">Use the confidence dots and NCLEX questions below to study this content now.</div>
+    </div>
+  </div>
+
+  <div class="download-cta">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge">FREE</div>
+      <h3 class="cta-title">Download the Study Sheet</h3>
+      <p class="cta-sub">7 PDF study guides covering every drug on Exam 2.</p>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Download Free Bundle →</a>
+      <p class="cta-note">No credit card needed. Just enter $0.</p>
+    </div>
+  </div>
+
+  <div class="master-score" id="masterScoreBar" style="display:none"></div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:var(--navy)">
+      <h2>Syllabus Requirements — Test Yourself</h2>
+      <div class="meta">Click the confidence dots to test yourself on each drug &bull; 135 NCLEX questions across 15 drugs</div>
+    </div>
+    <div class="verify-wrap" id="verifyWrap"></div>
+  </div>
+
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="if(confirm('Reset all checkmarks and confidence for this page?')){LS.clear();location.reload();}">Reset Progress</button>
+  </div>
+</div>
+
+<button class="quiz-float" onclick="openQuiz()">?</button>
+<div class="quiz-modal" id="quizModal">
+  <div class="quiz-box" style="position:relative">
+    <button class="quiz-close" onclick="closeQuiz()">&times;</button>
+    <div class="quiz-label">Quick Quiz</div>
+    <div class="quiz-drug" id="qDrug">...</div>
+    <div class="quiz-prompt">Which video did I talk about this in?</div>
+    <div class="quiz-opts" id="qOpts"></div>
+    <div id="qReveal" style="display:none"></div>
+    <div class="quiz-score-line" id="qScore"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  Study with Tiago &copy; 2026 &bull;
+  <a href="https://www.youtube.com/@TiagoNursing" target="_blank" rel="noopener">YouTube</a> &bull;
+  <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Free Study Bundle</a>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/questions-insulins.js"></script>
+<script src="../js/questions-orals.js"></script>
+<script src="../js/questions-emergencies.js"></script>
+<script src="../js/questions-endocrine.js"></script>
+<script src="../js/questions-hematology.js"></script>
+<script src="../js/hints.js"></script>
+<script src="../js/questions.js"></script>
+<script src="../js/tracker.js"></script>
+<script src="../js/player.js"></script>
+<script src="../js/quiz.js"></script>
+<script src="../js/nav.js"></script>
+<script>
+  window._currentDeckId = 'deck1';
+  const deck = STUDY_DATA.videos.find(v => v.id === 'deck1');
+
+  // Build drug list from the hematology questions directly
+  function renderDeck() {
+    const wrap = document.getElementById('verifyWrap');
+    const drugs = window.DRUG_DEEP_HEMATOLOGY ? Object.keys(window.DRUG_DEEP_HEMATOLOGY) : [];
+    if (drugs.length === 0) {
+      wrap.innerHTML = '<p style="padding:20px;text-align:center;color:var(--muted)">Questions loading...</p>';
+      return;
+    }
+
+    // Group drugs by category
+    const groups = [
+      { title: 'Anticoagulants', drugs: drugs.filter(d => /Heparin|Enoxaparin|Warfarin|Dabigatran|Rivaroxaban|Apixaban/i.test(d)) },
+      { title: 'Antiplatelets', drugs: drugs.filter(d => /Aspirin|Clopidogrel/i.test(d)) },
+      { title: 'Thrombolytics', drugs: drugs.filter(d => /Alteplase|tPA/i.test(d)) },
+      { title: 'Growth Factors', drugs: drugs.filter(d => /Epoetin|Filgrastim|Oprelvekin|Sargramostim/i.test(d)) },
+      { title: 'Immunosuppressants', drugs: drugs.filter(d => /Cyclosporine|Tacrolimus/i.test(d)) },
+    ];
+
+    let html = '';
+    groups.forEach(group => {
+      if (group.drugs.length === 0) return;
+      html += `<div class="compare-section">
+        <h3 class="compare-section-title">${group.title}</h3>
+        <div class="compare-table">
+          ${group.drugs.map((drugName, idx) => {
+            const drugData = window.DRUG_DEEP_HEMATOLOGY[drugName];
+            const globalIdx = drugs.indexOf(drugName);
+            const confId = 'deck1_h_' + globalIdx;
+            return `<div class="compare-row row-covered" data-conf-id="${confId}" data-drug-name="${drugName.replace(/"/g, '&quot;')}">
+              <div class="compare-cell cell-syllabus">
+                <div class="cell-name">${drugName}</div>
+                <div class="cell-detail">${drugData.details[0]}</div>
+              </div>
+              <div class="compare-cell cell-video">
+                <div class="cell-detail">${drugData.details.slice(1, 3).join(' | ')}</div>
+                <div class="conf-dots">
+                  <div class="conf-dot ${(LS.get(confId+'_c')||'')==='g'?'sel sel-g':''}" data-level="g" onclick="setConf('${confId}','g')">&#x1F7E2;</div>
+                  <div class="conf-dot ${(LS.get(confId+'_c')||'')==='y'?'sel sel-y':''}" data-level="y" onclick="setConf('${confId}','y')">&#x1F7E1;</div>
+                  <div class="conf-dot ${(LS.get(confId+'_c')||'')==='r'?'sel sel-r':''}" data-level="r" onclick="setConf('${confId}','r')">&#x1F534;</div>
+                </div>
+              </div>
+              <div class="compare-cell cell-status">
+                <span class="match-badge match-yes">9 Questions</span>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+    });
+    wrap.innerHTML = html;
+  }
+  renderDeck();
+  renderScores('scoreBar', 'deck1');
+</script>
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student — always verify against current guidelines and your instructor's direction.
+    <a href="../terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@TiagoNursing" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="../privacy.html">Privacy</a> &bull;
+    <a href="../terms.html">Terms</a>
+  </div>
+</footer>
+</body>
+</html>

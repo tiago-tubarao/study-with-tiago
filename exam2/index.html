@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pharmacology Exam 2 — Study with Tiago</title>
+  <meta name="description" content="Interactive study hub for Pharmacology Exam 2. Watch videos, compare against the syllabus, test yourself with NCLEX-style questions.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Pharmacology Exam 2</h1>
+    <p class="hero-sub">50-55 questions &bull; 4 topic areas</p>
+  </div>
+
+  <div class="score-bar" id="scoreBar"></div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Covered in video</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> In slides, not recorded</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Not covered yet</div>
+  </div>
+
+  <div class="deck-grid" id="deckGrid"></div>
+
+  <div class="download-cta">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge">FREE</div>
+      <h3 class="cta-title">Get the Full Study Bundle</h3>
+      <p class="cta-sub">7 PDF study guides covering every drug on this exam. Download and review alongside the videos.</p>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Download Free Bundle →</a>
+      <p class="cta-note">No credit card needed. Just enter $0. This is Tiago's own product — not a sponsorship.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student — always verify against current guidelines and your instructor's direction.
+    <a href="../terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@TiagoNursing" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Free Study Bundle</a> &bull;
+    <a href="../privacy.html">Privacy</a> &bull;
+    <a href="../terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/tracker.js"></script>
+<script src="../js/nav.js"></script>
+<script>
+  const pages = { deck3: 'diabetes.html', deck4: 'endocrine.html', deck2: 'antimicrobials.html', deck1: 'hematology.html' };
+  const statusMap = { uploaded: 'status-uploaded', 'not-recorded': 'status-not-recorded', 'no-video': 'status-no-video' };
+  const statusLabel = { uploaded: 'UPLOADED', 'not-recorded': 'NOT RECORDED', 'no-video': 'COMING SOON' };
+
+  // Render score bar (all decks)
+  renderScores('scoreBar', null);
+
+  // Render deck cards
+  const grid = document.getElementById('deckGrid');
+  grid.innerHTML = STUDY_DATA.videos.map(v => {
+    const totalItems = v.said.length + (v.slidesHave || []).length + v.gaps.length;
+    const coveredItems = v.said.length;
+    const pct = totalItems > 0 ? Math.round((coveredItems / totalItems) * 100) : 0;
+    return `<a href="${pages[v.id]}" class="deck-card">
+      <div class="deck-card-header" style="background:${v.color}">
+        <h3>${v.title}</h3>
+        <div class="meta">${v.subtitle}</div>
+        <span class="video-status ${statusMap[v.status]}">${statusLabel[v.status]}</span>
+      </div>
+      <div class="deck-card-body">
+        <div class="deck-card-stat"><strong>${v.questionCount}</strong> estimated exam questions</div>
+        <div class="deck-card-stat"><strong>${coveredItems}/${totalItems}</strong> syllabus items covered (${pct}%)</div>
+        <div class="deck-card-stat" style="margin-top:8px">
+          <div style="height:6px;background:#e9ecef;border-radius:3px;overflow:hidden">
+            <div style="height:100%;width:${pct}%;background:${v.color};border-radius:3px;transition:width 0.3s"></div>
+          </div>
+        </div>
+      </div>
+    </a>`;
+  }).join('');
+</script>
+</body>
+</html>
