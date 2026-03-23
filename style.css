@@ -324,7 +324,7 @@ h1, h2, h3, h4 {
   position: relative;
 }
 
-.video-header h2 { font-size: 1.3em; margin-bottom: 4px; }
+.video-header h2 { font-size: 1.3em; margin-bottom: 4px; color: white !important; }
 .video-header .meta { font-size: 0.8em; opacity: 0.8; }
 
 .video-status {
