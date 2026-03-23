@@ -399,7 +399,7 @@ h1, h2, h3, h4 {
 /* ── Quiz ── */
 .quiz-float {
   position: fixed;
-  bottom: 24px;
+  bottom: 96px;
   right: 24px;
   z-index: 100;
   width: 56px;
