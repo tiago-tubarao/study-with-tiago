@@ -11,7 +11,8 @@ window.DRUG_DEEP = Object.assign({},
   window.DRUG_DEEP_ENDOCRINE || {},
   window.DRUG_DEEP_HEMATOLOGY || {},
   window.DRUG_DEEP_ANTIBIOTICS || {},
-  window.DRUG_DEEP_ANTIMICROBIALS_SPECIAL || {}
+  window.DRUG_DEEP_ANTIMICROBIALS_SPECIAL || {},
+  window.DRUG_DEEP_ANTIMICROBIALS_EXTRA || {}
 );
 
 // Log for debugging

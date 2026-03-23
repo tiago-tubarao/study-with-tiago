@@ -136,6 +136,7 @@
 <script src="../js/data.js"></script>
 <script src="../js/questions-antibiotics.js"></script>
 <script src="../js/questions-antimicrobials-special.js"></script>
+<script src="../js/questions-antimicrobials-extra.js"></script>
 <script src="../js/hints.js"></script>
 <script src="../js/questions.js"></script>
 <script src="../js/tracker.js"></script>
@@ -187,7 +188,8 @@
                 ${covered ? `
                   <div class="cell-name">${match.name}</div>
                   <div class="cell-detail">${match.detail}</div>
-                  ${match.ts && deck.youtubeId ? `<div class="topic-timestamp" onclick="jumpTo('${deck.youtubeId}','${match.ts}')">▶ ${match.ts} — watch this part</div>` : ''}
+                  ${match.notInVideo ? '<div style="font-size:0.78em;color:var(--purple);font-weight:600;margin-top:4px">📝 Not in video — practice questions available below</div>' : ''}
+                  ${!match.notInVideo && match.ts && deck.youtubeId ? `<div class="topic-timestamp" onclick="jumpTo('${deck.youtubeId}','${match.ts}')">▶ ${match.ts} — watch this part</div>` : ''}
                   ${matchIdx >= 0 ? `<div class="conf-dots">
                     <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='g'?'sel sel-g':''}" data-level="g" onclick="setConf('${deck.id}_s_${matchIdx}','g')">&#x1F7E2;</div>
                     <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='y'?'sel sel-y':''}" data-level="y" onclick="setConf('${deck.id}_s_${matchIdx}','y')">&#x1F7E1;</div>
@@ -196,7 +198,7 @@
                 ` : `<div class="cell-not-covered">Not in this video</div>`}
               </div>
               <div class="compare-cell cell-status">
-                ${covered ? '<span class="match-badge match-yes">✓ Covered</span>' : '<span class="match-badge match-no">✗ Missing</span>'}
+                ${covered ? (match.notInVideo ? '<span class="match-badge match-bonus">📝 Questions</span>' : '<span class="match-badge match-yes">✓ Covered</span>') : '<span class="match-badge match-no">✗ Missing</span>'}
               </div>
             </div>`;
           }).join('')}
