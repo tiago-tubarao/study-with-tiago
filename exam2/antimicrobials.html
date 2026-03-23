@@ -13,18 +13,38 @@
   <div class="hero">
     <h1 class="hero-title">Infectious Disease & Antimicrobials</h1>
     <p class="hero-sub">~48 slides &bull; ~18-22 exam questions &bull; LARGEST section &bull; Blueprint-aligned</p>
-    <p><span class="video-status status-not-recorded">SLIDES READY — VIDEO COMING SOON</span></p>
+    <p><span class="video-status status-uploaded">UPLOADED</span></p>
   </div>
+
+  <!-- Score Rings -->
+  <div class="score-bar" id="scoreBar"></div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> I covered this</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Mentioned but weak</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Missing from my video</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#adb5bd"></div> Not on the exam</div>
+  </div>
+
+  <!-- Video Section -->
   <div class="video-section">
     <div class="video-header" style="background:#0B7285">
-      <h2>Video Coming Soon</h2>
-      <div class="meta">Slides are blueprint-aligned and ready to record</div>
+      <h2>Watch the Video</h2>
+      <div class="meta">Full walkthrough — every antibiotic, antiviral, HIV drug, and antifungal</div>
     </div>
-    <div class="no-video-box">
-      <div class="icon">🎬</div>
-      <div class="msg">48 slides + narrator script ready — video will be recorded after Exam 2</div>
-      <div class="reason">This section covers the most exam questions (18-22). Slides and script are complete.</div>
+
+    <div class="video-embed">
+      <iframe id="yt-VluJCc8MNlI"
+        src="https://www.youtube.com/embed/VluJCc8MNlI?enablejsapi=1"
+        title="18 Antibiotic Questions on Your Nursing Exam"
+        allowfullscreen loading="lazy"></iframe>
     </div>
+
+    <!-- Timestamps (collapsible) -->
+    <div class="timestamps-toggle" id="tsToggle">
+      Show/Hide Timestamps (<span id="tsCount"></span>)
+    </div>
+    <div class="timestamps-panel" id="tsPanel"></div>
   </div>
   <div class="video-section">
     <div class="video-header" style="background:var(--navy)">
@@ -75,10 +95,24 @@
 </footer>
 <script src="../js/data.js"></script>
 <script src="../js/tracker.js"></script>
+<script src="../js/player.js"></script>
 <script src="../js/nav.js"></script>
 <script src="../js/feedback.js"></script>
 <script>
+  window._currentDeckId = 'deck2';
   const deck = STUDY_DATA.videos.find(v => v.id === 'deck2');
+
+  // Render timestamps
+  document.getElementById('tsCount').textContent = deck.timestamps.length;
+  document.getElementById('tsPanel').innerHTML = deck.timestamps.map(([t, topic]) =>
+    `<div class="ts-item"><span class="ts-time" onclick="jumpTo('${deck.youtubeId}','${t}')">${t}</span><span class="ts-topic">${topic}</span></div>`
+  ).join('');
+  document.getElementById('tsToggle').onclick = () =>
+    document.getElementById('tsPanel').classList.toggle('show');
+
+  // Render score rings
+  if (typeof renderScores === 'function') renderScores('scoreBar', 'deck2');
+
   // Slides content
   document.getElementById('slidesWrap').innerHTML = (deck.slidesHave || []).map(s =>
     `<div class="topic-card ${s.isWeak ? 'weak' : 'covered'}">
@@ -107,5 +141,6 @@
     ).join('');
   }
 </script>
+<script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
