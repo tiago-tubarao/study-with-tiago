@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tiago-tubarao.github.io/study-with-tiago/sitemap.xml
