@@ -5,20 +5,29 @@
 (function() {
   const base = location.pathname.includes('/exam2/') ? '../' : './';
 
-  // Ko-fi floating button with bubble
+  // Ko-fi floating button with bubble — persistent, bigger, with pulse
   const kofiWrap = document.createElement('div');
   kofiWrap.className = 'kofi-wrap';
   kofiWrap.innerHTML = `
-    <div class="kofi-bubble">Buy me a coffee? ☕</div>
+    <div class="kofi-bubble">Support this project ☕</div>
     <a href="https://ko-fi.com/tiagolifeofstudy" target="_blank" rel="noopener" class="kofi-float" title="Buy me a coffee">☕</a>
   `;
   document.body.appendChild(kofiWrap);
 
-  // Hide bubble after 8 seconds, show on hover
+  // Bubble stays visible for 15 seconds, then shows on hover
+  // Also re-shows every 60 seconds for 5 seconds as a gentle reminder
   const bubble = kofiWrap.querySelector('.kofi-bubble');
-  setTimeout(() => { bubble.classList.add('hide'); }, 8000);
+  setTimeout(() => { bubble.classList.add('hide'); }, 15000);
   kofiWrap.addEventListener('mouseenter', () => bubble.classList.remove('hide'));
-  kofiWrap.addEventListener('mouseleave', () => bubble.classList.add('hide'));
+  kofiWrap.addEventListener('mouseleave', () => { setTimeout(() => bubble.classList.add('hide'), 3000); });
+
+  // Gentle re-show every 60s (only if not hovering)
+  setInterval(() => {
+    if (!kofiWrap.matches(':hover')) {
+      bubble.classList.remove('hide');
+      setTimeout(() => { if (!kofiWrap.matches(':hover')) bubble.classList.add('hide'); }, 5000);
+    }
+  }, 60000);
 
   // Feedback button
   const fbBtn = document.createElement('button');
