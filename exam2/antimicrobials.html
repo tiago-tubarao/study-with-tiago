@@ -77,7 +77,26 @@
       <p class="cta-note">No credit card needed. Just enter $0. This is Tiago's own product — not a sponsorship.</p>
     </div>
   </div>
+
+  <!-- Master Score Tracker -->
+  <div class="master-score" id="masterScoreBar" style="display:none"></div>
+
 </div>
+
+<!-- Quiz FAB -->
+<button class="quiz-float" onclick="openQuiz()">?</button>
+<div class="quiz-modal" id="quizModal">
+  <div class="quiz-box" style="position:relative">
+    <button class="quiz-close" onclick="closeQuiz()">&times;</button>
+    <div class="quiz-label">Quick Quiz</div>
+    <div class="quiz-drug" id="qDrug">...</div>
+    <div class="quiz-prompt">Which video did I talk about this in?</div>
+    <div class="quiz-opts" id="qOpts"></div>
+    <div id="qReveal" style="display:none"></div>
+    <div class="quiz-score-line" id="qScore"></div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="footer-disclaimer">
     For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
@@ -94,8 +113,13 @@
   </div>
 </footer>
 <script src="../js/data.js"></script>
+<script src="../js/questions-antibiotics.js"></script>
+<script src="../js/questions-antimicrobials-special.js"></script>
+<script src="../js/hints.js"></script>
+<script src="../js/questions.js"></script>
 <script src="../js/tracker.js"></script>
 <script src="../js/player.js"></script>
+<script src="../js/quiz.js"></script>
 <script src="../js/nav.js"></script>
 <script src="../js/feedback.js"></script>
 <script>
