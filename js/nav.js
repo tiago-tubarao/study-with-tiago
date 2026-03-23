@@ -14,6 +14,7 @@
     { label: 'Home', href: base + 'index.html', icon: '🏠' },
     { label: 'Exam Prep', href: base + 'exam2/index.html', icon: '📋' },
     { label: 'Resources', href: base + 'resources.html', icon: '📦' },
+    { label: 'Updates', href: base + 'updates.html', icon: '🔔' },
     { label: 'About', href: base + 'about.html', icon: '👤' },
     { label: 'YouTube', href: 'https://www.youtube.com/@life-ofstudy', icon: '▶', external: true },
   ];
