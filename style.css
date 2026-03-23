@@ -1563,6 +1563,22 @@ h1, h2, h3, h4 {
   background: rgba(255,255,255,0.15);
 }
 
+/* Fix browser autofill making text invisible on dark background */
+.signup-input:-webkit-autofill,
+.signup-input:-webkit-autofill:hover,
+.signup-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0 1000px rgba(26,42,66,0.95) inset;
+  border-color: var(--gold);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+[data-theme="dark"] .signup-input:-webkit-autofill,
+[data-theme="dark"] .signup-input:-webkit-autofill:hover,
+[data-theme="dark"] .signup-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px rgba(1,4,9,0.95) inset;
+}
+
 .signup-btn {
   padding: 12px 24px;
   border: none;
