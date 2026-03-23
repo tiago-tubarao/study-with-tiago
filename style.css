@@ -1541,7 +1541,7 @@ h1, h2, h3, h4 {
   max-width: 440px;
 }
 
-.signup-input {
+.signup-form input[type="email"].signup-input {
   flex: 1 1 250px !important;
   min-width: 180px !important;
   width: auto !important;
@@ -1556,25 +1556,31 @@ h1, h2, h3, h4 {
   transition: border-color 0.2s, box-shadow 0.2s;
   margin-bottom: 0 !important;
   height: auto !important;
+  --pico-background-color: white !important;
+  --pico-border-color: var(--gold) !important;
+  --pico-color: #1A2A42 !important;
 }
 
-.signup-input::placeholder {
-  color: #868E96;
+.signup-form input[type="email"].signup-input::placeholder {
+  color: #868E96 !important;
 }
 
-.signup-input:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(233,196,106,0.3);
+.signup-form input[type="email"].signup-input:focus {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(233,196,106,0.3) !important;
+  --pico-border-color: var(--gold) !important;
 }
 
-[data-theme="dark"] .signup-input {
-  background: #0d1117;
-  color: #e6edf3;
-  border-color: var(--gold);
+[data-theme="dark"] .signup-form input[type="email"].signup-input {
+  background: #0d1117 !important;
+  color: #e6edf3 !important;
+  border-color: var(--gold) !important;
+  --pico-background-color: #0d1117 !important;
+  --pico-color: #e6edf3 !important;
 }
 
-[data-theme="dark"] .signup-input::placeholder {
-  color: #8b949e;
+[data-theme="dark"] .signup-form input[type="email"].signup-input::placeholder {
+  color: #8b949e !important;
 }
 
 .signup-btn {
