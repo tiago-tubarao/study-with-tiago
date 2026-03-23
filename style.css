@@ -1544,39 +1544,33 @@ h1, h2, h3, h4 {
 .signup-input {
   flex: 1;
   padding: 12px 16px;
-  border: 2px solid rgba(255,255,255,0.2);
+  border: 2px solid var(--gold);
   border-radius: 10px;
-  background: rgba(255,255,255,0.1);
-  color: white;
+  background: white;
+  color: #1A2A42;
   font-size: 0.92em;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .signup-input::placeholder {
-  color: rgba(255,255,255,0.4);
+  color: #868E96;
 }
 
 .signup-input:focus {
   border-color: var(--gold);
-  background: rgba(255,255,255,0.15);
+  box-shadow: 0 0 0 3px rgba(233,196,106,0.3);
 }
 
-/* Fix browser autofill making text invisible on dark background */
-.signup-input:-webkit-autofill,
-.signup-input:-webkit-autofill:hover,
-.signup-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: white;
-  -webkit-box-shadow: 0 0 0 1000px rgba(26,42,66,0.95) inset;
+[data-theme="dark"] .signup-input {
+  background: #0d1117;
+  color: #e6edf3;
   border-color: var(--gold);
-  transition: background-color 5000s ease-in-out 0s;
 }
 
-[data-theme="dark"] .signup-input:-webkit-autofill,
-[data-theme="dark"] .signup-input:-webkit-autofill:hover,
-[data-theme="dark"] .signup-input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px rgba(1,4,9,0.95) inset;
+[data-theme="dark"] .signup-input::placeholder {
+  color: #8b949e;
 }
 
 .signup-btn {
