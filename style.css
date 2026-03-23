@@ -22,6 +22,131 @@
   --glass-border: rgba(255, 255, 255, 0.3);
 }
 
+/* ── Dark Mode ── */
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --card: #161b22;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --border: #30363d;
+  --glass-bg: rgba(22, 27, 34, 0.8);
+  --glass-border: rgba(48, 54, 61, 0.6);
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 {
+  color: #e6edf3;
+}
+
+[data-theme="dark"] .site-nav {
+  background: #010409;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .deck-card {
+  background: var(--card);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .deck-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .glass-card {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+
+[data-theme="dark"] .video-section {
+  background: var(--card);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .topic-card.covered { background: #0d2818; border-left-color: #2ea043; }
+[data-theme="dark"] .topic-card.weak { background: #2d2000; border-left-color: #d29922; }
+[data-theme="dark"] .topic-card.missing { background: #2d0000; border-left-color: #f85149; }
+[data-theme="dark"] .topic-card.offbp { background: #1c2128; border-left-color: #484f58; }
+
+[data-theme="dark"] .conf-dot { background: var(--card); border-color: var(--border); }
+
+[data-theme="dark"] .expand-inner {
+  background: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
+  border-color: var(--teal);
+}
+
+[data-theme="dark"] .sq-opt {
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+[data-theme="dark"] .sq-opt:hover:not(:disabled) {
+  background: #1c2128;
+  border-color: var(--teal);
+}
+
+[data-theme="dark"] .sq-opt.sq-correct { background: #0d2818; border-color: #2ea043; }
+[data-theme="dark"] .sq-opt.sq-wrong { background: #2d0000; border-color: #f85149; }
+
+[data-theme="dark"] .sq-rationale-right { background: #0d2818; border-left-color: #2ea043; }
+[data-theme="dark"] .sq-rationale-wrong { background: #2d0000; border-left-color: #f85149; }
+
+[data-theme="dark"] .quiz-box { background: #161b22; }
+[data-theme="dark"] .quiz-drug { color: #bc8cff; }
+[data-theme="dark"] .quiz-opt { background: var(--card); border-color: var(--border); color: var(--text); }
+[data-theme="dark"] .quiz-opt:hover { background: #1c2128; border-color: var(--teal); }
+[data-theme="dark"] .quiz-opt.right { background: #0d2818; border-color: #2ea043; }
+[data-theme="dark"] .quiz-opt.wrong { background: #2d0000; border-color: #f85149; }
+[data-theme="dark"] .quiz-reveal { background: #1c2128; }
+
+[data-theme="dark"] .feedback-box { background: #161b22; }
+[data-theme="dark"] .feedback-box h3 { color: var(--text); }
+[data-theme="dark"] .fb-vote { background: var(--card); border-color: var(--border); color: var(--text); }
+[data-theme="dark"] .fb-source { background: var(--card); border-color: var(--border); color: var(--text); }
+
+[data-theme="dark"] .download-cta { background: linear-gradient(135deg, #010409 0%, #0d1117 50%, #0B7285 100%); }
+
+[data-theme="dark"] .master-score { background: #010409; box-shadow: 0 4px 16px rgba(0,0,0,0.5); }
+
+[data-theme="dark"] .kofi-bubble { background: #161b22; color: var(--text); box-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+
+[data-theme="dark"] .site-footer { border-top-color: var(--border); }
+
+[data-theme="dark"] .hint-text { background: #2d2000; border-left-color: #d29922; color: #d29922; }
+
+[data-theme="dark"] .timestamps-toggle:hover { background: #1c2128; }
+
+[data-theme="dark"] .compare-header-row { background: #1c2128; }
+[data-theme="dark"] .compare-row:hover { background: rgba(255,255,255,0.03); }
+
+[data-theme="dark"] .label-said { background: #0d2818; color: #2ea043; }
+[data-theme="dark"] .label-need { background: #2d2000; color: #d29922; }
+[data-theme="dark"] .label-offbp { background: #1c2128; color: #8b949e; }
+
+[data-theme="dark"] .expand-score-bar { background: #1c2128; }
+[data-theme="dark"] .score-perfect { background: #0d2818; color: #2ea043; }
+[data-theme="dark"] .score-good { background: #2d2000; color: #d29922; }
+[data-theme="dark"] .score-review { background: #2d0000; color: #f85149; }
+
+[data-theme="dark"] .reset-btn { background: var(--card); border-color: var(--border); }
+
+/* Dark mode toggle button */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  color: rgba(255,255,255,0.75);
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle:hover { background: rgba(255,255,255,0.1); }
+
 /* ── Typography Override (Pico uses system fonts, we add custom) ── */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -1301,3 +1426,54 @@ h1, h2, h3, h4 {
 }
 
 .fb-submit:hover { background: var(--teal); }
+
+/* ── Share Button ── */
+.share-float {
+  position: fixed;
+  bottom: 24px;
+  right: 136px;
+  z-index: 90;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+  color: white;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(42,157,143,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.share-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(42,157,143,0.5);
+}
+
+.share-toast {
+  position: fixed;
+  bottom: 84px;
+  right: 120px;
+  background: var(--navy);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.82em;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 91;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.share-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-theme="dark"] .share-toast { background: #e6edf3; color: #0d1117; }
