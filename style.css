@@ -1542,7 +1542,9 @@ h1, h2, h3, h4 {
 }
 
 .signup-input {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
   padding: 12px 16px;
   border: 2px solid var(--gold);
   border-radius: 10px;
@@ -1552,6 +1554,9 @@ h1, h2, h3, h4 {
   font-family: inherit;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
+  /* Override Pico CSS input defaults */
+  margin-bottom: 0;
+  height: auto;
 }
 
 .signup-input::placeholder {
@@ -1585,6 +1590,10 @@ h1, h2, h3, h4 {
   transition: all 0.2s;
   white-space: nowrap;
   box-shadow: 0 4px 12px rgba(233,196,106,0.3);
+  flex-shrink: 0;
+  /* Override Pico CSS button defaults */
+  width: auto;
+  margin-bottom: 0;
 }
 
 .signup-btn:hover {
