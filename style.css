@@ -399,7 +399,7 @@ h1, h2, h3, h4 {
 /* ── Quiz ── */
 .quiz-float {
   position: fixed;
-  bottom: 96px;
+  bottom: 24px;
   right: 24px;
   z-index: 100;
   width: 56px;
@@ -1145,11 +1145,10 @@ h1, h2, h3, h4 {
 .kofi-wrap {
   position: fixed;
   bottom: 24px;
-  right: 24px;
+  left: 24px;
   z-index: 90;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   gap: 10px;
 }
 
@@ -1163,7 +1162,7 @@ h1, h2, h3, h4 {
   box-shadow: 0 2px 12px rgba(0,0,0,0.1);
   white-space: nowrap;
   opacity: 1;
-  transition: opacity 0.4s, transform 0.4s;
+  transition: opacity 0.4s;
 }
 
 .kofi-bubble.hide {
@@ -1172,13 +1171,13 @@ h1, h2, h3, h4 {
 }
 
 .kofi-float {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   background: linear-gradient(135deg, #FF5E5B, #FF9966);
   color: white;
   border: none;
-  font-size: 1.5em;
+  font-size: 1.4em;
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(255,94,91,0.3);
   display: flex;
@@ -1186,6 +1185,7 @@ h1, h2, h3, h4 {
   justify-content: center;
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
 }
 
 .kofi-float:hover {
@@ -1196,15 +1196,15 @@ h1, h2, h3, h4 {
 .feedback-float {
   position: fixed;
   bottom: 24px;
-  right: 88px;
+  left: 84px;
   z-index: 90;
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   background: var(--navy);
   color: white;
   border: none;
-  font-size: 1.3em;
+  font-size: 1.2em;
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(26,42,66,0.3);
   display: flex;
