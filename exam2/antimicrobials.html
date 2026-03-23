@@ -55,27 +55,34 @@
     </div>
     <div class="timestamps-panel" id="tsPanel"></div>
   </div>
+
+  <!-- Syllabus Verification (with confidence dots + expandable questions) -->
   <div class="video-section">
     <div class="video-header" style="background:var(--navy)">
-      <h2>What the Slides Cover</h2>
-      <div class="meta">Content ready in the slides — will be in the video when recorded</div>
+      <h2>Syllabus Coverage — Click a Drug to Test Yourself</h2>
+      <div class="meta">Rate your confidence on each drug. Green = confident, Yellow = shaky, Red = no idea. Questions appear below.</div>
     </div>
-    <div class="verify-wrap" id="slidesWrap"></div>
+    <div class="verify-wrap" id="verifyWrap"></div>
   </div>
+
+  <!-- Gaps -->
   <div class="video-section">
     <div class="video-header" style="background:var(--red)">
       <h2>Blueprint Gaps — Still Missing</h2>
-      <div class="meta">These items are on the syllabus but NOT yet in the slides</div>
+      <div class="meta">These items are on the syllabus but NOT yet in the video</div>
     </div>
     <div class="verify-wrap" id="gapsWrap"></div>
   </div>
+
+  <!-- Off-blueprint -->
   <div class="video-section" id="offbpSection" style="display:none">
     <div class="video-header" style="background:#868E96">
-      <h2>Off-Blueprint — Remove Before Recording</h2>
+      <h2>Off-Blueprint — Not on the Exam</h2>
       <div class="meta">These are in the slides but NOT on the exam blueprint</div>
     </div>
     <div class="verify-wrap" id="offbpWrap"></div>
   </div>
+
   <div class="download-cta">
     <div class="cta-glow"></div>
     <div class="cta-content">
@@ -85,6 +92,11 @@
       <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Download Free Bundle →</a>
       <p class="cta-note">No credit card needed. Just enter $0. This is Tiago's own product — not a sponsorship.</p>
     </div>
+  </div>
+
+  <!-- Reset -->
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="if(confirm('Reset all checkmarks and confidence for this page?')){LS.clear();location.reload();}">Reset Progress</button>
   </div>
 
   <!-- Master Score Tracker -->
@@ -146,36 +158,97 @@
   document.getElementById('tsToggle').onclick = () =>
     document.getElementById('tsPanel').classList.toggle('show');
 
-  // Render score rings
-  if (typeof renderScores === 'function') renderScores('scoreBar', 'deck2');
+  // Render side-by-side syllabus verification (with confidence dots + expandable questions)
+  function renderDeck() {
+    const wrap = document.getElementById('verifyWrap');
+    if (!deck.syllabus) { wrap.innerHTML = '<p style="padding:20px;text-align:center;color:var(--muted)">Syllabus comparison data loading...</p>'; return; }
 
-  // Slides content
-  document.getElementById('slidesWrap').innerHTML = (deck.slidesHave || []).map(s =>
-    `<div class="topic-card ${s.isWeak ? 'weak' : 'covered'}">
-      ${s.isWeak ? '<span class="topic-badge badge-w">WEAK</span>' : ''}
-      <div class="topic-name">${s.name}</div>
-      <div class="topic-detail">${s.detail}</div>
-    </div>`
-  ).join('');
-  // Gaps
-  document.getElementById('gapsWrap').innerHTML = deck.gaps.map(g =>
-    `<div class="topic-card missing">
-      <span class="topic-badge badge-m">MISSING</span>
-      <div class="topic-name">${g.name}</div>
-      <div class="topic-detail">${g.detail}</div>
-    </div>`
-  ).join('');
-  // Off-blueprint
-  if (deck.offbp && deck.offbp.length > 0) {
-    document.getElementById('offbpSection').style.display = 'block';
-    document.getElementById('offbpWrap').innerHTML = deck.offbp.map(o =>
-      `<div class="topic-card offbp">
-        <span class="topic-badge badge-o">NOT TESTED</span>
-        <div class="topic-name">${o.name}</div>
-        <div class="topic-detail">${o.detail}</div>
+    let html = '';
+    deck.syllabus.forEach(section => {
+      html += `<div class="compare-section">
+        <h3 class="compare-section-title">${section.topic}</h3>
+        <div class="compare-table">
+          <div class="compare-row compare-header-row">
+            <div class="compare-cell-header cell-syllabus">Standard Curriculum Topics</div>
+            <div class="compare-cell-header cell-video">What I Said in the Video</div>
+            <div class="compare-cell-header cell-status">Match</div>
+          </div>
+          ${section.items.map((item, idx) => {
+            const match = item.coveredBy ? deck.said.find(s => s.name === item.coveredBy) : null;
+            const matchIdx = match ? deck.said.indexOf(match) : -1;
+            const covered = !!match;
+
+            return `<div class="compare-row ${covered ? 'row-covered' : 'row-missing'}" data-conf-id="${matchIdx >= 0 ? deck.id+'_s_'+matchIdx : ''}" data-drug-name="${match ? match.name.replace(/"/g, '&amp;quot;') : ''}">
+              <div class="compare-cell cell-syllabus">
+                <div class="cell-name">${item.name}</div>
+                <div class="cell-detail">${item.detail}</div>
+              </div>
+              <div class="compare-cell cell-video">
+                ${covered ? `
+                  <div class="cell-name">${match.name}</div>
+                  <div class="cell-detail">${match.detail}</div>
+                  ${match.ts && deck.youtubeId ? `<div class="topic-timestamp" onclick="jumpTo('${deck.youtubeId}','${match.ts}')">▶ ${match.ts} — watch this part</div>` : ''}
+                  ${matchIdx >= 0 ? `<div class="conf-dots">
+                    <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='g'?'sel sel-g':''}" data-level="g" onclick="setConf('${deck.id}_s_${matchIdx}','g')">&#x1F7E2;</div>
+                    <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='y'?'sel sel-y':''}" data-level="y" onclick="setConf('${deck.id}_s_${matchIdx}','y')">&#x1F7E1;</div>
+                    <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='r'?'sel sel-r':''}" data-level="r" onclick="setConf('${deck.id}_s_${matchIdx}','r')">&#x1F534;</div>
+                  </div>` : ''}
+                ` : `<div class="cell-not-covered">Not in this video</div>`}
+              </div>
+              <div class="compare-cell cell-status">
+                ${covered ? '<span class="match-badge match-yes">✓ Covered</span>' : '<span class="match-badge match-no">✗ Missing</span>'}
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+    });
+
+    // Bonus content (in said but not in syllabus)
+    const matchedNames = new Set();
+    deck.syllabus.forEach(s => s.items.forEach(i => { if(i.coveredBy) matchedNames.add(i.coveredBy); }));
+    const extras = deck.said.filter(s => !matchedNames.has(s.name));
+    if (extras.length > 0) {
+      html += `<div class="compare-section">
+        <h3 class="compare-section-title">Bonus Content (in video, beyond syllabus requirements)</h3>
+        <div class="compare-table">
+          ${extras.map((s, i) => {
+            const realIdx = deck.said.indexOf(s);
+            return `<div class="compare-row row-bonus">
+              <div class="compare-cell cell-syllabus"><div class="cell-detail" style="color:var(--muted);font-style:italic">Not a specific syllabus item</div></div>
+              <div class="compare-cell cell-video">
+                <div class="cell-name">${s.name}</div>
+                <div class="cell-detail">${s.detail}</div>
+                ${s.ts && deck.youtubeId ? `<div class="topic-timestamp" onclick="jumpTo('${deck.youtubeId}','${s.ts}')">▶ ${s.ts} — watch this part</div>` : ''}
+              </div>
+              <div class="compare-cell cell-status"><span class="match-badge match-bonus">+ Extra</span></div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+    }
+
+    wrap.innerHTML = html;
+
+    // Gaps
+    document.getElementById('gapsWrap').innerHTML = deck.gaps.map(g =>
+      `<div class="topic-card missing">
+        <span class="topic-badge badge-m">MISSING</span>
+        <div class="topic-name">${g.name}</div>
+        <div class="topic-detail">${g.detail}</div>
       </div>`
     ).join('');
+
+    // Off-blueprint
+    if (deck.offbp && deck.offbp.length > 0) {
+      document.getElementById('offbpSection').style.display = 'block';
+      document.getElementById('offbpWrap').innerHTML = deck.offbp.map(o => renderOffbpCard(o)).join('');
+    }
   }
+
+  // Init
+  renderDeck();
+  renderScores('scoreBar', 'deck2');
 </script>
 <script src="https://www.youtube.com/iframe_api"></script>
 </body>
