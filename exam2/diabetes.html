@@ -19,7 +19,7 @@
   <meta name="twitter:description" content="12 diabetes drugs with NCLEX practice questions and confidence tracking. Free, no sign-up.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css?v=9">
+  <link rel="stylesheet" href="../style.css?v=10">
 </head>
 <body>
 
@@ -134,7 +134,7 @@
 <script src="../js/questions-emergencies.js"></script>
 <script src="../js/hints.js"></script>
 <script src="../js/questions.js"></script>
-<script src="../js/tracker.js?v=2"></script>
+<script src="../js/tracker.js?v=3"></script>
 <script src="../js/player.js"></script>
 <script src="../js/quiz.js"></script>
 <script src="../js/nav.js?v=2"></script>
@@ -187,9 +187,9 @@
                   <div class="cell-detail">${match.detail}</div>
                   ${match.ts && deck.youtubeId ? `<div class="topic-timestamp" onclick="jumpTo('${deck.youtubeId}','${match.ts}')">▶ ${match.ts} — watch this part</div>` : ''}
                   ${matchIdx >= 0 ? `<div class="conf-dots">
-                    <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='g'?'sel sel-g':''}" data-level="g" onclick="setConf('${deck.id}_s_${matchIdx}','g')">&#x1F7E2;</div>
-                    <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='y'?'sel sel-y':''}" data-level="y" onclick="setConf('${deck.id}_s_${matchIdx}','y')">&#x1F7E1;</div>
-                    <div class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='r'?'sel sel-r':''}" data-level="r" onclick="setConf('${deck.id}_s_${matchIdx}','r')">&#x1F534;</div>
+                    <button type="button" class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='g'?'sel sel-g':''}" data-level="g" onclick="setConf('${deck.id}_s_${matchIdx}','g')">&#x1F7E2;</button>
+                    <button type="button" class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='y'?'sel sel-y':''}" data-level="y" onclick="setConf('${deck.id}_s_${matchIdx}','y')">&#x1F7E1;</button>
+                    <button type="button" class="conf-dot ${(LS.get(deck.id+'_s_'+matchIdx+'_c')||'')==='r'?'sel sel-r':''}" data-level="r" onclick="setConf('${deck.id}_s_${matchIdx}','r')">&#x1F534;</button>
                   </div>` : ''}
                 ` : `<div class="cell-not-covered">Not in this video</div>`}
               </div>

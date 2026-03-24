@@ -472,9 +472,12 @@ h1, h2, h3, h4 {
 /* ── Confidence Dots ── */
 .conf-dots { display: flex; gap: 4px; margin-top: 6px; }
 
+button.conf-dot,
 .conf-dot {
   width: 36px;
   height: 36px;
+  min-width: 36px;
+  min-height: 36px;
   border-radius: 50%;
   border: 2px solid var(--border);
   display: flex;
@@ -488,6 +491,12 @@ h1, h2, h3, h4 {
   touch-action: manipulation;
   user-select: none;
   -webkit-user-select: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  line-height: 1;
 }
 
 .conf-dot:hover { transform: scale(1.2); }

@@ -403,9 +403,9 @@ function renderSaidCard(v, s, i) {
         <div class="topic-detail">${s.detail}</div>
         ${!v.notRecorded && s.ts && v.youtubeId ? `<div class="topic-timestamp" onclick="event.stopPropagation();jumpTo('${v.youtubeId}','${s.ts}')">@ ${s.ts} — tap to watch</div>` : ''}
         <div class="conf-dots">
-          <div class="conf-dot ${conf==='g'?'sel sel-g':''}" onclick="event.stopPropagation();setConf('${id}','g')">&#x1F7E2;</div>
-          <div class="conf-dot ${conf==='y'?'sel sel-y':''}" onclick="event.stopPropagation();setConf('${id}','y')">&#x1F7E1;</div>
-          <div class="conf-dot ${conf==='r'?'sel sel-r':''}" onclick="event.stopPropagation();setConf('${id}','r')">&#x1F534;</div>
+          <button type="button" class="conf-dot ${conf==='g'?'sel sel-g':''}" data-level="g" onclick="event.stopPropagation();setConf('${id}','g')">&#x1F7E2;</button>
+          <button type="button" class="conf-dot ${conf==='y'?'sel sel-y':''}" data-level="y" onclick="event.stopPropagation();setConf('${id}','y')">&#x1F7E1;</button>
+          <button type="button" class="conf-dot ${conf==='r'?'sel sel-r':''}" data-level="r" onclick="event.stopPropagation();setConf('${id}','r')">&#x1F534;</button>
         </div>
       </div>
     </label>
