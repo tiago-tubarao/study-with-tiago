@@ -130,8 +130,19 @@ function toggleExpandPanel(id, level) {
   const drugName = row.getAttribute('data-drug-name');
   if (!drugName) return;
 
-  // Look up deep content
-  const deep = window.DRUG_DEEP && window.DRUG_DEEP[drugName];
+  // Look up deep content — exact match first, then fuzzy match
+  let deep = window.DRUG_DEEP && window.DRUG_DEEP[drugName];
+  if (!deep && window.DRUG_DEEP) {
+    // Fuzzy match: page name might have extra text like "+ 4S Rule" or "— 3 uses"
+    const pageLower = drugName.toLowerCase();
+    const match = Object.keys(window.DRUG_DEEP).find(key => {
+      const keyLower = key.toLowerCase();
+      return pageLower.startsWith(keyLower) || keyLower.startsWith(pageLower) ||
+             pageLower.includes(keyLower.split('(')[0].trim()) ||
+             keyLower.includes(pageLower.split('+')[0].split('—')[0].trim());
+    });
+    if (match) deep = window.DRUG_DEEP[match];
+  }
 
   // Create panel
   const panel = document.createElement('div');
