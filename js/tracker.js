@@ -74,7 +74,7 @@ function toggle(id, checked) {
 
 // ── Set confidence dot ──
 function setConf(id, level) {
-  const cur = LS.get(id + '_c');
+  const cur = LS.get(id + '_c') || '';
 
   // If clicking the SAME dot again → close panel, un-toggle
   if (cur === level) {
@@ -96,17 +96,16 @@ function setConf(id, level) {
     });
   }
 
-  // If panel already exists → remove it and subtract its score, then reopen fresh
-  const existingPanel = document.getElementById('expand_' + id);
-  if (existingPanel) {
-    existingPanel.remove();
-    if (_expandScores[id]) {
-      _masterScore.right -= _expandScores[id].right;
-      _masterScore.total -= _expandScores[id].total;
-      if (_expandScores[id].total >= 3) _masterScore.drugsComplete--;
-      delete _expandScores[id];
-      updateMasterScore();
-    }
+  // Clean up ALL existing panels first (prevents ghost panels blocking new ones)
+  document.querySelectorAll('.expand-panel').forEach(p => p.remove());
+
+  // Reset score for this drug if it had one
+  if (_expandScores[id]) {
+    _masterScore.right -= _expandScores[id].right;
+    _masterScore.total -= _expandScores[id].total;
+    if (_expandScores[id].total >= 3) _masterScore.drugsComplete--;
+    delete _expandScores[id];
+    updateMasterScore();
   }
 
   // Open fresh panel
