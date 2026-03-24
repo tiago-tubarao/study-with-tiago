@@ -22,8 +22,8 @@
 <div class="page-container">
   <div class="hero">
     <h1 class="hero-title">Blood, Immunity & Clotting Made Simple</h1>
-    <p class="hero-sub">32 slides &bull; ~4-6 exam questions &bull; ATI Modules + Ch 9, 11, 32</p>
-    <p><span class="video-status status-no-video">SLIDES READY — VIDEO COMING SOON</span></p>
+    <p class="hero-sub">34 slides &bull; 40 min video &bull; ~4-6 exam questions &bull; ATI Modules + Ch 9, 11, 32</p>
+    <p><span class="video-status status-uploaded">VIDEO LIVE — 40 min</span></p>
   </div>
 
   <div class="score-bar" id="scoreBar"></div>
@@ -35,14 +35,21 @@
 
   <div class="video-section">
     <div class="video-header" style="background:#C92A2A">
-      <h2>Video Coming Soon</h2>
-      <div class="meta">Slides and script are ready — recording is next. In the meantime, test yourself below!</div>
+      <h2>Watch the Video</h2>
+      <div class="meta">Full walkthrough — every drug, every detail, every exam trap</div>
     </div>
-    <div class="no-video-box">
-      <div class="icon">🎬</div>
-      <div class="msg">32 slides built, narrator script ready — video will be recorded after Exam 2</div>
-      <div class="reason">Use the confidence dots and NCLEX questions below to study this content now.</div>
+
+    <div class="video-embed">
+      <iframe id="yt-59_re_AuMwc"
+        src="https://www.youtube.com/embed/59_re_AuMwc?enablejsapi=1"
+        title="Heparin, Warfarin & DOACs — Nursing Crash Course"
+        allowfullscreen loading="lazy"></iframe>
     </div>
+
+    <div class="timestamps-toggle" id="tsToggle">
+      Show/Hide Timestamps (<span id="tsCount"></span>)
+    </div>
+    <div class="timestamps-panel" id="tsPanel"></div>
   </div>
 
   <div class="download-cta">
@@ -109,6 +116,16 @@
 <script>
   window._currentDeckId = 'deck1';
   const deck = STUDY_DATA.videos.find(v => v.id === 'deck1');
+
+  // Render timestamps
+  if (deck.timestamps && deck.timestamps.length) {
+    document.getElementById('tsCount').textContent = deck.timestamps.length;
+    document.getElementById('tsPanel').innerHTML = deck.timestamps.map(([t, topic]) =>
+      `<div class="ts-item"><span class="ts-time" onclick="jumpTo('${deck.youtubeId}','${t}')">${t}</span><span class="ts-topic">${topic}</span></div>`
+    ).join('');
+    document.getElementById('tsToggle').onclick = () =>
+      document.getElementById('tsPanel').classList.toggle('show');
+  }
 
   // Build drug list from the hematology questions directly
   function renderDeck() {
