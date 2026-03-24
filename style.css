@@ -1776,3 +1776,29 @@ h1, h2, h3, h4 {
   .update-item { flex-direction: column; gap: 4px; }
   .update-date { width: auto; }
 }
+
+/* ── Mobile Fixes (email input + floating button overlap) ── */
+@media (max-width: 600px) {
+  /* Fix: Pico CSS makes email input absurdly tall on mobile */
+  .signup-form input[type="email"].signup-input {
+    height: 48px !important;
+    max-height: 48px !important;
+    min-height: 0 !important;
+    padding: 10px 14px !important;
+    font-size: 16px !important; /* prevents iOS zoom */
+  }
+
+  /* Fix: floating buttons overlap question answer buttons on mobile */
+  .quiz-float,
+  .feedback-float,
+  .share-float,
+  .kofi-float {
+    bottom: 12px !important;
+    transform: scale(0.8);
+    transform-origin: bottom right;
+  }
+
+  .quiz-float {
+    transform-origin: bottom left;
+  }
+}
