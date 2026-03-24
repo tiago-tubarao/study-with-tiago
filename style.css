@@ -857,7 +857,8 @@ button.conf-dot,
 @media (max-width: 700px) {
   .compare-row { grid-template-columns: 1fr; gap: 6px; }
   .compare-header-row { display: none; }
-  .cell-video { border-left: none; padding-left: 0; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .cell-syllabus { display: none; }
+  .cell-video { border-left: none; padding-left: 0; border-top: none; padding-top: 0; }
   .cell-status { text-align: left; }
   .cta-title { font-size: 1.2em; }
 }
