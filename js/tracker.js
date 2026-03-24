@@ -114,11 +114,10 @@ function setConf(id, level) {
 
 // ── Expandable Detail + Question Panel ──
 function toggleExpandPanel(id, level) {
-  // Close any other open panels (auto-close when switching drugs)
-  document.querySelectorAll('.expand-panel.open').forEach(p => {
+  // Close any other open panels immediately (no setTimeout race condition)
+  document.querySelectorAll('.expand-panel').forEach(p => {
     if (p.id !== 'expand_' + id) {
-      p.classList.remove('open');
-      setTimeout(() => p.remove(), 300);
+      p.remove();
     }
   });
 
@@ -274,8 +273,7 @@ function updateMasterScore() {
 function closeExpandPanel(id) {
   const panel = document.getElementById('expand_' + id);
   if (panel) {
-    panel.classList.remove('open');
-    setTimeout(() => { panel.remove(); }, 300);
+    panel.remove();
   }
   // Un-toggle the confidence dot
   LS.set(id + '_c', '');
