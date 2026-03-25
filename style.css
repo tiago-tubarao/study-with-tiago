@@ -1883,45 +1883,77 @@ button.conf-dot,
 
 /* ── Coming Soon Banner (main page) ── */
 .coming-soon-banner {
-  max-width: 480px;
-  margin: 0 auto 20px;
+  max-width: 560px;
+  margin: 0 auto 24px;
   padding: 0 16px;
 }
 
 .coming-soon-inner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 18px;
-  background: linear-gradient(135deg, rgba(233,196,106,0.1) 0%, rgba(231,119,0,0.08) 100%);
-  border: 2px dashed var(--gold);
-  border-radius: 12px;
-  font-size: 0.9em;
-  color: var(--text);
-  line-height: 1.4;
+  position: relative;
+  padding: 20px 22px 16px;
+  background: linear-gradient(135deg, #1A2A42 0%, #0B3D91 60%, #5F3DC4 100%);
+  border-radius: 14px;
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(26,42,66,0.25);
+  overflow: hidden;
 }
 
-.coming-soon-inner strong {
-  color: var(--orange);
+.coming-soon-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--orange) 50%, var(--red) 100%);
+}
+
+.coming-soon-badge {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.65em;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.coming-soon-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25em;
+  font-weight: 800;
+  margin-bottom: 4px;
 }
 
 .coming-soon-sub {
+  font-size: 0.92em;
+  opacity: 0.7;
   font-style: italic;
-  opacity: 0.75;
+  line-height: 1.4;
 }
 
-.coming-soon-emoji {
-  font-size: 1.6em;
-  flex-shrink: 0;
+.coming-soon-date {
+  margin-top: 10px;
+  font-size: 0.72em;
+  opacity: 0.4;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 [data-theme="dark"] .coming-soon-inner {
-  background: linear-gradient(135deg, rgba(233,196,106,0.08) 0%, rgba(231,119,0,0.05) 100%);
-  border-color: rgba(233,196,106,0.4);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
 }
 
 @media (max-width: 600px) {
-  .coming-soon-inner { font-size: 0.85em; padding: 10px 14px; }
+  .coming-soon-inner { padding: 16px 16px 14px; }
+  .coming-soon-title { font-size: 1.1em; }
+  .coming-soon-sub { font-size: 0.85em; }
 }
 
 /* ── Exam Day Good Luck Banner (main page) ── */
