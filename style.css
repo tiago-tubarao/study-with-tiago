@@ -1881,6 +1881,49 @@ button.conf-dot,
   margin: 0;
 }
 
+/* ── Coming Soon Banner (main page) ── */
+.coming-soon-banner {
+  max-width: 480px;
+  margin: 0 auto 20px;
+  padding: 0 16px;
+}
+
+.coming-soon-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, rgba(233,196,106,0.1) 0%, rgba(231,119,0,0.08) 100%);
+  border: 2px dashed var(--gold);
+  border-radius: 12px;
+  font-size: 0.9em;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.coming-soon-inner strong {
+  color: var(--orange);
+}
+
+.coming-soon-sub {
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.coming-soon-emoji {
+  font-size: 1.6em;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .coming-soon-inner {
+  background: linear-gradient(135deg, rgba(233,196,106,0.08) 0%, rgba(231,119,0,0.05) 100%);
+  border-color: rgba(233,196,106,0.4);
+}
+
+@media (max-width: 600px) {
+  .coming-soon-inner { font-size: 0.85em; padding: 10px 14px; }
+}
+
 /* ── Exam Day Good Luck Banner (main page) ── */
 .exam-day-banner {
   max-width: 620px;
