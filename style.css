@@ -1816,3 +1816,548 @@ button.conf-dot,
     transform-origin: bottom left;
   }
 }
+
+/* ══════════════════════════════════════════════
+   Exam Day Flashcards
+   ══════════════════════════════════════════════ */
+
+/* ── Hero ── */
+.fc-hero {
+  position: relative;
+  text-align: center;
+  padding: 4.5em 1.5em 2.5em;
+  background: linear-gradient(135deg, var(--navy) 0%, #0B3D91 50%, #5F3DC4 100%);
+  border-radius: 16px;
+  margin-bottom: 2em;
+  overflow: hidden;
+}
+
+.fc-hero-glow {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(233,196,106,0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: fcPulse 3s ease-in-out infinite;
+}
+
+@keyframes fcPulse {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+}
+
+.fc-hero-content { position: relative; z-index: 1; }
+
+.fc-hero-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.75em;
+  font-weight: 700;
+  letter-spacing: 3px;
+  padding: 0.35em 1.2em;
+  border-radius: 20px;
+  margin-bottom: 0.8em;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.fc-hero-title {
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 2.8em;
+  font-weight: 800;
+  margin: 0 0 0.3em;
+  letter-spacing: -1px;
+}
+
+.fc-hero-sub {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Exam Day Good Luck Banner (main page) ── */
+.exam-day-banner {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.exam-day-banner-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, rgba(95,61,196,0.08) 0%, rgba(42,157,143,0.08) 100%);
+  border: 2px solid rgba(95,61,196,0.2);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 0.95em;
+  color: var(--text);
+  line-height: 1.5;
+  animation: bannerPulse 3s ease-in-out infinite;
+}
+
+.exam-day-banner-inner strong {
+  color: var(--purple);
+}
+
+.exam-day-link {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--teal);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.exam-day-link:hover {
+  text-decoration: underline;
+}
+
+.exam-day-star {
+  font-size: 1.3em;
+  animation: starSpin 4s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes bannerPulse {
+  0%, 100% { border-color: rgba(95,61,196,0.2); box-shadow: 0 0 0 rgba(95,61,196,0); }
+  50% { border-color: rgba(95,61,196,0.4); box-shadow: 0 0 16px rgba(95,61,196,0.1); }
+}
+
+@keyframes starSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(10deg) scale(1.15); }
+  50% { transform: rotate(0deg) scale(1); }
+  75% { transform: rotate(-10deg) scale(1.15); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+[data-theme="dark"] .exam-day-banner-inner {
+  background: linear-gradient(135deg, rgba(95,61,196,0.15) 0%, rgba(42,157,143,0.1) 100%);
+  border-color: rgba(95,61,196,0.3);
+}
+
+[data-theme="dark"] .exam-day-banner-inner strong {
+  color: #bc8cff;
+}
+
+@media (max-width: 600px) {
+  .exam-day-banner-inner { font-size: 0.88em; padding: 12px 14px; gap: 8px; }
+  .exam-day-star { font-size: 1.1em; }
+}
+
+/* ── Flashcard CTA Button (main page) ── */
+.fc-hero-cta {
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.05em;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, #5F3DC4 0%, #0B3D91 50%, #2A9D8F 100%);
+  background-size: 200% 200%;
+  animation: fcGlow 3s ease-in-out infinite, fcBounce 2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(95,61,196,0.4), 0 0 40px rgba(42,157,143,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.fc-hero-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(95,61,196,0.6), 0 0 60px rgba(42,157,143,0.3);
+}
+
+@keyframes fcGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fcBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.fc-hero-cta:hover {
+  animation: none;
+  transform: scale(1.07) translateY(-2px);
+}
+
+/* ── Email Gate ── */
+.fc-gate {
+  max-width: 520px;
+  margin: 0 auto 2em;
+  text-align: center;
+}
+
+.fc-gate-inner {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 2.5em 2em;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  border: 2px solid var(--border);
+  transition: border-color 0.3s;
+}
+
+.fc-gate-inner:hover { border-color: var(--teal); }
+
+.fc-gate-icon { font-size: 2.5em; margin-bottom: 0.3em; }
+
+.fc-gate-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5em;
+  color: var(--text);
+  margin: 0 0 0.5em;
+}
+
+.fc-gate-sub {
+  color: var(--muted);
+  font-size: 0.95em;
+  margin-bottom: 1.5em;
+  line-height: 1.5;
+}
+
+.fc-gate-form {
+  width: 100%;
+}
+
+.fc-gate-input-wrap {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 0.5em;
+  align-items: stretch;
+  width: 100%;
+}
+
+.fc-gate-input {
+  flex: 1;
+  padding: 0.75em 1em !important;
+  border: 2px solid var(--border) !important;
+  border-radius: 10px !important;
+  font-size: 1em !important;
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 0 !important;
+  height: auto !important;
+  width: auto !important;
+  min-width: 0;
+}
+
+.fc-gate-input:focus { border-color: var(--teal); }
+
+.fc-gate-btn {
+  padding: 0.75em 1.5em !important;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 700;
+  font-size: 1em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s, box-shadow 0.15s;
+  width: auto !important;
+  flex: 0 0 auto !important;
+}
+
+.fc-gate-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(42,157,143,0.35);
+}
+
+/* ── Category Filters ── */
+.fc-filters {
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.fc-filter {
+  padding: 0.45em 1em;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 0.85em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.fc-filter:hover { border-color: var(--teal); background: var(--bg); }
+
+.fc-filter.active {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+/* ── Counter ── */
+.fc-counter {
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 0.8em;
+  letter-spacing: 1px;
+}
+
+/* ── Card Stage (perspective container) ── */
+.fc-card-stage {
+  perspective: 1200px;
+  max-width: 480px;
+  margin: 0 auto 1.2em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fc-slide-in {
+  animation: fcSlideIn 0.35s ease-out;
+}
+
+@keyframes fcSlideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ── The Card (3D flip container) ── */
+.fc-card {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.fc-card.flipped { transform: rotateY(180deg); }
+
+/* ── Card Faces ── */
+.fc-card-face {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  min-height: 420px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  padding: 2em 1.8em;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-top: 5px solid var(--teal);
+  z-index: 1;
+}
+
+.fc-card-front {
+  background: var(--card);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.fc-card-back {
+  background: var(--card);
+  transform: rotateY(180deg);
+  overflow-y: auto;
+}
+
+/* ── Front Content ── */
+.fc-card-icon { font-size: 2.2em; margin-bottom: 0.3em; }
+
+.fc-card-drug {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.7em;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 0.15em;
+  line-height: 1.2;
+}
+
+.fc-card-brand {
+  font-size: 1em;
+  color: var(--muted);
+  margin-bottom: 0.8em;
+  font-weight: 500;
+}
+
+.fc-card-class-pill {
+  display: inline-block;
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: 700;
+  padding: 0.35em 1em;
+  border-radius: 20px;
+  margin-bottom: 0.8em;
+}
+
+.fc-card-purpose {
+  font-size: 0.9em;
+  color: var(--muted);
+  line-height: 1.4;
+  max-width: 360px;
+}
+
+.fc-card-tap {
+  font-size: 0.75em;
+  color: var(--muted);
+  opacity: 0.5;
+  margin-top: auto;
+  padding-top: 0.8em;
+  letter-spacing: 1px;
+}
+
+/* ── Back Content ── */
+.fc-back-header {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 0.8em;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid var(--border);
+}
+
+.fc-facts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1em;
+}
+
+.fc-facts li {
+  padding: 0.4em 0;
+  font-size: 0.9em;
+  line-height: 1.45;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  padding-left: 1.2em;
+}
+
+.fc-facts li:last-child { border-bottom: none; }
+
+.fc-facts li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.fc-mnemonic {
+  background: linear-gradient(135deg, rgba(233,196,106,0.15) 0%, rgba(233,196,106,0.05) 100%);
+  border-left: 3px solid var(--gold);
+  padding: 0.7em 1em;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.85em;
+  color: var(--text);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* ── Navigation ── */
+.fc-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.8em;
+  margin-bottom: 1em;
+}
+
+.fc-nav-btn {
+  padding: 0.6em 1.5em;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.fc-nav-btn:hover:not(:disabled) {
+  border-color: var(--teal);
+  background: var(--bg);
+}
+
+.fc-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.fc-shuffle-btn {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+.fc-shuffle-btn:hover {
+  background: #0B3D91 !important;
+  border-color: #0B3D91 !important;
+}
+
+/* ── Progress Bar ── */
+.fc-progress-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  max-width: 480px;
+  margin: 0 auto 1.5em;
+}
+
+.fc-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal) 0%, var(--green) 100%);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* ── Dark Mode ── */
+[data-theme="dark"] .fc-gate-inner {
+  background: var(--card);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .fc-card-front,
+[data-theme="dark"] .fc-card-back {
+  background: var(--card);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .fc-mnemonic {
+  background: rgba(233,196,106,0.1);
+}
+
+[data-theme="dark"] .fc-filter.active {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .fc-hero { padding: 2em 1em 1.8em; }
+  .fc-hero-title { font-size: 2em; }
+  .fc-hero-sub { font-size: 0.95em; }
+
+  .fc-gate-inner { padding: 1.8em 1.2em; }
+  .fc-gate-input-wrap { flex-direction: column; }
+  .fc-gate-btn { width: 100%; }
+
+  .fc-card-face { min-height: 300px; padding: 1.5em 1.2em; }
+  .fc-card-drug { font-size: 1.4em; }
+
+  .fc-filters { gap: 0.35em; }
+  .fc-filter { font-size: 0.75em; padding: 0.35em 0.7em; }
+
+  .fc-nav-btn { padding: 0.5em 1em; font-size: 0.85em; }
+}
