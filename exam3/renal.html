@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Renal & Urologic — Study with Tiago</title>
+  <meta name="description" content="Free renal nursing study guide. AKI phases, CKD staging, hemodialysis, peritoneal dialysis, kidney stones. NCLEX-style questions.">
+  <meta property="og:title" content="Renal & Urologic Disorders | Study with Tiago">
+  <meta property="og:description" content="AKI, CKD, dialysis, kidney stones — free NCLEX-style adult health study content.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Study with Tiago">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=11">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Renal & Urologic Disorders</h1>
+    <p class="hero-sub">Ch 37 &bull; AKI, CKD, Dialysis, Kidney Stones &bull; ~35 practice questions</p>
+    <p><span class="video-status status-not-recorded">STUDY MATERIAL READY &mdash; VIDEO COMING SOON</span></p>
+  </div>
+
+  <div class="score-bar" id="scoreBar"></div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> I know this</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Need review</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Don't know yet</div>
+  </div>
+
+  <div class="download-cta">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge">FREE</div>
+      <h3 class="cta-title">Download the Study Materials</h3>
+      <p class="cta-sub">Drug cards, master study guide, and 162-question practice exam.</p>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Download Free Bundle &rarr;</a>
+      <p class="cta-note">No credit card needed. Just enter $0.</p>
+    </div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#0891B2">
+      <h2>Acute Kidney Injury (AKI)</h2>
+      <div class="meta">Pre-renal, intrarenal, post-renal &mdash; 4 phases, labs, nursing care</div>
+    </div>
+    <div class="verify-wrap" id="akiWrap"></div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#1864AB">
+      <h2>Chronic Kidney Disease (CKD)</h2>
+      <div class="meta">5 stages, uremia, electrolyte imbalances, medications, dietary restrictions</div>
+    </div>
+    <div class="verify-wrap" id="ckdWrap"></div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#862E9C">
+      <h2>Dialysis & Urologic</h2>
+      <div class="meta">Hemodialysis, peritoneal dialysis, AV fistula care, kidney stones, UTI, CAUTI</div>
+    </div>
+    <div class="verify-wrap" id="dialWrap"></div>
+  </div>
+
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="if(confirm('Reset all confidence ratings for this page?')){Object.keys(localStorage).filter(k=>k.startsWith('swt_e3r_')).forEach(k=>localStorage.removeItem(k));location.reload();}">Reset Progress</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice.
+    <a href="../terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@life-ofstudy" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="../privacy.html">Privacy</a> &bull;
+    <a href="../terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="../js/nav.js?v=3"></script>
+<script src="../js/theme.js"></script>
+<script>
+  const LS = {
+    pre: 'swt_',
+    get(k) { return localStorage.getItem(this.pre + k); },
+    set(k, v) { localStorage.setItem(this.pre + k, v); }
+  };
+
+  function setConf(id, level) {
+    const prev = LS.get(id + '_c');
+    if (prev === level) { localStorage.removeItem(LS.pre + id + '_c'); }
+    else { LS.set(id + '_c', level); }
+    location.reload();
+  }
+
+  function confDot(id, level, emoji) {
+    const cur = LS.get(id + '_c') || '';
+    const sel = cur === level ? `sel sel-${level}` : '';
+    return `<button type="button" class="conf-dot ${sel}" onclick="setConf('${id}','${level}')">${emoji}</button>`;
+  }
+
+  function renderSection(wrapId, items) {
+    const wrap = document.getElementById(wrapId);
+    let html = `<div class="compare-section"><div class="compare-table">`;
+    items.forEach((item, i) => {
+      const cid = 'e3r_' + wrapId + '_' + i;
+      html += `<div class="compare-row row-covered">
+        <div class="compare-cell cell-syllabus">
+          <div class="cell-name">${item.name}</div>
+          <div class="cell-detail">${item.detail}</div>
+        </div>
+        <div class="compare-cell cell-video">
+          <div class="conf-dots">
+            ${confDot(cid, 'g', '&#x1F7E2;')}
+            ${confDot(cid, 'y', '&#x1F7E1;')}
+            ${confDot(cid, 'r', '&#x1F534;')}
+          </div>
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+    wrap.innerHTML = html;
+  }
+
+  renderSection('akiWrap', [
+    { name: 'AKI Types', detail: 'Pre-renal (low perfusion), intrarenal (parenchymal damage), post-renal (obstruction)' },
+    { name: 'Pre-renal AKI', detail: 'Most common. Hypovolemia, sepsis, heart failure. BUN:Cr ratio >20:1. Low urine Na+' },
+    { name: 'Intrarenal AKI', detail: 'ATN from nephrotoxins (aminoglycosides, contrast) or prolonged ischemia. Muddy brown casts' },
+    { name: 'Post-renal AKI', detail: 'Obstruction: BPH, stones, tumors. Hydronephrosis on ultrasound' },
+    { name: 'AKI Phase 1: Initiation', detail: 'Insult occurs but not yet clinically detectable. Prevention window' },
+    { name: 'AKI Phase 2: Oliguric', detail: 'Urine <400 mL/day. Hyperkalemia, fluid overload, metabolic acidosis. Most dangerous' },
+    { name: 'AKI Phase 3: Diuretic', detail: 'Urine 3-5 L/day. Dehydration risk, HYPOkalemia. Match IV fluids to output' },
+    { name: 'AKI Phase 4: Recovery', detail: 'GFR gradually normalizes over 3-12 months. Small permanent reduction possible' },
+    { name: 'AKI Labs', detail: 'Rising BUN/Cr, hyperkalemia, metabolic acidosis, hyperphosphatemia, hypocalcemia' },
+    { name: 'AKI Priority: Hyperkalemia', detail: 'K+ >6.0 = cardiac emergency. ECG changes: peaked T waves. IV calcium gluconate first' },
+  ]);
+
+  renderSection('ckdWrap', [
+    { name: 'CKD 5 Stages', detail: 'Stage 1: GFR >90. Stage 2: 60-89. Stage 3: 30-59. Stage 4: 15-29. Stage 5 (ESRD): <15' },
+    { name: 'Uremic Syndrome', detail: 'Nausea, fatigue, pruritus, yellowish-brown skin, periorbital edema, metallic taste' },
+    { name: 'CKD Electrolytes', detail: 'K+ HIGH, phosphorus HIGH, calcium LOW, bicarb LOW. Restrict K+ and phosphorus in diet' },
+    { name: 'CKD Anemia', detail: 'Decreased EPO production. Treat with epoetin alfa. Hgb target 10-12 g/dL (not normal)' },
+    { name: 'Renal Osteodystrophy', detail: 'High phosphorus binds calcium. Give phosphate binders (sevelamer) WITH meals' },
+    { name: 'CKD Diet', detail: 'Low protein (reduces uremia), low K+, low phosphorus, low Na+. Fluid restriction in ESRD' },
+    { name: 'CKD + NSAIDs', detail: 'CONTRAINDICATED. NSAIDs reduce renal blood flow via prostaglandin inhibition. Use Tylenol' },
+    { name: 'CKD + Metformin', detail: 'Contraindicated if GFR <30. Use with caution if GFR 30-45. Lactic acidosis risk' },
+    { name: 'CKD Medications to Avoid', detail: 'NSAIDs, aminoglycosides, IV contrast (or pre-hydrate), high-K+ salt substitutes' },
+  ]);
+
+  renderSection('dialWrap', [
+    { name: 'Hemodialysis', detail: '3-4 hours, 3x/week. Requires vascular access. Rapid fluid/electrolyte shifts' },
+    { name: 'AV Fistula Care', detail: 'Thrill (palpate) + bruit (auscultate) = patent. No BP, venipuncture, or tourniquet on access arm' },
+    { name: 'AV Fistula Assessment', detail: 'No thrill/bruit = CLOTTED. Report immediately. Do NOT use fistula' },
+    { name: 'Peritoneal Dialysis (PD)', detail: 'Home-based, continuous. Cloudy effluent + abd pain = PERITONITIS. Culture the effluent' },
+    { name: 'Hemodialysis Complications', detail: 'Hypotension (#1), muscle cramps, air embolism, hemorrhage, disequilibrium syndrome' },
+    { name: 'Kidney Stones', detail: 'Colicky flank pain radiating to groin. Hematuria. Strain all urine. Hydration is key' },
+    { name: 'Calcium Oxalate Stones', detail: 'Most common type. Increase fluids, limit oxalate (spinach, tea, chocolate), limit Na+' },
+    { name: 'UTI', detail: 'Dysuria, frequency, urgency. Cloudy/foul urine. Older adults: confusion may be only sign' },
+    { name: 'CAUTI Prevention', detail: 'Remove catheter ASAP. Perineal care. Keep bag below bladder. Closed drainage system' },
+    { name: 'Autonomic Dysreflexia', detail: 'SCI above T6. Sudden HTN, bradycardia, headache. Sit up, find trigger (full bladder #1)' },
+  ]);
+</script>
+</body>
+</html>

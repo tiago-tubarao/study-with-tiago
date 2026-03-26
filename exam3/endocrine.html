@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thyroid, Pituitary & Adrenal — Study with Tiago</title>
+  <meta name="description" content="Free endocrine nursing study guide. Thyroid storm, Addison vs Cushing, DI, SIADH, acromegaly. NCLEX-style questions.">
+  <meta property="og:title" content="Thyroid, Pituitary & Adrenal | Study with Tiago">
+  <meta property="og:description" content="Thyroid storm, Addison vs Cushing, DI vs SIADH — free NCLEX-style adult health study content.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Study with Tiago">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=11">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Thyroid, Pituitary & Adrenal</h1>
+    <p class="hero-sub">Ch 42-44 &bull; Thyroid Storm, DI, SIADH, Addison vs Cushing &bull; ~40 practice questions</p>
+    <p><span class="video-status status-not-recorded">STUDY MATERIAL READY &mdash; VIDEO COMING SOON</span></p>
+  </div>
+
+  <div class="score-bar" id="scoreBar"></div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> I know this</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Need review</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Don't know yet</div>
+  </div>
+
+  <div class="download-cta">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge">FREE</div>
+      <h3 class="cta-title">Download the Study Materials</h3>
+      <p class="cta-sub">Drug cards, master study guide, and 162-question practice exam.</p>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Download Free Bundle &rarr;</a>
+      <p class="cta-note">No credit card needed. Just enter $0.</p>
+    </div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#5F3DC4">
+      <h2>Thyroid Disorders</h2>
+      <div class="meta">Hypothyroidism, hyperthyroidism, thyroid storm, myxedema coma, medications</div>
+    </div>
+    <div class="verify-wrap" id="thyroidWrap"></div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#0B7285">
+      <h2>Pituitary Disorders</h2>
+      <div class="meta">DI vs SIADH, acromegaly, growth hormone, ADH, post-hypophysectomy care</div>
+    </div>
+    <div class="verify-wrap" id="pitWrap"></div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#C2255C">
+      <h2>Adrenal Disorders</h2>
+      <div class="meta">Addison vs Cushing, adrenal crisis, corticosteroids, steroid potency</div>
+    </div>
+    <div class="verify-wrap" id="adrenalWrap"></div>
+  </div>
+
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="if(confirm('Reset all confidence ratings for this page?')){Object.keys(localStorage).filter(k=>k.startsWith('swt_e3e_')).forEach(k=>localStorage.removeItem(k));location.reload();}">Reset Progress</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice.
+    <a href="../terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@life-ofstudy" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="../privacy.html">Privacy</a> &bull;
+    <a href="../terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="../js/nav.js?v=3"></script>
+<script src="../js/theme.js"></script>
+<script>
+  const LS = {
+    pre: 'swt_',
+    get(k) { return localStorage.getItem(this.pre + k); },
+    set(k, v) { localStorage.setItem(this.pre + k, v); }
+  };
+
+  function setConf(id, level) {
+    const prev = LS.get(id + '_c');
+    if (prev === level) { localStorage.removeItem(LS.pre + id + '_c'); }
+    else { LS.set(id + '_c', level); }
+    location.reload();
+  }
+
+  function confDot(id, level, emoji) {
+    const cur = LS.get(id + '_c') || '';
+    const sel = cur === level ? `sel sel-${level}` : '';
+    return `<button type="button" class="conf-dot ${sel}" onclick="setConf('${id}','${level}')">${emoji}</button>`;
+  }
+
+  function renderSection(wrapId, items) {
+    const wrap = document.getElementById(wrapId);
+    let html = `<div class="compare-section"><div class="compare-table">`;
+    items.forEach((item, i) => {
+      const cid = 'e3e_' + wrapId + '_' + i;
+      html += `<div class="compare-row row-covered">
+        <div class="compare-cell cell-syllabus">
+          <div class="cell-name">${item.name}</div>
+          <div class="cell-detail">${item.detail}</div>
+        </div>
+        <div class="compare-cell cell-video">
+          <div class="conf-dots">
+            ${confDot(cid, 'g', '&#x1F7E2;')}
+            ${confDot(cid, 'y', '&#x1F7E1;')}
+            ${confDot(cid, 'r', '&#x1F534;')}
+          </div>
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+    wrap.innerHTML = html;
+  }
+
+  renderSection('thyroidWrap', [
+    { name: 'Levothyroxine (Synthroid)', detail: '4S Rule: empty Stomach, Separate Ca/Fe 4h, Single dose AM, Slow titration' },
+    { name: 'Methimazole (Tapazole)', detail: 'Preferred antithyroid drug. NOT safe in 1st trimester. Agranulocytosis risk' },
+    { name: 'PTU (Propylthiouracil)', detail: '1st trimester + thyroid storm ONLY. BBW hepatotoxicity. Blocks T4 to T3' },
+    { name: 'Agranulocytosis', detail: 'Fever + sore throat = STOP antithyroid drug immediately. Check CBC' },
+    { name: 'Radioactive Iodine (I-131)', detail: 'Ablation therapy. Absolute CI: pregnancy. Radiation isolation 5-7 days' },
+    { name: "Lugol's Solution (SSKI)", detail: 'Use straw (stains teeth). Pre-surgery thyroid. Iodism: metallic taste, parotid swelling' },
+    { name: 'Thyroid Storm Protocol', detail: 'ORDER MATTERS: PTU first, then iodine, then beta-blocker, then dexamethasone. No aspirin' },
+    { name: 'Myxedema Coma', detail: 'Hypothyroid emergency. Hypothermia, bradycardia, hypotension. IV levothyroxine' },
+    { name: 'Post-Thyroidectomy Care', detail: 'Trach at bedside, calcium gluconate ready, check voice, watch for tetany' },
+    { name: 'Sodium Thiosulfate', detail: '3 antidote uses: cyanide poisoning, iodism, cisplatin nephrotoxicity' },
+  ]);
+
+  renderSection('pitWrap', [
+    { name: 'Diabetes Insipidus (DI)', detail: 'ADH deficiency. DILUTE urine (low SG <1.005), HIGH serum Na+, extreme thirst' },
+    { name: 'SIADH', detail: 'Excess ADH. CONCENTRATED urine (high SG >1.030), LOW serum Na+, fluid retention' },
+    { name: 'DI vs SIADH Comparison', detail: 'Opposite: DI = too much urine, SIADH = too little urine. Na+ goes opposite directions' },
+    { name: 'Desmopressin (DDAVP)', detail: '4 uses: DI, enuresis, hemophilia A, von Willebrand type 1. Water intoxication risk' },
+    { name: 'Vasopressin (ADH)', detail: '3 uses: DI, septic shock, esophageal varices. Water intoxication risk' },
+    { name: 'Somatropin (Growth Hormone)', detail: 'SubQ daily. Monitor IGF-1. CI: active malignancy. Report headaches' },
+    { name: 'Octreotide (Sandostatin)', detail: 'Acromegaly, carcinoid. Gallstone risk. Baseline gallbladder ultrasound' },
+    { name: 'Pegvisomant Paradox', detail: 'GH receptor antagonist. GH goes UP (expected). Monitor IGF-1, NOT GH' },
+    { name: 'Acromegaly', detail: 'Excess GH in adults. Enlarged hands/feet/jaw. Confirm with IGF-1 level' },
+    { name: 'Post-Hypophysectomy Care', detail: 'No bending/straining/coughing. Clear nasal drainage = CSF leak (halo sign)' },
+  ]);
+
+  renderSection('adrenalWrap', [
+    { name: "Addison's Disease", detail: 'Adrenal insufficiency. LOW cortisol, LOW Na+, HIGH K+. Bronze skin. Hypotension' },
+    { name: "Cushing's Syndrome", detail: 'Excess cortisol. Moon face, buffalo hump, striae. HIGH glucose, HIGH Na+, LOW K+' },
+    { name: "Addison's vs Cushing's Comparison", detail: 'Opposite electrolytes, opposite everything. Na+/K+/glucose/BP all flip' },
+    { name: 'Addisonian Crisis', detail: 'Medical emergency. IV hydrocortisone, IV fluids, vasopressors. Triggered by stress/illness' },
+    { name: 'Hydrocortisone', detail: 'NEVER stop abruptly (adrenal crisis). Stress dosing during illness/surgery' },
+    { name: 'Steroid Potency Ladder', detail: 'Cortisone 1x, prednisolone 4x, prednisone 5x, dexamethasone 25x' },
+    { name: 'Dexamethasone', detail: '25x potent. 3 uses: Cushing diagnosis, fetal lung maturity, cerebral edema' },
+    { name: 'Fludrocortisone (Florinef)', detail: "Mineralocorticoid only. Na+/K+ balance. Used in Addison's" },
+    { name: 'Steroid Side Effects', detail: 'Hyperglycemia, infection risk, osteoporosis, GI ulcers, delayed wound healing' },
+    { name: "Pheochromocytoma", detail: 'Adrenal medulla tumor. HTN crises, headache, tachycardia, diaphoresis. 24h urine catecholamines' },
+  ]);
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hematology & Blood Disorders — Study with Tiago</title>
+  <meta name="description" content="Free adult health hematology study guide. Sickle cell, anemia, DIC, leukemia, lymphoma, transfusions. NCLEX-style questions with confidence tracking.">
+  <meta property="og:title" content="Hematology & Blood Disorders | Study with Tiago">
+  <meta property="og:description" content="RBC disorders, WBC disorders, lymphoma, hemostasis — free NCLEX-style study content.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Study with Tiago">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=11">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Hematology & Blood Disorders</h1>
+    <p class="hero-sub">Ch 23-25 &bull; RBC, WBC, Lymphoma, Hemostasis &bull; ~50 practice questions</p>
+    <p><span class="video-status status-not-recorded">STUDY MATERIAL READY &mdash; VIDEO COMING SOON</span></p>
+  </div>
+
+  <div class="score-bar" id="scoreBar"></div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> I know this</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Need review</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Don't know yet</div>
+  </div>
+
+  <div class="download-cta">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge">FREE</div>
+      <h3 class="cta-title">Download the Study Materials</h3>
+      <p class="cta-sub">10 drug cards, master study guide, and 162-question practice exam covering all Exam 3 topics.</p>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Download Free Bundle &rarr;</a>
+      <p class="cta-note">No credit card needed. Just enter $0.</p>
+    </div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#C92A2A">
+      <h2>Chapter 23 &mdash; RBC Disorders</h2>
+      <div class="meta">Iron deficiency, B12/folate, sickle cell, thalassemia, polycythemia, transfusions</div>
+    </div>
+    <div class="verify-wrap" id="rbcWrap"></div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#862E9C">
+      <h2>Chapter 24 &mdash; WBC & Lymphoid Disorders</h2>
+      <div class="meta">Neutropenia, mono, Hodgkin vs NHL, leukemia, CML, multiple myeloma, TLS</div>
+    </div>
+    <div class="verify-wrap" id="wbcWrap"></div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#1864AB">
+      <h2>Chapter 25 &mdash; Hemostasis & Coagulation</h2>
+      <div class="meta">DIC, ITP, hemophilia, anticoagulants, transfusion reactions</div>
+    </div>
+    <div class="verify-wrap" id="hemoWrap"></div>
+  </div>
+
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="if(confirm('Reset all confidence ratings for this page?')){Object.keys(localStorage).filter(k=>k.startsWith('swt_e3h_')).forEach(k=>localStorage.removeItem(k));location.reload();}">Reset Progress</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice.
+    <a href="../terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@life-ofstudy" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="../privacy.html">Privacy</a> &bull;
+    <a href="../terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="../js/nav.js?v=3"></script>
+<script src="../js/theme.js"></script>
+<script>
+  const LS = {
+    pre: 'swt_',
+    get(k) { return localStorage.getItem(this.pre + k); },
+    set(k, v) { localStorage.setItem(this.pre + k, v); }
+  };
+
+  function setConf(id, level) {
+    const prev = LS.get(id + '_c');
+    if (prev === level) { localStorage.removeItem(LS.pre + id + '_c'); }
+    else { LS.set(id + '_c', level); }
+    location.reload();
+  }
+
+  function confDot(id, level, emoji) {
+    const cur = LS.get(id + '_c') || '';
+    const sel = cur === level ? `sel sel-${level}` : '';
+    return `<button type="button" class="conf-dot ${sel}" onclick="setConf('${id}','${level}')">${emoji}</button>`;
+  }
+
+  function renderSection(wrapId, title, items) {
+    const wrap = document.getElementById(wrapId);
+    let html = `<div class="compare-section"><div class="compare-table">`;
+    items.forEach((item, i) => {
+      const cid = 'e3h_' + wrapId + '_' + i;
+      html += `<div class="compare-row row-covered">
+        <div class="compare-cell cell-syllabus">
+          <div class="cell-name">${item.name}</div>
+          <div class="cell-detail">${item.detail}</div>
+        </div>
+        <div class="compare-cell cell-video">
+          <div class="conf-dots">
+            ${confDot(cid, 'g', '&#x1F7E2;')}
+            ${confDot(cid, 'y', '&#x1F7E1;')}
+            ${confDot(cid, 'r', '&#x1F534;')}
+          </div>
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+    wrap.innerHTML = html;
+  }
+
+  // Ch 23 - RBC
+  renderSection('rbcWrap', 'RBC Disorders', [
+    { name: 'Erythropoiesis & RBC Development', detail: 'Stem cells, reticulocytes, bone marrow sites after age 20' },
+    { name: 'Hemoglobin Structure', detail: 'Globin + heme + iron, increases O2 carrying 100-fold' },
+    { name: 'Bilirubin Metabolism', detail: 'Unconjugated (albumin) vs conjugated (glucuronide), jaundice causes' },
+    { name: 'Iron Deficiency Anemia (IDA)', detail: 'Low iron, HIGH TIBC, low ferritin, microcytic. Oral iron + vitamin C' },
+    { name: 'B12 Deficiency / Pernicious Anemia', detail: 'Macrocytic, neurologic symptoms, intrinsic factor, monthly IM injections' },
+    { name: 'Folate Deficiency', detail: 'Macrocytic WITHOUT neurologic symptoms. Pregnancy risk (neural tube defects)' },
+    { name: 'Sickle Cell Disease', detail: 'HbS, vaso-occlusive crisis, acute chest syndrome, splenic sequestration' },
+    { name: 'Thalassemia', detail: 'Microcytic, facial bone deformities, iron OVERLOAD (never give iron), chelation' },
+    { name: 'G6PD Deficiency', detail: 'Heinz bodies, bite cells, triggered by sulfonamides/fava beans' },
+    { name: 'Polycythemia (3 Types)', detail: 'Relative (dehydration), Primary/PV (all cells up), Secondary (hypoxia, only RBCs)' },
+    { name: 'Blood Typing (ABO & Rh)', detail: 'O neg = universal donor, AB pos = universal recipient, Rh incompatibility' },
+    { name: 'Transfusion Components', detail: 'Whole blood, PRBCs, leukocyte-reduced, washed, frozen RBCs' },
+    { name: 'Transfusion Reactions', detail: 'Heat along vein, flank pain, chills. STOP transfusion first, maintain NS' },
+    { name: 'Reticulocyte Count', detail: 'HIGH = marrow compensating. LOW = marrow failure. Normal ~1%' },
+    { name: 'Neonatal Blood', detail: 'HbF vs HbA, hyperbilirubinemia, phototherapy, Rh hemolytic disease' },
+    { name: 'Aging & RBCs', detail: 'Hematopoietic reserve declines, inflammatory cytokines interfere with EPO' },
+  ]);
+
+  // Ch 24 - WBC
+  renderSection('wbcWrap', 'WBC & Lymphoid Disorders', [
+    { name: 'WBC Basics', detail: 'Granulocytes (myeloid) vs lymphocytes (lymphoid), short lifespan' },
+    { name: 'Neutropenia / Leukopenia', detail: 'ANC <1500, infection is FIRST sign, neutropenic precautions' },
+    { name: 'Felty Syndrome', detail: 'RA + neutropenia + splenomegaly, recurrent infections' },
+    { name: 'Infectious Mononucleosis (EBV)', detail: 'Saliva transmission, atypical lymphocytes, no contact sports (spleen)' },
+    { name: 'Hodgkin Disease', detail: 'Reed-Sternberg cells, single node, contiguous spread, Stage A vs B' },
+    { name: 'Non-Hodgkin Lymphoma (NHL)', detail: 'Extranodal, non-contiguous, NO Reed-Sternberg, monoclonal antibodies' },
+    { name: 'Hodgkin vs NHL Comparison', detail: 'RS cells, spread pattern, treatment differences, CSF exam' },
+    { name: 'Leukemia Classification (4 Types)', detail: 'ALL (child), CLL (adult), AML (acute myeloid), CML (Philadelphia chr)' },
+    { name: 'CML & Philadelphia Chromosome', detail: 'BCR-ABL fusion protein, imatinib (Gleevec), 3 treatment goals' },
+    { name: 'Leukemia Remission Criteria', detail: '<5% blasts, normal CBC, no cytogenetic abnormalities, pre-illness function' },
+    { name: 'Leukostasis', detail: 'Leukemic cells clog vessels causing organ ischemia' },
+    { name: 'Blast Crisis', detail: 'CML transforms to acute phase, >20% blasts, medical emergency' },
+    { name: 'Tumor Lysis Syndrome (TLS)', detail: 'K+ HIGH, PO4 HIGH, Ca LOW, uric acid HIGH. Hydration + allopurinol' },
+    { name: 'Multiple Myeloma', detail: 'CRAB: Calcium, Renal, Anemia, Bone. Punched-out lesions, M-protein' },
+  ]);
+
+  // Ch 25 - Hemostasis
+  renderSection('hemoWrap', 'Hemostasis & Coagulation', [
+    { name: 'DIC (Disseminated Intravascular Coagulation)', detail: 'Clots AND bleeds simultaneously. Low platelets, low fibrinogen, high D-dimer' },
+    { name: 'ITP (Immune Thrombocytopenic Purpura)', detail: 'ONLY platelets low, everything else normal. Wet purpura = emergency' },
+    { name: 'Hemophilia A & B', detail: 'A = Factor VIII, B = Factor IX. Elevated PTT only. Joint bleeds' },
+    { name: 'von Willebrand Disease', detail: 'Most common inherited bleeding disorder. Desmopressin (DDAVP) treatment' },
+    { name: 'Heparin & Warfarin', detail: 'Heparin = aPTT, protamine. Warfarin = INR 2-3, vitamin K. Never confuse antidotes' },
+    { name: 'DOACs', detail: 'Dabigatran (Praxbind), rivaroxaban/apixaban (Andexxa). No routine monitoring' },
+    { name: 'HIT (Heparin-Induced Thrombocytopenia)', detail: 'Paradoxical clotting, 5-10 days post-heparin, stop ALL heparin' },
+    { name: 'Antiplatelets', detail: 'Aspirin (irreversible), clopidogrel. Hold before surgery' },
+    { name: 'Thrombolytics (Alteplase)', detail: 'Stroke window 3-4.5h. Bleeding precautions. No IM injections' },
+    { name: 'Growth Factors', detail: 'Epoetin (RBCs), filgrastim (WBCs), oprelvekin (platelets)' },
+  ]);
+</script>
+</body>
+</html>

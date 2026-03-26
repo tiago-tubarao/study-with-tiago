@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adult Health Exam 3 — Study with Tiago</title>
+  <meta name="description" content="Free adult health nursing exam prep. Hematology, diabetes, endocrine, and renal topics with NCLEX-style questions and confidence tracking.">
+  <meta property="og:title" content="Adult Health Exam 3 Study Hub | Study with Tiago">
+  <meta property="og:description" content="Free NCLEX-style adult health questions — hematology, diabetes, endocrine, renal. Built by a nursing student.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Study with Tiago">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=11">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Adult Health Exam 3</h1>
+    <p class="hero-sub">4 topic areas &bull; Chapters 23-25, 37, 41-44</p>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Video available</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Content ready, no video</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Coming soon</div>
+  </div>
+
+  <div class="deck-grid" id="deckGrid"></div>
+
+  <div class="download-cta">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge">162 QUESTIONS</div>
+      <h3 class="cta-title">Practice Exams Ready</h3>
+      <p class="cta-sub">162 NCLEX-style questions across 3 practice tests (A: 56, B: 56, C: 50) with full rationales for every option.</p>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Download Free Bundle &rarr;</a>
+      <p class="cta-note">No credit card needed. Just enter $0.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student &mdash; always verify against current guidelines and your instructor's direction.
+    <a href="../terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@life-ofstudy" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Free Study Bundle</a> &bull;
+    <a href="../privacy.html">Privacy</a> &bull;
+    <a href="../terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="../js/nav.js?v=3"></script>
+<script src="../js/theme.js"></script>
+<script>
+  const topics = [
+    {
+      id: 'hematology',
+      title: 'Hematology & Blood Disorders',
+      subtitle: 'RBC, WBC, lymphoma, hemostasis &bull; Ch 23-25',
+      color: '#C92A2A',
+      status: 'ready',
+      statusText: 'STUDY MATERIAL READY',
+      questionCount: '~50',
+      conditions: 'Sickle Cell, Anemia, DIC, ITP, Leukemia, Lymphoma, Myeloma, Thalassemia, Polycythemia, Transfusions',
+      href: 'hematology.html'
+    },
+    {
+      id: 'diabetes',
+      title: 'Diabetes & Emergencies',
+      subtitle: 'Insulins, oral agents, DKA, HHS &bull; Ch 41',
+      color: '#2B8A3E',
+      status: 'ready',
+      statusText: 'STUDY MATERIAL READY',
+      questionCount: '~40',
+      conditions: 'Type 1 vs Type 2, Insulin Types, Oral Agents, DKA, HHS, Hypoglycemia, Dawn vs Somogyi',
+      href: 'diabetes.html'
+    },
+    {
+      id: 'endocrine',
+      title: 'Thyroid, Pituitary & Adrenal',
+      subtitle: 'Thyroid storm, DI, SIADH, Addison vs Cushing &bull; Ch 42-44',
+      color: '#5F3DC4',
+      status: 'ready',
+      statusText: 'STUDY MATERIAL READY',
+      questionCount: '~40',
+      conditions: 'Hypothyroid, Hyperthyroid, Thyroid Storm, DI, SIADH, Addison, Cushing, Acromegaly',
+      href: 'endocrine.html'
+    },
+    {
+      id: 'renal',
+      title: 'Renal & Urologic',
+      subtitle: 'AKI, CKD, dialysis, kidney stones &bull; Ch 37',
+      color: '#0891B2',
+      status: 'ready',
+      statusText: 'STUDY MATERIAL READY',
+      questionCount: '~35',
+      conditions: 'AKI Phases, CKD Staging, Hemodialysis, Peritoneal Dialysis, Kidney Stones, Uremia',
+      href: 'renal.html'
+    }
+  ];
+
+  const statusClass = { ready: 'status-not-recorded', uploaded: 'status-uploaded', coming: 'status-no-video' };
+
+  const grid = document.getElementById('deckGrid');
+  grid.innerHTML = topics.map(t => `
+    <a href="${t.href}" class="deck-card">
+      <div class="deck-card-header" style="background:${t.color}">
+        <h3>${t.title}</h3>
+        <div class="meta">${t.subtitle}</div>
+        <span class="video-status ${statusClass[t.status]}">${t.statusText}</span>
+      </div>
+      <div class="deck-card-body">
+        <div class="deck-card-stat"><strong>${t.questionCount}</strong> practice questions available</div>
+        <div class="deck-card-stat" style="font-size:12px;color:var(--muted);margin-top:4px">${t.conditions}</div>
+      </div>
+    </a>
+  `).join('');
+</script>
+</body>
+</html>

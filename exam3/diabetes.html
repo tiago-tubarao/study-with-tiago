@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetes & Emergencies — Study with Tiago</title>
+  <meta name="description" content="Free diabetes nursing study guide. Insulins, oral agents, DKA, HHS, hypoglycemia. NCLEX-style questions with confidence tracking.">
+  <meta property="og:title" content="Diabetes & Emergencies | Study with Tiago">
+  <meta property="og:description" content="Insulins, oral agents, DKA, HHS — free NCLEX-style adult health study content.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Study with Tiago">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=11">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Diabetes & Emergencies</h1>
+    <p class="hero-sub">Ch 41 &bull; Insulins, Oral Agents, DKA, HHS &bull; ~40 practice questions</p>
+    <p><span class="video-status status-not-recorded">STUDY MATERIAL READY &mdash; VIDEO COMING SOON</span></p>
+  </div>
+
+  <div class="score-bar" id="scoreBar"></div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> I know this</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Need review</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Don't know yet</div>
+  </div>
+
+  <div class="download-cta">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge">FREE</div>
+      <h3 class="cta-title">Download the Study Materials</h3>
+      <p class="cta-sub">Drug cards, master study guide, and 162-question practice exam.</p>
+      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Download Free Bundle &rarr;</a>
+      <p class="cta-note">No credit card needed. Just enter $0.</p>
+    </div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#2B8A3E">
+      <h2>Insulin Therapy</h2>
+      <div class="meta">Rapid, short, intermediate, long-acting &mdash; mixing rules, injection sites, storage</div>
+    </div>
+    <div class="verify-wrap" id="insulinWrap"></div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#1971C2">
+      <h2>Oral & Non-Insulin Agents</h2>
+      <div class="meta">Metformin, sulfonylureas, SGLT-2, GLP-1, DPP-4, and more</div>
+    </div>
+    <div class="verify-wrap" id="oralWrap"></div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-header" style="background:#E03131">
+      <h2>Diabetic Emergencies & Complications</h2>
+      <div class="meta">DKA, HHS, hypoglycemia, chronic complications, sick day rules</div>
+    </div>
+    <div class="verify-wrap" id="emergWrap"></div>
+  </div>
+
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="if(confirm('Reset all confidence ratings for this page?')){Object.keys(localStorage).filter(k=>k.startsWith('swt_e3d_')).forEach(k=>localStorage.removeItem(k));location.reload();}">Reset Progress</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice.
+    <a href="../terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@life-ofstudy" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="../privacy.html">Privacy</a> &bull;
+    <a href="../terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="../js/nav.js?v=3"></script>
+<script src="../js/theme.js"></script>
+<script>
+  const LS = {
+    pre: 'swt_',
+    get(k) { return localStorage.getItem(this.pre + k); },
+    set(k, v) { localStorage.setItem(this.pre + k, v); }
+  };
+
+  function setConf(id, level) {
+    const prev = LS.get(id + '_c');
+    if (prev === level) { localStorage.removeItem(LS.pre + id + '_c'); }
+    else { LS.set(id + '_c', level); }
+    location.reload();
+  }
+
+  function confDot(id, level, emoji) {
+    const cur = LS.get(id + '_c') || '';
+    const sel = cur === level ? `sel sel-${level}` : '';
+    return `<button type="button" class="conf-dot ${sel}" onclick="setConf('${id}','${level}')">${emoji}</button>`;
+  }
+
+  function renderSection(wrapId, items) {
+    const wrap = document.getElementById(wrapId);
+    let html = `<div class="compare-section"><div class="compare-table">`;
+    items.forEach((item, i) => {
+      const cid = 'e3d_' + wrapId + '_' + i;
+      html += `<div class="compare-row row-covered">
+        <div class="compare-cell cell-syllabus">
+          <div class="cell-name">${item.name}</div>
+          <div class="cell-detail">${item.detail}</div>
+        </div>
+        <div class="compare-cell cell-video">
+          <div class="conf-dots">
+            ${confDot(cid, 'g', '&#x1F7E2;')}
+            ${confDot(cid, 'y', '&#x1F7E1;')}
+            ${confDot(cid, 'r', '&#x1F534;')}
+          </div>
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+    wrap.innerHTML = html;
+  }
+
+  renderSection('insulinWrap', [
+    { name: 'Type 1 vs Type 2 Diabetes', detail: 'Autoimmune destruction vs insulin resistance. C-peptide differentiates' },
+    { name: 'Rapid-Acting Insulin (Lispro, Aspart)', detail: 'Onset 15 min, peak 1-2h. Give before meals. Clear solution' },
+    { name: 'Short-Acting (Regular)', detail: 'Onset 30-60 min, peak 2-4h. ONLY insulin for IV use. Clear' },
+    { name: 'Intermediate (NPH)', detail: 'Onset 1-2h, peak 4-12h. ONLY cloudy insulin. Wide peak = hypo risk' },
+    { name: 'Long-Acting (Glargine/Lantus)', detail: 'No peak, 24h basal. NEVER mix. Acidic pH. Clear solution' },
+    { name: 'Mixing Rule: Clear Before Cloudy', detail: 'Draw Regular first, then NPH. Prevents contamination of clear vial' },
+    { name: 'Injection Sites & Rotation', detail: 'Abdomen fastest. Rotate WITHIN same region, not between regions' },
+    { name: 'Insulin Storage', detail: 'Unopened: refrigerate. In-use: room temp 28 days. Never freeze' },
+  ]);
+
+  renderSection('oralWrap', [
+    { name: 'Metformin (1st Line T2DM)', detail: 'Decreases hepatic glucose. No hypo alone. Hold 48h for contrast. Lactic acidosis' },
+    { name: 'Sulfonylureas (Glipizide, Glyburide)', detail: 'Stimulate insulin secretion. HYPO risk. Weight gain. Disulfiram with alcohol' },
+    { name: 'Meglitinides (Repaglinide)', detail: 'Skip meal = skip dose. Short-acting insulin secretagogue' },
+    { name: 'Alpha-Glucosidase Inhibitors (Acarbose)', detail: 'Blocks carb breakdown. For hypo: GLUCOSE TABS ONLY (not regular sugar)' },
+    { name: 'SGLT-2 Inhibitors (-flozins)', detail: 'Glycosuria. UTI/yeast risk. Euglycemic DKA trap. Hold before surgery' },
+    { name: 'GLP-1 Agonists (Semaglutide/Ozempic)', detail: 'Weight loss. BBW thyroid C-cell tumors. CI in T1DM. Pancreatitis' },
+    { name: 'DPP-4 Inhibitors (Sitagliptin)', detail: 'Weight neutral. Pancreatitis risk. Oral, well-tolerated' },
+    { name: 'Pramlintide (Amylin Mimetic)', detail: 'Used WITH insulin. Cut insulin dose by 50%. Slows gastric emptying' },
+  ]);
+
+  renderSection('emergWrap', [
+    { name: 'DKA (Diabetic Ketoacidosis)', detail: 'T1DM. Ketones positive. Kussmaul breathing. Fruity breath. K+ before insulin' },
+    { name: 'HHS (Hyperosmolar Hyperglycemic State)', detail: 'T2DM. NO ketones. Glucose often >600. Severe dehydration. Altered mental status' },
+    { name: 'DKA vs HHS Comparison', detail: 'Ketones = differentiator. DKA: younger, T1, ketoacidosis. HHS: older, T2, dehydration' },
+    { name: 'K+ Rule Before Insulin', detail: 'K+ must be >=3.3 before starting insulin. Fatal arrhythmia risk if too low' },
+    { name: 'DKA Fluid Management', detail: 'NS first. Switch to D5 when glucose 200-250. Continue insulin until ketones clear' },
+    { name: 'Hypoglycemia & 15-15 Rule', detail: '15g fast carbs, recheck 15 min. TIRED mnemonic. Glucagon for unconscious' },
+    { name: 'Dawn vs Somogyi Phenomenon', detail: 'Check 3 AM glucose. Dawn: normal at 3AM (increase insulin). Somogyi: low at 3AM (decrease insulin)' },
+    { name: 'Hypoglycemia Unawareness', detail: 'Long-standing T1DM + autonomic neuropathy. No warning signs. Need CGM' },
+    { name: 'Sick Day Rules', detail: 'NEVER stop insulin in T1DM. Check glucose q4h. Push fluids. Call provider if vomiting' },
+    { name: 'Chronic Complications', detail: 'Retinopathy, nephropathy, neuropathy, peripheral vascular disease. A1C <7% target' },
+  ]);
+</script>
+</body>
+</html>
