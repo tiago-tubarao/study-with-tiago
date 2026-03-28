@@ -12,8 +12,8 @@
 
   const links = [
     { label: 'Home', href: base + 'index.html', icon: '🏠' },
-    { label: 'Pharm Exam 2', href: base + 'exam2/index.html', icon: '💊' },
-    { label: 'Adult Health Exam 3', href: base + 'exam3/index.html', icon: '🩺' },
+    { label: 'Pharmacology', href: base + 'exam2/index.html', icon: '💊' },
+    { label: 'Adult Health', href: base + 'exam3/index.html', icon: '🩺' },
     { label: 'Resources', href: base + 'resources.html', icon: '📦' },
     { label: 'About', href: base + 'about.html', icon: '👤' },
     { label: 'YouTube', href: 'https://www.youtube.com/@life-ofstudy', icon: '▶', external: true },

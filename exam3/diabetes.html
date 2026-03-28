@@ -64,14 +64,33 @@
     <div class="verify-wrap" id="emergWrap"></div>
   </div>
 
+  <!-- Master Score Tracker -->
+  <div class="master-score" id="masterScoreBar" style="display:none"></div>
+
   <div class="reset-wrap">
-    <button class="reset-btn" onclick="if(confirm('Reset all confidence ratings for this page?')){Object.keys(localStorage).filter(k=>k.startsWith('swt_e3d_')).forEach(k=>localStorage.removeItem(k));location.reload();}">Reset Progress</button>
+    <button class="reset-btn" onclick="if(confirm('Reset all confidence ratings and scores for this page?')){Object.keys(localStorage).filter(k=>k.startsWith('swt_ah_dm_')).forEach(k=>localStorage.removeItem(k));location.reload();}">Reset Progress</button>
+  </div>
+</div>
+
+<!-- Quiz FAB -->
+<button class="quiz-float" onclick="openQuiz()">?</button>
+<div class="quiz-modal" id="quizModal">
+  <div class="quiz-box" style="position:relative">
+    <button class="quiz-close" onclick="closeQuiz()">&times;</button>
+    <div class="quiz-label">Quick Quiz</div>
+    <div class="quiz-drug" id="qDrug">...</div>
+    <div class="quiz-prompt">How confident are you with this topic?</div>
+    <div class="quiz-opts" id="qOpts"></div>
+    <div id="qReveal" style="display:none"></div>
+    <div class="quiz-score-line" id="qScore"></div>
   </div>
 </div>
 
 <footer class="site-footer">
   <div class="footer-disclaimer">
-    For educational purposes only. Not medical advice.
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student — always verify against current guidelines and your instructor's direction.
     <a href="../terms.html">Full disclaimer</a>.
   </div>
   <div style="margin-top:12px">
@@ -82,52 +101,44 @@
   </div>
 </footer>
 
+<!-- Scripts: Adult Health question system -->
+<script src="../js/questions-ah-diabetes.js"></script>
+<script src="../js/questions-ah.js"></script>
+<script src="../js/data-ah.js"></script>
+<script src="../js/tracker.js?v=6"></script>
+<script src="../js/quiz.js"></script>
 <script src="../js/nav.js?v=3"></script>
 <script src="../js/theme.js"></script>
+<script src="../js/feedback.js"></script>
 <script>
-  const LS = {
-    pre: 'swt_',
-    get(k) { return localStorage.getItem(this.pre + k); },
-    set(k, v) { localStorage.setItem(this.pre + k, v); }
-  };
-
-  function setConf(id, level) {
-    const prev = LS.get(id + '_c');
-    if (prev === level) { localStorage.removeItem(LS.pre + id + '_c'); }
-    else { LS.set(id + '_c', level); }
-    location.reload();
-  }
-
-  function confDot(id, level, emoji) {
-    const cur = LS.get(id + '_c') || '';
-    const sel = cur === level ? `sel sel-${level}` : '';
-    return `<button type="button" class="conf-dot ${sel}" onclick="setConf('${id}','${level}')">${emoji}</button>`;
-  }
-
-  function renderSection(wrapId, items) {
+  // ── Render a section of Adult Health content with tracker.js integration ──
+  function renderAHSection(wrapId, prefix, items) {
     const wrap = document.getElementById(wrapId);
-    let html = `<div class="compare-section"><div class="compare-table">`;
+    if (!wrap) return;
+    let html = '<div class="compare-section"><div class="compare-table">';
     items.forEach((item, i) => {
-      const cid = 'e3d_' + wrapId + '_' + i;
-      html += `<div class="compare-row row-covered">
+      const cid = prefix + '_' + i;
+      const conf = LS.get(cid + '_c') || '';
+      html += `<div class="compare-row row-covered" data-conf-id="${cid}" data-drug-name="${item.name.replace(/"/g, '&quot;')}">
         <div class="compare-cell cell-syllabus">
           <div class="cell-name">${item.name}</div>
           <div class="cell-detail">${item.detail}</div>
         </div>
         <div class="compare-cell cell-video">
           <div class="conf-dots">
-            ${confDot(cid, 'g', '&#x1F7E2;')}
-            ${confDot(cid, 'y', '&#x1F7E1;')}
-            ${confDot(cid, 'r', '&#x1F534;')}
+            <button type="button" class="conf-dot ${conf==='g'?'sel sel-g':''}" data-level="g" onclick="setConf('${cid}','g')">&#x1F7E2;</button>
+            <button type="button" class="conf-dot ${conf==='y'?'sel sel-y':''}" data-level="y" onclick="setConf('${cid}','y')">&#x1F7E1;</button>
+            <button type="button" class="conf-dot ${conf==='r'?'sel sel-r':''}" data-level="r" onclick="setConf('${cid}','r')">&#x1F534;</button>
           </div>
         </div>
       </div>`;
     });
-    html += `</div></div>`;
+    html += '</div></div>';
     wrap.innerHTML = html;
   }
 
-  renderSection('insulinWrap', [
+  // Insulin Therapy
+  renderAHSection('insulinWrap', 'ah_dm_insulin', [
     { name: 'Type 1 vs Type 2 Diabetes', detail: 'Autoimmune destruction vs insulin resistance. C-peptide differentiates' },
     { name: 'Rapid-Acting Insulin (Lispro, Aspart)', detail: 'Onset 15 min, peak 1-2h. Give before meals. Clear solution' },
     { name: 'Short-Acting (Regular)', detail: 'Onset 30-60 min, peak 2-4h. ONLY insulin for IV use. Clear' },
@@ -138,7 +149,8 @@
     { name: 'Insulin Storage', detail: 'Unopened: refrigerate. In-use: room temp 28 days. Never freeze' },
   ]);
 
-  renderSection('oralWrap', [
+  // Oral & Non-Insulin Agents
+  renderAHSection('oralWrap', 'ah_dm_oral', [
     { name: 'Metformin (1st Line T2DM)', detail: 'Decreases hepatic glucose. No hypo alone. Hold 48h for contrast. Lactic acidosis' },
     { name: 'Sulfonylureas (Glipizide, Glyburide)', detail: 'Stimulate insulin secretion. HYPO risk. Weight gain. Disulfiram with alcohol' },
     { name: 'Meglitinides (Repaglinide)', detail: 'Skip meal = skip dose. Short-acting insulin secretagogue' },
@@ -149,7 +161,8 @@
     { name: 'Pramlintide (Amylin Mimetic)', detail: 'Used WITH insulin. Cut insulin dose by 50%. Slows gastric emptying' },
   ]);
 
-  renderSection('emergWrap', [
+  // Diabetic Emergencies & Complications
+  renderAHSection('emergWrap', 'ah_dm_emerg', [
     { name: 'DKA (Diabetic Ketoacidosis)', detail: 'T1DM. Ketones positive. Kussmaul breathing. Fruity breath. K+ before insulin' },
     { name: 'HHS (Hyperosmolar Hyperglycemic State)', detail: 'T2DM. NO ketones. Glucose often >600. Severe dehydration. Altered mental status' },
     { name: 'DKA vs HHS Comparison', detail: 'Ketones = differentiator. DKA: younger, T1, ketoacidosis. HHS: older, T2, dehydration' },
@@ -161,6 +174,9 @@
     { name: 'Sick Day Rules', detail: 'NEVER stop insulin in T1DM. Check glucose q4h. Push fluids. Call provider if vomiting' },
     { name: 'Chronic Complications', detail: 'Retinopathy, nephropathy, neuropathy, peripheral vascular disease. A1C <7% target' },
   ]);
+
+  // Init score bar
+  renderScores('scoreBar', 'ah_diabetes', STUDY_DATA_AH);
 </script>
 </body>
 </html>

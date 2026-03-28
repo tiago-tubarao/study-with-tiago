@@ -26,10 +26,14 @@ function ring(val, total, color, label) {
 }
 
 // ── Calculate scores for one or all decks ──
-function calcScores(deckId) {
+// dataSource: optional — defaults to STUDY_DATA (Pharm). Pass STUDY_DATA_AH for Adult Health.
+function calcScores(deckId, dataSource) {
+  const data = dataSource || (typeof STUDY_DATA !== 'undefined' ? STUDY_DATA : null);
+  if (!data) return { totalBP: 0, covered: 0, weak: 0, missing: 0, reviewed: 0 };
+
   const videos = deckId
-    ? STUDY_DATA.videos.filter(v => v.id === deckId)
-    : STUDY_DATA.videos;
+    ? data.videos.filter(v => v.id === deckId)
+    : data.videos;
 
   let totalBP = 0, covered = 0, weak = 0, missing = 0, reviewed = 0;
 
@@ -50,8 +54,9 @@ function calcScores(deckId) {
 }
 
 // ── Render score bar into container ──
-function renderScores(containerId, deckId) {
-  const s = calcScores(deckId);
+// dataSource: optional — pass STUDY_DATA_AH for Adult Health pages
+function renderScores(containerId, deckId, dataSource) {
+  const s = calcScores(deckId, dataSource);
   const el = document.getElementById(containerId);
   if (!el) return;
   el.innerHTML = `
@@ -103,7 +108,7 @@ function setConf(id, level) {
   if (_expandScores[id]) {
     _masterScore.right -= _expandScores[id].right;
     _masterScore.total -= _expandScores[id].total;
-    if (_expandScores[id].total >= 3) _masterScore.drugsComplete--;
+    if (_expandScores[id].completed) _masterScore.drugsComplete--;
     delete _expandScores[id];
     updateMasterScore();
   }
@@ -129,18 +134,21 @@ function toggleExpandPanel(id, level) {
   const drugName = row.getAttribute('data-drug-name');
   if (!drugName) return;
 
-  // Look up deep content — exact match first, then fuzzy match
-  let deep = window.DRUG_DEEP && window.DRUG_DEEP[drugName];
-  if (!deep && window.DRUG_DEEP) {
+  // Look up deep content — check both Pharm (DRUG_DEEP) and Adult Health (DRUG_DEEP_AH)
+  const deepSources = [window.DRUG_DEEP, window.DRUG_DEEP_AH].filter(Boolean);
+  let deep = null;
+  for (const src of deepSources) {
+    deep = src[drugName];
+    if (deep) break;
     // Fuzzy match: page name might have extra text like "+ 4S Rule" or "— 3 uses"
     const pageLower = drugName.toLowerCase();
-    const match = Object.keys(window.DRUG_DEEP).find(key => {
+    const match = Object.keys(src).find(key => {
       const keyLower = key.toLowerCase();
       return pageLower.startsWith(keyLower) || keyLower.startsWith(pageLower) ||
              pageLower.includes(keyLower.split('(')[0].trim()) ||
              keyLower.includes(pageLower.split('+')[0].split('—')[0].trim());
     });
-    if (match) deep = window.DRUG_DEEP[match];
+    if (match) { deep = src[match]; break; }
   }
 
   // Create panel
@@ -231,16 +239,17 @@ function updateMasterScore() {
   const s = _masterScore;
   const pct = s.total > 0 ? Math.round((s.right / s.total) * 100) : 0;
   const grade = getGrade(pct);
-  const totalDrugs = window.DRUG_DEEP ? Object.keys(window.DRUG_DEEP).length : 0;
+  const totalDrugs = (window.DRUG_DEEP ? Object.keys(window.DRUG_DEEP).length : 0) +
+                     (window.DRUG_DEEP_AH ? Object.keys(window.DRUG_DEEP_AH).length : 0);
 
-  // Find weak drugs (scored < 3/3)
+  // Find weak topics (scored below perfect)
   let weakDrugs = [];
   Object.keys(_expandScores).forEach(id => {
     const ds = _expandScores[id];
-    if (ds.total >= 3 && ds.right < 3) {
+    if (ds.completed && ds.right < ds.total) {
       const row = document.querySelector(`[data-conf-id="${id}"]`);
       const name = row ? row.getAttribute('data-drug-name') : id;
-      weakDrugs.push(`${name} (${ds.right}/3)`);
+      weakDrugs.push(`${name} (${ds.right}/${ds.total})`);
     }
   });
 
@@ -261,7 +270,7 @@ function updateMasterScore() {
       </div>
       <div class="master-stat">
         <span class="master-num">${s.drugsComplete}/${totalDrugs}</span>
-        <span class="master-label">Drugs Tested</span>
+        <span class="master-label">Topics Tested</span>
       </div>
     </div>
     ${weakDrugs.length > 0 ? `<div class="master-weak">Review: ${weakDrugs.join(' • ')}</div>` : ''}
@@ -325,7 +334,7 @@ function answerScenario(btn, picked, correct, qId) {
   const confId = drugRow ? drugRow.id.replace('expand_', '') : '';
   const row = document.querySelector(`[data-conf-id="${confId}"]`);
   const drugName = row ? row.getAttribute('data-drug-name') : '';
-  const deep = window.DRUG_DEEP && window.DRUG_DEEP[drugName];
+  const deep = (window.DRUG_DEEP && window.DRUG_DEEP[drugName]) || (window.DRUG_DEEP_AH && window.DRUG_DEEP_AH[drugName]);
   const qIndex = parseInt(qId.split('_q').pop());
   const confLevel = LS.get(confId + '_c') || 'g';
   const qData = deep && deep.questions && deep.questions[confLevel] ? deep.questions[confLevel][qIndex] : null;
@@ -370,9 +379,14 @@ function answerScenario(btn, picked, correct, qId) {
     const s = _expandScores[confId];
     scoreEl.innerHTML = `<div class="expand-score-bar">${s.right}/${s.total} correct</div>`;
 
-    // After all 3 questions answered → reveal the deep dive + retry button
-    if (s.total >= 3) {
+    // Determine total questions in this tier (dynamic, not hardcoded to 3)
+    const deepForCount = (window.DRUG_DEEP && window.DRUG_DEEP[drugName]) || (window.DRUG_DEEP_AH && window.DRUG_DEEP_AH[drugName]);
+    const totalQsInTier = (deepForCount && deepForCount.questions && deepForCount.questions[confLevel]) ? deepForCount.questions[confLevel].length : 3;
+
+    // After all questions in tier answered → reveal the deep dive + retry button
+    if (s.total >= totalQsInTier) {
       _masterScore.drugsComplete++;
+      _expandScores[confId].completed = true;
 
       const deepDive = document.getElementById('deepDive_' + confId);
       if (deepDive) {
@@ -381,12 +395,12 @@ function answerScenario(btn, picked, correct, qId) {
       }
       // Update score message with retry button
       const retryBtn = `<button class="retry-btn" onclick="retryDrug('${confId}')">🔄 Try Again</button>`;
-      if (s.right === 3) {
-        scoreEl.innerHTML = `<div class="expand-score-bar score-perfect">🎯 ${s.right}/3 — You know this drug! Keep that 🟢 ${retryBtn}</div>`;
-      } else if (s.right >= 2) {
-        scoreEl.innerHTML = `<div class="expand-score-bar score-good">💪 ${s.right}/3 — Almost there. Review the deep dive below. ${retryBtn}</div>`;
+      if (s.right === totalQsInTier) {
+        scoreEl.innerHTML = `<div class="expand-score-bar score-perfect">🎯 ${s.right}/${totalQsInTier} — You know this! Keep that 🟢 ${retryBtn}</div>`;
+      } else if (s.right >= Math.ceil(totalQsInTier * 0.66)) {
+        scoreEl.innerHTML = `<div class="expand-score-bar score-good">💪 ${s.right}/${totalQsInTier} — Almost there. Review the deep dive below. ${retryBtn}</div>`;
       } else {
-        scoreEl.innerHTML = `<div class="expand-score-bar score-review">📖 ${s.right}/3 — Time to review. Read the deep dive below carefully. ${retryBtn}</div>`;
+        scoreEl.innerHTML = `<div class="expand-score-bar score-review">📖 ${s.right}/${totalQsInTier} — Time to review. Read the deep dive below carefully. ${retryBtn}</div>`;
       }
     }
 

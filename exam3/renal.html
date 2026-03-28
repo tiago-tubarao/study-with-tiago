@@ -64,14 +64,33 @@
     <div class="verify-wrap" id="dialWrap"></div>
   </div>
 
+  <!-- Master Score Tracker -->
+  <div class="master-score" id="masterScoreBar" style="display:none"></div>
+
   <div class="reset-wrap">
-    <button class="reset-btn" onclick="if(confirm('Reset all confidence ratings for this page?')){Object.keys(localStorage).filter(k=>k.startsWith('swt_e3r_')).forEach(k=>localStorage.removeItem(k));location.reload();}">Reset Progress</button>
+    <button class="reset-btn" onclick="if(confirm('Reset all confidence ratings and scores for this page?')){Object.keys(localStorage).filter(k=>k.startsWith('swt_ah_renal_')).forEach(k=>localStorage.removeItem(k));location.reload();}">Reset Progress</button>
+  </div>
+</div>
+
+<!-- Quiz FAB -->
+<button class="quiz-float" onclick="openQuiz()">?</button>
+<div class="quiz-modal" id="quizModal">
+  <div class="quiz-box" style="position:relative">
+    <button class="quiz-close" onclick="closeQuiz()">&times;</button>
+    <div class="quiz-label">Quick Quiz</div>
+    <div class="quiz-drug" id="qDrug">...</div>
+    <div class="quiz-prompt">How confident are you with this topic?</div>
+    <div class="quiz-opts" id="qOpts"></div>
+    <div id="qReveal" style="display:none"></div>
+    <div class="quiz-score-line" id="qScore"></div>
   </div>
 </div>
 
 <footer class="site-footer">
   <div class="footer-disclaimer">
-    For educational purposes only. Not medical advice.
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student — always verify against current guidelines and your instructor's direction.
     <a href="../terms.html">Full disclaimer</a>.
   </div>
   <div style="margin-top:12px">
@@ -82,52 +101,44 @@
   </div>
 </footer>
 
+<!-- Scripts: Adult Health question system -->
+<script src="../js/questions-ah-renal.js"></script>
+<script src="../js/questions-ah.js"></script>
+<script src="../js/data-ah.js"></script>
+<script src="../js/tracker.js?v=6"></script>
+<script src="../js/quiz.js"></script>
 <script src="../js/nav.js?v=3"></script>
 <script src="../js/theme.js"></script>
+<script src="../js/feedback.js"></script>
 <script>
-  const LS = {
-    pre: 'swt_',
-    get(k) { return localStorage.getItem(this.pre + k); },
-    set(k, v) { localStorage.setItem(this.pre + k, v); }
-  };
-
-  function setConf(id, level) {
-    const prev = LS.get(id + '_c');
-    if (prev === level) { localStorage.removeItem(LS.pre + id + '_c'); }
-    else { LS.set(id + '_c', level); }
-    location.reload();
-  }
-
-  function confDot(id, level, emoji) {
-    const cur = LS.get(id + '_c') || '';
-    const sel = cur === level ? `sel sel-${level}` : '';
-    return `<button type="button" class="conf-dot ${sel}" onclick="setConf('${id}','${level}')">${emoji}</button>`;
-  }
-
-  function renderSection(wrapId, items) {
+  // ── Render a section of Adult Health content with tracker.js integration ──
+  function renderAHSection(wrapId, prefix, items) {
     const wrap = document.getElementById(wrapId);
-    let html = `<div class="compare-section"><div class="compare-table">`;
+    if (!wrap) return;
+    let html = '<div class="compare-section"><div class="compare-table">';
     items.forEach((item, i) => {
-      const cid = 'e3r_' + wrapId + '_' + i;
-      html += `<div class="compare-row row-covered">
+      const cid = prefix + '_' + i;
+      const conf = LS.get(cid + '_c') || '';
+      html += `<div class="compare-row row-covered" data-conf-id="${cid}" data-drug-name="${item.name.replace(/"/g, '&quot;')}">
         <div class="compare-cell cell-syllabus">
           <div class="cell-name">${item.name}</div>
           <div class="cell-detail">${item.detail}</div>
         </div>
         <div class="compare-cell cell-video">
           <div class="conf-dots">
-            ${confDot(cid, 'g', '&#x1F7E2;')}
-            ${confDot(cid, 'y', '&#x1F7E1;')}
-            ${confDot(cid, 'r', '&#x1F534;')}
+            <button type="button" class="conf-dot ${conf==='g'?'sel sel-g':''}" data-level="g" onclick="setConf('${cid}','g')">&#x1F7E2;</button>
+            <button type="button" class="conf-dot ${conf==='y'?'sel sel-y':''}" data-level="y" onclick="setConf('${cid}','y')">&#x1F7E1;</button>
+            <button type="button" class="conf-dot ${conf==='r'?'sel sel-r':''}" data-level="r" onclick="setConf('${cid}','r')">&#x1F534;</button>
           </div>
         </div>
       </div>`;
     });
-    html += `</div></div>`;
+    html += '</div></div>';
     wrap.innerHTML = html;
   }
 
-  renderSection('akiWrap', [
+  // AKI
+  renderAHSection('akiWrap', 'ah_renal_aki', [
     { name: 'AKI Types', detail: 'Pre-renal (low perfusion), intrarenal (parenchymal damage), post-renal (obstruction)' },
     { name: 'Pre-renal AKI', detail: 'Most common. Hypovolemia, sepsis, heart failure. BUN:Cr ratio >20:1. Low urine Na+' },
     { name: 'Intrarenal AKI', detail: 'ATN from nephrotoxins (aminoglycosides, contrast) or prolonged ischemia. Muddy brown casts' },
@@ -140,7 +151,8 @@
     { name: 'AKI Priority: Hyperkalemia', detail: 'K+ >6.0 = cardiac emergency. ECG changes: peaked T waves. IV calcium gluconate first' },
   ]);
 
-  renderSection('ckdWrap', [
+  // CKD
+  renderAHSection('ckdWrap', 'ah_renal_ckd', [
     { name: 'CKD 5 Stages', detail: 'Stage 1: GFR >90. Stage 2: 60-89. Stage 3: 30-59. Stage 4: 15-29. Stage 5 (ESRD): <15' },
     { name: 'Uremic Syndrome', detail: 'Nausea, fatigue, pruritus, yellowish-brown skin, periorbital edema, metallic taste' },
     { name: 'CKD Electrolytes', detail: 'K+ HIGH, phosphorus HIGH, calcium LOW, bicarb LOW. Restrict K+ and phosphorus in diet' },
@@ -152,7 +164,8 @@
     { name: 'CKD Medications to Avoid', detail: 'NSAIDs, aminoglycosides, IV contrast (or pre-hydrate), high-K+ salt substitutes' },
   ]);
 
-  renderSection('dialWrap', [
+  // Dialysis & Urologic
+  renderAHSection('dialWrap', 'ah_renal_dial', [
     { name: 'Hemodialysis', detail: '3-4 hours, 3x/week. Requires vascular access. Rapid fluid/electrolyte shifts' },
     { name: 'AV Fistula Care', detail: 'Thrill (palpate) + bruit (auscultate) = patent. No BP, venipuncture, or tourniquet on access arm' },
     { name: 'AV Fistula Assessment', detail: 'No thrill/bruit = CLOTTED. Report immediately. Do NOT use fistula' },
@@ -164,6 +177,9 @@
     { name: 'CAUTI Prevention', detail: 'Remove catheter ASAP. Perineal care. Keep bag below bladder. Closed drainage system' },
     { name: 'Autonomic Dysreflexia', detail: 'SCI above T6. Sudden HTN, bradycardia, headache. Sit up, find trigger (full bladder #1)' },
   ]);
+
+  // Init score bar
+  renderScores('scoreBar', 'ah_renal', STUDY_DATA_AH);
 </script>
 </body>
 </html>
