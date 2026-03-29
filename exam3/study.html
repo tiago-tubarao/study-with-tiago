@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confidence Study Mode — Adult Health Exam 3</title>
+  <meta name="description" content="Brainscape-style confidence-based repetition. Rate 1-5, weak cards come back faster. 60 Adult Health topics.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=16">
+  <style>
+    /* ── Study Mode Page Styles ── */
+    .study-hero {
+      background: linear-gradient(135deg, #0B1D3A 0%, #1a365d 50%, #0d3b66 100%);
+      padding: 2.5em 1.5em 2em;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 2rem 2rem;
+      margin-bottom: 1.5em;
+    }
+    .study-hero-glow {
+      position: absolute;
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(255,193,7,0.2), transparent 70%);
+      top: -80px; right: -30px;
+      border-radius: 50%;
+    }
+    .study-hero-content { position: relative; z-index: 1; }
+    .study-hero-badge {
+      display: inline-block;
+      background: rgba(255,193,7,0.2);
+      border: 1px solid rgba(255,193,7,0.4);
+      color: #FFD43B;
+      padding: 0.3em 1em;
+      border-radius: 2em;
+      font-size: 0.72em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.6em;
+    }
+    .study-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8em;
+      color: #fff;
+      margin: 0;
+      line-height: 1.15;
+    }
+    .study-hero p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85em;
+      margin-top: 0.4em;
+      line-height: 1.4;
+    }
+
+    /* ── Stats Panel ── */
+    .study-stats {
+      background: var(--card-background-color, #fff);
+      border-radius: 1em;
+      margin: 0 1em 1em;
+      padding: 1em 1.2em;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .fc-stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      margin-bottom: 0.8em;
+    }
+    .fc-stat-block { text-align: center; }
+    .fc-stat-big {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 2em;
+      font-weight: 800;
+      color: #2B8A3E;
+    }
+    .fc-stat-sub {
+      font-size: 0.7em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.5;
+    }
+
+    /* Distribution bar */
+    .fc-distribution { margin-top: 0.5em; }
+    .fc-dist-bar {
+      display: flex;
+      height: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+      gap: 2px;
+    }
+    .fc-dist-seg { min-width: 4px; transition: flex 0.4s ease; border-radius: 3px; }
+    .fc-dist-1 { background: #E03131; }
+    .fc-dist-2 { background: #E67700; }
+    .fc-dist-3 { background: #F59F00; }
+    .fc-dist-4 { background: #37B24D; }
+    .fc-dist-5 { background: #1971C2; }
+    .fc-dist-0 { background: #dee2e6; }
+    .fc-dist-legend {
+      display: flex;
+      justify-content: center;
+      gap: 0.8em;
+      margin-top: 0.5em;
+      font-size: 0.72em;
+      opacity: 0.7;
+    }
+    .fc-leg { display: flex; align-items: center; gap: 0.25em; }
+    .fc-leg-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+
+    /* ── Filters ── */
+    .fc-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4em;
+      padding: 0 1em;
+      margin-bottom: 1.2em;
+      justify-content: center;
+    }
+    .fc-filter {
+      padding: 0.35em 0.8em;
+      border-radius: 2em;
+      border: 1.5px solid #dee2e6;
+      background: transparent;
+      font-size: 0.78em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .fc-filter:hover { border-color: var(--filter-color, #2A9D8F); color: var(--filter-color, #2A9D8F); }
+    .fc-filter.active {
+      background: var(--filter-color, #0B1D3A);
+      border-color: var(--filter-color, #0B1D3A);
+      color: #fff;
+    }
+
+    /* ── Card ── */
+    .fc-card-stage {
+      perspective: 1200px;
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 0 1em;
+      cursor: pointer;
+      min-height: 380px;
+    }
+    .fc-card {
+      position: relative;
+      width: 100%;
+      min-height: 360px;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+    .fc-card.flipped { transform: rotateY(180deg); }
+    .fc-card-face {
+      position: absolute;
+      width: 100%;
+      min-height: 360px;
+      backface-visibility: hidden;
+      border-radius: 1.2em;
+      border-top: 5px solid #2A9D8F;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    /* Front */
+    .fc-card-front {
+      background: var(--card-background-color, #fff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2em 1.5em;
+      text-align: center;
+    }
+    .fc-section-label {
+      font-size: 0.68em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.5em;
+    }
+    .fc-card-icon { font-size: 2.5em; margin-bottom: 0.2em; }
+    .fc-card-drug {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5em;
+      font-weight: 800;
+      margin-bottom: 0.15em;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+    .fc-card-brand { font-size: 0.82em; opacity: 0.5; margin-bottom: 0.5em; }
+    .fc-card-class-pill {
+      display: inline-block;
+      padding: 0.25em 0.8em;
+      border-radius: 2em;
+      color: #fff;
+      font-size: 0.72em;
+      font-weight: 600;
+      margin-bottom: 0.5em;
+    }
+    .fc-card-purpose { font-size: 0.82em; opacity: 0.55; line-height: 1.4; }
+    .fc-card-tap {
+      font-size: 0.68em;
+      opacity: 0.25;
+      margin-top: 1.2em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Rating badge */
+    .fc-rating-badge {
+      position: absolute;
+      top: 0.7em;
+      right: 0.7em;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72em;
+      font-weight: 800;
+      z-index: 2;
+    }
+    .fc-rbadge-1 { background: #E03131; color: #fff; }
+    .fc-rbadge-2 { background: #E67700; color: #fff; }
+    .fc-rbadge-3 { background: #F59F00; color: #fff; }
+    .fc-rbadge-4 { background: #37B24D; color: #fff; }
+    .fc-rbadge-5 { background: #1971C2; color: #fff; }
+    .fc-rbadge-new { background: #e9ecef; color: #868e96; font-size: 0.55em; width: auto; padding: 0.2em 0.5em; border-radius: 1em; }
+
+    /* Back */
+    .fc-card-back {
+      background: var(--card-background-color, #fff);
+      transform: rotateY(180deg);
+      padding: 1.3em 1.5em;
+      overflow-y: auto;
+      max-height: 440px;
+    }
+    .fc-back-section {
+      font-size: 0.65em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.2em;
+    }
+    .fc-back-header {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1em;
+      font-weight: 800;
+      margin-bottom: 0.6em;
+      padding-bottom: 0.4em;
+      border-bottom: 2px solid #e9ecef;
+    }
+    .fc-facts {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.8em;
+    }
+    .fc-facts li {
+      padding: 0.35em 0 0.35em 1.1em;
+      position: relative;
+      font-size: 0.84em;
+      line-height: 1.4;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .fc-facts li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #2A9D8F;
+      font-weight: bold;
+    }
+    .fc-mnemonic {
+      background: linear-gradient(135deg, #FFF9DB 0%, #FFF3BF 100%);
+      padding: 0.5em 0.8em;
+      border-radius: 0.5em;
+      font-size: 0.82em;
+      font-weight: 600;
+      border-left: 4px solid #F59F00;
+    }
+    [data-theme="dark"] .fc-mnemonic, .dark-mode .fc-mnemonic {
+      background: rgba(245,159,0,0.12);
+      color: #FFD43B;
+    }
+    .fc-card-tap-back {
+      font-size: 0.65em;
+      opacity: 0.2;
+      margin-top: 0.8em;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── Rating Bar (1-5) ── */
+    .fc-rating-bar {
+      max-width: 440px;
+      margin: 1.2em auto 0.5em;
+      padding: 0 1em;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    .fc-rating-bar.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .fc-rating-label {
+      text-align: center;
+      font-size: 0.75em;
+      font-weight: 700;
+      opacity: 0.5;
+      margin-bottom: 0.5em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .fc-rating-buttons {
+      display: flex;
+      gap: 0;
+      border-radius: 0.8em;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .fc-rate-btn {
+      flex: 1;
+      padding: 0.8em 0;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9em;
+      transition: all 0.15s ease;
+      color: #fff;
+      position: relative;
+    }
+    .fc-rate-btn:active, .fc-rate-btn.pressed {
+      transform: scale(0.92);
+    }
+    .fc-rate-btn .fc-rate-num { display: block; font-size: 1.3em; }
+    .fc-rate-btn .fc-rate-label { display: block; font-size: 0.6em; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.1em; }
+    .fc-rate-btn.current { box-shadow: inset 0 0 0 3px rgba(255,255,255,0.5); }
+    .fc-rate-1 { background: #E03131; }
+    .fc-rate-2 { background: #E67700; }
+    .fc-rate-3 { background: #F59F00; }
+    .fc-rate-4 { background: #37B24D; }
+    .fc-rate-5 { background: #1971C2; }
+    .fc-rate-1:hover { background: #c92a2a; }
+    .fc-rate-2:hover { background: #d9480f; }
+    .fc-rate-3:hover { background: #e67700; }
+    .fc-rate-4:hover { background: #2f9e44; }
+    .fc-rate-5:hover { background: #1864ab; }
+
+    /* ── Keyboard Hint ── */
+    .fc-keyboard-hint {
+      text-align: center;
+      font-size: 0.7em;
+      opacity: 0.3;
+      margin: 0.8em 0 1.5em;
+    }
+    .fc-keyboard-hint kbd {
+      display: inline-block;
+      padding: 0.1em 0.4em;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 0.85em;
+      background: #f8f9fa;
+    }
+
+    /* Reset */
+    .fc-reset-wrap { text-align: center; padding: 0.5em; }
+    .fc-reset-btn {
+      background: transparent;
+      border: 1px solid #dee2e6;
+      padding: 0.35em 0.8em;
+      border-radius: 2em;
+      font-size: 0.7em;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: opacity 0.2s;
+    }
+    .fc-reset-btn:hover { opacity: 1; }
+
+    /* Slide anim */
+    .fc-slide-in { animation: fcSlide 0.25s ease; }
+    @keyframes fcSlide {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .study-hero { padding: 1.8em 1em 1.5em; }
+      .study-hero h1 { font-size: 1.4em; }
+      .fc-card-stage { min-height: 340px; }
+      .fc-card, .fc-card-face { min-height: 320px; }
+      .fc-rate-btn .fc-rate-label { display: none; }
+      .fc-rate-btn .fc-rate-num { font-size: 1.5em; }
+    }
+
+    /* ── Dark mode ── */
+    [data-theme="dark"] .fc-card-front,
+    [data-theme="dark"] .fc-card-back,
+    .dark-mode .fc-card-front,
+    .dark-mode .fc-card-back { background: #1a1a2e; color: #e0e0e0; }
+    [data-theme="dark"] .study-stats,
+    .dark-mode .study-stats { background: #1a1a2e; }
+    [data-theme="dark"] .fc-dist-0,
+    .dark-mode .fc-dist-0 { background: #2d2d44; }
+    [data-theme="dark"] .fc-back-header,
+    .dark-mode .fc-back-header { border-bottom-color: #2d2d44; }
+    [data-theme="dark"] .fc-facts li,
+    .dark-mode .fc-facts li { border-bottom-color: rgba(255,255,255,0.04); }
+    [data-theme="dark"] .fc-keyboard-hint kbd,
+    .dark-mode .fc-keyboard-hint kbd { background: #2d2d44; border-color: #444; color: #ccc; }
+  </style>
+</head>
+<body>
+<div class="page-container">
+
+  <!-- HERO -->
+  <div class="study-hero">
+    <div class="study-hero-glow"></div>
+    <div class="study-hero-content">
+      <div class="study-hero-badge">CONFIDENCE-BASED REPETITION</div>
+      <h1>Study Smart, Not Hard</h1>
+      <p>Rate each card 1-5. Weak cards come back faster.<br>Strong cards fade away. Your brain decides the pace.</p>
+    </div>
+  </div>
+
+  <!-- DECK -->
+  <div class="fc-deck-wrap" id="fcDeckWrap" style="display:none">
+
+    <!-- Stats -->
+    <div class="study-stats" id="fcStats"></div>
+
+    <!-- Filters -->
+    <div class="fc-filters" id="fcFilters"></div>
+
+    <!-- Card -->
+    <div class="fc-card-stage" id="fcCardStage">
+      <div class="fc-card" id="fcCard">
+        <!-- FRONT -->
+        <div class="fc-card-face fc-card-front" id="fcFront">
+          <div class="fc-rating-badge" id="fcRatingBadge"></div>
+          <div class="fc-section-label" id="fcSectionLabel"></div>
+          <div class="fc-card-icon" id="fcFrontIcon"></div>
+          <div class="fc-card-drug" id="fcDrugName"></div>
+          <div class="fc-card-brand" id="fcBrandName"></div>
+          <div class="fc-card-class-pill" id="fcClassPill"></div>
+          <div class="fc-card-purpose" id="fcPurpose"></div>
+          <div class="fc-card-tap">Tap to reveal answer</div>
+        </div>
+        <!-- BACK -->
+        <div class="fc-card-face fc-card-back" id="fcBack">
+          <div class="fc-back-section" id="fcBackSection"></div>
+          <div class="fc-back-header" id="fcBackHeader"></div>
+          <ul class="fc-facts" id="fcFacts"></ul>
+          <div class="fc-mnemonic" id="fcMnemonic"></div>
+          <div class="fc-card-tap-back">Rate below, then next card</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rating Bar -->
+    <div class="fc-rating-bar" id="fcRatingBar">
+      <div class="fc-rating-label">How well did you know this?</div>
+      <div class="fc-rating-buttons">
+        <button class="fc-rate-btn fc-rate-1" data-rating="1">
+          <span class="fc-rate-num">1</span>
+          <span class="fc-rate-label">No clue</span>
+        </button>
+        <button class="fc-rate-btn fc-rate-2" data-rating="2">
+          <span class="fc-rate-num">2</span>
+          <span class="fc-rate-label">Struggled</span>
+        </button>
+        <button class="fc-rate-btn fc-rate-3" data-rating="3">
+          <span class="fc-rate-num">3</span>
+          <span class="fc-rate-label">So-so</span>
+        </button>
+        <button class="fc-rate-btn fc-rate-4" data-rating="4">
+          <span class="fc-rate-num">4</span>
+          <span class="fc-rate-label">Good</span>
+        </button>
+        <button class="fc-rate-btn fc-rate-5" data-rating="5">
+          <span class="fc-rate-num">5</span>
+          <span class="fc-rate-label">Nailed it</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Keyboard Hint -->
+    <div class="fc-keyboard-hint">
+      <kbd>Space</kbd> flip &nbsp;|&nbsp;
+      <kbd>1</kbd>-<kbd>5</kbd> rate &nbsp;|&nbsp;
+      Swipe to skip
+    </div>
+
+    <!-- Reset -->
+    <div class="fc-reset-wrap">
+      <button class="fc-reset-btn" id="fcReset">Reset All Ratings</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/flashcard-data-ah.js"></script>
+<script src="../js/flashcards-ah.js"></script>
+<script src="../js/nav.js?v=2"></script>
+<script src="../js/theme.js"></script>
+</body>
+</html>
