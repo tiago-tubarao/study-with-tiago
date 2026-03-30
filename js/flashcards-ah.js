@@ -1,345 +1,347 @@
 // ══════════════════════════════════════════════
 // Confidence-Based Repetition Flashcards — Adult Health Exam 3
-// Brainscape-style 1-5 rating with weighted card selection
+// Got It / Study More mastery + Prev/Next/Shuffle navigation
 // ══════════════════════════════════════════════
 
 (function() {
-  const data = window.FLASHCARD_DATA_AH;
+  var data = window.FLASHCARD_DATA_AH;
   if (!data) return;
 
-  const STORAGE_KEY = 'swt_ah_cbr';
+  var STORAGE_KEY = 'swt_ah_cbr';
 
-  let allCards = [...data.cards];
-  let queue = [];       // weighted queue of card indices
-  let currentIndex = 0; // index into allCards
-  let isFlipped = false;
-  let cardsStudied = 0;
-  let activeSection = 'all';
+  var allCards = data.cards.slice();
+  var queue = [];
+  var currentIndex = 0;
+  var isFlipped = false;
+  var cardsStudied = 0;
+  var activeSection = 'all';
+  var activeMode = 'all'; // 'all', 'unseen', 'weak'
 
-  // ── Confidence State (1-5 per card, null = unseen) ──
   function loadRatings() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
   }
   function saveRatings(r) { localStorage.setItem(STORAGE_KEY, JSON.stringify(r)); }
   function getCardKey(card) { return card.drugName.replace(/\s+/g, '_').toLowerCase(); }
 
-  let ratings = loadRatings();
+  var ratings = loadRatings();
+
+  // ── Filtered pool based on section + mode ──
+  function getPool() {
+    var pool = activeSection === 'all' ? allCards : allCards.filter(function(c) { return c.section === activeSection; });
+    if (activeMode === 'unseen') {
+      pool = pool.filter(function(c) { var r = ratings[getCardKey(c)]; return r === undefined || r === null; });
+    } else if (activeMode === 'weak') {
+      pool = pool.filter(function(c) { var r = ratings[getCardKey(c)]; return r !== undefined && r !== null && r < 4; });
+    }
+    return pool;
+  }
 
   // ── Weighted Queue Builder ──
-  // Cards rated 1 appear 5x, rated 2 appear 4x, etc. Unseen appear 3x.
-  function buildQueue(section) {
-    const pool = section === 'all' ? allCards : allCards.filter(c => c.section === section);
+  function buildQueue() {
+    var pool = getPool();
     queue = [];
-    pool.forEach(card => {
-      const key = getCardKey(card);
-      const idx = allCards.indexOf(card);
-      const rating = ratings[key];
-      let weight;
-      if (rating === undefined || rating === null) weight = 3; // unseen
-      else if (rating === 1) weight = 5;
-      else if (rating === 2) weight = 4;
-      else if (rating === 3) weight = 3;
-      else if (rating === 4) weight = 2;
-      else weight = 1; // rating 5
-      for (let i = 0; i < weight; i++) queue.push(idx);
+    pool.forEach(function(card) {
+      var idx = allCards.indexOf(card);
+      var rating = ratings[getCardKey(card)];
+      var weight;
+      if (rating === undefined || rating === null) weight = 3;
+      else if (rating < 4) weight = 4;
+      else weight = 1;
+      for (var i = 0; i < weight; i++) queue.push(idx);
     });
-    // Shuffle the queue
-    for (let i = queue.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [queue[i], queue[j]] = [queue[j], queue[i]];
+    // Shuffle
+    for (var i = queue.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = queue[i]; queue[i] = queue[j]; queue[j] = tmp;
     }
   }
 
-  function nextCard() {
-    if (!queue.length) buildQueue(activeSection);
-    if (!queue.length) return;
-    currentIndex = queue.shift();
+  function showCard() {
     isFlipped = false;
     renderCard();
   }
 
+  function nextCard() {
+    if (!queue.length) buildQueue();
+    if (!queue.length) {
+      document.getElementById('fcCardStage').style.display = 'none';
+      document.getElementById('fcEmpty').style.display = 'block';
+      return;
+    }
+    document.getElementById('fcCardStage').style.display = '';
+    document.getElementById('fcEmpty').style.display = 'none';
+    currentIndex = queue.shift();
+    showCard();
+  }
+
+  function prevCard() {
+    // Simple: go to previous index in allCards within current pool
+    var pool = getPool();
+    var poolIndices = pool.map(function(c) { return allCards.indexOf(c); });
+    var pos = poolIndices.indexOf(currentIndex);
+    if (pos > 0) {
+      currentIndex = poolIndices[pos - 1];
+    } else if (poolIndices.length > 0) {
+      currentIndex = poolIndices[poolIndices.length - 1]; // wrap around
+    }
+    showCard();
+  }
+
   // ── Initialize ──
-  const deckWrap = document.getElementById('fcDeckWrap');
+  var deckWrap = document.getElementById('fcDeckWrap');
   if (deckWrap) {
     deckWrap.style.display = 'block';
     deckWrap.style.opacity = '1';
-    buildQueue('all');
+    buildQueue();
     renderStats();
     nextCard();
   }
 
-  // ── Build filter buttons ──
-  const filtersEl = document.getElementById('fcFilters');
+  // ── Build section filter buttons ──
+  var filtersEl = document.getElementById('fcFilters');
   if (filtersEl) {
-    const allBtn = document.createElement('button');
+    var allBtn = document.createElement('button');
     allBtn.className = 'fc-filter active';
     allBtn.dataset.section = 'all';
-    allBtn.textContent = `All (${allCards.length})`;
+    allBtn.textContent = 'All (' + allCards.length + ')';
     filtersEl.appendChild(allBtn);
 
-    data.sections.forEach(s => {
-      const count = allCards.filter(c => c.section === s.id).length;
-      const btn = document.createElement('button');
+    data.sections.forEach(function(s) {
+      var count = allCards.filter(function(c) { return c.section === s.id; }).length;
+      var btn = document.createElement('button');
       btn.className = 'fc-filter';
       btn.dataset.section = s.id;
-      btn.textContent = `${s.icon} ${s.label} (${count})`;
+      btn.textContent = s.icon + ' ' + s.label + ' (' + count + ')';
       btn.style.setProperty('--filter-color', s.color);
       filtersEl.appendChild(btn);
     });
 
     filtersEl.addEventListener('click', function(e) {
-      const btn = e.target.closest('.fc-filter');
+      var btn = e.target.closest('.fc-filter');
       if (!btn) return;
-      filtersEl.querySelectorAll('.fc-filter').forEach(b => b.classList.remove('active'));
+      filtersEl.querySelectorAll('.fc-filter').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       activeSection = btn.dataset.section;
-      buildQueue(activeSection);
-      nextCard();
+      buildQueue();
       renderStats();
+      nextCard();
     });
   }
 
+  // ── Study mode buttons (All / Unseen / Weak) ──
+  document.querySelectorAll('.fc-mode-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.fc-mode-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeMode = btn.dataset.mode;
+      buildQueue();
+      renderStats();
+      nextCard();
+    });
+  });
+
   // ── Stats ──
   function renderStats() {
-    const statsEl = document.getElementById('fcStats');
+    var statsEl = document.getElementById('fcStats');
     if (!statsEl) return;
 
-    const pool = activeSection === 'all' ? allCards : allCards.filter(c => c.section === activeSection);
-    const total = pool.length;
-    const counts = [0, 0, 0, 0, 0, 0]; // [unseen, 1, 2, 3, 4, 5]
-    pool.forEach(card => {
-      const r = ratings[getCardKey(card)];
-      if (r === undefined || r === null) counts[0]++;
-      else counts[r]++;
+    var pool = activeSection === 'all' ? allCards : allCards.filter(function(c) { return c.section === activeSection; });
+    var total = pool.length;
+    var got = 0, weak = 0, unseen = 0;
+    pool.forEach(function(card) {
+      var r = ratings[getCardKey(card)];
+      if (r === undefined || r === null) unseen++;
+      else if (r >= 4) got++;
+      else weak++;
     });
 
-    const mastered = counts[4] + counts[5];
-    const weak = counts[1] + counts[2];
-    const learning = counts[3];
-    const unseen = counts[0];
-    const masteredPct = Math.round((mastered / total) * 100);
+    var gotPct = Math.round((got / total) * 100);
+    var weakPct = Math.round((weak / total) * 100);
 
-    statsEl.innerHTML = `
-      <div class="fc-stats-row">
-        <div class="fc-stat-block">
-          <span class="fc-stat-big">${masteredPct}%</span>
-          <span class="fc-stat-sub">Mastered</span>
-        </div>
-        <div class="fc-stat-block">
-          <span class="fc-stat-big">${cardsStudied}</span>
-          <span class="fc-stat-sub">Studied</span>
-        </div>
-      </div>
-      <div class="fc-distribution">
-        <div class="fc-dist-bar">
-          ${counts[1] ? `<div class="fc-dist-seg fc-dist-1" style="flex:${counts[1]}" title="${counts[1]} rated 1"></div>` : ''}
-          ${counts[2] ? `<div class="fc-dist-seg fc-dist-2" style="flex:${counts[2]}" title="${counts[2]} rated 2"></div>` : ''}
-          ${counts[3] ? `<div class="fc-dist-seg fc-dist-3" style="flex:${counts[3]}" title="${counts[3]} rated 3"></div>` : ''}
-          ${counts[4] ? `<div class="fc-dist-seg fc-dist-4" style="flex:${counts[4]}" title="${counts[4]} rated 4"></div>` : ''}
-          ${counts[5] ? `<div class="fc-dist-seg fc-dist-5" style="flex:${counts[5]}" title="${counts[5]} rated 5"></div>` : ''}
-          ${unseen ? `<div class="fc-dist-seg fc-dist-0" style="flex:${unseen}" title="${unseen} unseen"></div>` : ''}
-        </div>
-        <div class="fc-dist-legend">
-          <span class="fc-leg"><span class="fc-leg-dot fc-dist-1"></span>${counts[1]}</span>
-          <span class="fc-leg"><span class="fc-leg-dot fc-dist-2"></span>${counts[2]}</span>
-          <span class="fc-leg"><span class="fc-leg-dot fc-dist-3"></span>${counts[3]}</span>
-          <span class="fc-leg"><span class="fc-leg-dot fc-dist-4"></span>${counts[4]}</span>
-          <span class="fc-leg"><span class="fc-leg-dot fc-dist-5"></span>${counts[5]}</span>
-          <span class="fc-leg"><span class="fc-leg-dot fc-dist-0"></span>${unseen} new</span>
-        </div>
-      </div>
-    `;
+    statsEl.innerHTML =
+      '<div class="fc-stat fc-stat-got"><span class="fc-stat-num">' + got + '</span><span class="fc-stat-label">Got it</span></div>' +
+      '<div class="fc-stat-bar-wrap"><div class="fc-stat-bar"><div class="fc-stat-bar-got" style="width:' + gotPct + '%"></div><div class="fc-stat-bar-weak" style="width:' + weakPct + '%"></div></div><div class="fc-stat-bar-labels"><span>' + unseen + ' unseen</span><span>' + total + ' total</span></div></div>' +
+      '<div class="fc-stat fc-stat-weak"><span class="fc-stat-num">' + weak + '</span><span class="fc-stat-label">Review</span></div>';
+
+    // Update counter
+    var counter = document.getElementById('fcCounter');
+    if (counter) {
+      var poolForCount = getPool();
+      counter.textContent = 'Card ' + (poolForCount.map(function(c) { return allCards.indexOf(c); }).indexOf(currentIndex) + 1) + ' / ' + poolForCount.length;
+    }
+
+    // Update progress bar
+    var progress = document.getElementById('fcProgress');
+    if (progress) {
+      progress.style.width = gotPct + '%';
+    }
   }
 
   // ── Card Rendering ──
   function renderCard() {
-    const card = allCards[currentIndex];
-    const cardEl = document.getElementById('fcCard');
-    const sectionData = data.sections.find(s => s.id === card.section);
-    const sectionColor = sectionData ? sectionData.color : '#2A9D8F';
-    const key = getCardKey(card);
-    const rating = ratings[key];
+    var card = allCards[currentIndex];
+    if (!card) return;
+    var cardEl = document.getElementById('fcCard');
+    var sectionData = data.sections.find(function(s) { return s.id === card.section; });
+    var sectionColor = sectionData ? sectionData.color : '#2A9D8F';
+    var key = getCardKey(card);
+    var rating = ratings[key];
 
     // Reset flip
     cardEl.classList.remove('flipped');
 
-    // Hide rating bar until flipped
-    const ratingBar = document.getElementById('fcRatingBar');
-    if (ratingBar) ratingBar.classList.remove('visible');
-
     // Front
     document.getElementById('fcFrontIcon').textContent = card.icon || '';
 
-    const drugNameEl = document.getElementById('fcDrugName');
+    var drugNameEl = document.getElementById('fcDrugName');
     drugNameEl.textContent = card.drugName;
-    const nameLen = card.drugName.length;
+    var nameLen = card.drugName.length;
     if (nameLen > 30) drugNameEl.style.fontSize = '1em';
     else if (nameLen > 20) drugNameEl.style.fontSize = '1.2em';
     else drugNameEl.style.fontSize = '1.5em';
 
-    document.getElementById('fcBrandName').textContent = card.brandName ? `${card.brandName}` : '';
-    const pill = document.getElementById('fcClassPill');
+    document.getElementById('fcBrandName').textContent = card.brandName ? card.brandName : '';
+    var pill = document.getElementById('fcClassPill');
     pill.textContent = card.drugClass;
     pill.style.background = sectionColor;
     document.getElementById('fcPurpose').textContent = card.purpose;
 
-    // Rating badge on front
-    const badge = document.getElementById('fcRatingBadge');
+    // Mastery badge
+    var badge = document.getElementById('fcMasteryBadge');
     if (badge) {
-      if (rating) {
-        badge.textContent = rating;
-        badge.className = `fc-rating-badge fc-rbadge-${rating}`;
-      } else {
-        badge.textContent = 'NEW';
-        badge.className = 'fc-rating-badge fc-rbadge-new';
-      }
+      if (rating >= 4) { badge.textContent = '✓ Got It'; badge.className = 'fc-mastery-badge fc-mastery-got'; }
+      else if (rating >= 1) { badge.textContent = '↻ Review'; badge.className = 'fc-mastery-badge fc-mastery-weak'; }
+      else { badge.textContent = 'NEW'; badge.className = 'fc-mastery-badge'; badge.style.cssText = 'position:absolute;top:0.8em;right:0.8em;padding:0.2em 0.7em;border-radius:2em;font-size:0.7em;font-weight:700;z-index:2;background:rgba(0,0,0,0.06);color:inherit;border:1px solid rgba(0,0,0,0.1);'; }
     }
 
     // Section label on front
-    const sectionLabel = document.getElementById('fcSectionLabel');
+    var sectionLabel = document.getElementById('fcSectionLabel');
     if (sectionLabel) {
-      sectionLabel.textContent = sectionData ? `${sectionData.icon} ${sectionData.label}` : '';
+      sectionLabel.textContent = sectionData ? sectionData.icon + ' ' + sectionData.label : '';
       sectionLabel.style.color = sectionColor;
     }
 
     // Back
     document.getElementById('fcBackHeader').textContent = card.drugName;
-    const backSection = document.getElementById('fcBackSection');
+    var backSection = document.getElementById('fcBackSection');
     if (backSection) {
-      backSection.textContent = sectionData ? `${sectionData.icon} ${sectionData.label}` : '';
+      backSection.textContent = sectionData ? sectionData.icon + ' ' + sectionData.label : '';
       backSection.style.color = sectionColor;
     }
 
-    const factsEl = document.getElementById('fcFacts');
+    var factsEl = document.getElementById('fcFacts');
     factsEl.innerHTML = '';
-    card.facts.forEach(f => {
-      const li = document.createElement('li');
-      const escaped = f.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    card.facts.forEach(function(f) {
+      var li = document.createElement('li');
+      var escaped = f.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       li.innerHTML = escaped
         .replace(/(STOP|NEVER|FIRST|ALWAYS|CRITICAL|EMERGENCY|BBW|BLACK BOX|#1)/g, '<strong style="color:#C92A2A">$1</strong>')
         .replace(/(antidote|Antidote)(:?\s)/gi, '<strong style="color:#2B8A3E">$1</strong>$2');
       factsEl.appendChild(li);
     });
 
-    const mnEl = document.getElementById('fcMnemonic');
-    mnEl.textContent = card.mnemonic ? `💡 ${card.mnemonic}` : '';
+    var mnEl = document.getElementById('fcMnemonic');
+    mnEl.textContent = card.mnemonic ? '💡 ' + card.mnemonic : '';
 
     // Card border color
     document.querySelector('.fc-card-front').style.borderTopColor = sectionColor;
     document.querySelector('.fc-card-back').style.borderTopColor = sectionColor;
 
-    // Update rating button highlights
-    document.querySelectorAll('.fc-rate-btn').forEach(btn => {
-      btn.classList.toggle('current', parseInt(btn.dataset.rating) === rating);
-    });
-
     // Entrance animation
-    const stage = document.getElementById('fcCardStage');
+    var stage = document.getElementById('fcCardStage');
     stage.classList.remove('fc-slide-in');
     stage.offsetHeight;
     stage.classList.add('fc-slide-in');
+
+    renderStats();
   }
 
   // ── Flip ──
-  const cardStage = document.getElementById('fcCardStage');
+  var cardStage = document.getElementById('fcCardStage');
   if (cardStage) {
     cardStage.addEventListener('click', function(e) {
-      if (e.target.closest('.fc-rate-btn')) return;
+      if (e.target.closest('.fc-mastery-btn') || e.target.closest('.fc-nav-btn')) return;
+      var cardEl = document.getElementById('fcCard');
       if (!isFlipped) {
         isFlipped = true;
-        document.getElementById('fcCard').classList.add('flipped');
-        // Show rating bar
-        const ratingBar = document.getElementById('fcRatingBar');
-        if (ratingBar) {
-          setTimeout(() => ratingBar.classList.add('visible'), 300);
-        }
+        cardEl.classList.add('flipped');
       } else {
         isFlipped = false;
-        document.getElementById('fcCard').classList.remove('flipped');
-        const ratingBar = document.getElementById('fcRatingBar');
-        if (ratingBar) ratingBar.classList.remove('visible');
+        cardEl.classList.remove('flipped');
       }
     });
   }
 
-  // ── Rating Buttons (1-5) ──
-  document.querySelectorAll('.fc-rate-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const r = parseInt(this.dataset.rating);
-      const card = allCards[currentIndex];
-      const key = getCardKey(card);
-      ratings[key] = r;
-      saveRatings(ratings);
-      cardsStudied++;
+  // ── Got It / Study More ──
+  function rateCard(gotIt) {
+    var card = allCards[currentIndex];
+    if (!card) return;
+    var key = getCardKey(card);
+    ratings[key] = gotIt ? 4 : 2;
+    saveRatings(ratings);
+    cardsStudied++;
+    setTimeout(function() { nextCard(); renderStats(); }, 250);
+  }
 
-      // Brief visual feedback
-      this.classList.add('pressed');
-      setTimeout(() => this.classList.remove('pressed'), 200);
+  var gotBtn = document.getElementById('fcGotIt');
+  if (gotBtn) gotBtn.addEventListener('click', function(e) { e.stopPropagation(); rateCard(true); });
 
-      // Advance to next card after short delay
-      setTimeout(() => {
-        nextCard();
-        renderStats();
-      }, 350);
-    });
-  });
+  var weakBtn = document.getElementById('fcStudyMore');
+  if (weakBtn) weakBtn.addEventListener('click', function(e) { e.stopPropagation(); rateCard(false); });
+
+  // ── Navigation ──
+  var shuffleBtn = document.getElementById('fcShuffle');
+  if (shuffleBtn) shuffleBtn.addEventListener('click', function(e) { e.stopPropagation(); buildQueue(); nextCard(); });
+
+  var prevBtn = document.getElementById('fcPrev');
+  if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prevCard(); });
+
+  var nextBtn = document.getElementById('fcNext');
+  if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); nextCard(); });
 
   // ── Keyboard ──
   document.addEventListener('keydown', function(e) {
-    const deck = document.getElementById('fcDeckWrap');
+    var deck = document.getElementById('fcDeckWrap');
     if (!deck || deck.style.display === 'none') return;
 
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
-      if (!isFlipped) {
-        isFlipped = true;
-        document.getElementById('fcCard').classList.add('flipped');
-        const ratingBar = document.getElementById('fcRatingBar');
-        if (ratingBar) setTimeout(() => ratingBar.classList.add('visible'), 300);
-      } else {
-        isFlipped = false;
-        document.getElementById('fcCard').classList.remove('flipped');
-        const ratingBar = document.getElementById('fcRatingBar');
-        if (ratingBar) ratingBar.classList.remove('visible');
-      }
+      var cardEl = document.getElementById('fcCard');
+      if (!isFlipped) { isFlipped = true; cardEl.classList.add('flipped'); }
+      else { isFlipped = false; cardEl.classList.remove('flipped'); }
     }
-
-    // Number keys 1-5 to rate (only when flipped)
-    if (isFlipped && e.key >= '1' && e.key <= '5') {
-      const r = parseInt(e.key);
-      const card = allCards[currentIndex];
-      ratings[getCardKey(card)] = r;
-      saveRatings(ratings);
-      cardsStudied++;
-      setTimeout(() => { nextCard(); renderStats(); }, 200);
-    }
+    if (e.key === 'ArrowRight') nextCard();
+    if (e.key === 'ArrowLeft') prevCard();
+    if (e.key === 'g' || e.key === 'G') rateCard(true);
+    if (e.key === 'r' || e.key === 'R') rateCard(false);
   });
 
   // ── Swipe ──
-  let touchStartX = 0;
+  var touchStartX = 0;
   if (cardStage) {
-    cardStage.addEventListener('touchstart', function(e) {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+    cardStage.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
     cardStage.addEventListener('touchend', function(e) {
-      const diff = touchStartX - e.changedTouches[0].screenX;
-      if (Math.abs(diff) > 50 && !isFlipped) {
-        // Swipe = skip to next card without rating
-        nextCard();
+      var diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextCard();
+        else prevCard();
       }
     }, { passive: true });
   }
 
   // ── Reset ──
-  const resetBtn = document.getElementById('fcReset');
+  var resetBtn = document.getElementById('fcReset');
   if (resetBtn) {
     resetBtn.addEventListener('click', function() {
       if (confirm('Reset all confidence ratings? This cannot be undone.')) {
         ratings = {};
         saveRatings(ratings);
         cardsStudied = 0;
-        buildQueue(activeSection);
+        activeMode = 'all';
+        document.querySelectorAll('.fc-mode-btn').forEach(function(b) { b.classList.remove('active'); });
+        var allModeBtn = document.querySelector('.fc-mode-btn[data-mode="all"]');
+        if (allModeBtn) allModeBtn.classList.add('active');
+        buildQueue();
         nextCard();
         renderStats();
       }
