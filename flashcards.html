@@ -3,21 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adult Health Exam 3 Flashcards — Study with Tiago</title>
-  <meta name="description" content="60 flashcards with custom AI-generated artwork covering Diabetes, Thyroid, Pituitary/Adrenal, Renal, and Hematology for Adult Health Exam 3.">
-  <meta property="og:title" content="Adult Health Exam 3 Flashcards | Study with Tiago">
-  <meta property="og:description" content="60 visual flashcards with mastery tracking. Diabetes, Thyroid, Renal, Hematology — everything on Exam 3.">
+  <title>All Flashcards — Study with Tiago</title>
+  <meta name="description" content="125 flashcards covering Pharmacology + Adult Health Nursing. Emoji memory hooks, confidence-based repetition. Weak cards come back more often.">
+  <meta property="og:title" content="All Flashcards | Study with Tiago">
+  <meta property="og:description" content="125 flashcards — Pharm + Adult Health. Emoji memory hooks, confidence tracking, smart repetition.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Study with Tiago">
   <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=18">
   <style>
-    /* ── AH Flashcard Enhancements ── */
-
     .fc-hero {
-      background: linear-gradient(135deg, #0B1D3A 0%, #1a365d 40%, #2B8A3E 100%);
+      background: linear-gradient(135deg, #0B1D3A 0%, #1a365d 40%, #2A9D8F 100%);
       padding: 3em 1.5em 2.5em;
       text-align: center;
       position: relative;
@@ -28,15 +26,15 @@
     .fc-hero-glow {
       position: absolute;
       width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(43,138,62,0.3), transparent 70%);
+      background: radial-gradient(circle, rgba(42,157,143,0.3), transparent 70%);
       top: -100px; right: -50px;
       border-radius: 50%;
     }
     .fc-hero-content { position: relative; z-index: 1; }
     .fc-hero-badge {
       display: inline-block;
-      background: rgba(43,138,62,0.3);
-      border: 1px solid rgba(43,138,62,0.6);
+      background: rgba(42,157,143,0.3);
+      border: 1px solid rgba(42,157,143,0.6);
       color: #90EE90;
       padding: 0.3em 1em;
       border-radius: 2em;
@@ -61,7 +59,6 @@
     }
     .fc-hero-sub strong { color: #90EE90; }
 
-    /* ── Stats Bar ── */
     .fc-stats-bar {
       display: flex;
       align-items: center;
@@ -95,31 +92,6 @@
       margin-top: 0.3em;
     }
 
-    /* ── Study Mode Toggles ── */
-    .fc-mode-bar {
-      display: flex;
-      justify-content: center;
-      gap: 0.5em;
-      margin: 0 1em 1em;
-    }
-    .fc-mode-btn {
-      padding: 0.4em 1em;
-      border-radius: 2em;
-      border: 1px solid #dee2e6;
-      background: transparent;
-      font-size: 0.8em;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: var(--color, inherit);
-    }
-    .fc-mode-btn:hover { background: #f1f3f5; }
-    .fc-mode-btn.active {
-      background: #0B1D3A;
-      color: #fff;
-      border-color: #0B1D3A;
-    }
-
-    /* ── Filter overrides ── */
     .fc-filters {
       display: flex;
       flex-wrap: wrap;
@@ -146,7 +118,6 @@
       color: #fff;
     }
 
-    /* ── Card Styles ── */
     .fc-counter {
       text-align: center;
       font-size: 0.8em;
@@ -180,7 +151,6 @@
       overflow: hidden;
     }
 
-    /* ── Front face ── */
     .fc-card-front {
       background: var(--card-background-color, #fff);
       display: flex;
@@ -201,11 +171,7 @@
       word-break: break-word;
       overflow-wrap: break-word;
     }
-    .fc-card-brand {
-      font-size: 0.85em;
-      opacity: 0.6;
-      margin-bottom: 0.6em;
-    }
+    .fc-card-brand { font-size: 0.85em; opacity: 0.6; margin-bottom: 0.6em; }
     .fc-card-class-pill {
       display: inline-block;
       padding: 0.25em 0.8em;
@@ -215,11 +181,7 @@
       font-weight: 600;
       margin-bottom: 0.6em;
     }
-    .fc-card-purpose {
-      font-size: 0.85em;
-      opacity: 0.6;
-      line-height: 1.4;
-    }
+    .fc-card-purpose { font-size: 0.85em; opacity: 0.6; line-height: 1.4; }
     .fc-card-tap {
       font-size: 0.7em;
       opacity: 0.3;
@@ -228,8 +190,18 @@
       letter-spacing: 1px;
       text-transform: uppercase;
     }
+    .fc-course-badge {
+      position: absolute;
+      top: 0.8em;
+      left: 0.8em;
+      padding: 0.2em 0.7em;
+      border-radius: 2em;
+      font-size: 0.65em;
+      font-weight: 700;
+      z-index: 2;
+      letter-spacing: 0.5px;
+    }
 
-    /* ── Back face ── */
     .fc-card-back {
       background: var(--card-background-color, #fff);
       transform: rotateY(180deg);
@@ -253,11 +225,7 @@
       padding-bottom: 0.5em;
       border-bottom: 2px solid #e9ecef;
     }
-    .fc-facts {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 1em;
-    }
+    .fc-facts { list-style: none; padding: 0; margin: 0 0 1em; }
     .fc-facts li {
       padding: 0.4em 0 0.4em 1.2em;
       position: relative;
@@ -266,7 +234,7 @@
       border-bottom: 1px solid rgba(0,0,0,0.04);
     }
     .fc-facts li::before {
-      content: '▸';
+      content: '\25B8';
       position: absolute;
       left: 0;
       color: #2A9D8F;
@@ -281,13 +249,11 @@
       border-left: 4px solid #F59F00;
       margin-bottom: 0.5em;
     }
-    [data-theme="dark"] .fc-mnemonic,
-    .dark-mode .fc-mnemonic {
+    [data-theme="dark"] .fc-mnemonic, .dark-mode .fc-mnemonic {
       background: rgba(245,159,0,0.15);
       color: #FFD43B;
     }
 
-    /* ── Mastery badge ── */
     .fc-mastery-badge {
       position: absolute;
       top: 0.8em;
@@ -298,18 +264,9 @@
       font-weight: 700;
       z-index: 2;
     }
-    .fc-mastery-got {
-      background: rgba(43,138,62,0.15);
-      color: #2B8A3E;
-      border: 1px solid rgba(43,138,62,0.3);
-    }
-    .fc-mastery-weak {
-      background: rgba(230,119,0,0.15);
-      color: #E67700;
-      border: 1px solid rgba(230,119,0,0.3);
-    }
+    .fc-mastery-got { background: rgba(43,138,62,0.15); color: #2B8A3E; border: 1px solid rgba(43,138,62,0.3); }
+    .fc-mastery-weak { background: rgba(230,119,0,0.15); color: #E67700; border: 1px solid rgba(230,119,0,0.3); }
 
-    /* ── Mastery Action Buttons ── */
     .fc-mastery-actions {
       display: flex;
       justify-content: center;
@@ -328,26 +285,11 @@
       align-items: center;
       gap: 0.4em;
     }
-    .fc-mastery-btn-got {
-      border-color: #2B8A3E;
-      color: #2B8A3E;
-      background: transparent;
-    }
-    .fc-mastery-btn-got:hover, .fc-mastery-btn-got.active {
-      background: #2B8A3E;
-      color: #fff;
-    }
-    .fc-mastery-btn-weak {
-      border-color: #E67700;
-      color: #E67700;
-      background: transparent;
-    }
-    .fc-mastery-btn-weak:hover, .fc-mastery-btn-weak.active {
-      background: #E67700;
-      color: #fff;
-    }
+    .fc-mastery-btn-got { border-color: #2B8A3E; color: #2B8A3E; background: transparent; }
+    .fc-mastery-btn-got:hover, .fc-mastery-btn-got.active { background: #2B8A3E; color: #fff; }
+    .fc-mastery-btn-weak { border-color: #E67700; color: #E67700; background: transparent; }
+    .fc-mastery-btn-weak:hover, .fc-mastery-btn-weak.active { background: #E67700; color: #fff; }
 
-    /* ── Nav ── */
     .fc-nav {
       display: flex;
       justify-content: center;
@@ -365,34 +307,12 @@
       font-size: 0.85em;
     }
     .fc-nav-btn:hover:not(:disabled) { background: #f1f3f5; }
-    .fc-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
     .fc-shuffle-btn { background: #0B1D3A; color: #fff; border-color: #0B1D3A; }
     .fc-shuffle-btn:hover { background: #1a365d; }
 
-    /* ── Progress ── */
-    .fc-progress-bar {
-      height: 4px;
-      background: #e9ecef;
-      border-radius: 2px;
-      margin: 0 1em 1em;
-      overflow: hidden;
-    }
-    .fc-progress-fill {
-      height: 100%;
-      background: #2A9D8F;
-      border-radius: 2px;
-      transition: width 0.3s ease;
-    }
-
-    /* ── Empty State ── */
-    .fc-empty {
-      text-align: center;
-      padding: 3em 1em;
-      opacity: 0.5;
-    }
+    .fc-empty { text-align: center; padding: 3em 1em; opacity: 0.5; }
     .fc-empty-icon { font-size: 3em; }
 
-    /* ── Keyboard hint ── */
     .fc-keyboard-hint {
       text-align: center;
       font-size: 0.72em;
@@ -409,11 +329,7 @@
       background: #f8f9fa;
     }
 
-    /* ── Reset ── */
-    .fc-reset-wrap {
-      text-align: center;
-      padding: 1em;
-    }
+    .fc-reset-wrap { text-align: center; padding: 1em; }
     .fc-reset-btn {
       background: transparent;
       border: 1px solid #dee2e6;
@@ -426,16 +342,12 @@
     }
     .fc-reset-btn:hover { opacity: 1; }
 
-    /* ── Slide animation ── */
-    .fc-slide-in {
-      animation: fcSlideIn 0.3s ease;
-    }
+    .fc-slide-in { animation: fcSlideIn 0.3s ease; }
     @keyframes fcSlideIn {
       from { opacity: 0; transform: translateX(30px); }
       to { opacity: 1; transform: translateX(0); }
     }
 
-    /* ── Responsive ── */
     @media (max-width: 600px) {
       .fc-hero { padding: 2em 1em 1.5em; }
       .fc-hero-title { font-size: 1.6em; }
@@ -447,18 +359,12 @@
       .fc-mastery-actions { flex-wrap: wrap; }
     }
 
-    /* ── Dark mode ── */
     [data-theme="dark"] .fc-card-front,
     [data-theme="dark"] .fc-card-back,
     .dark-mode .fc-card-front,
-    .dark-mode .fc-card-back {
-      background: #1a1a2e;
-      color: #e0e0e0;
-    }
+    .dark-mode .fc-card-back { background: #1a1a2e; color: #e0e0e0; }
     [data-theme="dark"] .fc-stats-bar,
-    .dark-mode .fc-stats-bar {
-      background: #1a1a2e;
-    }
+    .dark-mode .fc-stats-bar { background: #1a1a2e; }
     [data-theme="dark"] .fc-stat-bar,
     .dark-mode .fc-stat-bar { background: #2d2d44; }
     [data-theme="dark"] .fc-back-header,
@@ -466,50 +372,33 @@
     [data-theme="dark"] .fc-facts li,
     .dark-mode .fc-facts li { border-bottom-color: rgba(255,255,255,0.05); }
     [data-theme="dark"] .fc-keyboard-hint kbd,
-    .dark-mode .fc-keyboard-hint kbd {
-      background: #2d2d44;
-      border-color: #444;
-      color: #ccc;
-    }
+    .dark-mode .fc-keyboard-hint kbd { background: #2d2d44; border-color: #444; color: #ccc; }
   </style>
 </head>
 <body>
 <div class="page-container">
 
-  <!-- HERO -->
   <div class="fc-hero">
     <div class="fc-hero-glow"></div>
     <div class="fc-hero-content">
-      <div class="fc-hero-badge">ADULT HEALTH EXAM 3</div>
-      <h1 class="fc-hero-title">60 Visual Flashcards</h1>
-      <p class="fc-hero-sub">Every testable topic from <strong>ATI Gold Review</strong>.<br>Diabetes. Thyroid. Renal. Hematology. All of it.</p>
+      <div class="fc-hero-badge">ALL DECKS COMBINED</div>
+      <h1 class="fc-hero-title"><span id="fcTotalCount">125</span> Flashcards</h1>
+      <p class="fc-hero-sub"><strong>Pharmacology + Adult Health</strong> mixed together.<br>Emoji memory hooks. Weak cards come back more often.</p>
     </div>
   </div>
 
-  <!-- FLASHCARD DECK -->
   <div class="fc-deck-wrap" id="fcDeckWrap" style="display:none">
 
-    <!-- Stats Bar -->
     <div class="fc-stats-bar" id="fcStats"></div>
 
-    <!-- Study Mode -->
-    <div class="fc-mode-bar">
-      <button class="fc-mode-btn active" data-mode="all">All Cards</button>
-      <button class="fc-mode-btn" data-mode="unseen">Unseen Only</button>
-      <button class="fc-mode-btn" data-mode="weak">Needs Review</button>
-    </div>
-
-    <!-- Category Filters -->
     <div class="fc-filters" id="fcFilters"></div>
 
-    <!-- Card Counter -->
-    <div class="fc-counter" id="fcCounter">Card 1 / 60</div>
+    <div class="fc-counter" id="fcCounter"></div>
 
-    <!-- The Card -->
     <div class="fc-card-stage" id="fcCardStage">
       <div class="fc-card" id="fcCard">
-        <!-- FRONT -->
         <div class="fc-card-face fc-card-front" id="fcFront">
+          <div class="fc-course-badge" id="fcCourseBadge"></div>
           <div class="fc-mastery-badge" id="fcMasteryBadge"></div>
           <div class="fc-front-content">
             <div class="fc-card-icon" id="fcFrontIcon"></div>
@@ -520,7 +409,6 @@
             <div class="fc-card-tap">Tap to flip</div>
           </div>
         </div>
-        <!-- BACK -->
         <div class="fc-card-face fc-card-back" id="fcBack">
           <div class="fc-back-section" id="fcBackSection"></div>
           <div class="fc-back-header" id="fcBackHeader"></div>
@@ -531,31 +419,22 @@
       </div>
     </div>
 
-    <!-- Empty state -->
     <div class="fc-empty" id="fcEmpty" style="display:none">
       <div class="fc-empty-icon">🎉</div>
-      <p>No cards match this filter.<br>Try "All Cards" or switch sections.</p>
+      <p>No cards match this filter.<br>Try "All" or switch sections.</p>
     </div>
 
-    <!-- Mastery Buttons -->
     <div class="fc-mastery-actions">
       <button class="fc-mastery-btn fc-mastery-btn-got" id="fcGotIt">✓ Got It</button>
       <button class="fc-mastery-btn fc-mastery-btn-weak" id="fcStudyMore">↻ Study More</button>
     </div>
 
-    <!-- Navigation -->
     <div class="fc-nav">
-      <button class="fc-nav-btn" id="fcPrev" aria-label="Previous card">← Prev</button>
-      <button class="fc-nav-btn fc-shuffle-btn" id="fcShuffle" aria-label="Shuffle deck">🔀 Shuffle</button>
-      <button class="fc-nav-btn" id="fcNext" aria-label="Next card">Next →</button>
+      <button class="fc-nav-btn" id="fcPrev">← Prev</button>
+      <button class="fc-nav-btn fc-shuffle-btn" id="fcShuffle">🔀 Shuffle</button>
+      <button class="fc-nav-btn" id="fcNext">Next →</button>
     </div>
 
-    <!-- Progress Bar -->
-    <div class="fc-progress-bar">
-      <div class="fc-progress-fill" id="fcProgress"></div>
-    </div>
-
-    <!-- Keyboard Shortcuts -->
     <div class="fc-keyboard-hint">
       <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;|&nbsp;
       <kbd>Space</kbd> flip &nbsp;|&nbsp;
@@ -563,24 +442,37 @@
       <kbd>R</kbd> review
     </div>
 
-    <!-- Reset -->
     <div class="fc-reset-wrap">
       <button class="fc-reset-btn" id="fcReset">Reset Progress</button>
     </div>
 
-    <p style="text-align:center;font-size:0.85em;margin:1em 0 0.5em;">
-      <a href="../flashcards.html" style="color:var(--teal, #2A9D8F);font-weight:700;text-decoration:none">🃏 Mix All 125 Cards (Pharm + Adult Health) &rarr;</a>
-    </p>
-    <p style="text-align:center;opacity:0.4;font-size:0.8em;margin:0.5em 0 2em;">
-      Built from the ATI Gold Standard Review. 60 cards, 6 sections, 1,034 lines of nursing gold.
+    <p style="text-align:center;opacity:0.4;font-size:0.8em;margin:1em 0 2em;">
+      Pharmacology (65 cards) + Adult Health (60 cards). Mixed and shuffled with confidence-based repetition.
     </p>
   </div>
 
 </div>
 
-<script src="../js/flashcard-data-ah.js"></script>
-<script src="../js/flashcards-ah.js"></script>
-<script src="../js/nav.js?v=2"></script>
-<script src="../js/theme.js"></script>
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student &mdash; always verify against current guidelines and your instructor's direction.
+    <a href="terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@life-ofstudy" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="about.html">About</a> &bull;
+    <a href="privacy.html">Privacy</a> &bull;
+    <a href="terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="js/flashcard-data.js"></script>
+<script src="js/flashcard-data-ah.js"></script>
+<script src="js/flashcards-all.js"></script>
+<script src="js/nav.js?v=2"></script>
+<script src="js/theme.js"></script>
 </body>
 </html>
