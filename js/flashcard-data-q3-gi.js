@@ -1,0 +1,324 @@
+// ══════════════════════════════════════════════
+// Flashcard Data — 22 Visual Cards for NURS 210 Quiz 3
+// GI System Drugs — Chapters 34-40
+// ADHD-optimized: emoji front connects to visual back
+// Back = Gemini image + teaching notes that explain what you SEE
+// Based on Dr. Barkley's dual coding + externalized WM research
+// ══════════════════════════════════════════════
+
+window.FLASHCARD_DATA_Q3_GI = {
+  sections: [
+    { id: 'hpylori', label: 'H. pylori', icon: '\uD83E\uDDA0', color: '#5F3DC4' },
+    { id: 'h2blockers', label: 'H2 Blockers', icon: '\uD83D\uDEE1\uFE0F', color: '#2A9D8F' },
+    { id: 'ppis', label: 'PPIs', icon: '\uD83D\uDD12', color: '#1971C2' },
+    { id: 'protectants', label: 'Protectants', icon: '\uD83E\uDE79', color: '#E67700' },
+    { id: 'antacids', label: 'Antacids', icon: '\u2696\uFE0F', color: '#862E9C' },
+    { id: 'antiemetics', label: 'Antiemetics', icon: '\uD83E\uDD22', color: '#C92A2A' },
+    { id: 'laxatives', label: 'Laxatives', icon: '\uD83D\uDCA7', color: '#D9480F' },
+    { id: 'antidiarrheals', label: 'Antidiarrheals', icon: '\uD83D\uDEBD', color: '#2B8A3E' },
+    { id: 'review', label: 'Rapid Review', icon: '\uD83D\uDEA8', color: '#495057' },
+  ],
+  cards: [
+    // ═══ H. PYLORI (1 card) ═══
+    {
+      section: 'hpylori',
+      front: { icon: '\uD83E\uDDA0\uD83D\uDC8A', title: 'H. pylori Triple Therapy', subtitle: 'PPI + 2 antibiotics for 10-14 days' },
+      image: 'quiz3-gi-images/01_h_pylori_triple_therapy.png',
+      notes: [
+        'See the angry bug inside the stomach? That\'s H. pylori — causes MOST peptic ulcers. Three superhero pills attack it: PPI (kills the acid environment) + clarithromycin + amoxicillin.',
+        'If penicillin-allergic: swap amoxicillin for METRONIDAZOLE. But warn them: metronidazole + alcohol = disulfiram-like reaction (severe flushing, vomiting, tachycardia). No alcohol during treatment!',
+        'COMPLETE THE FULL 10-14 DAYS. Stopping early = antibiotic resistance + the ulcer comes back. This is a huge teaching point.',
+        'Smoking delays ulcer healing regardless of drug therapy — both increases acid AND decreases mucosal blood flow. Cessation is critical.'
+      ]
+    },
+
+    // ═══ H2 BLOCKERS (2 cards) ═══
+    {
+      section: 'h2blockers',
+      front: { icon: '\uD83D\uDC51\uD83D\uDC8A', title: 'H2 Blocker Comparison', subtitle: 'Cimetidine = interaction king, famotidine = safe choice' },
+      image: 'quiz3-gi-images/02_h2_blockers_comparison.png',
+      notes: [
+        'CIMETIDINE (Tagamet) wears the crown because it\'s the INTERACTION KING. It inhibits CYP450 enzymes, meaning it increases levels of warfarin (bleeding), phenytoin (toxicity), theophylline (toxicity), and benzos (sedation).',
+        'Cimetidine also crosses the BBB = CNS effects (confusion, lethargy, depression) especially in ELDERLY with RENAL IMPAIRMENT. Plus it has anti-androgenic effects = gynecomastia and impotence. This drug has it all — and none of it is good.',
+        'FAMOTIDINE (Pepcid) is the nice one. Fewest side effects, most commonly used, does NOT significantly inhibit CYP450. When the exam asks "which H2 blocker for elderly?" — it\'s famotidine.',
+        'RANITIDINE (Zantac) has the X because it was recalled for NDMA contamination (carcinogen). May still appear on exams as a knowledge check.'
+      ]
+    },
+    {
+      section: 'h2blockers',
+      front: { icon: '\uD83E\uDDD1\u200D\u2695\uFE0F', title: 'H2 Blocker Nursing Pearls', subtitle: 'IV rate, antacid timing, renal dosing' },
+      image: 'quiz3-gi-images/03_h2_blocker_nursing.png',
+      notes: [
+        'RED bubble: IV push too fast = BRADYCARDIA + HYPOTENSION. Always dilute and infuse slowly. This is a safety priority question.',
+        'BLUE bubble: Separate from antacids by 1 HOUR. Antacids decrease H2 blocker absorption. Give the antacid 1 hour before OR after.',
+        'GREEN bubble: ALL H2 blockers need dose adjustment in renal impairment — not just cimetidine. The kidneys clear these drugs.',
+        'ORANGE bubble: Elderly + cimetidine = confusion and delirium. Always prefer famotidine in older adults.',
+        'PURPLE bubble: Ketoconazole and itraconazole NEED stomach acid to be absorbed. H2 blockers reduce acid = reduced antifungal effectiveness. Also: SMOKING decreases H2 blocker effectiveness — advise cessation.'
+      ]
+    },
+
+    // ═══ PPIs (2 cards) ═══
+    {
+      section: 'ppis',
+      front: { icon: '\uD83D\uDD12\u23F0', title: 'PPI Mechanism', subtitle: '30 min before meals — pump must be ACTIVE' },
+      image: 'quiz3-gi-images/04_ppi_mechanism.png',
+      notes: [
+        'See the proton pump machine on the stomach wall? PPIs put a PERMANENT LOCK on it — irreversible inhibition of H+/K+ ATPase. This is why PPIs are the MOST POTENT acid suppressors available.',
+        'The clock + plate = take 30 minutes BEFORE meals. Why? The pump must be ACTIVELY pumping acid to be blocked. If the pump is resting, the drug has nothing to lock onto.',
+        'SWALLOW WHOLE — do NOT crush or chew (enteric coating protects the drug from stomach acid). Exception: LANSOPRAZOLE can be sprinkled on applesauce.',
+        'PANTOPRAZOLE (Protonix) = the one available IV. Used for acute GI bleeding and NPO patients. Infuse over 15 minutes.',
+        'PPIs are not for instant relief — takes 1-4 days for full effect. Don\'t self-treat OTC for more than 14 days.'
+      ]
+    },
+    {
+      section: 'ppis',
+      front: { icon: '\u26A0\uFE0F\uD83D\uDCC5', title: 'PPI Long-Term Dangers', subtitle: '>1 year use = 6 major risks' },
+      image: 'quiz3-gi-images/05_ppi_long_term_dangers.png',
+      notes: [
+        'Calendar shows >1 year — that\'s when the serious stuff kicks in. Six dangers radiating out:',
+        'OSTEOPOROSIS/FRACTURES — decreased calcium absorption. Monitor bone density in long-term users. Report bone pain.',
+        'HYPOMAGNESEMIA — can cause muscle cramps, spasms, arrhythmias. Monitor Mg2+ levels.',
+        'B12 DEFICIENCY — acid is needed to absorb B12. No acid = no B12 over time.',
+        'C. DIFFICILE — reduced stomach acid = less first-line defense against bacteria = C. diff can colonize. Report watery/bloody diarrhea.',
+        'REBOUND ACID — if you stop abruptly after long-term use, acid comes roaring back worse than before. Must TAPER.',
+        'CRITICAL INTERACTION: Omeprazole + Clopidogrel (Plavix) = AVOID. Omeprazole inhibits CYP2C19 which activates clopidogrel. Use PANTOPRAZOLE instead.'
+      ]
+    },
+
+    // ═══ PROTECTANTS (2 cards) ═══
+    {
+      section: 'protectants',
+      front: { icon: '\uD83E\uDE79\uD83D\uDEE1\uFE0F', title: 'Sucralfate (Carafate)', subtitle: 'Physical barrier — does NOT reduce acid' },
+      image: 'quiz3-gi-images/06_sucralfate_barrier.png',
+      notes: [
+        'See the paste/bandage covering the ulcer crater? That\'s sucralfate — it creates a viscous protective barrier over the ulcer. Think of it as a Band-Aid for your stomach.',
+        'KEY CONCEPT: This drug does NOT reduce or neutralize acid. It\'s purely a physical shield against acid, pepsin, and bile salts.',
+        'EMPTY STOMACH required — 1 hour BEFORE meals. Why? The drug needs an ACIDIC environment to activate and bind to the ulcer proteins.',
+        'THE 2-HOUR RULE: Separate from ALL other oral meds by 2 hours. Sucralfate coats the GI tract and blocks absorption of everything — phenytoin, fluoroquinolones, digoxin, warfarin, levothyroxine. This is heavily tested.',
+        'Main side effect: CONSTIPATION (contains aluminum). Also watch for aluminum toxicity in renal failure patients.',
+        'Treatment duration: 4-8 weeks. Healing must be confirmed by X-ray or endoscopy. Mnemonic: SUCKs onto the ulCER.'
+      ]
+    },
+    {
+      section: 'protectants',
+      front: { icon: '\uD83D\uDEAB\uD83E\uDD30', title: 'Misoprostol (Cytotec)', subtitle: 'CATEGORY X — absolutely NO in pregnancy' },
+      image: 'quiz3-gi-images/07_misoprostol_pregnancy_x.png',
+      notes: [
+        'The giant red X over the pregnant woman says it all — misoprostol is ABSOLUTELY CONTRAINDICATED in pregnancy (Category X). It causes uterine contractions that can lead to miscarriage and birth defects.',
+        'Purpose: Prevents NSAID-induced gastric ulcers. NSAIDs deplete protective prostaglandins from the stomach lining. Misoprostol is a synthetic prostaglandin E1 analog that replaces them.',
+        'THREE requirements for women of childbearing age: (1) Negative pregnancy test BEFORE starting, (2) Reliable contraception DURING therapy, (3) Start on Day 2-3 of menstrual period to confirm not pregnant.',
+        'Most common side effect: DIARRHEA — up to 40% of patients, dose-related. Also cramping and menstrual irregularities.',
+        'NO magnesium-containing antacids — they worsen the diarrhea. Take WITH FOOD to decrease GI effects.',
+        'Mnemonic: MISO-PREG-NO!'
+      ]
+    },
+
+    // ═══ ANTACIDS (2 cards) ═══
+    {
+      section: 'antacids',
+      front: { icon: '\u2696\uFE0F\uD83D\uDCA9', title: 'Antacid Bowel Effects', subtitle: 'Al = constipation, Mg = diarrhea, Mylanta = balanced' },
+      image: 'quiz3-gi-images/08_antacid_bowel_effects.png',
+      notes: [
+        'LEFT: Aluminum hydroxide (Amphojel) = CONSTIPATION. Mnemonic: AlumiNUM = NUMbs the bowels. Also binds phosphate — causes hypophosphatemia. Monitor phosphorus levels!',
+        'CENTER: Magnesium hydroxide (Milk of Magnesia) = DIARRHEA. Mnemonic: MagNESIUM = Milk of MagNESIa = loose stools. Osmotic effect pulls water into the bowel.',
+        'RIGHT: MYLANTA = professor\'s prototype. Aluminum + Magnesium + Simethicone. The combo BALANCES bowel effects (constipation + diarrhea cancel out). Simethicone = anti-gas.',
+        'Professor\'s note: Aluminum compounds are "rarely used alone" for acid-peptic disorders. That\'s why combo products like Mylanta exist.',
+        'ALL antacids: separate from other oral drugs by 1-2 HOURS. They raise pH and chelate drugs, blocking absorption of tetracyclines, fluoroquinolones, iron, digoxin, H2 blockers, levothyroxine, ketoconazole.',
+        'Best timing: 1-3 hours AFTER meals (when acid peaks) + at bedtime.'
+      ]
+    },
+    {
+      section: 'antacids',
+      front: { icon: '\uD83E\uDEC0\u2620\uFE0F', title: 'Antacids + Renal Failure', subtitle: 'Magnesium = most dangerous, calcium gluconate = antidote' },
+      image: 'quiz3-gi-images/09_antacid_renal_danger.png',
+      notes: [
+        'MAGNESIUM = MOST DANGEROUS in renal failure. Kidneys can\'t excrete Mg2+, so it accumulates. Hypermagnesemia causes hypotension, respiratory depression, and CARDIAC ARREST. This can be fatal.',
+        'Signs of hypermagnesemia: hypotension, muscle weakness, difficulty breathing, decreased deep tendon reflexes. Antidote: CALCIUM GLUCONATE IV.',
+        'ALUMINUM = also dangerous in renal failure. Aluminum accumulates and causes toxicity. Use cautiously or avoid.',
+        'CALCIUM CARBONATE (Tums) = rebound acid hypersecretion (calcium triggers gastrin release). Chronic use can cause milk-alkali syndrome: hypercalcemia + metabolic alkalosis + renal failure.',
+        'Exam logic: When a question asks about antacids in a patient with kidney disease — magnesium is the answer they\'re looking for as the MOST dangerous.'
+      ]
+    },
+
+    // ═══ ANTIEMETICS (4 cards) ═══
+    {
+      section: 'antiemetics',
+      front: { icon: '\uD83C\uDFC6\uD83D\uDC8A', title: 'Ondansetron (Zofran)', subtitle: 'FIRST-LINE for chemo + post-op N/V' },
+      image: 'quiz3-gi-images/10_ondansetron_first_line.png',
+      notes: [
+        'Crown = FIRST-LINE status. This is THE drug for chemotherapy-induced and post-operative nausea/vomiting. Blocks serotonin 5-HT3 receptors in the CTZ and vagal nerve terminals.',
+        'TIMING IS EVERYTHING: 30 min BEFORE chemo, infuse IV over 15 min, repeat 4 hours AFTER. Mnemonic: "30 Before, 15 Slow, 4 After."',
+        'Side effects per professor: DIARRHEA (most common), headache, and transient liver enzyme elevation (monitor LFTs). Generally WELL TOLERATED — mild to moderate effects.',
+        'Available forms: IV, PO, and ODT (orally disintegrating tablet — dissolves on the tongue, great for patients who can\'t swallow).',
+        'ATI TRAP: Ondansetron does NOT cause tardive dyskinesia or EPS — that\'s METOCLOPRAMIDE. Don\'t confuse them!'
+      ]
+    },
+    {
+      section: 'antiemetics',
+      front: { icon: '\u2600\uFE0F\uD83D\uDC8A', title: 'Promethazine (Phenergan)', subtitle: 'CNS depression + photosensitivity + QT changes' },
+      image: 'quiz3-gi-images/11_promethazine_phenergan.png',
+      notes: [
+        'Four effects Dr. Lee emphasized — each in a colored box on the card:',
+        'RED = CNS DEPRESSION: drowsiness, confusion, sedation. This drug hits hard. Avoid other CNS depressants and alcohol.',
+        'YELLOW = PHOTOSENSITIVITY: educate on sun protection — sunscreen, protective clothing, avoid prolonged sun exposure.',
+        'BLUE = ORTHOSTATIC HYPOTENSION: blood pressure drops when standing. Teach: change positions SLOWLY, sit on edge of bed before standing.',
+        'PURPLE = Q/T WAVE CHANGES on ECG: monitor cardiac rhythm. This is why you don\'t just hand this drug out casually.',
+        'Also: anticholinergic effects (blurred vision, dry mouth, urinary retention). PO or IM preferred routes.',
+        'RED SKULL: Children <2 years = FATAL RESPIRATORY DEPRESSION. Never give to this age group.'
+      ]
+    },
+    {
+      section: 'antiemetics',
+      front: { icon: '\u2764\uFE0F\uD83D\uDCC8', title: 'Hydroxyzine (Vistaril)', subtitle: 'Professor\'s #1 concern: QT prolongation + torsades' },
+      image: 'quiz3-gi-images/12_hydroxyzine_cardiac.png',
+      notes: [
+        'Heart monitor showing dangerous rhythm = the whole point of this card. The professor emphasizes THREE cardiac effects:',
+        'QT PROLONGATION — the heart takes too long to reset between beats. This sets the stage for deadly arrhythmias.',
+        'TACHYCARDIA — heart rate goes up. Monitor heart rate.',
+        'TORSADES DE POINTES — a life-threatening arrhythmia that can degenerate into ventricular fibrillation. This is the big one.',
+        'Uses: anxiety, N/V, pruritus (itching), pre-op sedation. It\'s an H1 histamine blocker with mild anxiolytic properties.',
+        'NURSING PEARL: MONITOR CARDIAC RHYTHM/STATUS. If the exam asks "what do you monitor with hydroxyzine?" — the answer is the heart, not the liver, not the kidneys.',
+        'Other effects: drowsiness, dry mouth, urinary retention. Avoid CNS depressants.'
+      ]
+    },
+    {
+      section: 'antiemetics',
+      front: { icon: '\uD83D\uDC8A\u2702\uFE0F', title: 'Aprepitant (Emend)', subtitle: 'Kills OCP + warfarin effectiveness' },
+      image: 'quiz3-gi-images/13_aprepitant_interactions.png',
+      notes: [
+        'NK1 receptor antagonist — blocks substance P in the brain\'s vomiting center. Used for HIGHLY emetogenic chemo (cisplatin is the classic example).',
+        'BROKEN SHIELD over birth control pills = aprepitant DECREASES oral contraceptive effectiveness. Women MUST use backup contraception during treatment. This is a major teaching point.',
+        'SHRINKING WARFARIN pill = aprepitant DECREASES warfarin effectiveness. Monitor INR closely. Report unusual bruising or bleeding.',
+        'Administration: Day 1 = 1 hour before chemo. Days 2-3 = morning dose. Often part of a triple regimen: aprepitant + ondansetron + dexamethasone.',
+        'It\'s a CYP3A4 substrate AND inhibitor — lots of interaction potential. Also increases dexamethasone and methylprednisolone levels (dose reduction needed for those).'
+      ]
+    },
+
+    // ═══ ANTIEMETICS BASICS (2 cards) ═══
+    {
+      section: 'antiemetics',
+      front: { icon: '\u26A0\uFE0F\uD83D\uDE1B', title: 'Metoclopramide (Reglan)', subtitle: 'BLACK BOX: Tardive dyskinesia — max 12 weeks' },
+      image: 'quiz3-gi-images/14_metoclopramide_blackbox.png',
+      notes: [
+        'BLACK BOX WARNING banner = this is serious. Tardive dyskinesia = involuntary movements of the face and tongue (lip smacking, tongue protrusion, grimacing). May be IRREVERSIBLE.',
+        'TWO superpowers shown: (1) Antiemetic — blocks dopamine in the CTZ, and (2) Prokinetic — increases gastric emptying. It is the ONLY antiemetic that also speeds up the stomach.',
+        'MAX 12 WEEKS of use. Risk of tardive dyskinesia increases with duration and cumulative dose.',
+        'Used for: diabetic gastroparesis (stomach empties too slowly), GERD, N/V.',
+        'CONTRAINDICATED in Parkinson disease — it blocks dopamine, which would make PD worse.',
+        'Mnemonic: REGLANd of no return — TD may be irreversible after 12 weeks.',
+        'Teaching: Report ANY involuntary facial movements, lip smacking, or tongue movements IMMEDIATELY.'
+      ]
+    },
+    {
+      section: 'antiemetics',
+      front: { icon: '\uD83D\uDD0D\u274C', title: 'Antiemetic Exam Traps', subtitle: '6 trick answers to watch for on test day' },
+      image: 'quiz3-gi-images/15_antiemetic_traps.png',
+      notes: [
+        'TRAP 1: Tardive dyskinesia = METOCLOPRAMIDE, NOT ondansetron. If the question says "5-HT3 antagonist" it\'s ondansetron — no TD risk there.',
+        'TRAP 2: EPS (extrapyramidal symptoms) = metoclopramide or prochlorperazine, NOT loperamide. Loperamide is an antidiarrheal — totally different drug.',
+        'TRAP 3: Torsades de pointes = HYDROXYZINE (per professor). The test won\'t say "bradycardia" — it\'ll say QT prolongation or torsades.',
+        'TRAP 4: Photosensitivity = PROMETHAZINE (per professor). Not ondansetron, not loperamide.',
+        'TRAP 5: Dronabinol = synthetic THC, Schedule III. It\'s a cannabinoid antiemetic for refractory chemo N/V.',
+        'TRAP 6: Give antiemetics 30-60 min BEFORE the nausea-producing event, not after symptoms start. Timing is everything.'
+      ]
+    },
+
+    // ═══ LAXATIVES (3 cards) ═══
+    {
+      section: 'laxatives',
+      front: { icon: '\uD83D\uDCA7\u23F1\uFE0F', title: 'Laxative Types', subtitle: '7 drugs from slowest to fastest onset' },
+      image: 'quiz3-gi-images/16_laxative_types.png',
+      notes: [
+        'PSYLLIUM (Metamucil) = bulk-forming, 1-3 days. Take with FULL GLASS of water — without enough fluid it can cause ESOPHAGEAL OBSTRUCTION. Mimics natural fiber.',
+        'DOCUSATE (Colace) = stool softener, 1-3 days. PREVENTS hard stools (doesn\'t treat impaction). Key use: POST-MI patients — prevents straining/Valsalva which increases cardiac workload.',
+        'LACTULOSE = osmotic, 24-48 hrs for constipation. But ALSO used for hepatic encephalopathy (traps ammonia). Dual purpose — heavily tested.',
+        'PEG/MiraLAX = osmotic, 1-3 days. Does NOT cause electrolyte imbalance. GoLYTELY = colonoscopy prep (4 LITERS, works in 1 hour).',
+        'BISACODYL (Dulcolax) = stimulant, 6-12 hrs PO. Do NOT crush (enteric-coated). No milk or antacids within 1 hour (dissolves coating). Suppository acts in 15-60 min.',
+        'Mg HYDROXIDE = osmotic, 0.5-6 hrs. Fast but AVOID in renal failure (hypermagnesemia).',
+        'GoLYTELY = 1 hour onset. 4 liters of prep. Patient must be near a bathroom.'
+      ]
+    },
+    {
+      section: 'laxatives',
+      front: { icon: '\uD83E\uDDE0\uD83D\uDCA9', title: 'Lactulose Dual Mechanism', subtitle: 'Constipation + traps ammonia in hepatic encephalopathy' },
+      image: 'quiz3-gi-images/17_lactulose_ammonia_trap.png',
+      notes: [
+        'TOP HALF: For constipation — osmotic effect draws water into the colon, softening stool. Takes 24-48 hours. Pretty straightforward.',
+        'BOTTOM HALF: For hepatic encephalopathy — this is the HIGH YIELD part. The liver is failing, so it can\'t clear ammonia from the blood. Ammonia goes to the brain = confusion, asterixis, coma.',
+        'HOW LACTULOSE HELPS: Bacteria in the colon convert lactulose to lactic acid, lowering colonic pH. This converts ammonia (NH3) to ammonium (NH4+). NH4+ is CHARGED and TRAPPED in the colon — can\'t be reabsorbed. Excreted in feces.',
+        'GOAL: 2-3 soft stools per day. NOT frank diarrhea — that causes dehydration and electrolyte imbalance.',
+        'Monitor: AMMONIA levels (should decrease) and electrolytes.',
+        'Contraindication: GALACTOSEMIA (lactulose contains galactose and lactose).',
+        'Mnemonic: Lactulose traps the (am)MONey in the colon.'
+      ]
+    },
+    {
+      section: 'laxatives',
+      front: { icon: '\uD83E\uDEE6\uD83D\uDEAB', title: 'Mineral Oil Aspiration Risk', subtitle: 'Lipid pneumonia if aspirated — position matters' },
+      image: 'quiz3-gi-images/18_mineral_oil_aspiration.png',
+      notes: [
+        'Main danger shown: oil going into lungs = LIPID PNEUMONIA. Oil in the airways causes severe inflammation. This is why patient positioning matters so much.',
+        'RULES: Give at BEDTIME on an EMPTY stomach. Patient must be sitting UPRIGHT. Never give to someone lying flat.',
+        'DO NOT give to: elderly, debilitated, children <6, patients with dysphagia, or bedbound patients. Anyone who might aspirate = no mineral oil.',
+        'Do NOT give within 2 hours of meals (delays gastric emptying, increases aspiration risk).',
+        'Chronic use = decreased absorption of fat-soluble vitamins A, D, E, K. Not for long-term use.',
+        'Side effect to warn about: anal seepage/leakage — totally normal but embarrassing if they\'re not expecting it.'
+      ]
+    },
+
+    // ═══ ANTIDIARRHEALS (1 card) ═══
+    {
+      section: 'antidiarrheals',
+      front: { icon: '\uD83D\uDEBD\uD83D\uDC8A', title: 'Antidiarrheal Comparison', subtitle: 'Lomotil, Imodium, Pepto + the infection rule' },
+      image: 'quiz3-gi-images/19_antidiarrheal_comparison.png',
+      notes: [
+        'LOMOTIL (diphenoxylate/atropine): Schedule V opioid. Atropine is added in subtherapeutic doses to DISCOURAGE ABUSE. In IBD patients = risk of TOXIC MEGACOLON (slows inflamed bowel). High doses = hypotension + respiratory depression per Dr. Lee.',
+        'LOPERAMIDE (Imodium): OTC, acts locally on GI mu-opioid receptors. Causes sedation and dizziness — avoid activities requiring alertness. Does NOT cause EPS (ATI trap — that\'s metoclopramide). For dry mouth: sugarless gum/candy, NOT alcohol-based mouthwash.',
+        'BISMUTH (Pepto-Bismol): Black stool + black tongue = HARMLESS (bismuth + sulfur reaction). Contains SALICYLATE — no aspirin-allergic patients, no kids with viral illness (Reye syndrome risk). Also used in H. pylori quadruple therapy.',
+        'PROBIOTICS: Take 2 HOURS away from antibiotics (antibiotics kill the beneficial bacteria). Restore normal GI flora. Contraindicated in severely immunocompromised patients.',
+        'THE BIG RULE: NEVER give antidiarrheals if infection is suspected (C. diff, E. coli, Shigella). You\'d be trapping the pathogen in the bowel. Let the body flush it out.'
+      ]
+    },
+
+    // ═══ RAPID REVIEW (3 cards) ═══
+    {
+      section: 'review',
+      front: { icon: '\u23F0\uD83D\uDC8A', title: 'Drug Separation Rules', subtitle: '4 timing rules you MUST know cold' },
+      image: 'quiz3-gi-images/20_drug_separation_rules.png',
+      notes: [
+        'SUCRALFATE = 2 HOURS from ALL other meds. It coats the GI tract and physically blocks absorption. This is the longest separation and the most commonly tested.',
+        'ANTACIDS = 1-2 HOURS from other oral drugs. They raise pH and chelate drugs, preventing absorption.',
+        'H2 BLOCKERS + ANTACIDS = 1 HOUR apart. Antacids decrease H2 blocker absorption specifically.',
+        'PROBIOTICS + ANTIBIOTICS = 2 HOURS apart. The antibiotics would kill the probiotic bacteria if taken together.',
+        'BONUS: PPIs do NOT need separation from antacids (unlike H2 blockers). But ketoconazole/itraconazole NEED acid to be absorbed — avoid with ANY acid-reducing drug (PPIs, H2 blockers, antacids).'
+      ]
+    },
+    {
+      section: 'review',
+      front: { icon: '\uD83D\uDC65\u274C', title: 'Population Restrictions', subtitle: 'Who gets WHAT drug restricted' },
+      image: 'quiz3-gi-images/21_avoid_in_populations.png',
+      notes: [
+        'PREGNANT WOMAN + X = Misoprostol (Category X). Causes uterine contractions and miscarriage. This is the most absolute contraindication in GI pharm.',
+        'KIDNEY + warning = Magnesium hydroxide (fatal hypermagnesemia) and aluminum hydroxide (toxicity). Magnesium is MORE dangerous.',
+        'IBD COLON = Diphenoxylate/atropine (Lomotil). Slowing motility in an inflamed bowel = toxic megacolon.',
+        'CHILD WITH CHICKENPOX = Bismuth subsalicylate (Pepto). Contains salicylate = Reye syndrome risk in kids with viral illness.',
+        'ELDERLY BRAIN = Cimetidine. Crosses BBB = confusion and delirium in older adults. Use famotidine instead.',
+        'PARKINSON BRAIN = Metoclopramide and prochlorperazine. Both block dopamine which would worsen Parkinson disease.'
+      ]
+    },
+    {
+      section: 'review',
+      front: { icon: '\uD83E\uDDEA\uD83D\uDCCB', title: 'GI Labs to Monitor', subtitle: '7 drug-lab pairs for exam day' },
+      image: 'quiz3-gi-images/22_gi_labs_to_monitor.png',
+      notes: [
+        'Aluminum hydroxide \u2192 PHOSPHORUS. It binds phosphate in the GI tract causing hypophosphatemia. Signs: weakness, anorexia.',
+        'Magnesium hydroxide \u2192 MAGNESIUM + electrolytes. Especially in renal patients — hypermagnesemia can be fatal.',
+        'PPIs long-term \u2192 Mg2+, B12, and BONE DENSITY. The triple threat of chronic PPI use.',
+        'Lactulose (hepatic encephalopathy) \u2192 AMMONIA (NH3). Goal is to lower ammonia levels. Also monitor electrolytes if diarrhea is excessive.',
+        'Metoclopramide \u2192 MOVEMENT ASSESSMENT. Screen for tardive dyskinesia at every visit. Involuntary face/tongue movements = stop the drug.',
+        'Warfarin + aprepitant \u2192 INR. Aprepitant decreases warfarin effectiveness, so INR may drop.',
+        'Misoprostol \u2192 PREGNANCY TEST (hCG). Must be negative before starting. Category X — no exceptions.'
+      ]
+    },
+  ]
+};

@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 3 GI Visual Flashcards — Study with Tiago</title>
+  <meta name="description" content="22 hand-crafted visual flashcards for Pharmacology Quiz 3: GI System Drugs. Kawaii images + ADHD-friendly teaching notes. Ch 34-40.">
+  <meta property="og:title" content="Quiz 3 GI Visual Flashcards | Study with Tiago">
+  <meta property="og:description" content="22 custom Gemini images with teaching notes. H2 Blockers, PPIs, Antacids, Antiemetics, Laxatives, Antidiarrheals — every testable concept visualized.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Study with Tiago">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=20">
+  <style>
+    /* ── Hero ── */
+    .q3-hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #2A9D8F 100%);
+      padding: 3em 1.5em 2.5em;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 2rem 2rem;
+      margin-bottom: 1.5em;
+    }
+    .q3-hero-glow {
+      position: absolute;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(42,157,143,0.3), transparent 70%);
+      top: -120px; right: -80px;
+      border-radius: 50%;
+    }
+    .q3-hero-content { position: relative; z-index: 1; }
+    .q3-hero-badge {
+      display: inline-block;
+      background: rgba(42,157,143,0.3);
+      border: 1px solid rgba(42,157,143,0.6);
+      color: #A7F3D0;
+      padding: 0.3em 1em;
+      border-radius: 2em;
+      font-size: 0.75em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.8em;
+    }
+    .q3-hero-fire {
+      display: inline-block;
+      animation: fireGlow 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes fireGlow {
+      from { filter: brightness(1); }
+      to { filter: brightness(1.3); }
+    }
+    .q3-hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.4em;
+      color: #fff;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .q3-hero-sub {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95em;
+      margin-top: 0.5em;
+      line-height: 1.5;
+    }
+    .q3-hero-sub strong { color: #A7F3D0; }
+
+    /* ── Email Gate ── */
+    .q3-gate {
+      max-width: 460px;
+      margin: 2em auto;
+      padding: 2em 1.5em;
+      background: var(--card-background-color, #fff);
+      border-radius: 1.2em;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .q3-gate-icon { font-size: 3em; margin-bottom: 0.3em; }
+    .q3-gate-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4em;
+      font-weight: 800;
+      margin-bottom: 0.3em;
+    }
+    .q3-gate-sub {
+      font-size: 0.88em;
+      opacity: 0.6;
+      margin-bottom: 1.2em;
+      line-height: 1.5;
+    }
+    .q3-gate-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6em;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    .q3-gate-input {
+      width: 100% !important;
+      padding: 0.7em 1em !important;
+      border-radius: 0.6em !important;
+      border: 2px solid #dee2e6 !important;
+      font-size: 1em !important;
+      font-family: inherit;
+      background: #fff !important;
+      color: #333 !important;
+      box-sizing: border-box !important;
+    }
+    .q3-gate-input::placeholder { color: #999 !important; }
+    .q3-gate-input:focus {
+      border-color: #2A9D8F !important;
+      outline: none !important;
+      box-shadow: 0 0 0 3px rgba(42,157,143,0.15) !important;
+    }
+    [data-theme="dark"] .q3-gate-input,
+    .dark-mode .q3-gate-input {
+      background: #2d2d44 !important;
+      color: #e0e0e0 !important;
+      border-color: #444 !important;
+    }
+    [data-theme="dark"] .q3-gate-input::placeholder,
+    .dark-mode .q3-gate-input::placeholder { color: #888 !important; }
+    .q3-gate-btn {
+      width: 100%;
+      padding: 0.7em 1.4em;
+      border-radius: 0.6em;
+      border: none;
+      background: linear-gradient(135deg, #2A9D8F, #1a7a6e);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .q3-gate-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(42,157,143,0.3);
+    }
+    .q3-gate-note {
+      font-size: 0.72em;
+      opacity: 0.4;
+      margin-top: 0.8em;
+    }
+
+    /* ── Stats Bar ── */
+    .fc-stats-bar {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      padding: 0.8em 1.2em;
+      background: var(--card-background-color, #fff);
+      border-radius: 1em;
+      margin: 0 1em 1em;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .fc-stat { text-align: center; min-width: 60px; }
+    .fc-stat-num { display: block; font-size: 1.5em; font-weight: 800; font-family: 'Syne', sans-serif; }
+    .fc-stat-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; }
+    .fc-stat-got .fc-stat-num { color: #2B8A3E; }
+    .fc-stat-weak .fc-stat-num { color: #E67700; }
+    .fc-stat-bar-wrap { flex: 1; }
+    .fc-stat-bar { height: 10px; background: #e9ecef; border-radius: 5px; overflow: hidden; display: flex; }
+    .fc-stat-bar-got { background: #2B8A3E; transition: width 0.4s ease; }
+    .fc-stat-bar-weak { background: #E67700; transition: width 0.4s ease; }
+
+    /* ── Filters ── */
+    .fc-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4em;
+      padding: 0 1em;
+      margin-bottom: 1em;
+      justify-content: center;
+    }
+    .fc-filter {
+      padding: 0.35em 0.8em;
+      border-radius: 2em;
+      border: 1.5px solid #dee2e6;
+      background: transparent;
+      font-size: 0.78em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .fc-filter:hover { border-color: #2A9D8F; color: #2A9D8F; }
+    .fc-filter.active { background: #2A9D8F; border-color: #2A9D8F; color: #fff; }
+
+    /* ── Card ── */
+    .fc-counter { text-align: center; font-size: 0.8em; font-weight: 600; opacity: 0.5; margin-bottom: 0.5em; }
+    .fc-card-stage {
+      perspective: 1200px;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0 1em;
+      cursor: pointer;
+      min-height: 480px;
+    }
+    .fc-card {
+      position: relative;
+      width: 100%;
+      min-height: 460px;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+    .fc-card.flipped { transform: rotateY(180deg); }
+    .fc-card-face {
+      position: absolute;
+      width: 100%;
+      min-height: 460px;
+      backface-visibility: hidden;
+      border-radius: 1.2em;
+      overflow: hidden;
+    }
+
+    /* ── Front ── */
+    .fc-card-front {
+      background: var(--card-background-color, #fff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2em 1.5em;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-top: 5px solid #2A9D8F;
+    }
+    .fc-card-icon { font-size: 3.5em; margin-bottom: 0.3em; line-height: 1.2; }
+    .fc-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6em;
+      font-weight: 800;
+      margin-bottom: 0.2em;
+      line-height: 1.2;
+    }
+    .fc-card-subtitle {
+      font-size: 0.88em;
+      opacity: 0.55;
+      line-height: 1.4;
+      max-width: 320px;
+    }
+    .fc-card-section-pill {
+      display: inline-block;
+      padding: 0.25em 0.8em;
+      border-radius: 2em;
+      color: #fff;
+      font-size: 0.72em;
+      font-weight: 600;
+      margin-top: 0.8em;
+    }
+    .fc-card-tap {
+      font-size: 0.7em;
+      opacity: 0.3;
+      margin-top: 1.2em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── Back ── */
+    .fc-card-back {
+      background: var(--card-background-color, #fff);
+      transform: rotateY(180deg);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-top: 5px solid #2A9D8F;
+      overflow-y: auto;
+      max-height: 560px;
+      padding: 0;
+    }
+    .fc-back-image {
+      width: 100%;
+      max-height: 260px;
+      object-fit: contain;
+      background: #f8f9fa;
+      display: block;
+    }
+    .fc-back-notes {
+      padding: 1em 1.2em 1.5em;
+    }
+    .fc-back-notes-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1em;
+      font-weight: 800;
+      margin-bottom: 0.6em;
+      padding-bottom: 0.4em;
+      border-bottom: 2px solid #e9ecef;
+      color: #2A9D8F;
+    }
+    .fc-back-note {
+      font-size: 0.82em;
+      line-height: 1.55;
+      padding: 0.5em 0;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      color: var(--color, #333);
+    }
+    .fc-back-note:last-child { border-bottom: none; }
+
+    /* ── Mastery badge ── */
+    .fc-mastery-badge {
+      position: absolute;
+      top: 0.8em;
+      right: 0.8em;
+      padding: 0.2em 0.7em;
+      border-radius: 2em;
+      font-size: 0.7em;
+      font-weight: 700;
+      z-index: 2;
+    }
+    .fc-mastery-got { background: rgba(43,138,62,0.15); color: #2B8A3E; border: 1px solid rgba(43,138,62,0.3); }
+    .fc-mastery-weak { background: rgba(230,119,0,0.15); color: #E67700; border: 1px solid rgba(230,119,0,0.3); }
+
+    /* ── Mastery Buttons ── */
+    .fc-mastery-actions { display: flex; justify-content: center; gap: 0.6em; margin: 1em 0 0.5em; }
+    .fc-mastery-btn {
+      padding: 0.5em 1.2em;
+      border-radius: 2em;
+      border: 2px solid;
+      font-size: 0.82em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .fc-mastery-btn-got { border-color: #2B8A3E; color: #2B8A3E; background: transparent; }
+    .fc-mastery-btn-got:hover, .fc-mastery-btn-got.active { background: #2B8A3E; color: #fff; }
+    .fc-mastery-btn-weak { border-color: #E67700; color: #E67700; background: transparent; }
+    .fc-mastery-btn-weak:hover, .fc-mastery-btn-weak.active { background: #E67700; color: #fff; }
+
+    /* ── Nav ── */
+    .fc-nav { display: flex; justify-content: center; gap: 0.5em; margin: 1em 0; }
+    .fc-nav-btn {
+      padding: 0.5em 1.2em;
+      border-radius: 0.6em;
+      border: 1.5px solid #dee2e6;
+      background: transparent;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.85em;
+    }
+    .fc-nav-btn:hover:not(:disabled) { background: #f1f3f5; }
+    .fc-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .fc-shuffle-btn { background: #2A9D8F; color: #fff; border-color: #2A9D8F; }
+    .fc-shuffle-btn:hover { background: #1a7a6e; }
+
+    /* ── Mode bar ── */
+    .fc-mode-bar { display: flex; justify-content: center; gap: 0.5em; margin: 0 1em 1em; }
+    .fc-mode-btn {
+      padding: 0.4em 1em;
+      border-radius: 2em;
+      border: 1px solid #dee2e6;
+      background: transparent;
+      font-size: 0.8em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .fc-mode-btn:hover { background: #f1f3f5; }
+    .fc-mode-btn.active { background: #1a1a2e; color: #fff; border-color: #1a1a2e; }
+
+    /* ── Progress ── */
+    .fc-progress-bar { height: 4px; background: #e9ecef; border-radius: 2px; margin: 0 1em 1em; overflow: hidden; }
+    .fc-progress-fill { height: 100%; background: #2A9D8F; border-radius: 2px; transition: width 0.3s ease; }
+
+    /* ── Ko-fi Tip Button ── */
+    .kofi-float {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      padding: 0.5em 1em;
+      background: rgba(42,157,143,0.9);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border-radius: 999px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      box-sizing: border-box;
+    }
+    .kofi-link {
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.82em;
+      white-space: nowrap;
+    }
+    .kofi-link:hover { text-decoration: underline; }
+    .kofi-link:visited { color: #fff; }
+    .kofi-icon { font-size: 1.1em; flex-shrink: 0; }
+    .kofi-dismiss {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      font-size: 1.1em;
+      padding: 0 0 0 0.5em;
+      line-height: 1;
+      margin-left: 0.3em;
+    }
+    .kofi-dismiss:hover { color: #fff; }
+
+    /* ── Keyboard hint ── */
+    .fc-keyboard-hint {
+      text-align: center; font-size: 0.72em; opacity: 0.35; margin: 0.5em 0 1.5em;
+    }
+    .fc-keyboard-hint kbd {
+      display: inline-block; padding: 0.15em 0.5em; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; font-size: 0.9em; background: #f8f9fa;
+    }
+
+    /* ── Reset ── */
+    .fc-reset-wrap { text-align: center; padding: 1em; }
+    .fc-reset-btn {
+      background: transparent; border: 1px solid #dee2e6; padding: 0.4em 1em; border-radius: 2em; font-size: 0.75em; cursor: pointer; opacity: 0.4; transition: opacity 0.2s;
+    }
+    .fc-reset-btn:hover { opacity: 1; }
+
+    /* ── Slide animation ── */
+    .fc-slide-in { animation: fcSlideIn 0.3s ease; }
+    @keyframes fcSlideIn {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .q3-hero { padding: 2em 1em 1.5em; }
+      .q3-hero-title { font-size: 1.7em; }
+      .fc-card-stage { min-height: 440px; }
+      .fc-card, .fc-card-face { min-height: 420px; }
+      .fc-card-title { font-size: 1.3em; }
+      .fc-stats-bar { flex-wrap: wrap; justify-content: center; }
+      .q3-gate-form { flex-direction: column; }
+      .kofi-float { font-size: 0.75em; padding: 0.45em 0.8em; bottom: 12px; right: 12px; }
+    }
+
+    /* ── Dark mode ── */
+    [data-theme="dark"] .fc-card-front,
+    [data-theme="dark"] .fc-card-back,
+    .dark-mode .fc-card-front,
+    .dark-mode .fc-card-back { background: #1a1a2e; color: #e0e0e0; }
+    [data-theme="dark"] .fc-stats-bar,
+    .dark-mode .fc-stats-bar { background: #1a1a2e; }
+    [data-theme="dark"] .fc-stat-bar,
+    .dark-mode .fc-stat-bar { background: #2d2d44; }
+    [data-theme="dark"] .fc-back-notes-title,
+    .dark-mode .fc-back-notes-title { border-bottom-color: #2d2d44; }
+    [data-theme="dark"] .fc-back-note,
+    .dark-mode .fc-back-note { border-bottom-color: rgba(255,255,255,0.05); }
+    [data-theme="dark"] .fc-back-image,
+    .dark-mode .fc-back-image { background: #0d1117; }
+    [data-theme="dark"] .q3-gate,
+    .dark-mode .q3-gate { background: #1a1a2e; }
+    [data-theme="dark"] .fc-keyboard-hint kbd,
+    .dark-mode .fc-keyboard-hint kbd { background: #2d2d44; border-color: #444; color: #ccc; }
+  </style>
+</head>
+<body>
+<div class="page-container">
+
+  <!-- HERO -->
+  <div class="q3-hero">
+    <div class="q3-hero-glow"></div>
+    <div class="q3-hero-content">
+      <div class="q3-hero-badge">PHARMACOLOGY QUIZ 3 — GI SYSTEM</div>
+      <h1 class="q3-hero-title"><span class="q3-hero-fire">22 Visual Flashcards</span></h1>
+      <p class="q3-hero-sub">Hand-crafted <strong>Gemini AI artwork</strong> for every testable GI concept.<br>H2 Blockers. PPIs. Antacids. Antiemetics. Laxatives. <strong>Chapters 34-40.</strong></p>
+    </div>
+  </div>
+
+  <!-- EMAIL GATE -->
+  <div class="q3-gate" id="q3Gate">
+    <div class="q3-gate-icon">🔐</div>
+    <div class="q3-gate-title">Unlock This Deck</div>
+    <p class="q3-gate-sub">Enter your email to access all 22 visual flashcards.<br>Each card has a custom AI image + teaching notes<br>designed for how your brain actually learns.</p>
+    <form class="q3-gate-form" id="q3GateForm">
+      <input type="email" class="q3-gate-input" id="q3Email" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit" class="q3-gate-btn">Unlock Deck</button>
+    </form>
+    <p class="q3-gate-note">No spam. Just study materials. Unsubscribe anytime.</p>
+  </div>
+
+  <!-- FLASHCARD DECK (hidden until email entered) -->
+  <div id="q3Deck" style="display:none">
+
+    <!-- Stats Bar -->
+    <div class="fc-stats-bar" id="fcStats">
+      <div class="fc-stat fc-stat-got"><span class="fc-stat-num" id="statGot">0</span><span class="fc-stat-label">Got It</span></div>
+      <div class="fc-stat-bar-wrap">
+        <div class="fc-stat-bar"><div class="fc-stat-bar-got" id="statBarGot" style="width:0"></div><div class="fc-stat-bar-weak" id="statBarWeak" style="width:0"></div></div>
+      </div>
+      <div class="fc-stat fc-stat-weak"><span class="fc-stat-num" id="statWeak">0</span><span class="fc-stat-label">Review</span></div>
+    </div>
+
+    <!-- Study Mode -->
+    <div class="fc-mode-bar">
+      <button class="fc-mode-btn active" data-mode="all">All Cards</button>
+      <button class="fc-mode-btn" data-mode="unseen">Unseen Only</button>
+      <button class="fc-mode-btn" data-mode="weak">Needs Review</button>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="fc-filters" id="fcFilters"></div>
+
+    <!-- Card Counter -->
+    <div class="fc-counter" id="fcCounter">Card 1 / 22</div>
+
+    <!-- The Card -->
+    <div class="fc-card-stage" id="fcCardStage">
+      <div class="fc-card" id="fcCard">
+        <div class="fc-card-face fc-card-front" id="fcFront">
+          <div class="fc-mastery-badge" id="fcMasteryBadge"></div>
+          <div class="fc-card-icon" id="fcFrontIcon"></div>
+          <div class="fc-card-title" id="fcTitle"></div>
+          <div class="fc-card-subtitle" id="fcSubtitle"></div>
+          <div class="fc-card-section-pill" id="fcSectionPill"></div>
+          <div class="fc-card-tap">Tap to flip</div>
+        </div>
+        <div class="fc-card-face fc-card-back" id="fcBack">
+          <img class="fc-back-image" id="fcBackImage" src="" alt="">
+          <div class="fc-back-notes">
+            <div class="fc-back-notes-title" id="fcBackTitle">What You're Seeing</div>
+            <div id="fcNotes"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mastery Buttons -->
+    <div class="fc-mastery-actions">
+      <button class="fc-mastery-btn fc-mastery-btn-got" id="fcGotIt">&#10003; Got It</button>
+      <button class="fc-mastery-btn fc-mastery-btn-weak" id="fcStudyMore">&#8635; Study More</button>
+    </div>
+
+    <!-- Navigation -->
+    <div class="fc-nav">
+      <button class="fc-nav-btn" id="fcPrev" aria-label="Previous card">&larr; Prev</button>
+      <button class="fc-nav-btn fc-shuffle-btn" id="fcShuffle" aria-label="Shuffle deck">&#128256; Shuffle</button>
+      <button class="fc-nav-btn" id="fcNext" aria-label="Next card">Next &rarr;</button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="fc-progress-bar"><div class="fc-progress-fill" id="fcProgress"></div></div>
+
+    <!-- Keyboard Shortcuts -->
+    <div class="fc-keyboard-hint">
+      <kbd>&larr;</kbd> <kbd>&rarr;</kbd> navigate &nbsp;|&nbsp;
+      <kbd>Space</kbd> flip &nbsp;|&nbsp;
+      <kbd>G</kbd> got it &nbsp;|&nbsp;
+      <kbd>R</kbd> review
+    </div>
+
+    <!-- Reset -->
+    <div class="fc-reset-wrap">
+      <button class="fc-reset-btn" id="fcReset">Reset Progress</button>
+    </div>
+
+    <p style="text-align:center;font-size:0.85em;margin:1em 0 0.5em;">
+      <a href="../flashcards.html" style="color:#2A9D8F;font-weight:700;text-decoration:none">&#127183; See All Flashcard Decks &rarr;</a>
+    </p>
+    <p style="text-align:center;opacity:0.4;font-size:0.8em;margin:0.5em 0 2em;">
+      22 cards. 22 custom AI images. Every GI concept from Chapters 34-40.
+    </p>
+  </div>
+
+</div>
+
+<!-- Ko-fi Tip Banner (only shows after gate is unlocked) -->
+<div class="kofi-float" id="kofiFloat" style="display:none">
+  <a href="https://ko-fi.com/tiagolifeofstudy" target="_blank" rel="noopener" class="kofi-link">
+    <span class="kofi-icon">&#9749;</span>
+    <span>Buy me a coffee</span>
+  </a>
+  <button class="kofi-dismiss" id="kofiDismiss" aria-label="Dismiss">&times;</button>
+</div>
+
+<script src="../js/flashcard-data-q3-gi.js?v=1"></script>
+<script>
+(function() {
+  const STORAGE_KEY = 'tiago_q3gi_mastery';
+  const GATE_KEY = 'tiago_q3gi_unlocked';
+  const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdNKzXnH7ZK5zgPD-HPtg3bOOKa77iyPBpFYLMOzUYvetn7EQ/formResponse';
+  const GOOGLE_FORM_ENTRY = 'entry.398576954';
+
+  const data = window.FLASHCARD_DATA_Q3_GI;
+  let cards = [...data.cards];
+  let filtered = [...cards];
+  let idx = 0;
+  let mastery = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  let currentMode = 'all';
+  let currentSection = null;
+
+  // ── Email Gate ──
+  const gate = document.getElementById('q3Gate');
+  const deck = document.getElementById('q3Deck');
+
+  if (localStorage.getItem(GATE_KEY) || localStorage.getItem('tiago_subscribed')) {
+    gate.style.display = 'none';
+    deck.style.display = 'block';
+    showKofi();
+  }
+
+  function showKofi() {
+    var kofi = document.getElementById('kofiFloat');
+    if (!sessionStorage.getItem('kofi_dismissed')) {
+      kofi.style.display = 'flex';
+    }
+  }
+
+  document.getElementById('q3GateForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('q3Email').value.trim();
+    if (!email) return;
+
+    const iframe = document.createElement('iframe');
+    iframe.name = 'q3gi_gate_hidden';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = GOOGLE_FORM_ACTION;
+    form.target = 'q3gi_gate_hidden';
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = GOOGLE_FORM_ENTRY;
+    input.value = email;
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+    setTimeout(function() { form.remove(); iframe.remove(); }, 3000);
+
+    const subs = JSON.parse(localStorage.getItem('tiago_emails') || '[]');
+    subs.push({ email: email, date: new Date().toISOString(), page: 'quiz3-gi-flashcards', deck: 'q3-gi' });
+    localStorage.setItem('tiago_emails', JSON.stringify(subs));
+    localStorage.setItem(GATE_KEY, 'true');
+    localStorage.setItem('tiago_subscribed', 'true');
+
+    gate.style.display = 'none';
+    deck.style.display = 'block';
+    showKofi();
+  });
+
+  // ── Ko-fi dismiss ──
+  document.getElementById('kofiDismiss').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    document.getElementById('kofiFloat').style.display = 'none';
+    sessionStorage.setItem('kofi_dismissed', 'true');
+  });
+  if (sessionStorage.getItem('kofi_dismissed')) {
+    document.getElementById('kofiFloat').style.display = 'none';
+  }
+
+  // ── Build filters ──
+  var filtersEl = document.getElementById('fcFilters');
+  var allBtn = document.createElement('button');
+  allBtn.className = 'fc-filter active';
+  allBtn.textContent = 'All';
+  allBtn.dataset.section = 'all';
+  filtersEl.appendChild(allBtn);
+  data.sections.forEach(function(s) {
+    var btn = document.createElement('button');
+    btn.className = 'fc-filter';
+    btn.textContent = s.icon + ' ' + s.label;
+    btn.dataset.section = s.id;
+    btn.style.setProperty('--filter-color', s.color);
+    filtersEl.appendChild(btn);
+  });
+
+  filtersEl.addEventListener('click', function(e) {
+    if (!e.target.classList.contains('fc-filter')) return;
+    filtersEl.querySelectorAll('.fc-filter').forEach(function(b) { b.classList.remove('active'); });
+    e.target.classList.add('active');
+    currentSection = e.target.dataset.section === 'all' ? null : e.target.dataset.section;
+    applyFilters();
+  });
+
+  // ── Mode buttons ──
+  document.querySelectorAll('.fc-mode-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.fc-mode-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentMode = btn.dataset.mode;
+      applyFilters();
+    });
+  });
+
+  function applyFilters() {
+    filtered = cards.filter(function(c) {
+      if (currentSection && c.section !== currentSection) return false;
+      var key = c.front.title;
+      if (currentMode === 'unseen') return !mastery[key];
+      if (currentMode === 'weak') return mastery[key] === 'weak';
+      return true;
+    });
+    idx = 0;
+    render();
+  }
+
+  // ── Render card ──
+  function render() {
+    if (filtered.length === 0) {
+      document.getElementById('fcCardStage').innerHTML = '<div style="text-align:center;padding:3em 1em;opacity:0.5"><div style="font-size:3em">&#127881;</div><p>No cards match this filter.<br>Try "All Cards" or switch sections.</p></div>';
+      return;
+    }
+    var card = filtered[idx];
+    var section = data.sections.find(function(s) { return s.id === card.section; });
+    var key = card.front.title;
+
+    document.getElementById('fcFrontIcon').textContent = card.front.icon;
+    document.getElementById('fcTitle').textContent = card.front.title;
+    document.getElementById('fcSubtitle').textContent = card.front.subtitle;
+    var pill = document.getElementById('fcSectionPill');
+    pill.textContent = section.icon + ' ' + section.label;
+    pill.style.background = section.color;
+
+    var badge = document.getElementById('fcMasteryBadge');
+    if (mastery[key] === 'got') {
+      badge.className = 'fc-mastery-badge fc-mastery-got';
+      badge.textContent = 'Got It';
+    } else if (mastery[key] === 'weak') {
+      badge.className = 'fc-mastery-badge fc-mastery-weak';
+      badge.textContent = 'Review';
+    } else {
+      badge.className = 'fc-mastery-badge';
+      badge.textContent = '';
+    }
+
+    document.getElementById('fcBackImage').src = card.image;
+    document.getElementById('fcBackImage').alt = card.front.title;
+    document.getElementById('fcBackTitle').textContent = 'What You\'re Seeing \u2014 ' + card.front.title;
+    var notesEl = document.getElementById('fcNotes');
+    notesEl.innerHTML = '';
+    card.notes.forEach(function(n) {
+      var div = document.createElement('div');
+      div.className = 'fc-back-note';
+      div.textContent = n;
+      notesEl.appendChild(div);
+    });
+
+    document.getElementById('fcCounter').textContent = 'Card ' + (idx + 1) + ' / ' + filtered.length;
+    document.getElementById('fcProgress').style.width = ((idx + 1) / filtered.length * 100) + '%';
+
+    document.getElementById('fcCard').classList.remove('flipped');
+
+    document.getElementById('fcCardStage').classList.remove('fc-slide-in');
+    void document.getElementById('fcCardStage').offsetWidth;
+    document.getElementById('fcCardStage').classList.add('fc-slide-in');
+
+    updateStats();
+    updateMasteryButtons();
+  }
+
+  function updateStats() {
+    var got = 0, weak = 0;
+    cards.forEach(function(c) {
+      var k = c.front.title;
+      if (mastery[k] === 'got') got++;
+      else if (mastery[k] === 'weak') weak++;
+    });
+    document.getElementById('statGot').textContent = got;
+    document.getElementById('statWeak').textContent = weak;
+    document.getElementById('statBarGot').style.width = (got / cards.length * 100) + '%';
+    document.getElementById('statBarWeak').style.width = (weak / cards.length * 100) + '%';
+  }
+
+  function updateMasteryButtons() {
+    if (filtered.length === 0) return;
+    var key = filtered[idx].front.title;
+    document.getElementById('fcGotIt').classList.toggle('active', mastery[key] === 'got');
+    document.getElementById('fcStudyMore').classList.toggle('active', mastery[key] === 'weak');
+  }
+
+  // ── Events ──
+  document.getElementById('fcCardStage').addEventListener('click', function() {
+    document.getElementById('fcCard').classList.toggle('flipped');
+  });
+
+  document.getElementById('fcNext').addEventListener('click', function() {
+    if (idx < filtered.length - 1) { idx++; render(); }
+  });
+  document.getElementById('fcPrev').addEventListener('click', function() {
+    if (idx > 0) { idx--; render(); }
+  });
+  document.getElementById('fcShuffle').addEventListener('click', function() {
+    for (var i = filtered.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = filtered[i];
+      filtered[i] = filtered[j];
+      filtered[j] = temp;
+    }
+    idx = 0;
+    render();
+  });
+
+  document.getElementById('fcGotIt').addEventListener('click', function() {
+    if (filtered.length === 0) return;
+    var key = filtered[idx].front.title;
+    mastery[key] = mastery[key] === 'got' ? null : 'got';
+    if (!mastery[key]) delete mastery[key];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(mastery));
+    render();
+  });
+  document.getElementById('fcStudyMore').addEventListener('click', function() {
+    if (filtered.length === 0) return;
+    var key = filtered[idx].front.title;
+    mastery[key] = mastery[key] === 'weak' ? null : 'weak';
+    if (!mastery[key]) delete mastery[key];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(mastery));
+    render();
+  });
+
+  document.getElementById('fcReset').addEventListener('click', function() {
+    if (confirm('Reset all mastery progress for this deck?')) {
+      mastery = {};
+      localStorage.removeItem(STORAGE_KEY);
+      render();
+    }
+  });
+
+  // ── Keyboard shortcuts ──
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT') return;
+    if (e.key === 'ArrowRight') { if (idx < filtered.length - 1) { idx++; render(); } }
+    else if (e.key === 'ArrowLeft') { if (idx > 0) { idx--; render(); } }
+    else if (e.key === ' ') { e.preventDefault(); document.getElementById('fcCard').classList.toggle('flipped'); }
+    else if (e.key === 'g' || e.key === 'G') { document.getElementById('fcGotIt').click(); }
+    else if (e.key === 'r' || e.key === 'R') { document.getElementById('fcStudyMore').click(); }
+  });
+
+  // ── Init ──
+  render();
+})();
+</script>
+<script src="../js/nav.js?v=2"></script>
+<script src="../js/theme.js"></script>
+</body>
+</html>
