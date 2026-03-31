@@ -269,12 +269,30 @@ h1, h2, h3, h4 {
 .hero {
   text-align: center;
   padding: 32px 16px;
+  background: linear-gradient(180deg, rgba(42,157,143,0.06) 0%, transparent 100%);
+  border-radius: 24px;
+  margin-bottom: 8px;
 }
 
 .hero-title {
   font-size: 2em;
   line-height: 1.2;
   margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .hero-title {
+  background: linear-gradient(135deg, #e6edf3 0%, var(--teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .hero {
+  background: linear-gradient(180deg, rgba(42,157,143,0.08) 0%, transparent 100%);
 }
 
 .hero-sub {
@@ -282,6 +300,9 @@ h1, h2, h3, h4 {
   font-size: 0.95em;
   margin-bottom: 4px;
 }
+
+/* ── Smooth Global Transitions ── */
+* { transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
 
 /* ── Score Bar ── */
 .score-bar {
@@ -677,18 +698,19 @@ button.conf-dot,
 
 .deck-card {
   background: white;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   text-decoration: none;
   color: inherit;
   display: block;
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
 .deck-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 12px 40px rgba(42,157,143,0.15), 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .deck-card-header {
@@ -707,12 +729,13 @@ button.conf-dot,
 .download-cta {
   position: relative;
   margin: 24px 0;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--navy) 0%, #0B3D6B 50%, var(--teal) 100%);
+  background: linear-gradient(135deg, var(--navy) 0%, #0B3D6B 40%, var(--teal) 100%);
   color: white;
-  padding: 32px 28px;
+  padding: 36px 28px;
   text-align: center;
+  box-shadow: 0 8px 32px rgba(26,42,66,0.2);
 }
 
 .cta-glow {
@@ -761,15 +784,22 @@ button.conf-dot,
 
 .cta-button {
   display: inline-block;
-  background: var(--gold);
+  background: linear-gradient(135deg, var(--gold), #F4D87C);
   color: var(--navy);
   padding: 14px 32px;
-  border-radius: 12px;
+  border-radius: 14px;
   font-weight: 700;
   font-size: 1em;
   text-decoration: none;
-  transition: all 0.2s;
-  box-shadow: 0 4px 16px rgba(233,196,106,0.4);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(233,196,106,0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(233,196,106,0.45);
 }
 
 .cta-button:hover {
@@ -1675,13 +1705,13 @@ button.conf-dot,
 /* ── Ko-fi Support Section (inline, visible) ── */
 .kofi-section {
   margin: 24px 0;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(135deg, #FF5E5B 0%, #FF9966 100%);
+  background: linear-gradient(135deg, #FF5E5B 0%, #FF9966 50%, #FFCC33 100%);
   color: white;
-  padding: 24px 28px;
+  padding: 28px 28px;
   text-align: center;
-  box-shadow: 0 4px 20px rgba(255,94,91,0.2);
+  box-shadow: 0 8px 28px rgba(255,94,91,0.2);
 }
 
 .kofi-section-title {
@@ -1897,7 +1927,8 @@ button.conf-dot,
   position: relative;
   padding: 20px 22px 16px;
   background: linear-gradient(135deg, #1A2A42 0%, #0B3D91 60%, #5F3DC4 100%);
-  border-radius: 14px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(95,61,196,0.2);
   color: #fff;
   box-shadow: 0 6px 24px rgba(26,42,66,0.25);
   overflow: hidden;

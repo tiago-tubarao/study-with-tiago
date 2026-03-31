@@ -29,12 +29,13 @@
   </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=21">
+  <link rel="stylesheet" href="style.css?v=22">
   <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
 <div class="page-container">
   <div class="hero" style="padding:48px 16px">
+    <img src="assets/tiago-avatar.png" alt="Tiago" style="width:80px;height:80px;border-radius:50%;margin-bottom:16px;border:3px solid var(--teal);box-shadow:0 4px 16px rgba(42,157,143,0.3)">
     <h1 class="hero-title" style="font-size:2.4em;line-height:1.15">I study for my exams<br>and teach it to you.</h1>
     <p class="hero-sub" style="font-size:1.05em;margin-top:12px;max-width:540px;margin-left:auto;margin-right:auto">Watch the video. Check the syllabus. See the proof. Every drug, every detail, every exam trap — aligned with standard pharmacology curricula and the NCLEX-RN&reg; test plan.</p>
     <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -42,6 +43,7 @@
       <a href="exam3/index.html" class="cta-button" style="font-size:1.05em;background:var(--teal)">Adult Health →</a>
       <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:12px;border:2px solid var(--gold);color:var(--gold);font-weight:700;text-decoration:none;transition:all 0.2s;background:transparent">Pharm Bundle — Free</a>
       <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:12px;border:2px solid var(--teal);color:var(--teal);font-weight:700;text-decoration:none;transition:all 0.2s;background:transparent">AH Review — Free</a>
+      <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:12px;border:2px solid var(--purple);color:var(--purple);font-weight:700;text-decoration:none;transition:all 0.2s;background:transparent">Practice Exams — Free</a>
     </div>
     <div style="margin-top:16px">
       <a href="exam2/quiz3-gi-flashcards.html" style="display:inline-block;padding:12px 24px;border-radius:12px;background:linear-gradient(135deg,#2A9D8F,#1a7a6e);color:#fff;font-weight:700;text-decoration:none;font-size:0.95em;animation:pulseGlow 2s ease-in-out infinite alternate">🃏 Quiz 3 GI Flashcards — 22 Visual Cards →</a>
@@ -49,8 +51,23 @@
   </div>
 
 
-  <div style="text-align:center;padding:8px 0 12px">
-    <p style="font-size:0.85em;color:var(--muted)">Two courses available: Pharmacology (486+ questions, 4 videos, GI flashcards) &bull; Adult Health Nursing (~165 questions, 4 videos)</p>
+  <div style="display:flex;justify-content:center;gap:32px;flex-wrap:wrap;padding:16px 0 20px">
+    <div style="text-align:center">
+      <div style="font-size:1.8em;font-weight:800;color:var(--teal);font-family:'Syne',sans-serif">650+</div>
+      <div style="font-size:0.78em;color:var(--muted);text-transform:uppercase;font-weight:600;letter-spacing:0.5px">Questions</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:1.8em;font-weight:800;color:var(--navy);font-family:'Syne',sans-serif">9</div>
+      <div style="font-size:0.78em;color:var(--muted);text-transform:uppercase;font-weight:600;letter-spacing:0.5px">Videos</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:1.8em;font-weight:800;color:var(--gold);font-family:'Syne',sans-serif">2</div>
+      <div style="font-size:0.78em;color:var(--muted);text-transform:uppercase;font-weight:600;letter-spacing:0.5px">Courses</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:1.8em;font-weight:800;color:var(--green);font-family:'Syne',sans-serif">3</div>
+      <div style="font-size:0.78em;color:var(--muted);text-transform:uppercase;font-weight:600;letter-spacing:0.5px">Free Bundles</div>
+    </div>
   </div>
 
   <div class="coming-soon-banner">
@@ -74,23 +91,24 @@
   <!-- Course Cards -->
   <div class="deck-grid" id="courseCards"></div>
 
-  <div class="video-section" style="margin-top:32px">
-    <div class="video-header" style="background:var(--navy)">
-      <h2>How This Works</h2>
-      <div class="meta">Three columns. Triple verification. No guessing.</div>
-    </div>
-    <div class="verify-wrap" style="padding:24px">
-      <div class="compare-table">
-        <div class="compare-row compare-header-row">
-          <div class="compare-cell-header">1. Watch the Video</div>
-          <div class="compare-cell-header">2. Check the Coverage</div>
-          <div class="compare-cell-header">3. Test Yourself</div>
-        </div>
-        <div class="compare-row">
-          <div class="compare-cell" style="font-size:0.88em">I break down every drug, every side effect, every nursing action — with timestamps so you can jump to exactly what you need.</div>
-          <div class="compare-cell" style="font-size:0.88em;border-left:2px solid var(--border)">See a side-by-side comparison of what I covered vs. what standard pharmacology curricula typically require. No gaps, no guessing.</div>
-          <div class="compare-cell" style="font-size:0.88em;border-left:2px solid var(--border)">Rate your confidence. Answer NCLEX-style scenario questions. Get immediate feedback with rationales for every answer.</div>
-        </div>
+  <div class="how-it-works" style="margin-top:32px;padding:32px 16px">
+    <h2 style="text-align:center;margin-bottom:8px">How This Works</h2>
+    <p style="text-align:center;color:var(--muted);margin-bottom:32px;font-size:0.95em">Three steps. Triple verification. No guessing.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;max-width:900px;margin:0 auto">
+      <div style="text-align:center;padding:24px 16px;border-radius:16px;background:var(--card-bg);border:1px solid var(--border)">
+        <div style="font-size:2.5em;margin-bottom:12px">&#127909;</div>
+        <h3 style="font-size:1.1em;margin-bottom:8px;color:var(--navy)">1. Watch the Video</h3>
+        <p style="font-size:0.88em;color:var(--muted);line-height:1.5">Every drug, side effect, and nursing action broken down with timestamps. Jump to exactly what you need.</p>
+      </div>
+      <div style="text-align:center;padding:24px 16px;border-radius:16px;background:var(--card-bg);border:1px solid var(--border)">
+        <div style="font-size:2.5em;margin-bottom:12px">&#9989;</div>
+        <h3 style="font-size:1.1em;margin-bottom:8px;color:var(--teal)">2. Check the Coverage</h3>
+        <p style="font-size:0.88em;color:var(--muted);line-height:1.5">Side-by-side comparison of what I covered vs. what standard curricula require. See exactly where you stand.</p>
+      </div>
+      <div style="text-align:center;padding:24px 16px;border-radius:16px;background:var(--card-bg);border:1px solid var(--border)">
+        <div style="font-size:2.5em;margin-bottom:12px">&#128170;</div>
+        <h3 style="font-size:1.1em;margin-bottom:8px;color:var(--purple)">3. Test Yourself</h3>
+        <p style="font-size:0.88em;color:var(--muted);line-height:1.5">Rate your confidence. Answer NCLEX-style scenario questions. Get immediate feedback with rationales for every answer.</p>
       </div>
     </div>
   </div>
@@ -104,10 +122,14 @@
   <div class="download-cta" style="margin-top:32px">
     <div class="cta-glow"></div>
     <div class="cta-content">
-      <div class="cta-badge" style="background:var(--teal)">FREE</div>
-      <h3 class="cta-title">Get the Study Bundle</h3>
-      <p class="cta-sub">8 PDFs — drug lists, blueprint, study guides, clinical cases, and a 162-question practice exam. Print them. Mark them up. Bring them to the exam.</p>
-      <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Get the Bundle →</a>
+      <div class="cta-badge" style="background:var(--teal)">ALL FREE</div>
+      <h3 class="cta-title">Get the Study Bundles</h3>
+      <p class="cta-sub">PDFs for both courses — drug lists, blueprints, study guides, clinical cases, and 162+ practice exam questions. Print them. Mark them up. Bring them to the exam.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+        <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Pharm Bundle →</a>
+        <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener" class="cta-button" style="background:var(--teal)">AH Review →</a>
+        <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener" class="cta-button" style="background:var(--purple)">Practice Exams →</a>
+      </div>
       <p class="cta-note">Instant download. Free — tip appreciated.</p>
     </div>
   </div>
@@ -123,7 +145,9 @@
   <div style="margin-top:12px">
     Study with Tiago &copy; 2026 &bull;
     <a href="https://www.youtube.com/@life-ofstudy" target="_blank" rel="noopener">YouTube</a> &bull;
-    <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Study Bundle</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Pharm Bundle</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener">AH Review</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener">Practice Exams</a> &bull;
     <a href="about.html">About</a> &bull;
     <a href="privacy.html">Privacy</a> &bull;
     <a href="terms.html">Terms</a>
@@ -144,10 +168,10 @@
       <div class="deck-card-header" style="background:var(--navy)">
         <h3>Pharmacology</h3>
         <div class="meta">Diabetes, Endocrine, Antimicrobials, Hematology</div>
-        <span class="video-status status-uploaded">4 VIDEOS + 486 QUESTIONS</span>
+        <span class="video-status status-uploaded">5 VIDEOS + 486 QUESTIONS</span>
       </div>
       <div class="deck-card-body">
-        <div class="deck-card-stat"><strong>4</strong> video walkthroughs with timestamps</div>
+        <div class="deck-card-stat"><strong>5</strong> video walkthroughs with timestamps</div>
         <div class="deck-card-stat" style="font-size:12px;color:var(--muted);margin-top:4px">54 drugs &bull; 3 difficulty tiers &bull; Flashcards &bull; Score tracking</div>
       </div>
     </a>
