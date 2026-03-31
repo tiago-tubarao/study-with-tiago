@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════
-// Flashcard Data — 22 Visual Cards for NURS 210 Quiz 3
+// Flashcard Data — 31 Visual Cards for NURS 210 Quiz 3
 // GI System Drugs — Chapters 34-40
 // ADHD-optimized: emoji front connects to visual back
 // Back = Gemini image + teaching notes that explain what you SEE
@@ -16,6 +16,8 @@ window.FLASHCARD_DATA_Q3_GI = {
     { id: 'antiemetics', label: 'Antiemetics', icon: '\uD83E\uDD22', color: '#C92A2A' },
     { id: 'laxatives', label: 'Laxatives', icon: '\uD83D\uDCA7', color: '#D9480F' },
     { id: 'antidiarrheals', label: 'Antidiarrheals', icon: '\uD83D\uDEBD', color: '#2B8A3E' },
+    { id: 'ibs', label: 'IBS Drugs', icon: '\uD83E\uDDE0', color: '#D6336C' },
+    { id: 'lifestyle', label: 'Lifestyle + Safety', icon: '\uD83C\uDF3F', color: '#5C940D' },
     { id: 'review', label: 'Rapid Review', icon: '\uD83D\uDEA8', color: '#495057' },
   ],
   cards: [
@@ -318,6 +320,146 @@ window.FLASHCARD_DATA_Q3_GI = {
         'Metoclopramide \u2192 MOVEMENT ASSESSMENT. Screen for tardive dyskinesia at every visit. Involuntary face/tongue movements = stop the drug.',
         'Warfarin + aprepitant \u2192 INR. Aprepitant decreases warfarin effectiveness, so INR may drop.',
         'Misoprostol \u2192 PREGNANCY TEST (hCG). Must be negative before starting. Category X — no exceptions.'
+      ]
+    },
+
+    // ═══ ANTIEMETICS — EXTRA CARDS (using existing images 23, 24) ═══
+    {
+      section: 'antiemetics',
+      front: { icon: '\uD83D\uDE35\u200D\uD83D\uDCAB\uD83D\uDC8A', title: 'Prochlorperazine (Compazine)', subtitle: 'Phenothiazine — EPS risk, no Parkinson patients' },
+      image: 'quiz3-gi-images/23_prochlorperazine_compazine.png',
+      notes: [
+        'WHAT IT DOES: Blocks DOPAMINE receptors in the CTZ. Strong antiemetic for severe nausea/vomiting. Same class as promethazine (phenothiazine).',
+        'WHAT COULD GO WRONG: EXTRAPYRAMIDAL SYMPTOMS (EPS) — acute dystonia (muscle spasms, torticollis), akathisia (restlessness), pseudoparkinsonism (tremor, rigidity). Long-term = tardive dyskinesia. Rare but FATAL = neuroleptic malignant syndrome (NMS).',
+        'WHO TO AVOID: PARKINSON DISEASE patients — blocking dopamine makes PD dramatically worse. Also avoid in children <2, bone marrow suppression.',
+        'WHAT THE NURSE DOES: Monitor for involuntary movements at EVERY visit. Give with food to reduce GI irritation. Available PO, IM, rectal.',
+        'WHAT TO TEACH: Rise SLOWLY (orthostatic hypotension). Report ANY involuntary movements immediately — lip smacking, tongue protrusion, grimacing.',
+        'WHAT INTERACTS: Additive CNS depression with opioids, benzos, alcohol. Do NOT combine with other dopamine blockers.',
+        'EXAM TRAP: Prochlorperazine causes EPS. Ondansetron does NOT. If the question mentions involuntary movements — think dopamine blockers, not serotonin blockers.'
+      ]
+    },
+    {
+      section: 'antiemetics',
+      front: { icon: '\uD83C\uDFAF\uD83D\uDC8A', title: 'Antiemetic Decision Panel', subtitle: '4 mechanisms, 4 situations — pick the right drug' },
+      image: 'quiz3-gi-images/24_antiemetic_four_panel.png',
+      notes: [
+        'PANEL 1 — CHEMO N/V: Ondansetron (5-HT3 blocker) is FIRST LINE. For highly emetogenic chemo: add aprepitant (NK1 blocker) + dexamethasone = triple therapy.',
+        'PANEL 2 — MOTION SICKNESS: Dimenhydrinate (Dramamine) or meclizine (Antivert). Both are H1 antihistamines that suppress the vestibular system. Take 30 min BEFORE travel.',
+        'PANEL 3 — GASTROPARESIS: Metoclopramide (Reglan) — the ONLY antiemetic that also speeds up gastric emptying. But max 12 weeks (tardive dyskinesia BLACK BOX).',
+        'PANEL 4 — REFRACTORY/BREAKTHROUGH: Olanzapine (atypical antipsychotic) for breakthrough chemo N/V. Dronabinol (synthetic THC, Schedule III) for refractory cases.',
+        'THE PRIORITY RULE: Give ALL antiemetics 30-60 minutes BEFORE the nausea-causing event. Prevention > treatment. This is heavily tested.',
+        'NURSING PRIORITY: Always assess the CAUSE of nausea before medicating. Is it medication side effect? Obstruction? Infection? Increased ICP? The drug choice depends on the cause.'
+      ]
+    },
+
+    // ═══ IBS DRUGS (new section — 2 cards) ═══
+    {
+      section: 'ibs',
+      front: { icon: '\u2640\uFE0F\u26A0\uFE0F', title: 'Alosetron (Lotronex)', subtitle: 'FEMALES ONLY — Black Box — REMS required' },
+      image: null,
+      notes: [
+        'WHAT IT DOES: 5-HT3 serotonin antagonist — slows colonic transit, reduces visceral pain. Same receptor as ondansetron but used for IBS-D, NOT nausea.',
+        'WHO GETS IT: FEMALES ONLY with SEVERE IBS-D (diarrhea-predominant) who have FAILED all conventional therapy. NOT for males. NOT for mild IBS. NOT for acute diarrhea.',
+        'WHAT COULD GO WRONG — BLACK BOX: (1) SEVERE CONSTIPATION that can require hospitalization. (2) ISCHEMIC COLITIS — reduced blood flow to the colon, potentially fatal. These are the two reasons for the Black Box.',
+        'THE REMS PROGRAM: Requires signed patient-physician agreement BEFORE prescribing. Both must acknowledge risks. This is one of the strictest prescribing programs in GI pharm.',
+        'WHAT THE NURSE MONITORS: Bowel frequency — if constipation develops, STOP immediately. Report abdominal pain, bloody stools, or rectal bleeding (ischemic colitis signs).',
+        'WHAT TO TEACH: This drug is a last resort, not a first-line treatment. Stop and call provider if you have no bowel movement for 3+ days or notice blood in stool.',
+        'EXAM LOGIC: "Requires signed agreement" = ALOSETRON. "5-HT3 blocker for IBS" = ALOSETRON. "Females only" = ALOSETRON. Three unique identifiers — hard to confuse with anything else.'
+      ]
+    },
+    {
+      section: 'ibs',
+      front: { icon: '\uD83D\uDCA7\uD83E\uDDEA', title: 'Lubiprostone (Amitiza)', subtitle: 'Chloride channel activator — newer constipation agent' },
+      image: null,
+      notes: [
+        'WHAT IT DOES: Activates chloride channels (ClC-2) on intestinal epithelial cells. This pulls CHLORIDE into the intestinal lumen, and water follows osmotically. Result: increased intestinal fluid secretion + stimulated motility.',
+        'WHY IT\'S DIFFERENT: Unlike traditional laxatives (stimulants, osmotics, bulk-forming), lubiprostone works by a completely different mechanism — it\'s a prostone, a fatty acid derivative. This means it works even when traditional laxatives fail.',
+        'THREE INDICATIONS: (1) Chronic idiopathic constipation, (2) Opioid-induced constipation (huge clinical need — opioids slow the gut), (3) IBS with constipation (IBS-C) in women.',
+        'WHAT COULD GO WRONG: NAUSEA is the #1 side effect (up to 31%). Also diarrhea, headache, abdominal distension. Nausea is dose-related and often improves with continued use.',
+        'WHAT THE NURSE DOES: Give WITH FOOD to reduce nausea (critical administration point). Monitor bowel frequency. Assess for dehydration if diarrhea develops.',
+        'WHAT TO TEACH: Take with food and water. Report severe diarrhea or signs of dehydration. This is not a "rescue" laxative — it works over days, not hours.',
+        'EXAM PAIR: Lubiprostone = chloride channels = fluid secretion. Alosetron = serotonin blocker = slows transit. Opposite mechanisms for opposite IBS subtypes (IBS-C vs IBS-D).'
+      ]
+    },
+
+    // ═══ LIFESTYLE + SAFETY (new section — 5 cards) ═══
+    {
+      section: 'lifestyle',
+      front: { icon: '\uD83C\uDF3F\u2705', title: 'GERD Lifestyle Modifications', subtitle: 'FIRST LINE — Try these BEFORE starting medications' },
+      image: null,
+      notes: [
+        'THE PRIORITY: Per Dr. Lee — lifestyle changes are FIRST-LINE for GERD. Before ANY medication, try these. This is a nursing priority question — "which intervention FIRST?"',
+        'RULE 1: Do NOT lie down for 1-2 HOURS after eating. Gravity prevents reflux. This is the most commonly tested lifestyle modification.',
+        'RULE 2: Elevate HEAD OF BED 6-8 INCHES using blocks or wedges. NOT just extra pillows (that flexes the neck, not the body). The whole upper body must be elevated.',
+        'RULE 3: Small, frequent meals. Avoid fatty, spicy, acidic, irritating foods. Large meals increase gastric distension = more reflux.',
+        'RULE 4: Avoid TIGHT-FITTING CLOTHING — increases intra-abdominal pressure, pushes stomach contents upward.',
+        'RULE 5: Maintain IDEAL BODY WEIGHT. Obesity increases intra-abdominal pressure dramatically. Weight loss alone can resolve mild GERD.',
+        'RULE 6: Avoid BENDING or STOOPING after meals. Same logic as lying down — position matters.',
+        'RULE 7: SMOKING CESSATION — smoking decreases lower esophageal sphincter pressure, allowing more reflux. This ties into the next card.',
+        'EXAM LOGIC: "Which should the nurse teach FIRST?" = lifestyle modifications. "Which intervention is PRIORITY before medication?" = position, diet, weight.'
+      ]
+    },
+    {
+      section: 'lifestyle',
+      front: { icon: '\uD83D\uDEAC\u2757', title: 'Smoking + Ulcers: Dual Mechanism', subtitle: 'Increases acid AND decreases blood flow' },
+      image: null,
+      notes: [
+        'MECHANISM 1 (RED): Smoking INCREASES gastric acid secretion. Nicotine stimulates parietal cells to pump out more HCl. More acid = more mucosal damage.',
+        'MECHANISM 2 (BLUE): Smoking DECREASES mucosal blood flow. Nicotine causes vasoconstriction of gastric blood vessels. Less blood flow = less oxygen and nutrients for healing.',
+        'THE DOUBLE HIT: Both mechanisms happening simultaneously means: (1) MORE acid attacking the ulcer, and (2) LESS blood supply to repair it. The ulcer can\'t heal.',
+        'CLINICAL RESULT: Patients who smoke heal MORE SLOWLY and have MORE RECURRENT ULCERS despite taking the correct medications. The drugs work — but smoking undoes the benefit.',
+        'WHAT THE NURSE DOES: Smoking cessation counseling is part of the CARE PLAN for EVERY ulcer patient. It\'s not optional teaching — it\'s a nursing intervention.',
+        'APPLIES TO ALL GI DRUGS: Smoking decreases the effectiveness of H2 blockers AND PPIs. If the patient won\'t quit, at minimum advise: avoid smoking after the last daily dose.',
+        'EXAM LOGIC: "Which patient statement shows understanding?" = "I will stop smoking to help my ulcer heal." "Which factor delays healing?" = continued smoking.'
+      ]
+    },
+    {
+      section: 'lifestyle',
+      front: { icon: '\uD83E\uDE78\u26D4', title: 'Bismuth: NEVER Alone for Ulcers', subtitle: 'Causes SERIOUS BLEEDING if used without combo therapy' },
+      image: null,
+      notes: [
+        'THE DANGER: Bismuth subsalicylate (Pepto-Bismol) can cause SERIOUS BLEEDING when used ALONE in patients with ulcers. The salicylate component has antiplatelet effects — it thins the blood at the ulcer site.',
+        'THE RULE: Bismuth must ONLY be used as part of TRIPLE or QUADRUPLE therapy — combined with antibiotics + acid reducer. Never as monotherapy for ulcers.',
+        'SAFE COMBO: Bismuth + PPI + 2 antibiotics = quadruple therapy for H. pylori. The other drugs protect while bismuth helps eradicate the bacteria.',
+        'BLACK STOOL + BLACK TONGUE: These are HARMLESS. Bismuth reacts with sulfur in the GI tract. Do NOT confuse with GI bleeding. Teach patients this is expected and normal.',
+        'SALICYLATE CONTENT: Contains salicylate = NO aspirin-allergic patients. NO children with viral illness (Reye syndrome risk). NO patients on anticoagulants (additive bleeding).',
+        'WHAT THE NURSE MONITORS: Signs of GI bleeding — melena (BLACK TARRY stool from upper GI), hematemesis (vomiting blood), coffee-ground emesis. These are different from the harmless black discoloration.',
+        'EXAM TRAP: "Black stool" in a patient on bismuth alone = concerning (possible bleeding). "Black stool" in a patient on quadruple therapy = expected (bismuth effect). Context changes the answer.'
+      ]
+    },
+    {
+      section: 'lifestyle',
+      front: { icon: '\uD83E\uDDF2\uD83D\uDC8A', title: 'Cholestyramine (Questran)', subtitle: 'Bile acid sequestrant — binds EVERYTHING' },
+      image: null,
+      notes: [
+        'WHAT IT DOES: Binds bile acids in the GI tract like a sponge. Used for diarrhea caused by BILE SALT MALABSORPTION — seen in Crohn disease and after ileal resection (the ileum normally reabsorbs bile).',
+        'WHY IT CAUSES DIARRHEA RELIEF: Excess bile acids in the colon irritate the mucosa and pull water in (osmotic effect). Cholestyramine traps them before they reach the colon.',
+        'THE BIG DRUG INTERACTION: Cholestyramine binds MANY drugs in the GI tract, preventing their absorption. This is the most interaction-heavy drug in the class.',
+        'TIMING IS CRITICAL: Give other medications 1 HOUR BEFORE or 4-6 HOURS AFTER cholestyramine. This is a LONGER separation than sucralfate (2 hrs) or antacids (1-2 hrs). Heavily tested.',
+        'WHAT IT DEPLETES: Fat-soluble vitamins A, D, E, K. Bile is needed for fat absorption. No bile = no fat absorption = no fat-soluble vitamins. Monitor for deficiency signs.',
+        'ALSO CAUSES CONSTIPATION: Ironic — it treats diarrhea but can overshoot into constipation. It\'s on the professor\'s 13-drug constipation list.',
+        'WHAT TO TEACH: Mix powder with liquid (don\'t take dry — esophageal irritation). Take other meds on schedule around it. Report easy bruising (vitamin K depletion = bleeding risk).',
+        'EXAM PAIR: Cholestyramine = longest drug separation (1 hr before / 4-6 hrs after). Sucralfate = 2 hrs. Antacids = 1-2 hrs. Probiotics + antibiotics = 2 hrs.'
+      ]
+    },
+    {
+      section: 'lifestyle',
+      front: { icon: '\uD83D\uDEBD\uD83D\uDCCB', title: '13 Drugs That Cause Constipation', subtitle: 'Professor\'s full assessment list — know them ALL' },
+      image: null,
+      notes: [
+        '#1 OPIOID ANALGESICS — The #1 cause of drug-induced constipation. EVERY patient on opioids needs a bowel regimen (usually docusate + stimulant laxative). This is a nursing PRIORITY.',
+        '#2-3 ANTACIDS: Aluminum hydroxide AND calcium carbonate both cause constipation. Magnesium is the opposite (diarrhea). Mnemonic: AlumiNUM = NUMbs the bowels.',
+        '#4 ANTICHOLINERGICS — Block parasympathetic = decreased GI motility. Includes atropine, scopolamine, benztropine, oxybutynin, and many more. Huge drug class.',
+        '#5 CALCIUM CHANNEL BLOCKERS — Especially verapamil. Smooth muscle relaxation includes the GI tract = slower motility.',
+        '#6 CLOZAPINE — Atypical antipsychotic. Can cause life-threatening constipation/ileus. Unique among antipsychotics for severity.',
+        '#7 DIURETICS — Fluid loss = harder, drier stools. Encourage fluid intake.',
+        '#8 IRON SUPPLEMENTS — Classic. Also turns stool BLACK (don\'t confuse with GI bleeding). Take with vitamin C (increases absorption), take between meals.',
+        '#9 PHENOTHIAZINES — Antipsychotics (prochlorperazine, chlorpromazine). Anticholinergic properties slow the gut.',
+        '#10 CHOLESTYRAMINE/COLESTIPOL — Bile acid sequestrants. Binding bile = less water in colon.',
+        '#11 SUCRALFATE — Contains aluminum. Same mechanism as aluminum antacids.',
+        '#12 TRICYCLIC ANTIDEPRESSANTS — Amitriptyline, nortriptyline. Strong anticholinergic properties.',
+        '#13 VINCRISTINE — Chemotherapy agent. Neurotoxicity affects GI nerve plexus = paralytic ileus.',
+        'NURSING ASSESSMENT: Before giving ANY laxative, check what other drugs the patient is on. If they\'re on 2-3 constipating drugs, constipation is EXPECTED — you need prophylaxis, not just rescue.'
       ]
     },
   ]

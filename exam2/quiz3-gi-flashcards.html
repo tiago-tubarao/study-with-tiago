@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz 3 GI Visual Flashcards — Study with Tiago</title>
-  <meta name="description" content="22 hand-crafted visual flashcards for Pharmacology Quiz 3: GI System Drugs. Kawaii images + ADHD-friendly teaching notes. Ch 34-40.">
+  <meta name="description" content="31 hand-crafted visual flashcards for Pharmacology Quiz 3: GI System Drugs. Kawaii images + ADHD-friendly teaching notes. Ch 34-40.">
   <meta property="og:title" content="Quiz 3 GI Visual Flashcards | Study with Tiago">
-  <meta property="og:description" content="22 custom Gemini images with teaching notes. H2 Blockers, PPIs, Antacids, Antiemetics, Laxatives, Antidiarrheals — every testable concept visualized.">
+  <meta property="og:description" content="31 visual flashcards with teaching notes. H2 Blockers, PPIs, Antacids, Antiemetics, Laxatives, Antidiarrheals, IBS Drugs, GERD Lifestyle — every testable concept.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Study with Tiago">
   <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png">
@@ -731,9 +731,17 @@
       badge.textContent = '';
     }
 
-    document.getElementById('fcBackImage').src = card.image;
-    document.getElementById('fcBackImage').alt = card.front.title;
-    document.getElementById('fcBackTitle').textContent = 'What You\'re Seeing \u2014 ' + card.front.title;
+    var backImg = document.getElementById('fcBackImage');
+    if (card.image) {
+      backImg.src = card.image;
+      backImg.alt = card.front.title;
+      backImg.style.display = 'block';
+      document.getElementById('fcBackTitle').textContent = 'What You\'re Seeing \u2014 ' + card.front.title;
+    } else {
+      backImg.src = '';
+      backImg.style.display = 'none';
+      document.getElementById('fcBackTitle').textContent = 'Key Teaching Points \u2014 ' + card.front.title;
+    }
     var notesEl = document.getElementById('fcNotes');
     notesEl.innerHTML = '';
     card.notes.forEach(function(n) {
