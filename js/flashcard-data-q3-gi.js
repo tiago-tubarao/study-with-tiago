@@ -356,7 +356,7 @@ window.FLASHCARD_DATA_Q3_GI = {
     {
       section: 'ibs',
       front: { icon: '\u2640\uFE0F\u26A0\uFE0F', title: 'Alosetron (Lotronex)', subtitle: 'FEMALES ONLY — Black Box — REMS required' },
-      image: null,
+      image: 'quiz3-gi-images/25_alosetron_lotronex.png',
       notes: [
         'WHAT IT DOES: 5-HT3 serotonin antagonist — slows colonic transit, reduces visceral pain. Same receptor as ondansetron but used for IBS-D, NOT nausea.',
         'WHO GETS IT: FEMALES ONLY with SEVERE IBS-D (diarrhea-predominant) who have FAILED all conventional therapy. NOT for males. NOT for mild IBS. NOT for acute diarrhea.',
@@ -370,7 +370,7 @@ window.FLASHCARD_DATA_Q3_GI = {
     {
       section: 'ibs',
       front: { icon: '\uD83D\uDCA7\uD83E\uDDEA', title: 'Lubiprostone (Amitiza)', subtitle: 'Chloride channel activator — newer constipation agent' },
-      image: null,
+      image: 'quiz3-gi-images/26_lubiprostone_amitiza.png',
       notes: [
         'WHAT IT DOES: Activates chloride channels (ClC-2) on intestinal epithelial cells. This pulls CHLORIDE into the intestinal lumen, and water follows osmotically. Result: increased intestinal fluid secretion + stimulated motility.',
         'WHY IT\'S DIFFERENT: Unlike traditional laxatives (stimulants, osmotics, bulk-forming), lubiprostone works by a completely different mechanism — it\'s a prostone, a fatty acid derivative. This means it works even when traditional laxatives fail.',
@@ -386,7 +386,7 @@ window.FLASHCARD_DATA_Q3_GI = {
     {
       section: 'lifestyle',
       front: { icon: '\uD83C\uDF3F\u2705', title: 'GERD Lifestyle Modifications', subtitle: 'FIRST LINE — Try these BEFORE starting medications' },
-      image: null,
+      image: 'quiz3-gi-images/29_gerd_lifestyle.png',
       notes: [
         'THE PRIORITY: Per Dr. Lee — lifestyle changes are FIRST-LINE for GERD. Before ANY medication, try these. This is a nursing priority question — "which intervention FIRST?"',
         'RULE 1: Do NOT lie down for 1-2 HOURS after eating. Gravity prevents reflux. This is the most commonly tested lifestyle modification.',
@@ -402,7 +402,7 @@ window.FLASHCARD_DATA_Q3_GI = {
     {
       section: 'lifestyle',
       front: { icon: '\uD83D\uDEAC\u2757', title: 'Smoking + Ulcers: Dual Mechanism', subtitle: 'Increases acid AND decreases blood flow' },
-      image: null,
+      image: 'quiz3-gi-images/30_smoking_ulcers.png',
       notes: [
         'MECHANISM 1 (RED): Smoking INCREASES gastric acid secretion. Nicotine stimulates parietal cells to pump out more HCl. More acid = more mucosal damage.',
         'MECHANISM 2 (BLUE): Smoking DECREASES mucosal blood flow. Nicotine causes vasoconstriction of gastric blood vessels. Less blood flow = less oxygen and nutrients for healing.',
@@ -416,7 +416,7 @@ window.FLASHCARD_DATA_Q3_GI = {
     {
       section: 'lifestyle',
       front: { icon: '\uD83E\uDE78\u26D4', title: 'Bismuth: NEVER Alone for Ulcers', subtitle: 'Causes SERIOUS BLEEDING if used without combo therapy' },
-      image: null,
+      image: 'quiz3-gi-images/31_bismuth_warning.png',
       notes: [
         'THE DANGER: Bismuth subsalicylate (Pepto-Bismol) can cause SERIOUS BLEEDING when used ALONE in patients with ulcers. The salicylate component has antiplatelet effects — it thins the blood at the ulcer site.',
         'THE RULE: Bismuth must ONLY be used as part of TRIPLE or QUADRUPLE therapy — combined with antibiotics + acid reducer. Never as monotherapy for ulcers.',
@@ -430,7 +430,7 @@ window.FLASHCARD_DATA_Q3_GI = {
     {
       section: 'lifestyle',
       front: { icon: '\uD83E\uDDF2\uD83D\uDC8A', title: 'Cholestyramine (Questran)', subtitle: 'Bile acid sequestrant — binds EVERYTHING' },
-      image: null,
+      image: 'quiz3-gi-images/27_cholestyramine_questran.png',
       notes: [
         'WHAT IT DOES: Binds bile acids in the GI tract like a sponge. Used for diarrhea caused by BILE SALT MALABSORPTION — seen in Crohn disease and after ileal resection (the ileum normally reabsorbs bile).',
         'WHY IT CAUSES DIARRHEA RELIEF: Excess bile acids in the colon irritate the mucosa and pull water in (osmotic effect). Cholestyramine traps them before they reach the colon.',
@@ -445,7 +445,7 @@ window.FLASHCARD_DATA_Q3_GI = {
     {
       section: 'lifestyle',
       front: { icon: '\uD83D\uDEBD\uD83D\uDCCB', title: '13 Drugs That Cause Constipation', subtitle: 'Professor\'s full assessment list — know them ALL' },
-      image: null,
+      image: 'quiz3-gi-images/28_constipation_drug_list.png',
       notes: [
         '#1 OPIOID ANALGESICS — The #1 cause of drug-induced constipation. EVERY patient on opioids needs a bowel regimen (usually docusate + stimulant laxative). This is a nursing PRIORITY.',
         '#2-3 ANTACIDS: Aluminum hydroxide AND calcium carbonate both cause constipation. Magnesium is the opposite (diarrhea). Mnemonic: AlumiNUM = NUMbs the bowels.',
