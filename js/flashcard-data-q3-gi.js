@@ -1,9 +1,10 @@
 // ══════════════════════════════════════════════
-// Flashcard Data — 31 Visual Cards for NURS 210 Quiz 3
+// Flashcard Data — 33 Visual Cards for NURS 210 Quiz 3
 // GI System Drugs — Chapters 34-40
 // ADHD-optimized: emoji front connects to visual back
 // Back = Gemini image + teaching notes that explain what you SEE
 // Based on Dr. Barkley's dual coding + externalized WM research
+// Updated 2026-03-31: Added Scopolamine + Dronabinol cards from ATI extraction
 // ══════════════════════════════════════════════
 
 window.FLASHCARD_DATA_Q3_GI = {
@@ -151,7 +152,9 @@ window.FLASHCARD_DATA_Q3_GI = {
         'Crown = FIRST-LINE status. This is THE drug for chemotherapy-induced and post-operative nausea/vomiting. Blocks serotonin 5-HT3 receptors in the CTZ and vagal nerve terminals.',
         'TIMING IS EVERYTHING: 30 min BEFORE chemo, infuse IV over 15 min, repeat 4 hours AFTER. Mnemonic: "30 Before, 15 Slow, 4 After."',
         'Side effects per professor: DIARRHEA (most common), headache, and transient liver enzyme elevation (monitor LFTs). Generally WELL TOLERATED — mild to moderate effects.',
-        'Available forms: IV, PO, and ODT (orally disintegrating tablet — dissolves on the tongue, great for patients who can\'t swallow).',
+        'ATI BOXED WARNING: Risk of SEROTONIN SYNDROME if combined with SSRIs, SNRIs, TCAs, MAOIs, triptans, lithium, fentanyl, tramadol. Watch for: agitation, confusion, rapid HR, muscle rigidity.',
+        'ATI SAFETY: QT PROLONGATION risk — get baseline ECG. Monitor electrolytes (Na, K, Ca, Mg). TERATOGENIC — can cause septal defects and cleft palate in pregnancy.',
+        'Available forms: IV (max 16 mg/dose), PO, and ODT (orally disintegrating tablet — dissolves on the tongue, great for patients who can\'t swallow). Also oral film and IM.',
         'ATI TRAP: Ondansetron does NOT cause tardive dyskinesia or EPS — that\'s METOCLOPRAMIDE. Don\'t confuse them!'
       ]
     },
@@ -165,8 +168,9 @@ window.FLASHCARD_DATA_Q3_GI = {
         'YELLOW = PHOTOSENSITIVITY: educate on sun protection — sunscreen, protective clothing, avoid prolonged sun exposure.',
         'BLUE = ORTHOSTATIC HYPOTENSION: blood pressure drops when standing. Teach: change positions SLOWLY, sit on edge of bed before standing.',
         'PURPLE = Q/T WAVE CHANGES on ECG: monitor cardiac rhythm. This is why you don\'t just hand this drug out casually.',
-        'Also: anticholinergic effects (blurred vision, dry mouth, urinary retention). PO or IM preferred routes.',
-        'RED SKULL: Children <2 years = FATAL RESPIRATORY DEPRESSION. Never give to this age group.'
+        'Also: anticholinergic effects (blurred vision, dry mouth, urinary retention). PO, rectal, or IM preferred routes. NEVER give subcutaneous — causes tissue damage.',
+        'ATI: Risk of NEUROLEPTIC MALIGNANT SYNDROME (NMS) — fever, muscle rigidity, altered mental status, variable BP, tachycardia. Also cholestatic jaundice + bone marrow suppression.',
+        'RED SKULL: Children <2 years = FATAL RESPIRATORY DEPRESSION (BOXED WARNING + KIDs list). Beers Criteria in elderly. Never give to these groups.'
       ]
     },
     {
@@ -192,6 +196,8 @@ window.FLASHCARD_DATA_Q3_GI = {
         'BROKEN SHIELD over birth control pills = aprepitant DECREASES oral contraceptive effectiveness. Women MUST use backup contraception during treatment. This is a major teaching point.',
         'SHRINKING WARFARIN pill = aprepitant DECREASES warfarin effectiveness. Monitor INR closely. Report unusual bruising or bleeding.',
         'Administration: Day 1 = 1 hour before chemo. Days 2-3 = morning dose. Often part of a triple regimen: aprepitant + ondansetron + dexamethasone.',
+        'ATI SAFETY: STEVENS-JOHNSON SYNDROME risk — monitor for any rash or skin changes. Also ANAPHYLAXIS risk — have emergency equipment ready.',
+        'ATI INTERACTION: Do NOT use with PIMOZIDE — risk of torsades de pointes. Also decreases PHENYTOIN effectiveness.',
         'It\'s a CYP3A4 substrate AND inhibitor — lots of interaction potential. Also increases dexamethasone and methylprednisolone levels (dose reduction needed for those).'
       ]
     },
@@ -206,7 +212,7 @@ window.FLASHCARD_DATA_Q3_GI = {
         'TWO superpowers shown: (1) Antiemetic — blocks dopamine in the CTZ, and (2) Prokinetic — increases gastric emptying. It is the ONLY antiemetic that also speeds up the stomach.',
         'MAX 12 WEEKS of use. Risk of tardive dyskinesia increases with duration and cumulative dose.',
         'Used for: diabetic gastroparesis (stomach empties too slowly), GERD, N/V.',
-        'CONTRAINDICATED in Parkinson disease — it blocks dopamine, which would make PD worse.',
+        'CONTRAINDICATED in: Parkinson disease (blocks dopamine = PD worse), GI OBSTRUCTION (ATI Safety Alert: can cause severe pain and intestinal rupture with mechanical obstruction — must determine cause BEFORE giving), GI bleed, seizure disorders, hypertension.',
         'Mnemonic: REGLANd of no return — TD may be irreversible after 12 weeks.',
         'Teaching: Report ANY involuntary facial movements, lip smacking, or tongue movements IMMEDIATELY.'
       ]
@@ -349,6 +355,38 @@ window.FLASHCARD_DATA_Q3_GI = {
         'PANEL 4 — REFRACTORY/BREAKTHROUGH: Olanzapine (atypical antipsychotic) for breakthrough chemo N/V. Dronabinol (synthetic THC, Schedule III) for refractory cases.',
         'THE PRIORITY RULE: Give ALL antiemetics 30-60 minutes BEFORE the nausea-causing event. Prevention > treatment. This is heavily tested.',
         'NURSING PRIORITY: Always assess the CAUSE of nausea before medicating. Is it medication side effect? Obstruction? Infection? Increased ICP? The drug choice depends on the cause.'
+      ]
+    },
+
+    // ═══ NEW ATI ANTIEMETIC CARDS (2026-03-31) ═══
+    {
+      section: 'antiemetics',
+      front: { icon: '\uD83E\uDE79\uD83D\uDC42', title: 'Scopolamine (Transderm Scop)', subtitle: 'Anticholinergic — patch behind ear, motion sickness + PONV' },
+      image: 'quiz3-gi-images/32_scopolamine_transderm.png',
+      notes: [
+        'WHAT IT DOES: Anticholinergic — inhibits ACh release in the CNS, blocks M1 receptors. Used for MOTION SICKNESS and PONV (postoperative nausea/vomiting). This is THE motion sickness drug.',
+        'HOW TO APPLY: Transdermal patch behind the EAR (mastoid area). Apply at least 4 HOURS before travel. For surgery: apply the EVENING BEFORE. Area must be clean, dry, and hairless. Press firmly.',
+        'PATCH LASTS 3 DAYS. NOT affected by water or showering. But MUST DISCONTINUE BEFORE MRI — metal layer in patch can heat up and cause BURNS. This is a unique safety point.',
+        'ANTICHOLINERGIC SIDE EFFECTS (the "Can\'t See, Can\'t Pee, Can\'t Spit, Can\'t Sh*t" mnemonic): Blurred vision, urinary hesitancy/retention, dry mouth, constipation. Also tachycardia and dilated pupils.',
+        'WASH HANDS before AND after handling the patch. Do NOT touch eyes after — scopolamine causes pupil dilation on contact. Use ice chips or sugarless gum for dry mouth.',
+        'WHO TO AVOID: Elderly (confusion risk — Beers Criteria), glaucoma (angle-closure — increases intraocular pressure), BPH, GI obstruction, cardiac disease, myasthenia gravis.',
+        'ATI SAFETY: Risk of ANTICHOLINERGIC TOXIDROME — flushed skin, tachycardia, agitation, confusion, urinary retention. Also OVERHEATING in hot weather (can\'t sweat properly). Monitor body temperature.',
+        'DRUG INTERACTIONS: Additive effects with other anticholinergics, antihistamines, antidepressants, opioids, alcohol, sedatives. May slow GI tract = can affect absorption of PO medications.'
+      ]
+    },
+    {
+      section: 'antiemetics',
+      front: { icon: '\uD83C\uDF3F\uD83D\uDC8A', title: 'Dronabinol (Marinol)', subtitle: 'Cannabinoid — Schedule III — LAST RESORT for chemo N/V' },
+      image: 'quiz3-gi-images/33_dronabinol_marinol.png',
+      notes: [
+        'WHAT IT IS: Synthetic THC (delta-9-tetrahydrocannabinol). Schedule III CONTROLLED SUBSTANCE. Only used for CINV in clients who FAILED all other antiemetics. This is a LAST RESORT drug — never first-line.',
+        'HOW IT WORKS: Binds to cannabinoid receptors in different parts of the CNS. Reduces nausea/vomiting AND increases appetite (used in AIDS wasting too, but that\'s not on this exam).',
+        'SIDE EFFECTS (CNS-heavy): Dysphoria (sadness), sedation, confusion, euphoria, dry mouth (xerostomia), hypotension. Think: it\'s THC — same effects as marijuana.',
+        'ADVERSE EFFECTS: SEIZURES (serious). CANNABINOID HYPEREMESIS SYNDROME (CHS) — paradoxical: the anti-nausea drug causes SEVERE nausea/vomiting + compulsive hot bathing. Report immediately.',
+        'WHO TO SCREEN: Assess for CANNABIS USE DISORDER history (substance abuse risk). Assess hepatic AND renal function. Check pregnancy status — not safe in pregnancy.',
+        'WHO TO AVOID: Clients with psychiatric history (can worsen anxiety, psychosis, paranoia). Avoid with other CNS depressants, anticholinergics. Caution with cardiac disease (tachycardia risk).',
+        'NURSING ACTIONS: Monitor for substance misuse. Assess mental status (mood changes, confusion). Monitor vital signs (hypotension, tachycardia). Educate: NO driving — causes significant CNS impairment.',
+        'EXAM LOGIC: "Schedule III antiemetic" = DRONABINOL. "Synthetic THC" = DRONABINOL. "Failed conventional therapy" = DRONABINOL. "Cannabinoid hyperemesis" = DRONABINOL. Four unique identifiers.'
       ]
     },
 
