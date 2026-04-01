@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════
-// Flashcard Data — 35 Visual Cards for NURS 210 Quiz 3
+// Flashcard Data — 37 Visual Cards for NURS 210 Quiz 3
 // GI System Drugs — Chapters 34-40
 // ADHD-optimized: emoji front connects to visual back
 // Back = Gemini image + teaching notes that explain what you SEE
@@ -356,6 +356,36 @@ window.FLASHCARD_DATA_Q3_GI = {
         'PANEL 4 — REFRACTORY/BREAKTHROUGH: Olanzapine (atypical antipsychotic) for breakthrough chemo N/V. Dronabinol (synthetic THC, Schedule III) for refractory cases.',
         'THE PRIORITY RULE: Give ALL antiemetics 30-60 minutes BEFORE the nausea-causing event. Prevention > treatment. This is heavily tested.',
         'NURSING PRIORITY: Always assess the CAUSE of nausea before medicating. Is it medication side effect? Obstruction? Infection? Increased ICP? The drug choice depends on the cause.'
+      ]
+    },
+
+    // ═══ DIMENHYDRINATE + OLANZAPINE (gap drugs) ═══
+    {
+      section: 'antiemetics',
+      front: { icon: '\u2708\uFE0F\uD83D\uDC8A', title: 'Dimenhydrinate (Dramamine)', subtitle: 'H1 antihistamine — motion sickness, MORE sedating' },
+      image: 'quiz3-gi-images/36_dimenhydrinate_dramamine.png',
+      notes: [
+        'WHAT IT DOES: H1 blocker — suppresses vestibular stimulation and CTZ activity. Classic OTC motion sickness drug. Same class as meclizine but MORE SEDATING.',
+        'TIMING: Take 30 min BEFORE travel. Repeat every 4-6 hours as needed. Short acting compared to meclizine (which lasts 24 hrs).',
+        'SIDE EFFECTS: HEAVY SEDATION/drowsiness (more than meclizine), CONSTIPATION (anticholinergic effect), dry mouth, blurred vision.',
+        'CONTRAINDICATIONS: Neonates, breastfeeding. Caution with CNS depressants — additive sedation with alcohol, opioids, benzos.',
+        'COMPARISON TO MECLIZINE: Dramamine = MORE sedating, shorter acting, cheaper OTC. Meclizine = LESS sedating, lasts 24 hrs, better for ongoing vertigo. Exam will test this difference.',
+        'TEACHING: Avoid activities requiring alertness. Increase fluid and fiber (constipation prevention). Do NOT combine with alcohol.',
+        'EXAM LOGIC: "Motion sickness" + "sedation as main concern" = DIMENHYDRINATE. "OTC motion sickness pill" = DIMENHYDRINATE. If they want LESS sedation = switch to meclizine.'
+      ]
+    },
+    {
+      section: 'antiemetics',
+      front: { icon: '\uD83E\uDDE0\uD83D\uDC8A', title: 'Olanzapine (Zyprexa)', subtitle: 'Atypical antipsychotic — breakthrough chemo N/V' },
+      image: 'quiz3-gi-images/37_olanzapine_zyprexa.png',
+      notes: [
+        'WHAT IT DOES: Atypical antipsychotic that blocks BOTH dopamine (D2) AND serotonin (5-HT3) receptors. Added to standard antiemetic regimen for BREAKTHROUGH chemo N/V when ondansetron alone isn\'t enough.',
+        'DOSE: LOW dose (5-10 mg) for antiemetic use — much lower than psychiatric doses. This is an off-label but evidence-based use.',
+        'ADVERSE EFFECTS — METABOLIC SYNDROME: Weight gain, hyperglycemia (high blood sugar), dyslipidemia (high cholesterol/triglycerides). Monitor blood glucose and weight.',
+        'BLACK BOX WARNING: Increased mortality in elderly with DEMENTIA-RELATED PSYCHOSIS. Do NOT use for dementia patients. This is for chemo N/V only.',
+        'OTHER EFFECTS: Sedation (can be therapeutic — patients rest), orthostatic hypotension (rise slowly).',
+        'WHEN TO USE: Added to ondansetron + dexamethasone for HIGHLY emetogenic chemo. It\'s the rescue drug when standard triple therapy isn\'t controlling N/V.',
+        'EXAM LOGIC: "Breakthrough chemo N/V" = OLANZAPINE. "Atypical antipsychotic as antiemetic" = OLANZAPINE. "Metabolic syndrome from antiemetic" = OLANZAPINE. "Black Box dementia" = OLANZAPINE.'
       ]
     },
 
