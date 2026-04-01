@@ -35,11 +35,11 @@ function calcScores(deckId, dataSource) {
     ? data.videos.filter(v => v.id === deckId)
     : data.videos;
 
-  let totalBP = 0, covered = 0, weak = 0, missing = 0, reviewed = 0;
+  let totalBP = 0, covered = 0, weak = 0, missing = 0, reviewed = 0, untracked = 0;
 
   videos.forEach(v => {
     if (v.notRecorded) {
-      (v.slidesHave || []).forEach(() => { totalBP++; weak++; });
+      (v.slidesHave || []).forEach(() => { totalBP++; untracked++; });
     } else {
       v.said.forEach((s, i) => {
         totalBP++;
@@ -50,7 +50,7 @@ function calcScores(deckId, dataSource) {
     v.gaps.forEach(() => { totalBP++; missing++; });
   });
 
-  return { totalBP, covered, weak, missing, reviewed };
+  return { totalBP, covered, weak, missing, reviewed, untracked };
 }
 
 // ── Render score bar into container ──
@@ -59,12 +59,14 @@ function renderScores(containerId, deckId, dataSource) {
   const s = calcScores(deckId, dataSource);
   const el = document.getElementById(containerId);
   if (!el) return;
-  el.innerHTML = `
-    ${ring(s.covered, s.totalBP, 'var(--green)', 'Covered')}
-    ${ring(s.weak, s.totalBP, 'var(--orange)', 'Weak')}
-    ${ring(s.missing, s.totalBP, 'var(--red)', 'Missing')}
-    ${ring(s.reviewed, s.totalBP, 'var(--teal)', 'Reviewed')}
-  `;
+  let html = ring(s.covered, s.totalBP, 'var(--green)', 'Covered');
+  html += ring(s.weak, s.totalBP, 'var(--orange)', 'Weak');
+  html += ring(s.missing, s.totalBP, 'var(--red)', 'Missing');
+  if (s.untracked > 0) {
+    html += ring(s.untracked, s.totalBP, '#adb5bd', 'Study Topics');
+  }
+  html += ring(s.reviewed, s.totalBP, 'var(--teal)', 'Reviewed');
+  el.innerHTML = html;
 }
 
 // ── Toggle checkbox ──

@@ -79,7 +79,7 @@
   </div>
 
   <div class="reset-wrap">
-    <button class="reset-btn" onclick="if(confirm('Reset all checkmarks and confidence for this page?')){LS.clear();location.reload();}">Reset Progress</button>
+    <button class="reset-btn" onclick="if(confirm('Reset all checkmarks and confidence for this page?')){Object.keys(localStorage).filter(k=>k.startsWith('swt_deck1_')).forEach(k=>localStorage.removeItem(k));location.reload();}">Reset Progress</button>
   </div>
 </div>
 

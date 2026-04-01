@@ -520,6 +520,7 @@ button.conf-dot,
   line-height: 1;
 }
 
+.conf-dot:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 .conf-dot:hover { transform: scale(1.2); }
 .conf-dot.sel { border-color: transparent; transform: scale(1.15); }
 .conf-dot.sel-g { background: #51cf66; box-shadow: 0 0 8px rgba(81,207,102,0.5); }
@@ -629,6 +630,7 @@ button.conf-dot,
   transition: all 0.15s;
 }
 
+.quiz-opt:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 .quiz-opt:hover { border-color: var(--teal); background: #f1f8f6; }
 .quiz-opt:active { transform: scale(0.98); }
 .quiz-opt.right { background: #d3f9d8; border-color: var(--green); }
@@ -892,7 +894,8 @@ button.conf-dot,
 @media (max-width: 700px) {
   .compare-row { grid-template-columns: 1fr; gap: 6px; }
   .compare-header-row { display: none; }
-  .cell-syllabus { display: none; }
+  .cell-syllabus { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 8px; font-size: 0.85em; }
+  .cell-syllabus::before { content: 'Syllabus: '; font-weight: 600; color: var(--muted); }
   .cell-video { border-left: none; padding-left: 0; border-top: none; padding-top: 0; }
   .cell-status { text-align: left; }
   .cta-title { font-size: 1.2em; }
@@ -1153,6 +1156,7 @@ button.conf-dot,
 }
 
 .sq-opt:active:not(:disabled) { transform: scale(0.99); }
+.sq-opt:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 
 .sq-letter {
   font-weight: 800;

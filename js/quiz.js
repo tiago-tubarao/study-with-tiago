@@ -4,9 +4,16 @@
 
 let qItems = [], qIdx = 0, qRight = 0, qTotal = 0, qDone = false;
 
+function _quizData() {
+  return (typeof STUDY_DATA !== 'undefined' && STUDY_DATA) ||
+         (typeof STUDY_DATA_AH !== 'undefined' && STUDY_DATA_AH) || null;
+}
+
 function openQuiz() {
+  const data = _quizData();
+  if (!data) return;
   qItems = [];
-  STUDY_DATA.videos.filter(v => !v.notRecorded && v.said.length > 0).forEach(v => {
+  data.videos.filter(v => !v.notRecorded && v.said && v.said.length > 0).forEach(v => {
     v.said.forEach(s => qItems.push({ name: s.name, deck: v.label, detail: s.detail, ts: s.ts }));
   });
   if (qItems.length === 0) return;
@@ -26,9 +33,10 @@ function showQ() {
   const item = qItems[qIdx];
   document.getElementById('qDrug').textContent = item.name;
   document.getElementById('qReveal').style.display = 'none';
-  const opts = STUDY_DATA.videos.filter(v => v.said.length > 0).map(v => v.label);
+  const data = _quizData();
+  const opts = data.videos.filter(v => !v.notRecorded && v.said && v.said.length > 0).map(v => v.label);
   document.getElementById('qOpts').innerHTML = opts.map(o =>
-    `<div class="quiz-opt" onclick="ansQ(this,'${o.replace(/'/g, "\\'")}','${item.deck.replace(/'/g, "\\'")}')">${o}</div>`
+    `<button type="button" class="quiz-opt" onclick="ansQ(this,'${o.replace(/'/g, "\\'")}','${item.deck.replace(/'/g, "\\'")}')">${o}</button>`
   ).join('');
   document.getElementById('qScore').textContent = `${qRight}/${qTotal} correct`;
 }

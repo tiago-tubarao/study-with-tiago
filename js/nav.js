@@ -32,10 +32,10 @@
         <a href="${base}index.html" class="nav-brand">
           <span class="nav-logo">Study with Tiago</span>
         </a>
-        <button class="nav-toggle" onclick="this.closest('.site-nav').classList.toggle('open')" aria-label="Menu">
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks" onclick="var nav=this.closest('.site-nav');nav.classList.toggle('open');this.setAttribute('aria-expanded',nav.classList.contains('open'))">
           <span></span><span></span><span></span>
         </button>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
           ${links.map(l => `<a href="${l.href}" class="${isActive(l.href) ? 'active' : ''}" ${l.external ? 'target="_blank" rel="noopener"' : ''}>${l.label}${l.external ? ' ↗' : ''}</a>`).join('')}
         </div>
       </div>

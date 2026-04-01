@@ -22,7 +22,29 @@
   function getShareText() {
     var p = location.pathname;
     var base = 'https://tiago-tubarao.github.io/study-with-tiago/';
+    var isAH = p.includes('/exam3/');
 
+    // Adult Health Exam 3 pages
+    if (isAH) {
+      if (p.includes('flashcards')) {
+        return '🩺 FREE Adult Health flashcards — hematology, diabetes, endocrine, renal\n\n🔗 ' + base + 'exam3/flashcards.html';
+      }
+      if (p.includes('diabetes')) {
+        return '💉 Adult Health Diabetes review — DKA, HHS, insulins, oral agents + practice questions\n\n🔗 ' + base + 'exam3/diabetes.html';
+      }
+      if (p.includes('endocrine')) {
+        return '🦋 Adult Health Endocrine review — thyroid, pituitary, adrenal disorders + practice questions\n\n🔗 ' + base + 'exam3/endocrine.html';
+      }
+      if (p.includes('hematology')) {
+        return '🩸 Adult Health Hematology review — anemias, blood disorders, transfusions + practice questions\n\n🔗 ' + base + 'exam3/hematology.html';
+      }
+      if (p.includes('renal')) {
+        return '🫘 Adult Health Renal review — AKI, CKD, dialysis, kidney stones + practice questions\n\n🔗 ' + base + 'exam3/renal.html';
+      }
+      return '🩺 FREE Adult Health Exam 3 study hub — hematology, diabetes, endocrine, renal + practice questions\n\n🔗 ' + base + 'exam3/';
+    }
+
+    // Pharmacology Exam 2 pages
     if (p.includes('flashcards')) {
       return '🃏 Exam day? Here are 66 FREE flip flashcards — every drug on the blueprint.\n\n'
         + '✅ Antidotes, mnemonics, key facts\n'
@@ -46,18 +68,19 @@
       return '📋 FREE Pharmacology Exam 2 study hub — 486+ questions, 4 video lectures, confidence tracking\n\n🔗 ' + base + 'exam2/';
     }
     // Main page / default
-    return '📚 Pharm exam coming up? This nursing student built a FREE study site with videos, flashcards, 486+ practice questions & a study bundle\n\n'
+    return '📚 Nursing exam coming up? This student built a FREE study site with videos, flashcards, 650+ practice questions & study bundles\n\n'
       + '🃏 Exam Day Flashcards\n'
       + '📝 NCLEX-style questions with rationales\n'
-      + '🎥 4 full video lectures\n'
-      + '📦 Free PDF study bundle\n\n'
+      + '🎥 9 full video lectures\n'
+      + '📦 Free PDF study bundles\n\n'
       + '🔗 ' + base;
   }
 
   btn.addEventListener('click', async function() {
     var text = getShareText();
+    var isAH = location.pathname.includes('/exam3/');
     var shareData = {
-      title: 'Study with Tiago — Free Pharm Exam Prep',
+      title: isAH ? 'Study with Tiago — Free Adult Health Exam Prep' : 'Study with Tiago — Free Nursing Exam Prep',
       text: text,
       url: location.href
     };
