@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════
-// Flashcard Data — 33 Visual Cards for NURS 210 Quiz 3
+// Flashcard Data — 34 Visual Cards for NURS 210 Quiz 3
 // GI System Drugs — Chapters 34-40
 // ADHD-optimized: emoji front connects to visual back
 // Back = Gemini image + teaching notes that explain what you SEE
@@ -149,7 +149,7 @@ window.FLASHCARD_DATA_Q3_GI = {
       front: { icon: '\uD83C\uDFC6\uD83D\uDC8A', title: 'Ondansetron (Zofran)', subtitle: 'FIRST-LINE for chemo + post-op N/V' },
       image: 'quiz3-gi-images/10_ondansetron_first_line.png',
       notes: [
-        'Crown = FIRST-LINE status. This is THE drug for chemotherapy-induced and post-operative nausea/vomiting. Blocks serotonin 5-HT3 receptors in the CTZ and vagal nerve terminals.',
+        'Crown = FIRST-LINE status. This is THE drug for chemotherapy-induced and post-operative nausea/vomiting. Blocks serotonin 5-HT3 receptors in the CTZ and vagal nerve terminals. SAME CLASS: granisetron (Kytril), palonosetron (Aloxi) — all end in -SETRON. Same MOA, same side effects.',
         'TIMING IS EVERYTHING: 30 min BEFORE chemo, infuse IV over 15 min, repeat 4 hours AFTER. Mnemonic: "30 Before, 15 Slow, 4 After."',
         'Side effects per professor: DIARRHEA (most common), headache, and transient liver enzyme elevation (monitor LFTs). Generally WELL TOLERATED — mild to moderate effects.',
         'ATI BOXED WARNING: Risk of SEROTONIN SYNDROME if combined with SSRIs, SNRIs, TCAs, MAOIs, triptans, lithium, fentanyl, tramadol. Watch for: agitation, confusion, rapid HR, muscle rigidity.',
@@ -355,6 +355,22 @@ window.FLASHCARD_DATA_Q3_GI = {
         'PANEL 4 — REFRACTORY/BREAKTHROUGH: Olanzapine (atypical antipsychotic) for breakthrough chemo N/V. Dronabinol (synthetic THC, Schedule III) for refractory cases.',
         'THE PRIORITY RULE: Give ALL antiemetics 30-60 minutes BEFORE the nausea-causing event. Prevention > treatment. This is heavily tested.',
         'NURSING PRIORITY: Always assess the CAUSE of nausea before medicating. Is it medication side effect? Obstruction? Infection? Increased ICP? The drug choice depends on the cause.'
+      ]
+    },
+
+    // ═══ OCTREOTIDE (antidiarrheal — gap drug) ═══
+    {
+      section: 'antidiarrheals',
+      front: { icon: '\uD83D\uDC89\uD83E\uDDE0', title: 'Octreotide (Sandostatin)', subtitle: 'Synthetic somatostatin — secretory diarrhea + carcinoid' },
+      image: 'quiz3-gi-images/34_octreotide_sandostatin.png',
+      notes: [
+        'WHAT IT IS: Synthetic version of somatostatin — a hormone that INHIBITS many GI functions. It slows everything down: decreases GI motility, decreases secretions, decreases splanchnic blood flow.',
+        'INDICATIONS: (1) Secretory diarrhea (carcinoid tumors, VIPomas), (2) Acromegaly (excess growth hormone), (3) Esophageal variceal bleeding (decreases portal blood flow). For this exam: focus on the DIARRHEA use.',
+        'ADMINISTRATION: SubQ injection — ROTATE injection sites. Also available IV for acute variceal bleeding. NOT oral — peptide would be destroyed in the GI tract.',
+        'ADVERSE EFFECTS: GALLSTONES (most important — somatostatin inhibits gallbladder contraction = bile stasis = stones). Also BRADYCARDIA, hyperglycemia OR hypoglycemia (alters insulin/glucagon), nausea, abdominal pain.',
+        'WHAT THE NURSE MONITORS: Gallbladder symptoms (RUQ pain, N/V after fatty meals). Blood glucose (can swing either way). Heart rate (bradycardia). Thyroid function (long-term use can suppress TSH).',
+        'PATIENT TEACHING: Report any right upper quadrant pain. Monitor blood sugar if diabetic. Rotate injection sites. May need long-acting depot injection (Sandostatin LAR) monthly for chronic use.',
+        'EXAM LOGIC: "Synthetic somatostatin" = OCTREOTIDE. "Secretory diarrhea" = OCTREOTIDE. "Carcinoid tumor diarrhea" = OCTREOTIDE. "Gallstones as side effect" = OCTREOTIDE.'
       ]
     },
 
