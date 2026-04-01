@@ -84,12 +84,14 @@
       font-size: 1.4em;
       font-weight: 800;
       margin-bottom: 0.3em;
+      color: #1a1a2e;
     }
     .q3-gate-sub {
       font-size: 0.88em;
       opacity: 0.6;
       margin-bottom: 1.2em;
       line-height: 1.5;
+      color: #555;
     }
     .q3-gate-form {
       display: flex;
@@ -190,7 +192,7 @@
     .fc-filter.active { background: #2A9D8F; border-color: #2A9D8F; color: #fff; }
 
     /* ── Card ── */
-    .fc-counter { text-align: center; font-size: 0.8em; font-weight: 600; opacity: 0.5; margin-bottom: 0.5em; }
+    .fc-counter { text-align: center; font-size: 0.8em; font-weight: 600; opacity: 0.5; margin-bottom: 0.5em; color: #333; }
     .fc-card-stage {
       perspective: 1200px;
       max-width: 500px;
@@ -220,7 +222,8 @@
 
     /* ── Front ── */
     .fc-card-front {
-      background: var(--card-background-color, #fff);
+      background: #fff;
+      color: #1a1a2e;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -237,12 +240,14 @@
       font-weight: 800;
       margin-bottom: 0.2em;
       line-height: 1.2;
+      color: #1a1a2e;
     }
     .fc-card-subtitle {
       font-size: 0.88em;
       opacity: 0.55;
       line-height: 1.4;
       max-width: 320px;
+      color: #555;
     }
     .fc-card-section-pill {
       display: inline-block;
@@ -264,7 +269,8 @@
 
     /* ── Back ── */
     .fc-card-back {
-      background: var(--card-background-color, #fff);
+      background: #fff;
+      color: #333;
       transform: rotateY(180deg);
       box-shadow: 0 8px 32px rgba(0,0,0,0.08);
       border-top: 5px solid #2A9D8F;
@@ -296,7 +302,7 @@
       line-height: 1.55;
       padding: 0.5em 0;
       border-bottom: 1px solid rgba(0,0,0,0.04);
-      color: var(--color, #333);
+      color: #333;
     }
     .fc-back-note:last-child { border-bottom: none; }
 
@@ -452,20 +458,40 @@
     [data-theme="dark"] .fc-card-back,
     .dark-mode .fc-card-front,
     .dark-mode .fc-card-back { background: #1a1a2e; color: #e0e0e0; }
+    [data-theme="dark"] .fc-card-title,
+    .dark-mode .fc-card-title { color: #e0e0e0; }
+    [data-theme="dark"] .fc-card-subtitle,
+    .dark-mode .fc-card-subtitle { color: #adb5bd; }
+    [data-theme="dark"] .fc-back-note,
+    .dark-mode .fc-back-note { color: #d0d0d0; border-bottom-color: rgba(255,255,255,0.05); }
+    [data-theme="dark"] .fc-counter,
+    .dark-mode .fc-counter { color: #adb5bd; }
+    [data-theme="dark"] .fc-filter,
+    .dark-mode .fc-filter { background: #2d2d44; border-color: #444; color: #ccc; }
+    [data-theme="dark"] .fc-mode-btn,
+    .dark-mode .fc-mode-btn { background: #2d2d44; border-color: #444; color: #ccc; }
+    [data-theme="dark"] .fc-mode-btn.active,
+    .dark-mode .fc-mode-btn.active { background: #e0e0e0; color: #1a1a2e; }
     [data-theme="dark"] .fc-stats-bar,
-    .dark-mode .fc-stats-bar { background: #1a1a2e; }
+    .dark-mode .fc-stats-bar { background: #1a1a2e; color: #e0e0e0; }
     [data-theme="dark"] .fc-stat-bar,
     .dark-mode .fc-stat-bar { background: #2d2d44; }
     [data-theme="dark"] .fc-back-notes-title,
     .dark-mode .fc-back-notes-title { border-bottom-color: #2d2d44; }
-    [data-theme="dark"] .fc-back-note,
-    .dark-mode .fc-back-note { border-bottom-color: rgba(255,255,255,0.05); }
     [data-theme="dark"] .fc-back-image,
     .dark-mode .fc-back-image { background: #0d1117; }
     [data-theme="dark"] .q3-gate,
-    .dark-mode .q3-gate { background: #1a1a2e; }
+    .dark-mode .q3-gate { background: #1a1a2e; color: #e0e0e0; }
+    [data-theme="dark"] .q3-gate-sub,
+    .dark-mode .q3-gate-sub { color: #adb5bd; }
+    [data-theme="dark"] .fc-keyboard-hint,
+    .dark-mode .fc-keyboard-hint { color: #888; }
     [data-theme="dark"] .fc-keyboard-hint kbd,
     .dark-mode .fc-keyboard-hint kbd { background: #2d2d44; border-color: #444; color: #ccc; }
+    [data-theme="dark"] .fc-mastery-actions,
+    .dark-mode .fc-mastery-actions { color: #e0e0e0; }
+    [data-theme="dark"] .fc-reset-btn,
+    .dark-mode .fc-reset-btn { border-color: #444; color: #888; }
   </style>
   <link rel="icon" type="image/png" href="../assets/favicon.png">
 </head>
