@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════
-// Flashcard Data — 34 Visual Cards for NURS 210 Quiz 3
+// Flashcard Data — 35 Visual Cards for NURS 210 Quiz 3
 // GI System Drugs — Chapters 34-40
 // ADHD-optimized: emoji front connects to visual back
 // Back = Gemini image + teaching notes that explain what you SEE
@@ -155,6 +155,7 @@ window.FLASHCARD_DATA_Q3_GI = {
         'ATI BOXED WARNING: Risk of SEROTONIN SYNDROME if combined with SSRIs, SNRIs, TCAs, MAOIs, triptans, lithium, fentanyl, tramadol. Watch for: agitation, confusion, rapid HR, muscle rigidity.',
         'ATI SAFETY: QT PROLONGATION risk — get baseline ECG. Monitor electrolytes (Na, K, Ca, Mg). TERATOGENIC — can cause septal defects and cleft palate in pregnancy.',
         'Available forms: IV (max 16 mg/dose), PO, and ODT (orally disintegrating tablet — dissolves on the tongue, great for patients who can\'t swallow). Also oral film and IM.',
+        'ATI WARNING: ODT (orally disintegrating tablet) contains ASPARTAME — contraindicated in clients with PKU (phenylketonuria). Also: do NOT use with APOMORPHINE (risk of hypotension + decreased consciousness).',
         'ATI TRAP: Ondansetron does NOT cause tardive dyskinesia or EPS — that\'s METOCLOPRAMIDE. Don\'t confuse them!'
       ]
     },
@@ -355,6 +356,23 @@ window.FLASHCARD_DATA_Q3_GI = {
         'PANEL 4 — REFRACTORY/BREAKTHROUGH: Olanzapine (atypical antipsychotic) for breakthrough chemo N/V. Dronabinol (synthetic THC, Schedule III) for refractory cases.',
         'THE PRIORITY RULE: Give ALL antiemetics 30-60 minutes BEFORE the nausea-causing event. Prevention > treatment. This is heavily tested.',
         'NURSING PRIORITY: Always assess the CAUSE of nausea before medicating. Is it medication side effect? Obstruction? Infection? Increased ICP? The drug choice depends on the cause.'
+      ]
+    },
+
+    // ═══ MECLIZINE (antiemetic — motion sickness) ═══
+    {
+      section: 'antiemetics',
+      front: { icon: '\u26F5\uD83D\uDC8A', title: 'Meclizine (Antivert)', subtitle: 'H1 antihistamine — motion sickness + vertigo, LESS sedating' },
+      image: 'quiz3-gi-images/35_meclizine_antivert.png',
+      notes: [
+        'WHAT IT DOES: H1 antihistamine that suppresses the VESTIBULAR system — blocks signals from the inner ear that cause motion sickness and vertigo. Same class as dimenhydrinate (Dramamine) but LESS SEDATING.',
+        'INDICATIONS: (1) Motion sickness prevention, (2) Vertigo (Meniere\'s disease). ATI specifically mentions meclizine as the SAFER alternative for motion sickness compared to scopolamine (fewer anticholinergic effects).',
+        'TIMING: Take 1 HOUR before travel. Lasts up to 24 hours — longer duration than most motion sickness drugs. One dose covers a full day of travel.',
+        'SIDE EFFECTS: Sedation (LESS than diphenhydramine or dimenhydrinate — that\'s why it\'s preferred), dry mouth, blurred vision. Mild anticholinergic effects.',
+        'WHO TO AVOID: Children under 12 (safety not established). Caution in elderly (anticholinergic effects). Caution with BPH, glaucoma, asthma.',
+        'COMPARISON: Meclizine (Antivert) = LESS sedating, longer acting. Dimenhydrinate (Dramamine) = MORE sedating, shorter acting. Scopolamine = patch, strongest anticholinergic effects. For motion sickness on exam: meclizine is the go-to oral option.',
+        'OTC STATUS: Available over the counter — patients can self-treat. But still needs nurse education about drowsiness and not combining with alcohol/CNS depressants.',
+        'EXAM LOGIC: "Motion sickness" + "less sedating" = MECLIZINE. "Vertigo treatment" = MECLIZINE. "Safer than scopolamine for dizziness" = MECLIZINE (per ATI Safety When Dizzy box).'
       ]
     },
 
