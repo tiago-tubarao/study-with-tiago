@@ -9,6 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css?v=22">
   <style>
+    /* ── Override Pico CSS color variables for light mode ── */
+    .page-container {
+      --pico-color: #1a1a2e;
+      --pico-card-background-color: #fff;
+      --card-background-color: #fff;
+      color: #1a1a2e;
+    }
+
     /* ── Study Mode Page Styles ── */
     .study-hero {
       background: linear-gradient(135deg, #0B1D3A 0%, #1a365d 50%, #0d3b66 100%);
@@ -56,7 +64,7 @@
 
     /* ── Stats Panel ── */
     .study-stats {
-      background: var(--card-background-color, #fff);
+      background: #fff;
       border-radius: 1em;
       margin: 0 1em 1em;
       padding: 1em 1.2em;
@@ -173,7 +181,7 @@
 
     /* Front */
     .fc-card-front {
-      background: var(--card-background-color, #fff);
+      background: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -240,7 +248,7 @@
 
     /* Back */
     .fc-card-back {
-      background: var(--card-background-color, #fff);
+      background: #fff;
       transform: rotateY(180deg);
       padding: 1.3em 1.5em;
       overflow-y: auto;

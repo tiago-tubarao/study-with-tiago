@@ -14,6 +14,14 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css?v=23">
   <style>
+    /* ── Override Pico CSS color variables for light mode ── */
+    .page-container {
+      --pico-color: #1a1a2e;
+      --pico-card-background-color: #fff;
+      --card-background-color: #fff;
+      color: #1a1a2e;
+    }
+
     /* ── Hero ── */
     .q3-hero {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #2A9D8F 100%);
@@ -73,7 +81,7 @@
       max-width: 460px;
       margin: 2em auto;
       padding: 2em 1.5em;
-      background: var(--card-background-color, #fff);
+      background: #fff;
       border-radius: 1.2em;
       box-shadow: 0 8px 32px rgba(0,0,0,0.08);
       text-align: center;
@@ -153,7 +161,7 @@
       align-items: center;
       gap: 1em;
       padding: 0.8em 1.2em;
-      background: var(--card-background-color, #fff);
+      background: #fff;
       border-radius: 1em;
       margin: 0 1em 1em;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
