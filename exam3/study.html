@@ -155,6 +155,7 @@
       width: 100%;
       min-height: 360px;
       transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
     }
     .fc-card.flipped { transform: rotateY(180deg); }
@@ -162,6 +163,7 @@
       position: absolute;
       width: 100%;
       min-height: 360px;
+      -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       border-radius: 1.2em;
       border-top: 5px solid #2A9D8F;
@@ -398,6 +400,14 @@
       to { opacity: 1; transform: translateX(0); }
     }
 
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .fc-card { transition: none; }
+      .fc-slide-in { animation: none; }
+      .study-hero-glow { animation: none; }
+      .fc-rating-bar { transition: none; }
+    }
+
     /* ── Responsive ── */
     @media (max-width: 600px) {
       .study-hero { padding: 1.8em 1em 1.5em; }
@@ -449,7 +459,7 @@
     <div class="fc-filters" id="fcFilters"></div>
 
     <!-- Card -->
-    <div class="fc-card-stage" id="fcCardStage">
+    <div class="fc-card-stage" id="fcCardStage" role="button" tabindex="0" aria-label="Flashcard - tap to flip">
       <div class="fc-card" id="fcCard">
         <!-- FRONT -->
         <div class="fc-card-face fc-card-front" id="fcFront">

@@ -1,6 +1,6 @@
 // ══════════════════════════════════════════════
 // Confidence-Based Repetition Flashcards — Adult Health Exam 3
-// Got It / Study More mastery + Prev/Next/Shuffle navigation
+// 1-5 rating system with weighted repetition + mastered state
 // ══════════════════════════════════════════════
 
 (function() {
@@ -20,7 +20,9 @@
   function loadRatings() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
   }
-  function saveRatings(r) { localStorage.setItem(STORAGE_KEY, JSON.stringify(r)); }
+  function saveRatings(r) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(r)); } catch(e) {}
+  }
   function getCardKey(card) { return card.drugName.replace(/\s+/g, '_').toLowerCase(); }
 
   var ratings = loadRatings();
@@ -45,8 +47,10 @@
       var rating = ratings[getCardKey(card)];
       var weight;
       if (rating === undefined || rating === null) weight = 3;
-      else if (rating < 4) weight = 4;
-      else weight = 1;
+      else if (rating <= 2) weight = 5;
+      else if (rating === 3) weight = 3;
+      else if (rating === 4) weight = 1;
+      else weight = 0; // rating 5 = mastered, excluded from queue
       for (var i = 0; i < weight; i++) queue.push(idx);
     });
     // Shuffle
@@ -59,30 +63,48 @@
   function showCard() {
     isFlipped = false;
     renderCard();
+    // Hide rating bar until flipped
+    var ratingBar = document.getElementById('fcRatingBar');
+    if (ratingBar) ratingBar.classList.remove('visible');
   }
 
   function nextCard() {
     if (!queue.length) buildQueue();
+    var emptyEl = document.getElementById('fcEmpty');
+    var stageEl = document.getElementById('fcCardStage');
     if (!queue.length) {
-      document.getElementById('fcCardStage').style.display = 'none';
-      document.getElementById('fcEmpty').style.display = 'block';
+      // All mastered or empty pool
+      if (stageEl) stageEl.style.display = 'none';
+      if (!emptyEl) {
+        emptyEl = document.createElement('div');
+        emptyEl.id = 'fcEmpty';
+        emptyEl.style.cssText = 'text-align:center;padding:3em 1em';
+        var pool = getPool();
+        var allMastered = pool.length === 0 && allCards.some(function(c) { return ratings[getCardKey(c)] >= 5; });
+        if (allMastered) {
+          emptyEl.innerHTML = '<div style="font-size:3em">🎯</div><h3>All cards mastered!</h3><p>You rated every card a 5. Reset to study again, or switch to a different section.</p>';
+        } else {
+          emptyEl.innerHTML = '<div style="font-size:3em">🎉</div><p>No cards match this filter.<br>Try "All Cards" or switch sections.</p>';
+        }
+        stageEl.parentNode.insertBefore(emptyEl, stageEl.nextSibling);
+      }
+      emptyEl.style.display = 'block';
       return;
     }
-    document.getElementById('fcCardStage').style.display = '';
-    document.getElementById('fcEmpty').style.display = 'none';
+    if (stageEl) stageEl.style.display = '';
+    if (emptyEl) emptyEl.style.display = 'none';
     currentIndex = queue.shift();
     showCard();
   }
 
   function prevCard() {
-    // Simple: go to previous index in allCards within current pool
     var pool = getPool();
     var poolIndices = pool.map(function(c) { return allCards.indexOf(c); });
     var pos = poolIndices.indexOf(currentIndex);
     if (pos > 0) {
       currentIndex = poolIndices[pos - 1];
     } else if (poolIndices.length > 0) {
-      currentIndex = poolIndices[poolIndices.length - 1]; // wrap around
+      currentIndex = poolIndices[poolIndices.length - 1];
     }
     showCard();
   }
@@ -147,6 +169,10 @@
 
     var pool = activeSection === 'all' ? allCards : allCards.filter(function(c) { return c.section === activeSection; });
     var total = pool.length;
+    if (total === 0) {
+      statsEl.innerHTML = '<div style="text-align:center;opacity:0.5;padding:1em">No cards in this section</div>';
+      return;
+    }
     var got = 0, weak = 0, unseen = 0;
     pool.forEach(function(card) {
       var r = ratings[getCardKey(card)];
@@ -163,14 +189,13 @@
       '<div class="fc-stat-bar-wrap"><div class="fc-stat-bar"><div class="fc-stat-bar-got" style="width:' + gotPct + '%"></div><div class="fc-stat-bar-weak" style="width:' + weakPct + '%"></div></div><div class="fc-stat-bar-labels"><span>' + unseen + ' unseen</span><span>' + total + ' total</span></div></div>' +
       '<div class="fc-stat fc-stat-weak"><span class="fc-stat-num">' + weak + '</span><span class="fc-stat-label">Review</span></div>';
 
-    // Update counter
     var counter = document.getElementById('fcCounter');
     if (counter) {
       var poolForCount = getPool();
-      counter.textContent = 'Card ' + (poolForCount.map(function(c) { return allCards.indexOf(c); }).indexOf(currentIndex) + 1) + ' / ' + poolForCount.length;
+      var pos = poolForCount.map(function(c) { return allCards.indexOf(c); }).indexOf(currentIndex);
+      counter.textContent = 'Card ' + (pos >= 0 ? pos + 1 : 1) + ' / ' + poolForCount.length;
     }
 
-    // Update progress bar
     var progress = document.getElementById('fcProgress');
     if (progress) {
       progress.style.width = gotPct + '%';
@@ -209,8 +234,9 @@
     // Mastery badge
     var badge = document.getElementById('fcMasteryBadge');
     if (badge) {
-      if (rating >= 4) { badge.textContent = '✓ Got It'; badge.className = 'fc-mastery-badge fc-mastery-got'; }
-      else if (rating >= 1) { badge.textContent = '↻ Review'; badge.className = 'fc-mastery-badge fc-mastery-weak'; }
+      if (rating >= 5) { badge.textContent = '★ Mastered'; badge.className = 'fc-mastery-badge fc-mastery-got'; badge.style.cssText = ''; }
+      else if (rating >= 4) { badge.textContent = '✓ Got It'; badge.className = 'fc-mastery-badge fc-mastery-got'; badge.style.cssText = ''; }
+      else if (rating >= 1) { badge.textContent = '↻ Review'; badge.className = 'fc-mastery-badge fc-mastery-weak'; badge.style.cssText = ''; }
       else { badge.textContent = 'NEW'; badge.className = 'fc-mastery-badge'; badge.style.cssText = 'position:absolute;top:0.8em;right:0.8em;padding:0.2em 0.7em;border-radius:2em;font-size:0.7em;font-weight:700;z-index:2;background:rgba(0,0,0,0.06);color:inherit;border:1px solid rgba(0,0,0,0.1);'; }
     }
 
@@ -247,6 +273,15 @@
     document.querySelector('.fc-card-front').style.borderTopColor = sectionColor;
     document.querySelector('.fc-card-back').style.borderTopColor = sectionColor;
 
+    // Update rating bar to show current rating
+    var ratingBtns = document.querySelectorAll('.fc-rate-btn');
+    ratingBtns.forEach(function(btn) {
+      btn.classList.remove('current');
+      if (rating && parseInt(btn.dataset.rating) === rating) {
+        btn.classList.add('current');
+      }
+    });
+
     // Entrance animation
     var stage = document.getElementById('fcCardStage');
     stage.classList.remove('fc-slide-in');
@@ -265,29 +300,46 @@
       if (!isFlipped) {
         isFlipped = true;
         cardEl.classList.add('flipped');
+        // Show rating bar when flipped
+        var ratingBar = document.getElementById('fcRatingBar');
+        if (ratingBar) ratingBar.classList.add('visible');
       } else {
         isFlipped = false;
         cardEl.classList.remove('flipped');
+        var ratingBar = document.getElementById('fcRatingBar');
+        if (ratingBar) ratingBar.classList.remove('visible');
       }
     });
   }
 
-  // ── Got It / Study More ──
-  function rateCard(gotIt) {
+  // ── 1-5 Rating System ──
+  function rateCard(value) {
     var card = allCards[currentIndex];
     if (!card) return;
     var key = getCardKey(card);
-    ratings[key] = gotIt ? 4 : 2;
+    ratings[key] = value;
     saveRatings(ratings);
     cardsStudied++;
+    // Rebuild queue with new weights
+    buildQueue();
     setTimeout(function() { nextCard(); renderStats(); }, 250);
   }
 
+  // Wire up 1-5 rating buttons
+  document.querySelectorAll('.fc-rate-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var value = parseInt(btn.dataset.rating);
+      if (value >= 1 && value <= 5) rateCard(value);
+    });
+  });
+
+  // ── Legacy Got It / Study More buttons (fallback) ──
   var gotBtn = document.getElementById('fcGotIt');
-  if (gotBtn) gotBtn.addEventListener('click', function(e) { e.stopPropagation(); rateCard(true); });
+  if (gotBtn) gotBtn.addEventListener('click', function(e) { e.stopPropagation(); rateCard(4); });
 
   var weakBtn = document.getElementById('fcStudyMore');
-  if (weakBtn) weakBtn.addEventListener('click', function(e) { e.stopPropagation(); rateCard(false); });
+  if (weakBtn) weakBtn.addEventListener('click', function(e) { e.stopPropagation(); rateCard(2); });
 
   // ── Navigation ──
   var shuffleBtn = document.getElementById('fcShuffle');
@@ -303,17 +355,31 @@
   document.addEventListener('keydown', function(e) {
     var deck = document.getElementById('fcDeckWrap');
     if (!deck || deck.style.display === 'none') return;
+    // Don't hijack when a button/input is focused
+    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
 
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
       var cardEl = document.getElementById('fcCard');
-      if (!isFlipped) { isFlipped = true; cardEl.classList.add('flipped'); }
-      else { isFlipped = false; cardEl.classList.remove('flipped'); }
+      var ratingBar = document.getElementById('fcRatingBar');
+      if (!isFlipped) {
+        isFlipped = true;
+        cardEl.classList.add('flipped');
+        if (ratingBar) ratingBar.classList.add('visible');
+      } else {
+        isFlipped = false;
+        cardEl.classList.remove('flipped');
+        if (ratingBar) ratingBar.classList.remove('visible');
+      }
     }
     if (e.key === 'ArrowRight') nextCard();
     if (e.key === 'ArrowLeft') prevCard();
-    if (e.key === 'g' || e.key === 'G') rateCard(true);
-    if (e.key === 'r' || e.key === 'R') rateCard(false);
+    // 1-5 keys for rating
+    var num = parseInt(e.key);
+    if (num >= 1 && num <= 5) rateCard(num);
+    // Legacy g/r shortcuts
+    if (e.key === 'g' || e.key === 'G') rateCard(4);
+    if (e.key === 'r' || e.key === 'R') rateCard(2);
   });
 
   // ── Swipe ──

@@ -204,6 +204,7 @@
       width: 100%;
       min-height: 460px;
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
     }
     .fc-card.flipped { transform: rotateY(180deg); }
@@ -211,6 +212,7 @@
       position: absolute;
       width: 100%;
       min-height: 460px;
+      -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       border-radius: 1.2em;
       overflow: hidden;
@@ -366,7 +368,7 @@
     /* ── Ko-fi Tip Button ── */
     .kofi-float {
       position: fixed;
-      bottom: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
       right: 16px;
       z-index: 9999;
       display: flex;
@@ -426,6 +428,13 @@
       to { opacity: 1; transform: translateX(0); }
     }
 
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .fc-card { transition: none; }
+      .fc-slide-in { animation: none; }
+      .q3-hero-glow { animation: none; }
+    }
+
     /* ── Responsive ── */
     @media (max-width: 600px) {
       .q3-hero { padding: 2em 1em 1.5em; }
@@ -435,7 +444,7 @@
       .fc-card-title { font-size: 1.3em; }
       .fc-stats-bar { flex-wrap: wrap; justify-content: center; }
       .q3-gate-form { flex-direction: column; }
-      .kofi-float { font-size: 0.75em; padding: 0.45em 0.8em; bottom: 12px; right: 12px; }
+      .kofi-float { font-size: 0.75em; padding: 0.45em 0.8em; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); right: 12px; }
     }
 
     /* ── Dark mode ── */
@@ -479,6 +488,7 @@
     <div class="q3-gate-title">Unlock This Deck</div>
     <p class="q3-gate-sub">Enter your email to access all 33 visual flashcards.<br>Each card has a custom AI image + teaching notes<br>designed for how your brain actually learns.</p>
     <form class="q3-gate-form" id="q3GateForm">
+      <label for="q3Email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Email address</label>
       <input type="email" class="q3-gate-input" id="q3Email" placeholder="your@email.com" required autocomplete="email">
       <button type="submit" class="q3-gate-btn">Unlock Deck</button>
     </form>
@@ -511,7 +521,7 @@
     <div class="fc-counter" id="fcCounter">Card 1 / 33</div>
 
     <!-- The Card -->
-    <div class="fc-card-stage" id="fcCardStage">
+    <div class="fc-card-stage" id="fcCardStage" role="button" tabindex="0" aria-label="Flashcard - tap to flip">
       <div class="fc-card" id="fcCard">
         <div class="fc-card-face fc-card-front" id="fcFront">
           <div class="fc-mastery-badge" id="fcMasteryBadge"></div>
@@ -591,7 +601,8 @@
   let cards = [...data.cards];
   let filtered = [...cards];
   let idx = 0;
-  let mastery = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  let mastery;
+  try { mastery = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { mastery = {}; }
   let currentMode = 'all';
   let currentSection = null;
 
@@ -599,7 +610,9 @@
   const gate = document.getElementById('q3Gate');
   const deck = document.getElementById('q3Deck');
 
-  if (localStorage.getItem(GATE_KEY) || localStorage.getItem('tiago_subscribed')) {
+  let gateUnlocked = false;
+  try { gateUnlocked = localStorage.getItem(GATE_KEY) || localStorage.getItem('tiago_subscribed'); } catch(e) {}
+  if (gateUnlocked) {
     gate.style.display = 'none';
     deck.style.display = 'block';
     showKofi();
@@ -634,11 +647,13 @@
     form.submit();
     setTimeout(function() { form.remove(); iframe.remove(); }, 3000);
 
-    const subs = JSON.parse(localStorage.getItem('tiago_emails') || '[]');
-    subs.push({ email: email, date: new Date().toISOString(), page: 'quiz3-gi-flashcards', deck: 'q3-gi' });
-    localStorage.setItem('tiago_emails', JSON.stringify(subs));
-    localStorage.setItem(GATE_KEY, 'true');
-    localStorage.setItem('tiago_subscribed', 'true');
+    try {
+      const subs = JSON.parse(localStorage.getItem('tiago_emails') || '[]');
+      subs.push({ email: email, date: new Date().toISOString(), page: 'quiz3-gi-flashcards', deck: 'q3-gi' });
+      localStorage.setItem('tiago_emails', JSON.stringify(subs));
+      localStorage.setItem(GATE_KEY, 'true');
+      localStorage.setItem('tiago_subscribed', 'true');
+    } catch(e) {}
 
     gate.style.display = 'none';
     deck.style.display = 'block';
@@ -704,10 +719,22 @@
 
   // ── Render card ──
   function render() {
+    var stage = document.getElementById('fcCardStage');
+    var emptyMsg = document.getElementById('fcEmptyMsg');
     if (filtered.length === 0) {
-      document.getElementById('fcCardStage').innerHTML = '<div style="text-align:center;padding:3em 1em;opacity:0.5"><div style="font-size:3em">&#127881;</div><p>No cards match this filter.<br>Try "All Cards" or switch sections.</p></div>';
+      if (!emptyMsg) {
+        emptyMsg = document.createElement('div');
+        emptyMsg.id = 'fcEmptyMsg';
+        emptyMsg.style.cssText = 'text-align:center;padding:3em 1em;opacity:0.5';
+        emptyMsg.innerHTML = '<div style="font-size:3em">&#127881;</div><p>No cards match this filter.<br>Try "All Cards" or switch sections.</p>';
+        stage.appendChild(emptyMsg);
+      }
+      emptyMsg.style.display = 'block';
+      document.getElementById('fcCard').style.display = 'none';
       return;
     }
+    if (emptyMsg) emptyMsg.style.display = 'none';
+    document.getElementById('fcCard').style.display = '';
     var card = filtered[idx];
     var section = data.sections.find(function(s) { return s.id === card.section; });
     var key = card.front.title;
@@ -833,7 +860,7 @@
 
   // ── Keyboard shortcuts ──
   document.addEventListener('keydown', function(e) {
-    if (e.target.tagName === 'INPUT') return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
     if (e.key === 'ArrowRight') { if (idx < filtered.length - 1) { idx++; render(); } }
     else if (e.key === 'ArrowLeft') { if (idx > 0) { idx--; render(); } }
     else if (e.key === ' ') { e.preventDefault(); document.getElementById('fcCard').classList.toggle('flipped'); }
