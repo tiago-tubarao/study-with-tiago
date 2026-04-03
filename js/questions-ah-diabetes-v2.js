@@ -1393,6 +1393,162 @@ window.DRUG_DEEP_AH_DIABETES_V2 = {
     }
   },
 
+  'Type 1 vs Type 2 Diabetes': {
+    details: [
+      'Type 1: autoimmune destruction of pancreatic beta cells → absolute insulin deficiency',
+      'Type 2: insulin resistance + progressive beta cell dysfunction → relative insulin deficiency',
+      'Type 1 onset: typically childhood/adolescence (but can occur at any age)',
+      'Type 2 onset: typically adults >45 (but increasing in younger populations due to obesity)',
+      'C-peptide test differentiates: LOW in Type 1 (no insulin production), NORMAL/HIGH in Type 2',
+      'Type 1 always requires exogenous insulin; Type 2 may be managed with oral agents initially'
+    ],
+    questions: {
+      g: [
+        {
+          stem: 'A 28-year-old patient presents with new-onset hyperglycemia and weight loss. The provider orders a C-peptide level, which returns very low. This finding is MOST consistent with:',
+          options: [
+            'Type 2 diabetes with good insulin sensitivity',
+            'Type 1 diabetes with autoimmune beta cell destruction',
+            'Gestational diabetes',
+            'Prediabetes with insulin resistance'
+          ],
+          correct: 1,
+          rationale: 'Low C-peptide indicates the pancreas is producing very little or no insulin. C-peptide is released in equal amounts with insulin during production, so it serves as a marker of endogenous insulin secretion. In Type 1, autoimmune destruction of beta cells results in minimal insulin production (low C-peptide). In Type 2, C-peptide is typically normal or elevated because the pancreas still produces insulin — the problem is resistance.'
+        }
+      ],
+      y: [
+        {
+          stem: 'Which characteristic distinguishes Type 1 from Type 2 diabetes?',
+          options: [
+            'Type 1 is caused by insulin resistance; Type 2 is autoimmune',
+            'Type 1 involves autoimmune destruction of beta cells; Type 2 involves insulin resistance',
+            'Type 1 is managed with oral medications; Type 2 requires insulin',
+            'Type 1 only occurs in adults; Type 2 only occurs in children'
+          ],
+          correct: 1,
+          rationale: 'Type 1 = autoimmune destruction of pancreatic beta cells → no insulin production → always needs exogenous insulin. Type 2 = insulin resistance with progressive beta cell dysfunction → initially managed with lifestyle changes and oral agents, may eventually need insulin. Type 1 typically presents in youth but can occur at any age. Type 2 is increasingly seen in younger populations.'
+        }
+      ],
+      r: [
+        {
+          stem: 'A patient is diagnosed with Type 1 diabetes. The nurse understands that this patient will:',
+          options: [
+            'Need oral hypoglycemic agents as first-line treatment',
+            'Require insulin therapy for the rest of their life',
+            'Be able to manage with diet and exercise alone',
+            'Eventually outgrow the disease in adulthood'
+          ],
+          correct: 1,
+          rationale: 'Type 1 diabetes is caused by autoimmune destruction of the insulin-producing beta cells in the pancreas. Without these cells, the body cannot produce insulin. Therefore, the patient will need exogenous insulin for life — there is no oral medication alternative. Oral agents work by either stimulating insulin secretion or improving insulin sensitivity, neither of which helps when beta cells are destroyed.'
+        }
+      ]
+    }
+  },
+
+  'DKA (Diabetic Ketoacidosis)': {
+    details: [
+      'Primarily Type 1 diabetes — absolute insulin deficiency triggers lipolysis and ketone production',
+      'Classic presentation: Kussmaul breathing (deep, rapid), fruity breath, abdominal pain, nausea/vomiting',
+      'Labs: glucose 300-800, pH <7.30, bicarb <18, positive serum/urine ketones, anion gap elevated',
+      'Treatment priority: IV NS first → check K+ (must be ≥3.3 before insulin) → insulin drip',
+      'Switch IV to D5 when glucose 200-250 — continue insulin until ketones clear',
+      'Triggers: infection, missed insulin doses, surgery, MI, stress'
+    ],
+    questions: {
+      g: [
+        {
+          stem: 'A patient with DKA has been on an insulin drip for 6 hours. Glucose dropped from 520 to 210 mg/dL. pH improved from 7.10 to 7.22. Ketones still positive. The nurse should anticipate:',
+          options: [
+            'Discontinuing the insulin drip since glucose is near normal',
+            'Switching IV fluids to D5NS and continuing the insulin drip',
+            'Administering subcutaneous insulin and stopping the drip',
+            'Giving IV sodium bicarbonate to correct the remaining acidosis'
+          ],
+          correct: 1,
+          rationale: 'When glucose drops to 200-250 in DKA, switch to dextrose-containing IV fluids AND continue the insulin drip. Glucose normalizes FASTER than ketones clear — stopping insulin because glucose improved would allow ketosis to worsen. The dextrose prevents hypoglycemia while insulin continues clearing ketones. Insulin drip continues until pH >7.30, bicarb >18, and ketones negative.'
+        }
+      ],
+      y: [
+        {
+          stem: 'Which assessment finding is MOST characteristic of DKA?',
+          options: [
+            'Blood glucose >600 mg/dL with no ketones',
+            'Kussmaul respirations with fruity breath odor',
+            'Severe dehydration with altered mental status only',
+            'Metabolic alkalosis with elevated pH'
+          ],
+          correct: 1,
+          rationale: 'Kussmaul respirations (deep, rapid breathing) and fruity breath are hallmarks of DKA. Kussmaul breathing is the body compensating for metabolic ACIDOSIS by blowing off CO2. Fruity breath comes from exhaled acetone (a ketone body). Glucose >600 with no ketones is HHS, not DKA. DKA causes metabolic acidosis (low pH), not alkalosis.'
+        }
+      ],
+      r: [
+        {
+          stem: 'The FIRST priority in treating a patient with DKA is:',
+          options: [
+            'Insulin administration',
+            'Potassium replacement',
+            'IV fluid resuscitation with 0.9% NS',
+            'Sodium bicarbonate for acidosis'
+          ],
+          correct: 2,
+          rationale: 'IV fluid resuscitation is ALWAYS the first priority in DKA. Patients can be 6-9 liters fluid-depleted from osmotic diuresis. Aggressive NS bolus restores circulating volume and improves renal perfusion. Insulin comes AFTER fluids (and only after K+ is verified ≥3.3 mEq/L). Bicarb is rarely used and only considered if pH <6.9.'
+        }
+      ]
+    }
+  },
+
+  'HHS (Hyperosmolar Hyperglycemic State)': {
+    details: [
+      'Primarily Type 2 diabetes — enough insulin to prevent ketosis but not enough to control glucose',
+      'Glucose often >600 mg/dL (can exceed 1000) with severe dehydration',
+      'KEY differentiator from DKA: NO ketones, NO acidosis, NO Kussmaul breathing',
+      'Mortality higher than DKA due to severe dehydration and often older patient population',
+      'Treatment: aggressive IV fluid replacement (up to 9-12 L deficit), then insulin',
+      'Monitor for cerebral edema if glucose corrected too rapidly'
+    ],
+    questions: {
+      g: [
+        {
+          stem: 'An 82-year-old nursing home resident with Type 2 diabetes presents with glucose 1,100 mg/dL, serum osmolality 380 mOsm/kg, and negative ketones. The nurse recognizes this as:',
+          options: [
+            'Diabetic ketoacidosis',
+            'Hyperosmolar hyperglycemic state',
+            'Insulin shock',
+            'Addisonian crisis'
+          ],
+          correct: 1,
+          rationale: 'Classic HHS presentation: elderly patient with Type 2 diabetes, extremely high glucose (>600, here 1100), elevated osmolality (normal 275-295), and NEGATIVE ketones. The absence of ketones differentiates HHS from DKA. HHS has a higher mortality rate than DKA because patients are often older with comorbidities and present with more severe dehydration.'
+        }
+      ],
+      y: [
+        {
+          stem: 'What is the KEY lab finding that differentiates HHS from DKA?',
+          options: [
+            'HHS has hyperglycemia; DKA does not',
+            'HHS has absent or minimal ketones; DKA has significant ketones',
+            'HHS has metabolic acidosis; DKA has metabolic alkalosis',
+            'HHS occurs only in Type 1 diabetes; DKA in Type 2'
+          ],
+          correct: 1,
+          rationale: 'KETONES are the primary differentiator. In HHS, there is enough circulating insulin to prevent lipolysis and ketone production (but not enough to control glucose). In DKA, absolute insulin deficiency triggers lipolysis → ketones → metabolic acidosis. Both conditions have hyperglycemia (HHS typically much higher). DKA causes acidosis, not HHS.'
+        }
+      ],
+      r: [
+        {
+          stem: 'HHS occurs most commonly in patients with:',
+          options: [
+            'Type 1 diabetes who miss insulin doses',
+            'Type 2 diabetes, especially elderly patients',
+            'Gestational diabetes during the third trimester',
+            'Prediabetes with fasting glucose 100-125 mg/dL'
+          ],
+          correct: 1,
+          rationale: 'HHS is most common in elderly patients with Type 2 diabetes, often triggered by illness, infection, or inadequate fluid intake. Older adults may have diminished thirst sensation, leading to severe dehydration. The gradual onset (days to weeks) means glucose can climb extremely high before the patient seeks medical attention.'
+        }
+      ]
+    }
+  },
+
   'Chronic Complications': {
     details: [
       'Microvascular: retinopathy (leading cause of blindness), nephropathy (leading cause of ESRD), neuropathy (most common complication)',

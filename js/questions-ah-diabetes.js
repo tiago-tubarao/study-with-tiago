@@ -130,7 +130,7 @@ window.DRUG_DEEP_AH_DIABETES = {
     },
   },
 
-  'Hypoglycemia Management': {
+  'Hypoglycemia & 15-15 Rule': {
     details: [
       'Blood glucose <70 mg/dL = hypoglycemia',
       '15-15 Rule: give 15g fast-acting carbs, wait 15 min, recheck',
@@ -182,7 +182,7 @@ window.DRUG_DEEP_AH_DIABETES = {
     },
   },
 
-  'Metformin Safety': {
+  'Metformin (1st Line T2DM)': {
     details: [
       'First-line drug for type 2 diabetes — does NOT cause hypoglycemia when used alone',
       'Hold for 48 hours before/after IV contrast (lactic acidosis risk)',
