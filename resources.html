@@ -52,12 +52,34 @@
     </div>
   </div>
 
-  <a href="flashcards.html" class="download-cta" style="text-decoration:none;display:block;cursor:pointer;border:2px solid var(--accent, #2A9D8F);margin-top:24px">
+  <div class="download-cta" style="margin-top:24px">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge" style="background:var(--teal)">FREE</div>
+      <h3 class="cta-title">Adult Health Exam Review</h3>
+      <p class="cta-sub">35-page Complete Exam Review covering Hematology, Diabetes, Endocrine, and Renal with NCLEX-style rationales.</p>
+      <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener" class="cta-button" style="font-size:1.1em;padding:16px 40px">Get the AH Review &rarr;</a>
+      <p style="font-size:0.8em;color:var(--muted);margin-top:10px">Instant download. Free — tip appreciated.</p>
+    </div>
+  </div>
+
+  <div class="download-cta" style="margin-top:24px">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge" style="background:var(--purple)">FREE</div>
+      <h3 class="cta-title">106 Practice Exam Questions</h3>
+      <p class="cta-sub">3 NCLEX-style practice exams (A/B/C) with full rationales for every answer. Diabetes, endocrine, renal, hematology.</p>
+      <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener" class="cta-button" style="font-size:1.1em;padding:16px 40px;background:var(--purple)">Get Practice Exams &rarr;</a>
+      <p style="font-size:0.8em;color:var(--muted);margin-top:10px">Instant download. Free — tip appreciated.</p>
+    </div>
+  </div>
+
+  <a href="flashcards-hub.html" class="download-cta" style="text-decoration:none;display:block;cursor:pointer;border:2px solid var(--accent, #2A9D8F);margin-top:24px">
     <div class="cta-content" style="text-align:center">
-      <div style="font-size:2.5em;margin-bottom:8px">🃏</div>
-      <h3 class="cta-title">All Flashcards — 125 Cards</h3>
-      <p class="cta-sub">Pharm + Adult Health mixed together. Emoji memory hooks, confidence-based repetition. Weak cards come back more often.</p>
-      <span class="cta-button" style="display:inline-block;margin-top:8px">Study All Flashcards &rarr;</span>
+      <div style="font-size:2.5em;margin-bottom:8px">&#127183;</div>
+      <h3 class="cta-title">All Flashcards — 250+ Cards</h3>
+      <p class="cta-sub">5 decks: Pharm Exam 2, Adult Health, Quiz 3 CNS, Quiz 3 GI, and combined mode. Filter by course or study them all.</p>
+      <span class="cta-button" style="display:inline-block;margin-top:8px">Flashcard Hub &rarr;</span>
     </div>
   </a>
 
@@ -80,6 +102,9 @@
   <div style="margin-top:12px">
     Study with Tiago &copy; 2026 &bull;
     <a href="https://www.youtube.com/@life-ofstudy" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Pharm Bundle</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener">AH Review</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener">Practice Exams</a> &bull;
     <a href="about.html">About</a> &bull;
     <a href="privacy.html">Privacy</a> &bull;
     <a href="terms.html">Terms</a>
@@ -87,22 +112,44 @@
 </footer>
 
 <script src="js/data.js"></script>
-<script src="js/nav.js?v=4"></script>
+<script src="js/nav.js?v=5"></script>
 <script src="js/theme.js"></script>
 <script src="js/feedback.js"></script>
 <script src="js/signup.js"></script>
 <script src="js/share.js"></script>
 <script>
-  document.getElementById('videoList').innerHTML = STUDY_DATA.videos.filter(v => v.youtubeId).map(v =>
+  // Pharm videos from data.js
+  const pharmVideos = STUDY_DATA.videos.filter(v => v.youtubeId).map(v =>
     `<div style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)">
-      <img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" style="width:160px;border-radius:8px" alt="YouTube thumbnail for ${v.title} pharmacology study video">
+      <img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" style="width:160px;border-radius:8px" alt="YouTube thumbnail for ${v.title}">
       <div>
         <div style="font-weight:700;margin-bottom:4px">${v.title}</div>
         <div style="font-size:0.85em;color:var(--muted)">${v.subtitle}</div>
-        <a href="https://www.youtube.com/watch?v=${v.youtubeId}" target="_blank" rel="noopener" style="font-size:0.85em;color:var(--teal);font-weight:600">Watch on YouTube →</a>
+        <span style="display:inline-block;padding:2px 8px;border-radius:2em;font-size:0.7em;font-weight:700;background:#0B1D3A;color:#fff;margin:4px 0">PHARM</span>
+        <a href="https://www.youtube.com/watch?v=${v.youtubeId}" target="_blank" rel="noopener" style="font-size:0.85em;color:var(--teal);font-weight:600;display:block">Watch on YouTube &rarr;</a>
       </div>
     </div>`
   ).join('');
+
+  // Adult Health videos (hardcoded since no data-ah.js video list)
+  const ahVideos = [
+    { id: 'Ge5nu_SuNp4', title: 'Diabetes Clinical Review', subtitle: '54 min — DKA vs HHS, insulin management, sick day rules' },
+    { id: 'MrFMIWnel2M', title: 'Endocrine Review', subtitle: '33 min — Thyroid, pituitary, adrenal disorders' },
+    { id: 'VA8fOrMcHNA', title: 'Renal Review', subtitle: '42 min — AKI, CKD, dialysis, kidney stones' },
+    { id: '7Ctl6uAWgms', title: 'Hematology Review', subtitle: '35 min — Anemias, clotting, transfusions, cancers' },
+  ].map(v =>
+    `<div style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)">
+      <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" style="width:160px;border-radius:8px" alt="YouTube thumbnail for ${v.title}">
+      <div>
+        <div style="font-weight:700;margin-bottom:4px">${v.title}</div>
+        <div style="font-size:0.85em;color:var(--muted)">${v.subtitle}</div>
+        <span style="display:inline-block;padding:2px 8px;border-radius:2em;font-size:0.7em;font-weight:700;background:#2B8A3E;color:#fff;margin:4px 0">ADULT HEALTH</span>
+        <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener" style="font-size:0.85em;color:var(--teal);font-weight:600;display:block">Watch on YouTube &rarr;</a>
+      </div>
+    </div>`
+  ).join('');
+
+  document.getElementById('videoList').innerHTML = pharmVideos + ahVideos;
 </script>
 </body>
 </html>

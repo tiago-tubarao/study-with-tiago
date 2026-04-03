@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards — Study with Tiago</title>
+  <meta name="description" content="All flashcard decks in one place. Pharmacology, Adult Health, Quiz 3 CNS & GI. 250+ cards with confidence tracking and smart repetition.">
+  <meta property="og:title" content="Flashcards Hub | Study with Tiago">
+  <meta property="og:description" content="250+ nursing flashcards — Pharmacology, Adult Health, CNS, GI. Emoji memory hooks, confidence tracking, smart repetition.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Study with Tiago">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=22">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <style>
+    .hub-hero {
+      background: linear-gradient(135deg, #0B1D3A 0%, #1a365d 40%, #2A9D8F 100%);
+      padding: 3em 1.5em 2.5em;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 2rem 2rem;
+      margin-bottom: 1.5em;
+    }
+    .hub-hero-glow {
+      position: absolute;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(42,157,143,0.3), transparent 70%);
+      top: -100px; right: -50px;
+      border-radius: 50%;
+    }
+    .hub-hero-content { position: relative; z-index: 1; }
+    .hub-hero-badge {
+      display: inline-block;
+      background: rgba(42,157,143,0.3);
+      border: 1px solid rgba(42,157,143,0.6);
+      color: #90EE90;
+      padding: 0.3em 1em;
+      border-radius: 2em;
+      font-size: 0.75em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.8em;
+    }
+    .hub-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2em;
+      color: #fff;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .hub-hero p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95em;
+      margin-top: 0.5em;
+    }
+
+    .hub-filters {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      padding: 0 16px;
+    }
+    .hub-filter {
+      padding: 8px 20px;
+      border-radius: 2em;
+      border: 2px solid #dee2e6;
+      background: transparent;
+      font-size: 0.85em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .hub-filter:hover { border-color: var(--teal); color: var(--teal); }
+    .hub-filter.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .hub-filter[data-filter="pharm"].active { background: var(--navy); border-color: var(--navy); }
+    .hub-filter[data-filter="ah"].active { background: var(--teal); border-color: var(--teal); }
+    .hub-filter[data-filter="quiz3"].active { background: #D9480F; border-color: #D9480F; }
+
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .hub-card {
+      display: block;
+      text-decoration: none;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid var(--border, #dee2e6);
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: var(--card-bg, #fff);
+    }
+    .hub-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .hub-card-header {
+      padding: 20px;
+      color: #fff;
+      position: relative;
+    }
+    .hub-card-header h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15em;
+      margin: 0 0 4px;
+      color: #fff;
+    }
+    .hub-card-header .meta {
+      font-size: 0.8em;
+      opacity: 0.85;
+    }
+    .hub-card-icon {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 2em;
+      opacity: 0.4;
+    }
+    .hub-card-body {
+      padding: 16px 20px;
+    }
+    .hub-card-stat {
+      font-size: 0.88em;
+      margin-bottom: 6px;
+    }
+    .hub-card-stat strong {
+      color: var(--teal);
+    }
+    .hub-card-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 2em;
+      font-size: 0.7em;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-top: 8px;
+    }
+
+    [data-theme="dark"] .hub-card { background: #1a1a2e; border-color: #2d2d44; }
+    [data-theme="dark"] .hub-card-body { color: #e0e0e0; }
+
+    .hub-combined-cta {
+      max-width: 960px;
+      margin: 32px auto 0;
+      padding: 0 16px;
+    }
+
+    @media (max-width: 600px) {
+      .hub-hero h1 { font-size: 1.6em; }
+      .hub-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-container">
+
+  <div class="hub-hero">
+    <div class="hub-hero-glow"></div>
+    <div class="hub-hero-content">
+      <div class="hub-hero-badge">FLASHCARD HUB</div>
+      <h1>All Flashcard Decks</h1>
+      <p>250+ cards across Pharmacology, Adult Health, and Quiz 3.<br>Pick a deck or study them all together.</p>
+    </div>
+  </div>
+
+  <div class="hub-filters">
+    <button class="hub-filter active" data-filter="all" onclick="filterDecks('all',this)">All Decks</button>
+    <button class="hub-filter" data-filter="pharm" onclick="filterDecks('pharm',this)">Pharmacology</button>
+    <button class="hub-filter" data-filter="ah" onclick="filterDecks('ah',this)">Adult Health</button>
+    <button class="hub-filter" data-filter="quiz3" onclick="filterDecks('quiz3',this)">Quiz 3</button>
+  </div>
+
+  <div class="hub-grid" id="hubGrid"></div>
+
+  <div class="hub-combined-cta">
+    <a href="flashcards.html" class="download-cta" style="text-decoration:none;display:block;cursor:pointer;border:2px solid var(--teal)">
+      <div class="cta-content" style="text-align:center">
+        <div style="font-size:2.5em;margin-bottom:8px">&#127183;</div>
+        <h3 class="cta-title">Study All 125 Cards Together</h3>
+        <p class="cta-sub">Pharm + Adult Health shuffled together with confidence-based repetition. Weak cards come back more often.</p>
+        <span class="cta-button" style="display:inline-block;margin-top:8px">Launch Combined Deck &rarr;</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="download-cta" style="margin-top:24px">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+      <div class="cta-badge" style="background:var(--teal)">ALL FREE</div>
+      <h3 class="cta-title">Get the Study Bundles</h3>
+      <p class="cta-sub">PDFs for both courses — drug lists, study guides, clinical cases, and 160+ practice exam questions.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+        <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener" class="cta-button">Pharm Bundle &rarr;</a>
+        <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener" class="cta-button" style="background:var(--teal)">AH Review &rarr;</a>
+        <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener" class="cta-button" style="background:var(--purple)">Practice Exams &rarr;</a>
+      </div>
+      <p class="cta-note">Instant download. Free — tip appreciated.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+    Content created by a nursing student &mdash; always verify against current guidelines and your instructor's direction.
+    <a href="terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@life-ofstudy" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Pharm Bundle</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener">AH Review</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener">Practice Exams</a> &bull;
+    <a href="about.html">About</a> &bull;
+    <a href="privacy.html">Privacy</a> &bull;
+    <a href="terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="js/nav.js?v=5"></script>
+<script src="js/theme.js"></script>
+<script>
+  const decks = [
+    {
+      id: 'pharm-exam2',
+      course: 'pharm',
+      title: 'Pharmacology Exam 2',
+      subtitle: 'Hematology, Antimicrobials, Diabetes, Endocrine',
+      cards: 66,
+      icon: '&#x1F48A;',
+      color: '#0B1D3A',
+      features: 'Emoji memory hooks, flip cards, section filters',
+      badge: 'PHARM',
+      badgeColor: '#0B1D3A',
+      href: 'exam2/flashcards.html'
+    },
+    {
+      id: 'ah-exam3',
+      course: 'ah',
+      title: 'Adult Health Exam 3',
+      subtitle: 'Diabetes, Thyroid, Pituitary/Adrenal, Renal, Hematology',
+      cards: 60,
+      icon: '&#x1FA7A;',
+      color: '#2B8A3E',
+      features: 'AI-generated artwork, mastery tracking, section filters',
+      badge: 'ADULT HEALTH',
+      badgeColor: '#2B8A3E',
+      href: 'exam3/flashcards.html'
+    },
+    {
+      id: 'ah-cbr',
+      course: 'ah',
+      title: 'Adult Health — CBR Study Mode',
+      subtitle: 'Confidence-Based Repetition (rate 1-5)',
+      cards: 60,
+      icon: '&#x1F4AA;',
+      color: '#1971C2',
+      features: 'Brainscape-style, weak cards repeat more, mastered cards fade',
+      badge: 'STUDY MODE',
+      badgeColor: '#1971C2',
+      href: 'exam3/study.html'
+    },
+    {
+      id: 'q3-cns',
+      course: 'quiz3',
+      title: 'Quiz 3 — CNS Visual Cards',
+      subtitle: 'Autonomic NS, Cholinergics, Opioids, Seizures, Anesthetics',
+      cards: 28,
+      icon: '&#x1F9E0;',
+      color: '#D9480F',
+      features: 'Kawaii AI images + teaching notes, visual memory hooks',
+      badge: 'QUIZ 3 CNS',
+      badgeColor: '#D9480F',
+      href: 'exam2/quiz3-flashcards.html'
+    },
+    {
+      id: 'q3-gi',
+      course: 'quiz3',
+      title: 'Quiz 3 — GI Visual Cards',
+      subtitle: 'H2 Blockers, PPIs, Antacids, Antiemetics, Laxatives, IBS',
+      cards: 33,
+      icon: '&#x1F48A;',
+      color: '#862E9C',
+      features: 'Kawaii AI images + teaching notes, visual memory hooks',
+      badge: 'QUIZ 3 GI',
+      badgeColor: '#862E9C',
+      href: 'exam2/quiz3-gi-flashcards.html'
+    }
+  ];
+
+  function renderDecks(filter) {
+    const filtered = filter === 'all' ? decks : decks.filter(d => d.course === filter);
+    const grid = document.getElementById('hubGrid');
+    grid.innerHTML = filtered.map(d => `
+      <a href="${d.href}" class="hub-card" data-course="${d.course}">
+        <div class="hub-card-header" style="background:${d.color}">
+          <h3>${d.title}</h3>
+          <div class="meta">${d.subtitle}</div>
+          <div class="hub-card-icon">${d.icon}</div>
+        </div>
+        <div class="hub-card-body">
+          <div class="hub-card-stat"><strong>${d.cards}</strong> flashcards</div>
+          <div class="hub-card-stat" style="font-size:0.8em;color:var(--muted)">${d.features}</div>
+          <div class="hub-card-badge" style="background:${d.badgeColor}15;color:${d.badgeColor};border:1px solid ${d.badgeColor}40">${d.badge}</div>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  function filterDecks(filter, btn) {
+    document.querySelectorAll('.hub-filter').forEach(f => f.classList.remove('active'));
+    btn.classList.add('active');
+    renderDecks(filter);
+  }
+
+  renderDecks('all');
+</script>
+</body>
+</html>
