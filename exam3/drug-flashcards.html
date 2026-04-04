@@ -147,10 +147,10 @@
     @keyframes fc-pulse{0%,100%{opacity:1}50%{opacity:.6}}
 
     .fc-counter{text-align:center;font-size:.8em;font-weight:600;opacity:.5;margin-bottom:.5em}
-    .fc-card-stage{perspective:1200px;max-width:440px;margin:0 auto;padding:0 1em;cursor:pointer;min-height:480px}
-    .fc-card{position:relative;width:100%;min-height:460px;transition:transform .6s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+    .fc-card-stage{perspective:1200px;max-width:440px;margin:0 auto;padding:0 1em;cursor:pointer}
+    .fc-card{display:grid;width:100%;min-height:460px;transition:transform .6s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
     .fc-card.flipped{transform:rotateY(180deg)}
-    .fc-card-face{position:absolute;width:100%;min-height:460px;backface-visibility:hidden;border-radius:1.2em;border-top:5px solid #2A9D8F;overflow:hidden}
+    .fc-card-face{grid-area:1/1;width:100%;min-height:460px;backface-visibility:hidden;border-radius:1.2em;border-top:5px solid #2A9D8F;overflow:hidden}
 
     /* Front — Image */
     .fc-card-front{background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5em;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.08);position:relative}
@@ -189,17 +189,18 @@
     .fc-mastery-got{background:rgba(43,138,62,.15);color:#2B8A3E;border:1px solid rgba(43,138,62,.3)}
     .fc-mastery-weak{background:rgba(230,119,0,.15);color:#E67700;border:1px solid rgba(230,119,0,.3)}
     .fc-mastery-new{background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.1)}
-    .fc-mastery-actions{display:flex;justify-content:center;gap:.6em;margin:1em 0 .5em}
-    .fc-mastery-btn{padding:.5em 1.2em;border-radius:2em;border:2px solid;font-size:.82em;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.4em}
+    .fc-mastery-actions{display:flex;justify-content:center;gap:.6em;margin:1em 0 .5em;position:relative;z-index:5}
+    .fc-mastery-btn{padding:.65em 1.4em;border-radius:2em;border:2px solid;font-size:.9em;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.4em;min-height:44px;-webkit-tap-highlight-color:rgba(0,0,0,.1);touch-action:manipulation}
     .fc-mastery-btn-got{border-color:#2B8A3E;color:#2B8A3E;background:transparent}
     .fc-mastery-btn-got:hover,.fc-mastery-btn-got.active{background:#2B8A3E;color:#fff}
     .fc-mastery-btn-weak{border-color:#E67700;color:#E67700;background:transparent}
     .fc-mastery-btn-weak:hover,.fc-mastery-btn-weak.active{background:#E67700;color:#fff}
 
     /* Nav */
-    .fc-nav{display:flex;justify-content:center;gap:.5em;margin:1em 0}
-    .fc-nav-btn{padding:.5em 1.2em;border-radius:.6em;border:1.5px solid #dee2e6;background:transparent;font-weight:600;cursor:pointer;transition:all .2s;font-size:.85em}
+    .fc-nav{display:flex;justify-content:center;gap:.6em;margin:1em 0;position:relative;z-index:5}
+    .fc-nav-btn{padding:.75em 1.5em;border-radius:.6em;border:1.5px solid #dee2e6;background:transparent;font-weight:600;cursor:pointer;transition:all .2s;font-size:.95em;min-height:44px;min-width:44px;-webkit-tap-highlight-color:rgba(42,157,143,.2);touch-action:manipulation}
     .fc-nav-btn:hover:not(:disabled){background:#f1f3f5}
+    .fc-nav-btn:active{background:#e9ecef;transform:scale(.96)}
     .fc-shuffle-btn{background:#0B1D3A;color:#fff;border-color:#0B1D3A}
     .fc-shuffle-btn:hover{background:#1a365d}
     .fc-progress-bar{height:4px;background:#e9ecef;border-radius:2px;margin:0 1em 1em;overflow:hidden}
@@ -226,13 +227,15 @@
     @media(max-width:600px){
       .fc-hero{padding:2em 1em 1.5em}
       .fc-hero-title{font-size:1.6em}
-      .fc-card-stage{min-height:440px}
-      .fc-card,.fc-card-face{min-height:420px}
+      .fc-card,.fc-card-face{min-height:380px}
       .fc-card-drug{font-size:1.15em}
       .fc-stats-bar{flex-wrap:wrap;justify-content:center}
       .fc-stat-bar-wrap{order:3;width:100%}
       .fc-front-img{max-height:220px}
-      .fc-card-back{max-height:460px}
+      .fc-card-back{max-height:none;overflow-y:visible}
+      .fc-nav-btn{padding:.85em 1.6em;font-size:1em}
+      .fc-mastery-btn{padding:.75em 1.5em;font-size:.95em}
+      .fc-audio-btn{padding:.6em 1em;min-height:44px}
     }
 
     /* Dark */

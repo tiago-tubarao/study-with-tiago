@@ -425,12 +425,14 @@
   });
 
   // ── Swipe ──
-  var tx = 0;
+  var tx = 0, ty = 0;
   if (cardStage) {
-    cardStage.addEventListener('touchstart', function(e) { tx = e.changedTouches[0].screenX; }, { passive: true });
+    cardStage.addEventListener('touchstart', function(e) { tx = e.changedTouches[0].screenX; ty = e.changedTouches[0].screenY; }, { passive: true });
     cardStage.addEventListener('touchend', function(e) {
-      var d = tx - e.changedTouches[0].screenX;
-      if (Math.abs(d) > 50) { d > 0 ? nextCard() : prevCard(); }
+      if (e.target.closest('.fc-nav-btn') || e.target.closest('.fc-mastery-btn') || e.target.closest('.fc-audio-btn')) return;
+      var dx = tx - e.changedTouches[0].screenX;
+      var dy = ty - e.changedTouches[0].screenY;
+      if (Math.abs(dx) > 80 && Math.abs(dx) > Math.abs(dy) * 1.5) { dx > 0 ? nextCard() : prevCard(); }
     }, { passive: true });
   }
 
