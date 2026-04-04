@@ -156,12 +156,13 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'DM Sans', 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
   color: var(--navy);
 }
 
 .hero-title {
-  font-family: 'Syne', 'DM Sans', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
 }
 
@@ -194,7 +195,7 @@ h1, h2, h3, h4 {
 }
 
 .nav-logo {
-  font-family: 'Syne', 'DM Sans', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 1.2em;
   background: linear-gradient(135deg, var(--teal), var(--gold));
@@ -768,7 +769,7 @@ button.conf-dot,
 }
 
 .cta-title {
-  font-family: 'Syne', 'DM Sans', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.5em;
   font-weight: 800;
   color: white;
@@ -961,7 +962,7 @@ button.conf-dot,
   display: inline-block;
   font-size: 1.6em;
   font-weight: 900;
-  font-family: 'Syne', 'DM Sans', sans-serif;
+  font-family: 'Syne', sans-serif;
   padding: 6px 16px;
   border-radius: 10px;
   min-width: 56px;
@@ -1569,7 +1570,7 @@ button.conf-dot,
 }
 
 .signup-title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.25em;
   font-weight: 700;
   color: white;
@@ -1719,7 +1720,7 @@ button.conf-dot,
 }
 
 .kofi-section-title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.2em;
   font-weight: 700;
   color: white;
@@ -1901,7 +1902,7 @@ button.conf-dot,
   padding: 0.35em 1.2em;
   border-radius: 20px;
   margin-bottom: 0.8em;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .fc-hero-title {
