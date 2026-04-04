@@ -255,21 +255,33 @@
       '<div class="ufc-stat ufc-stat-weak"><span class="ufc-stat-num">' + weak + '</span><span class="ufc-stat-label">Review</span></div>';
   }
 
-  // ── Size card to fit whichever face is showing ──
+  // ── Size card container to fit the taller face ──
+  // Both faces are position:absolute so parent has zero natural height.
+  // We temporarily make back visible to measure, then use the max of both.
   function sizeCard() {
     var stage = document.getElementById('ufcCardStage');
     var cardEl = document.getElementById('ufcCard');
     var front = document.getElementById('ufcFront');
     var back = document.getElementById('ufcBack');
     if (!stage || !cardEl || !front || !back) return;
+    // Temporarily make both faces measurable
+    var origBackVis = back.style.visibility;
+    var origBackTrans = back.style.transform;
+    back.style.visibility = 'hidden';
+    back.style.transform = 'rotateY(0deg)';
+    back.style.backfaceVisibility = 'visible';
     var fh = front.scrollHeight;
     var bh = back.scrollHeight;
-    var h = isFlipped ? bh : fh;
-    var minH = Math.max(h, 200);
-    stage.style.minHeight = minH + 'px';
-    cardEl.style.minHeight = minH + 'px';
-    front.style.minHeight = minH + 'px';
-    back.style.minHeight = minH + 'px';
+    // Restore
+    back.style.visibility = origBackVis;
+    back.style.transform = origBackTrans;
+    back.style.backfaceVisibility = '';
+    // Use max so container fits either face without jumping on flip
+    var h = Math.max(fh, bh, 200);
+    stage.style.minHeight = h + 'px';
+    cardEl.style.minHeight = h + 'px';
+    front.style.minHeight = h + 'px';
+    back.style.minHeight = h + 'px';
   }
 
   // ── Render card ──
@@ -321,9 +333,10 @@
         (c.brandName ? '<div class="ufc-card-subtitle">' + c.brandName + '</div>' : '') +
         (c.drugClass ? '<div class="ufc-card-pill" style="background:' + borderColor + '">' + c.drugClass + '</div>' : '') +
         '<div class="ufc-card-tap">Tap to flip | Tap image to zoom</div>';
-      // Handle image load error + lightbox click
+      // Handle image load, error, lightbox click
       var img = front.querySelector('.ufc-front-img');
       if (img) {
+        img.addEventListener('load', sizeCard);
         img.addEventListener('error', function() {
           img.style.display = 'none';
           var iconEl = front.querySelector('.ufc-card-icon');
@@ -500,7 +513,6 @@
   document.getElementById('ufcCardStage').addEventListener('click', function() {
     isFlipped = !isFlipped;
     document.getElementById('ufcCard').classList.toggle('flipped', isFlipped);
-    setTimeout(sizeCard, 50);
   });
 
   document.getElementById('ufcPrev').addEventListener('click', function() { currentIndex--; stopAudio(); renderCard(); });
@@ -545,7 +557,7 @@
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     if (e.key === 'ArrowLeft') { currentIndex--; stopAudio(); renderCard(); }
     else if (e.key === 'ArrowRight') { currentIndex++; stopAudio(); renderCard(); }
-    else if (e.key === ' ') { e.preventDefault(); isFlipped = !isFlipped; document.getElementById('ufcCard').classList.toggle('flipped', isFlipped); setTimeout(sizeCard, 50); }
+    else if (e.key === ' ') { e.preventDefault(); isFlipped = !isFlipped; document.getElementById('ufcCard').classList.toggle('flipped', isFlipped); }
     else if (e.key === 'g' || e.key === 'G') { document.getElementById('ufcGotIt').click(); }
     else if (e.key === 'r' || e.key === 'R') { document.getElementById('ufcStudyMore').click(); }
     else if (e.key === 'Escape') { var lb = document.querySelector('.ufc-lightbox'); if (lb) lb.remove(); }
