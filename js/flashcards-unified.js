@@ -310,21 +310,31 @@
 
     if (c.image) {
       front.innerHTML = deckBadge + masteryHTML +
-        '<img class="ufc-front-img" src="' + c.image + '" alt="' + c.drugName + '" loading="eager" onerror="this.style.display=\'none\'">' +
+        '<img class="ufc-front-img" src="' + c.image + '" alt="' + c.drugName + '" loading="eager">' +
+        (c.icon ? '<div class="ufc-card-icon" style="display:none">' + c.icon + '</div>' : '') +
         '<div class="ufc-card-title">' + c.drugName + '</div>' +
         (c.brandName ? '<div class="ufc-card-subtitle">' + c.brandName + '</div>' : '') +
         (c.drugClass ? '<div class="ufc-card-pill" style="background:' + borderColor + '">' + c.drugClass + '</div>' : '') +
         '<div class="ufc-card-tap">Tap to flip | Tap image to zoom</div>';
-      // Lightbox on image
+      // Handle image load error — shrink card and show icon fallback
       setTimeout(function() {
         var img = front.querySelector('.ufc-front-img');
         if (img) {
+          img.addEventListener('error', function() {
+            img.style.display = 'none';
+            var iconEl = front.querySelector('.ufc-card-icon');
+            if (iconEl) iconEl.style.display = '';
+            stage.style.minHeight = '280px';
+            cardEl.style.minHeight = '260px';
+            front.style.minHeight = '260px';
+            document.getElementById('ufcBack').style.minHeight = '260px';
+          });
           img.addEventListener('click', function(e) {
             e.stopPropagation();
             showLightbox(img.src, c.drugName);
           });
         }
-      }, 50);
+      }, 10);
     } else {
       front.innerHTML = deckBadge + masteryHTML +
         (c.icon ? '<div class="ufc-card-icon">' + c.icon + '</div>' : '') +
