@@ -255,6 +255,23 @@
       '<div class="ufc-stat ufc-stat-weak"><span class="ufc-stat-num">' + weak + '</span><span class="ufc-stat-label">Review</span></div>';
   }
 
+  // ── Size card to fit whichever face is showing ──
+  function sizeCard() {
+    var stage = document.getElementById('ufcCardStage');
+    var cardEl = document.getElementById('ufcCard');
+    var front = document.getElementById('ufcFront');
+    var back = document.getElementById('ufcBack');
+    if (!stage || !cardEl || !front || !back) return;
+    var fh = front.scrollHeight;
+    var bh = back.scrollHeight;
+    var h = isFlipped ? bh : fh;
+    var minH = Math.max(h, 200);
+    stage.style.minHeight = minH + 'px';
+    cardEl.style.minHeight = minH + 'px';
+    front.style.minHeight = minH + 'px';
+    back.style.minHeight = minH + 'px';
+  }
+
   // ── Render card ──
   function renderCard() {
     var pool = getPool();
@@ -294,19 +311,7 @@
     var borderColor = c.pillColor || '#2A9D8F';
     front.style.borderTopColor = borderColor;
 
-    // Dynamic sizing — set min-height based on image presence
     var cardEl = document.getElementById('ufcCard');
-    if (c.image) {
-      stage.style.minHeight = '460px';
-      cardEl.style.minHeight = '440px';
-      front.style.minHeight = '440px';
-      document.getElementById('ufcBack').style.minHeight = '440px';
-    } else {
-      stage.style.minHeight = '280px';
-      cardEl.style.minHeight = '260px';
-      front.style.minHeight = '260px';
-      document.getElementById('ufcBack').style.minHeight = '260px';
-    }
 
     if (c.image) {
       front.innerHTML = deckBadge + masteryHTML +
@@ -316,25 +321,20 @@
         (c.brandName ? '<div class="ufc-card-subtitle">' + c.brandName + '</div>' : '') +
         (c.drugClass ? '<div class="ufc-card-pill" style="background:' + borderColor + '">' + c.drugClass + '</div>' : '') +
         '<div class="ufc-card-tap">Tap to flip | Tap image to zoom</div>';
-      // Handle image load error — shrink card and show icon fallback
-      setTimeout(function() {
-        var img = front.querySelector('.ufc-front-img');
-        if (img) {
-          img.addEventListener('error', function() {
-            img.style.display = 'none';
-            var iconEl = front.querySelector('.ufc-card-icon');
-            if (iconEl) iconEl.style.display = '';
-            stage.style.minHeight = '280px';
-            cardEl.style.minHeight = '260px';
-            front.style.minHeight = '260px';
-            document.getElementById('ufcBack').style.minHeight = '260px';
-          });
-          img.addEventListener('click', function(e) {
-            e.stopPropagation();
-            showLightbox(img.src, c.drugName);
-          });
-        }
-      }, 10);
+      // Handle image load error + lightbox click
+      var img = front.querySelector('.ufc-front-img');
+      if (img) {
+        img.addEventListener('error', function() {
+          img.style.display = 'none';
+          var iconEl = front.querySelector('.ufc-card-icon');
+          if (iconEl) iconEl.style.display = '';
+          sizeCard();
+        });
+        img.addEventListener('click', function(e) {
+          e.stopPropagation();
+          showLightbox(img.src, c.drugName);
+        });
+      }
     } else {
       front.innerHTML = deckBadge + masteryHTML +
         (c.icon ? '<div class="ufc-card-icon">' + c.icon + '</div>' : '') +
@@ -380,6 +380,9 @@
     // ── Audio bar (drug cards only) ──
     var audioBar = document.getElementById('ufcAudioBar');
     audioBar.style.display = (c.deckId === 'drugs') ? 'flex' : 'none';
+
+    // Size card to fit content
+    sizeCard();
 
     // Slide animation
     stage.querySelector('.ufc-card').classList.add('ufc-slide-in');
@@ -497,6 +500,7 @@
   document.getElementById('ufcCardStage').addEventListener('click', function() {
     isFlipped = !isFlipped;
     document.getElementById('ufcCard').classList.toggle('flipped', isFlipped);
+    setTimeout(sizeCard, 50);
   });
 
   document.getElementById('ufcPrev').addEventListener('click', function() { currentIndex--; stopAudio(); renderCard(); });
@@ -541,7 +545,7 @@
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     if (e.key === 'ArrowLeft') { currentIndex--; stopAudio(); renderCard(); }
     else if (e.key === 'ArrowRight') { currentIndex++; stopAudio(); renderCard(); }
-    else if (e.key === ' ') { e.preventDefault(); isFlipped = !isFlipped; document.getElementById('ufcCard').classList.toggle('flipped', isFlipped); }
+    else if (e.key === ' ') { e.preventDefault(); isFlipped = !isFlipped; document.getElementById('ufcCard').classList.toggle('flipped', isFlipped); setTimeout(sizeCard, 50); }
     else if (e.key === 'g' || e.key === 'G') { document.getElementById('ufcGotIt').click(); }
     else if (e.key === 'r' || e.key === 'R') { document.getElementById('ufcStudyMore').click(); }
     else if (e.key === 'Escape') { var lb = document.querySelector('.ufc-lightbox'); if (lb) lb.remove(); }
