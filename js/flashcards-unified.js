@@ -255,33 +255,12 @@
       '<div class="ufc-stat ufc-stat-weak"><span class="ufc-stat-num">' + weak + '</span><span class="ufc-stat-label">Review</span></div>';
   }
 
-  // ── Size card container to fit the taller face ──
-  // Both faces are position:absolute so parent has zero natural height.
-  // We temporarily make back visible to measure, then use the max of both.
+  // ── Size card — grid layout handles this automatically now ──
+  // Both faces are in the same grid cell (grid-area: 1/1), so the
+  // grid row grows to fit the tallest face. This is a no-op but kept
+  // as a hook in case we need image-load recalc.
   function sizeCard() {
-    var stage = document.getElementById('ufcCardStage');
-    var cardEl = document.getElementById('ufcCard');
-    var front = document.getElementById('ufcFront');
-    var back = document.getElementById('ufcBack');
-    if (!stage || !cardEl || !front || !back) return;
-    // Temporarily make both faces measurable
-    var origBackVis = back.style.visibility;
-    var origBackTrans = back.style.transform;
-    back.style.visibility = 'hidden';
-    back.style.transform = 'rotateY(0deg)';
-    back.style.backfaceVisibility = 'visible';
-    var fh = front.scrollHeight;
-    var bh = back.scrollHeight;
-    // Restore
-    back.style.visibility = origBackVis;
-    back.style.transform = origBackTrans;
-    back.style.backfaceVisibility = '';
-    // Use max so container fits either face without jumping on flip
-    var h = Math.max(fh, bh, 200);
-    stage.style.minHeight = h + 'px';
-    cardEl.style.minHeight = h + 'px';
-    front.style.minHeight = h + 'px';
-    back.style.minHeight = h + 'px';
+    // Grid handles sizing — nothing to do
   }
 
   // ── Render card ──
