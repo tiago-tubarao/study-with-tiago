@@ -21,31 +21,35 @@
       --card-background-color: #fff;
       color: #1a1a2e;
     }
-    /* Force Pico button text to be visible */
-    .page-container button,
-    .page-container .ufc-deck-btn,
-    .page-container .ufc-section-btn,
-    .page-container .ufc-nav-btn,
-    .page-container .ufc-mastery-btn,
-    .page-container .ufc-reset-btn,
-    .page-container .ufc-audio-btn {
+    /* Force Pico button text to be visible — LIGHT MODE */
+    :root:not([data-theme="dark"]) .page-container button,
+    :root:not([data-theme="dark"]) .ufc-deck-btn,
+    :root:not([data-theme="dark"]) .ufc-section-btn,
+    :root:not([data-theme="dark"]) .ufc-nav-btn,
+    :root:not([data-theme="dark"]) .ufc-mastery-btn,
+    :root:not([data-theme="dark"]) .ufc-reset-btn,
+    :root:not([data-theme="dark"]) .ufc-audio-btn {
       --pico-color: #1a1a2e;
       color: #1a1a2e;
     }
-    .page-container .ufc-deck-btn.active { color: #fff !important; }
-    .page-container .ufc-section-btn.active { color: #fff !important; }
-    .page-container .ufc-shuffle-btn { color: #fff !important; }
-    .page-container .ufc-mastery-btn-got { color: #2B8A3E; }
-    .page-container .ufc-mastery-btn-got:hover, .page-container .ufc-mastery-btn-got.active { color: #fff !important; }
-    .page-container .ufc-mastery-btn-weak { color: #E67700; }
-    .page-container .ufc-mastery-btn-weak:hover, .page-container .ufc-mastery-btn-weak.active { color: #fff !important; }
-    .page-container .ufc-audio-podcast { color: #2A9D8F; }
-    .page-container .ufc-audio-podcast:hover, .page-container .ufc-audio-podcast.playing { color: #fff !important; }
-    .page-container .ufc-audio-read { color: #5F3DC4; }
-    .page-container .ufc-audio-read:hover, .page-container .ufc-audio-read.playing { color: #fff !important; }
-    .page-container .ufc-stat-label,
-    .page-container .ufc-counter,
-    .page-container .ufc-keyboard-hint { color: #1a1a2e; }
+    :root:not([data-theme="dark"]) .ufc-deck-btn.active { color: #fff !important; }
+    :root:not([data-theme="dark"]) .ufc-section-btn.active { color: #fff !important; }
+    :root:not([data-theme="dark"]) .ufc-shuffle-btn { color: #fff !important; }
+    :root:not([data-theme="dark"]) .ufc-mastery-btn-got { color: #2B8A3E; }
+    :root:not([data-theme="dark"]) .ufc-mastery-btn-got:hover,
+    :root:not([data-theme="dark"]) .ufc-mastery-btn-got.active { color: #fff !important; }
+    :root:not([data-theme="dark"]) .ufc-mastery-btn-weak { color: #E67700; }
+    :root:not([data-theme="dark"]) .ufc-mastery-btn-weak:hover,
+    :root:not([data-theme="dark"]) .ufc-mastery-btn-weak.active { color: #fff !important; }
+    :root:not([data-theme="dark"]) .ufc-audio-podcast { color: #2A9D8F; }
+    :root:not([data-theme="dark"]) .ufc-audio-podcast:hover,
+    :root:not([data-theme="dark"]) .ufc-audio-podcast.playing { color: #fff !important; }
+    :root:not([data-theme="dark"]) .ufc-audio-read { color: #5F3DC4; }
+    :root:not([data-theme="dark"]) .ufc-audio-read:hover,
+    :root:not([data-theme="dark"]) .ufc-audio-read.playing { color: #fff !important; }
+    :root:not([data-theme="dark"]) .ufc-stat-label,
+    :root:not([data-theme="dark"]) .ufc-counter,
+    :root:not([data-theme="dark"]) .ufc-keyboard-hint { color: #1a1a2e; }
 
     .fc-hero { background: linear-gradient(135deg, #0B1D3A 0%, #1a365d 30%, #2A9D8F 70%, #2B8A3E 100%); padding: 3em 1.5em 2.5em; text-align: center; position: relative; overflow: hidden; border-radius: 0 0 2rem 2rem; margin-bottom: 1.5em; }
     .fc-hero-glow { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(42,157,143,0.3), transparent 70%); top: -100px; right: -50px; border-radius: 50%; }
@@ -180,11 +184,34 @@
     }
 
     /* Dark mode */
+    [data-theme="dark"] .page-container { color: #e0e0e0; }
     [data-theme="dark"] .ufc-card-front, [data-theme="dark"] .ufc-card-back { background: #1a1a2e; color: #e0e0e0; }
-    [data-theme="dark"] .ufc-stats-bar { background: #1a1a2e; }
+    [data-theme="dark"] .ufc-stats-bar { background: #1a1a2e; color: #e0e0e0; }
     [data-theme="dark"] .ufc-stat-bar { background: #2d2d44; }
+    [data-theme="dark"] .ufc-stat-label { color: #aaa; }
     [data-theme="dark"] .ufc-back-header { border-bottom-color: #2d2d44; }
     [data-theme="dark"] .ufc-facts li { border-bottom-color: rgba(255,255,255,0.05); }
+    [data-theme="dark"] .ufc-counter { color: #ccc; }
+    [data-theme="dark"] .ufc-deck-btn { color: #e0e0e0; border-color: #444; }
+    [data-theme="dark"] .ufc-deck-btn:hover { color: var(--btn-color, #2A9D8F); }
+    [data-theme="dark"] .ufc-deck-btn.active { color: #fff !important; }
+    [data-theme="dark"] .ufc-section-btn { color: #e0e0e0; border-color: #444; }
+    [data-theme="dark"] .ufc-section-btn:hover { color: #2A9D8F; }
+    [data-theme="dark"] .ufc-section-btn.active { color: #fff !important; }
+    [data-theme="dark"] .ufc-nav-btn { color: #e0e0e0; border-color: #444; }
+    [data-theme="dark"] .ufc-nav-btn:hover:not(:disabled) { background: #2d2d44; }
+    [data-theme="dark"] .ufc-shuffle-btn { color: #fff !important; }
+    [data-theme="dark"] .ufc-mastery-btn-got { color: #2B8A3E; border-color: #2B8A3E; }
+    [data-theme="dark"] .ufc-mastery-btn-got:hover, [data-theme="dark"] .ufc-mastery-btn-got.active { color: #fff !important; }
+    [data-theme="dark"] .ufc-mastery-btn-weak { color: #E67700; border-color: #E67700; }
+    [data-theme="dark"] .ufc-mastery-btn-weak:hover, [data-theme="dark"] .ufc-mastery-btn-weak.active { color: #fff !important; }
+    [data-theme="dark"] .ufc-audio-btn { background: #1a1a2e; border-color: #444; }
+    [data-theme="dark"] .ufc-audio-podcast { color: #2A9D8F; border-color: #2A9D8F; }
+    [data-theme="dark"] .ufc-audio-podcast:hover, [data-theme="dark"] .ufc-audio-podcast.playing { color: #fff !important; }
+    [data-theme="dark"] .ufc-audio-read { color: #5F3DC4; border-color: #5F3DC4; }
+    [data-theme="dark"] .ufc-audio-read:hover, [data-theme="dark"] .ufc-audio-read.playing { color: #fff !important; }
+    [data-theme="dark"] .ufc-reset-btn { color: #aaa; border-color: #444; }
+    [data-theme="dark"] .ufc-keyboard-hint { color: #888; }
     [data-theme="dark"] .ufc-mnemonic { background: rgba(245,159,0,0.15); color: #FFD43B; }
     [data-theme="dark"] .ufc-keyboard-hint kbd { background: #2d2d44; border-color: #444; color: #ccc; }
     [data-theme="dark"] .ufc-search-input { background: #1a1a2e; color: #e0e0e0; border-color: #444; }
