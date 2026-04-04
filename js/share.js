@@ -26,6 +26,14 @@
 
     // Adult Health Exam 3 pages
     if (isAH) {
+      if (p.includes('drug-flashcards')) {
+        return '💊 84 Drug Flashcards with Audio — AI-generated card images + 8-category clinical framework\n\n'
+          + '🎙 Podcast audio for every drug\n'
+          + '🔊 Read-aloud mode\n'
+          + '🔍 Search any drug instantly\n'
+          + '📊 Mastery tracking\n\n'
+          + '🔗 ' + base + 'exam3/drug-flashcards.html';
+      }
       if (p.includes('flashcards')) {
         return '🩺 FREE Adult Health flashcards — hematology, diabetes, endocrine, renal\n\n🔗 ' + base + 'exam3/flashcards.html';
       }
@@ -42,6 +50,15 @@
         return '🫘 Adult Health Renal review — AKI, CKD, dialysis, kidney stones + practice questions\n\n🔗 ' + base + 'exam3/renal.html';
       }
       return '🩺 FREE Adult Health Exam 3 study hub — hematology, diabetes, endocrine, renal + practice questions\n\n🔗 ' + base + 'exam3/';
+    }
+
+    // Unified flashcards page
+    if (p.includes('all-flashcards')) {
+      return '🃏 275+ Nursing Flashcards in ONE page — Pharmacology, Adult Health, 84 Drug Cards with Audio, Quiz 3\n\n'
+        + '🔍 Search any drug or condition\n'
+        + '📊 Mastery tracking across all decks\n'
+        + '🎙 Audio for 84 drug cards\n\n'
+        + '🔗 ' + base + 'all-flashcards.html';
     }
 
     // Pharmacology Exam 2 pages
