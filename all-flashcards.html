@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Flashcards — 275+ Cards — Study with Tiago</title>
+  <meta name="description" content="275+ nursing flashcards in one place. Pharmacology, Adult Health, Drug Cards with Audio, Quiz 3 CNS & GI. Search, filter, mastery tracking.">
+  <meta property="og:title" content="All 275+ Flashcards | Study with Tiago">
+  <meta property="og:description" content="Every flashcard deck combined. Pharmacology, Adult Health, 84 Drug Cards with audio, Quiz 3 visual cards. One page, all filters.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Study with Tiago">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=22">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <style>
+    .page-container {
+      --pico-color: #1a1a2e;
+      --pico-card-background-color: #fff;
+      --card-background-color: #fff;
+      color: #1a1a2e;
+    }
+
+    .fc-hero { background: linear-gradient(135deg, #0B1D3A 0%, #1a365d 30%, #2A9D8F 70%, #2B8A3E 100%); padding: 3em 1.5em 2.5em; text-align: center; position: relative; overflow: hidden; border-radius: 0 0 2rem 2rem; margin-bottom: 1.5em; }
+    .fc-hero-glow { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(42,157,143,0.3), transparent 70%); top: -100px; right: -50px; border-radius: 50%; }
+    .fc-hero-content { position: relative; z-index: 1; }
+    .fc-hero-badge { display: inline-block; background: rgba(42,157,143,0.3); border: 1px solid rgba(42,157,143,0.6); color: #90EE90; padding: 0.3em 1em; border-radius: 2em; font-size: 0.75em; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.8em; }
+    .fc-hero-title { font-family: 'Syne', sans-serif; font-size: 2.2em; color: #fff; margin: 0; line-height: 1.1; }
+    .fc-hero-sub { color: rgba(255,255,255,0.75); font-size: 0.95em; margin-top: 0.5em; line-height: 1.5; }
+    .fc-hero-sub strong { color: #90EE90; }
+
+    /* Search */
+    .ufc-search-wrap { position: relative; max-width: 440px; margin: 0 auto 1em; padding: 0 1em; }
+    .ufc-search-input { width: 100%; padding: 0.65em 1em 0.65em 2.5em; border-radius: 2em; border: 1.5px solid #dee2e6; font-size: 0.88em; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.442.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E") 0.8em center no-repeat; outline: none; transition: border-color 0.2s; }
+    .ufc-search-input:focus { border-color: #2A9D8F; }
+    .ufc-search-results { position: absolute; top: 100%; left: 1em; right: 1em; background: #fff; border: 1px solid #dee2e6; border-radius: 0.8em; box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 10; overflow: hidden; display: none; max-height: 300px; overflow-y: auto; }
+    .ufc-search-item { padding: 0.5em 1em; cursor: pointer; font-size: 0.85em; border-bottom: 1px solid #f1f3f5; transition: background 0.15s; }
+    .ufc-search-item:hover { background: #f1f3f5; }
+    .ufc-search-item:last-child { border-bottom: none; }
+    .ufc-search-deck { font-size: 0.7em; opacity: 0.5; margin-left: 0.5em; }
+
+    /* Stats */
+    .ufc-stats-bar { display: flex; align-items: center; gap: 1em; padding: 0.8em 1.2em; background: #fff; border-radius: 1em; margin: 0 1em 1em; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .ufc-stat { text-align: center; min-width: 60px; }
+    .ufc-stat-num { display: block; font-size: 1.5em; font-weight: 800; font-family: 'Syne', sans-serif; }
+    .ufc-stat-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; }
+    .ufc-stat-got .ufc-stat-num { color: #2B8A3E; }
+    .ufc-stat-weak .ufc-stat-num { color: #E67700; }
+    .ufc-stat-bar-wrap { flex: 1; }
+    .ufc-stat-bar { height: 10px; background: #e9ecef; border-radius: 5px; overflow: hidden; display: flex; }
+    .ufc-stat-bar-got { background: #2B8A3E; transition: width 0.4s; }
+    .ufc-stat-bar-weak { background: #E67700; transition: width 0.4s; }
+
+    /* Deck filters */
+    .ufc-deck-filters { display: flex; flex-wrap: wrap; gap: 0.5em; padding: 0 1em; margin-bottom: 0.8em; justify-content: center; }
+    .ufc-deck-btn { padding: 0.45em 1em; border-radius: 2em; border: 2px solid #dee2e6; background: transparent; font-size: 0.82em; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .ufc-deck-btn:hover { border-color: var(--btn-color, #2A9D8F); color: var(--btn-color, #2A9D8F); }
+    .ufc-deck-btn.active { background: var(--btn-color, #0B1D3A); border-color: var(--btn-color, #0B1D3A); color: #fff; }
+
+    /* Section filters */
+    .ufc-section-filters { display: flex; flex-wrap: wrap; gap: 0.35em; padding: 0 1em; margin-bottom: 1em; justify-content: center; }
+    .ufc-section-btn { padding: 0.3em 0.7em; border-radius: 2em; border: 1.5px solid #dee2e6; background: transparent; font-size: 0.75em; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .ufc-section-btn:hover { border-color: #2A9D8F; color: #2A9D8F; }
+    .ufc-section-btn.active { background: #2A9D8F; border-color: #2A9D8F; color: #fff; }
+
+    /* Card */
+    .ufc-counter { text-align: center; font-size: 0.8em; font-weight: 600; opacity: 0.5; margin-bottom: 0.5em; }
+    .ufc-card-stage { perspective: 1200px; max-width: 440px; margin: 0 auto; padding: 0 1em; cursor: pointer; min-height: 460px; }
+    .ufc-card { position: relative; width: 100%; min-height: 440px; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); transform-style: preserve-3d; }
+    .ufc-card.flipped { transform: rotateY(180deg); }
+    .ufc-card-face { position: absolute; width: 100%; min-height: 440px; backface-visibility: hidden; border-radius: 1.2em; overflow: hidden; }
+
+    .ufc-card-front { background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5em; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.08); position: relative; border-top: 5px solid #2A9D8F; }
+    .ufc-front-img { width: 100%; max-height: 260px; object-fit: contain; border-radius: 0.8em; margin-bottom: 0.8em; }
+    .ufc-card-icon { font-size: 2.5em; margin-bottom: 0.3em; }
+    .ufc-card-title { font-family: 'Syne', sans-serif; font-size: 1.35em; font-weight: 800; margin-bottom: 0.15em; line-height: 1.2; word-break: break-word; }
+    .ufc-card-subtitle { font-size: 0.85em; opacity: 0.6; margin-bottom: 0.5em; }
+    .ufc-card-pill { display: inline-block; padding: 0.25em 0.8em; border-radius: 2em; color: #fff; font-size: 0.72em; font-weight: 600; margin-bottom: 0.4em; }
+    .ufc-card-purpose { font-size: 0.82em; opacity: 0.6; line-height: 1.4; }
+    .ufc-card-tap { font-size: 0.68em; opacity: 0.3; margin-top: 0.6em; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+    .ufc-deck-badge { position: absolute; top: 0.8em; left: 0.8em; padding: 0.2em 0.7em; border-radius: 2em; font-size: 0.62em; font-weight: 700; z-index: 2; letter-spacing: 0.5px; color: #fff; }
+    .ufc-mastery-badge { position: absolute; top: 0.8em; right: 0.8em; padding: 0.2em 0.7em; border-radius: 2em; font-size: 0.7em; font-weight: 700; z-index: 2; }
+    .ufc-mastery-got { background: rgba(43,138,62,0.15); color: #2B8A3E; border: 1px solid rgba(43,138,62,0.3); }
+    .ufc-mastery-weak { background: rgba(230,119,0,0.15); color: #E67700; border: 1px solid rgba(230,119,0,0.3); }
+
+    .ufc-card-back { background: #fff; transform: rotateY(180deg); padding: 1.2em; box-shadow: 0 8px 32px rgba(0,0,0,0.08); overflow-y: auto; max-height: 520px; border-top: 5px solid #2A9D8F; }
+    .ufc-back-section { font-size: 0.68em; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.2em; opacity: 0.5; }
+    .ufc-back-header { font-family: 'Syne', sans-serif; font-size: 1em; font-weight: 800; margin-bottom: 0.5em; padding-bottom: 0.4em; border-bottom: 2px solid #e9ecef; }
+    .ufc-facts { list-style: none; padding: 0; margin: 0 0 0.6em; }
+    .ufc-facts li { padding: 0.4em 0; font-size: 0.82em; line-height: 1.45; border-bottom: 1px solid rgba(0,0,0,0.04); }
+    .ufc-facts li:last-child { border-bottom: none; }
+    .ufc-mnemonic { background: linear-gradient(135deg, #FFF9DB, #FFF3BF); padding: 0.5em 0.8em; border-radius: 0.6em; font-size: 0.8em; font-weight: 600; border-left: 4px solid #F59F00; margin-bottom: 0.5em; }
+
+    /* Category label colors (for 84 drug cards) */
+    .fc-cat { display: inline; font-size: 0.85em; font-weight: 800; letter-spacing: 0.3px; }
+    .fc-cat-what { color: #1971C2; } .fc-cat-looks { color: #2B8A3E; } .fc-cat-wrong { color: #C92A2A; }
+    .fc-cat-monitor { color: #5F3DC4; } .fc-cat-nurse { color: #0B7285; } .fc-cat-teach { color: #E67700; }
+    .fc-cat-priority { color: #C92A2A; } .fc-cat-cant { color: #862E9C; }
+
+    /* Audio */
+    .ufc-audio-bar { display: flex; justify-content: center; gap: 0.6em; margin: 0.8em 1em; }
+    .ufc-audio-btn { display: flex; align-items: center; gap: 0.4em; padding: 0.5em 1.2em; border-radius: 2em; border: 1.5px solid #dee2e6; background: #fff; font-size: 0.82em; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .ufc-audio-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .ufc-audio-podcast { border-color: #2A9D8F; color: #2A9D8F; }
+    .ufc-audio-podcast:hover, .ufc-audio-podcast.playing { background: #2A9D8F; color: #fff; }
+    .ufc-audio-read { border-color: #5F3DC4; color: #5F3DC4; }
+    .ufc-audio-read:hover, .ufc-audio-read.playing { background: #5F3DC4; color: #fff; }
+    .ufc-audio-btn.playing { animation: ufc-pulse 1.5s infinite; }
+    @keyframes ufc-pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+    /* Actions + Nav */
+    .ufc-mastery-actions { display: flex; justify-content: center; gap: 0.6em; margin: 1em 0 0.5em; }
+    .ufc-mastery-btn { padding: 0.5em 1.2em; border-radius: 2em; border: 2px solid; font-size: 0.82em; font-weight: 700; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 0.4em; }
+    .ufc-mastery-btn-got { border-color: #2B8A3E; color: #2B8A3E; background: transparent; }
+    .ufc-mastery-btn-got:hover, .ufc-mastery-btn-got.active { background: #2B8A3E; color: #fff; }
+    .ufc-mastery-btn-weak { border-color: #E67700; color: #E67700; background: transparent; }
+    .ufc-mastery-btn-weak:hover, .ufc-mastery-btn-weak.active { background: #E67700; color: #fff; }
+
+    .ufc-nav { display: flex; justify-content: center; gap: 0.5em; margin: 1em 0; }
+    .ufc-nav-btn { padding: 0.5em 1.2em; border-radius: 0.6em; border: 1.5px solid #dee2e6; background: transparent; font-weight: 600; cursor: pointer; transition: all 0.2s; font-size: 0.85em; }
+    .ufc-nav-btn:hover:not(:disabled) { background: #f1f3f5; }
+    .ufc-shuffle-btn { background: #0B1D3A; color: #fff; border-color: #0B1D3A; }
+    .ufc-shuffle-btn:hover { background: #1a365d; }
+
+    .ufc-progress-bar { height: 4px; background: #e9ecef; border-radius: 2px; margin: 0 1em 1em; overflow: hidden; }
+    .ufc-progress-fill { height: 100%; background: #2A9D8F; border-radius: 2px; transition: width 0.3s; }
+
+    .ufc-keyboard-hint { text-align: center; font-size: 0.72em; opacity: 0.35; margin: 0.5em 0 1.5em; }
+    .ufc-keyboard-hint kbd { display: inline-block; padding: 0.15em 0.5em; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; font-size: 0.9em; background: #f8f9fa; }
+    .ufc-reset-wrap { text-align: center; padding: 1em; }
+    .ufc-reset-btn { background: transparent; border: 1px solid #dee2e6; padding: 0.4em 1em; border-radius: 2em; font-size: 0.75em; cursor: pointer; opacity: 0.4; transition: opacity 0.2s; }
+    .ufc-reset-btn:hover { opacity: 1; }
+    .ufc-empty { text-align: center; padding: 3em 1em; opacity: 0.5; }
+    .ufc-slide-in { animation: ufcSlide 0.3s ease; }
+    @keyframes ufcSlide { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* Lightbox */
+    .ufc-lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1em; }
+    .ufc-lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 1em; box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
+    .ufc-lightbox-close { position: absolute; top: 1em; right: 1em; width: 2.5em; height: 2.5em; border-radius: 50%; border: none; background: #fff; color: #333; font-size: 1.2em; font-weight: 700; cursor: pointer; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .fc-hero { padding: 2em 1em 1.5em; }
+      .fc-hero-title { font-size: 1.6em; }
+      .ufc-card-stage { min-height: 400px; }
+      .ufc-card, .ufc-card-face { min-height: 380px; }
+      .ufc-card-title { font-size: 1.15em; }
+      .ufc-stats-bar { flex-wrap: wrap; justify-content: center; }
+      .ufc-stat-bar-wrap { order: 3; width: 100%; }
+      .ufc-front-img { max-height: 200px; }
+      .ufc-deck-filters { gap: 0.3em; }
+      .ufc-deck-btn { font-size: 0.72em; padding: 0.35em 0.7em; }
+    }
+
+    /* Dark mode */
+    [data-theme="dark"] .ufc-card-front, [data-theme="dark"] .ufc-card-back { background: #1a1a2e; color: #e0e0e0; }
+    [data-theme="dark"] .ufc-stats-bar { background: #1a1a2e; }
+    [data-theme="dark"] .ufc-stat-bar { background: #2d2d44; }
+    [data-theme="dark"] .ufc-back-header { border-bottom-color: #2d2d44; }
+    [data-theme="dark"] .ufc-facts li { border-bottom-color: rgba(255,255,255,0.05); }
+    [data-theme="dark"] .ufc-mnemonic { background: rgba(245,159,0,0.15); color: #FFD43B; }
+    [data-theme="dark"] .ufc-keyboard-hint kbd { background: #2d2d44; border-color: #444; color: #ccc; }
+    [data-theme="dark"] .ufc-search-input { background: #1a1a2e; color: #e0e0e0; border-color: #444; }
+    [data-theme="dark"] .ufc-search-results { background: #1a1a2e; border-color: #444; }
+    [data-theme="dark"] .ufc-search-item:hover { background: #2d2d44; }
+    [data-theme="dark"] .ufc-audio-btn { background: #1a1a2e; border-color: #444; }
+  </style>
+</head>
+<body>
+<div class="page-container">
+
+  <div class="fc-hero">
+    <div class="fc-hero-glow"></div>
+    <div class="fc-hero-content">
+      <div class="fc-hero-badge">EVERY CARD IN ONE PLACE</div>
+      <h1 class="fc-hero-title"><span id="ufcTotalCount">275</span> Flashcards</h1>
+      <p class="fc-hero-sub"><strong>Pharmacology + Adult Health + Drug Cards + Quiz 3</strong><br>Search anything. Filter by deck or topic. Mastery tracking across all cards.</p>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="ufc-search-wrap">
+    <input type="text" class="ufc-search-input" id="ufcSearch" placeholder="Search any drug, condition, or topic..." autocomplete="off">
+    <div class="ufc-search-results" id="ufcSearchResults"></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="ufc-stats-bar" id="ufcStats"></div>
+
+  <!-- Deck Filters -->
+  <div class="ufc-deck-filters" id="ufcDeckFilters"></div>
+
+  <!-- Section Filters -->
+  <div class="ufc-section-filters" id="ufcSectionFilters"></div>
+
+  <!-- Counter -->
+  <div class="ufc-counter" id="ufcCounter"></div>
+
+  <!-- Card -->
+  <div class="ufc-card-stage" id="ufcCardStage">
+    <div class="ufc-card" id="ufcCard">
+      <div class="ufc-card-face ufc-card-front" id="ufcFront"></div>
+      <div class="ufc-card-face ufc-card-back" id="ufcBack"></div>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div class="ufc-empty" id="ufcEmpty" style="display:none">
+    <div style="font-size:3em">🎉</div>
+    <p>No cards match. Try a different filter.</p>
+  </div>
+
+  <!-- Audio (shown only for drug cards) -->
+  <div class="ufc-audio-bar" id="ufcAudioBar" style="display:none">
+    <button type="button" class="ufc-audio-btn ufc-audio-podcast" id="ufcPodcastBtn" title="Listen to podcast">
+      <span class="ufc-audio-icon">🎙</span> Podcast
+    </button>
+    <button type="button" class="ufc-audio-btn ufc-audio-read" id="ufcReadBtn" title="Read card aloud">
+      <span class="ufc-audio-icon">🔊</span> Read Card
+    </button>
+  </div>
+
+  <!-- Mastery -->
+  <div class="ufc-mastery-actions">
+    <button type="button" class="ufc-mastery-btn ufc-mastery-btn-got" id="ufcGotIt">✓ Got It</button>
+    <button type="button" class="ufc-mastery-btn ufc-mastery-btn-weak" id="ufcStudyMore">↻ Study More</button>
+  </div>
+
+  <!-- Nav -->
+  <div class="ufc-nav">
+    <button type="button" class="ufc-nav-btn" id="ufcPrev">← Prev</button>
+    <button type="button" class="ufc-nav-btn ufc-shuffle-btn" id="ufcShuffle">🔀 Shuffle</button>
+    <button type="button" class="ufc-nav-btn" id="ufcNext">Next →</button>
+  </div>
+
+  <div class="ufc-progress-bar"><div class="ufc-progress-fill" id="ufcProgress"></div></div>
+
+  <div class="ufc-keyboard-hint">
+    <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;|&nbsp;
+    <kbd>Space</kbd> flip &nbsp;|&nbsp;
+    <kbd>G</kbd> got it &nbsp;|&nbsp;
+    <kbd>R</kbd> review
+  </div>
+
+  <div class="ufc-reset-wrap">
+    <button type="button" class="ufc-reset-btn" id="ufcReset">Reset All Progress</button>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+    NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. Content created by a nursing student.
+    <a href="terms.html">Full disclaimer</a>.
+  </div>
+  <div style="margin-top:12px">
+    Study with Tiago &copy; 2026 &bull;
+    <a href="https://www.youtube.com/@life-ofstudy" target="_blank" rel="noopener">YouTube</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/wcoda" target="_blank" rel="noopener">Pharm Bundle</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener">AH Review</a> &bull;
+    <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener">Practice Exams</a> &bull;
+    <a href="about.html">About</a> &bull;
+    <a href="privacy.html">Privacy</a> &bull;
+    <a href="terms.html">Terms</a>
+  </div>
+</footer>
+
+<!-- Load ALL 5 data files -->
+<script src="js/flashcard-data.js"></script>
+<script src="js/flashcard-data-ah.js"></script>
+<script src="js/flashcard-data-drugs.js?v=2"></script>
+<script src="js/flashcard-data-q3.js"></script>
+<script src="js/flashcard-data-q3-gi.js"></script>
+<!-- Unified engine -->
+<script src="js/flashcards-unified.js?v=1"></script>
+<script src="js/nav.js?v=5"></script>
+<script src="js/theme.js"></script>
+<script src="js/feedback.js"></script>
+<script src="js/share.js"></script>
+</body>
+</html>
