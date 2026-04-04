@@ -294,6 +294,20 @@
     var borderColor = c.pillColor || '#2A9D8F';
     front.style.borderTopColor = borderColor;
 
+    // Dynamic sizing — set min-height based on image presence
+    var cardEl = document.getElementById('ufcCard');
+    if (c.image) {
+      stage.style.minHeight = '460px';
+      cardEl.style.minHeight = '440px';
+      front.style.minHeight = '440px';
+      document.getElementById('ufcBack').style.minHeight = '440px';
+    } else {
+      stage.style.minHeight = '280px';
+      cardEl.style.minHeight = '260px';
+      front.style.minHeight = '260px';
+      document.getElementById('ufcBack').style.minHeight = '260px';
+    }
+
     if (c.image) {
       front.innerHTML = deckBadge + masteryHTML +
         '<img class="ufc-front-img" src="' + c.image + '" alt="' + c.drugName + '" loading="eager" onerror="this.style.display=\'none\'">' +
