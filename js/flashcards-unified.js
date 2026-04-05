@@ -180,7 +180,7 @@
       var name = c.drugName;
       var slug = name.toLowerCase().replace(/\s+/g, '_').replace(/%/g, '');
       podcastMap[name] = slug + '_podcast.mp3';
-      readMap[name] = slug + '_read.mp3';
+      readMap[name] = slug + '_readcard.mp3';
     });
   }
 
@@ -380,17 +380,27 @@
       var catMap = {
         'WHAT IS IT': 'fc-cat-what', 'LOOKS LIKE': 'fc-cat-looks', 'GOES WRONG': 'fc-cat-wrong',
         'MONITOR': 'fc-cat-monitor', 'NURSE DOES': 'fc-cat-nurse', 'TEACH': 'fc-cat-teach',
-        'PRIORITY': 'fc-cat-priority', "CAN'T MIX": 'fc-cat-cant'
+        'PRIORITY': 'fc-cat-priority', "CAN'T MIX": 'fc-cat-cant',
+        'SIMILAR': 'fc-cat-similar', 'EMERGENCY': 'fc-cat-emergency',
+        'ASSESS FIRST': 'fc-cat-assess', 'CHAIN': 'fc-cat-chain'
       };
       c.facts.forEach(function(f) {
-        var catClass = '';
-        Object.keys(catMap).forEach(function(k) { if (f.indexOf(k) !== -1) catClass = catMap[k]; });
-        var parts = f.split(' — ');
-        if (parts.length > 1 && catClass) {
-          factsHTML += '<li><span class="fc-cat ' + catClass + '">' + parts[0] + '</span> — ' + parts.slice(1).join(' — ') + '</li>';
-        } else {
-          factsHTML += '<li>' + f + '</li>';
-        }
+        var text = f.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        // Style category labels with bold + color
+        var styled = false;
+        Object.keys(catMap).forEach(function(k) {
+          var idx = text.indexOf(k);
+          if (idx !== -1 && idx < 10 && !styled) {
+            var before = text.substring(0, idx);
+            var after = text.substring(idx + k.length);
+            text = before + '<strong class="fc-cat ' + catMap[k] + '">' + k + '</strong>' + after;
+            styled = true;
+          }
+        });
+        // Highlight critical keywords
+        text = text.replace(/(STOP|NEVER|FIRST|ALWAYS|MUST|HOLD|EMERGENCY|LIFELONG|IMMEDIATELY)/g,
+          '<strong style="color:#C92A2A">$1</strong>');
+        factsHTML += '<li>' + text + '</li>';
       });
     } else {
       c.facts.forEach(function(f) { factsHTML += '<li>' + f + '</li>'; });
@@ -405,7 +415,7 @@
 
     // ── Audio bar (drug cards only) ──
     var audioBar = document.getElementById('ufcAudioBar');
-    audioBar.style.display = (c.deckId === 'drugs') ? 'flex' : 'none';
+    audioBar.style.display = (c.deckId === 'exam3' && c.type === 'drug8cat') ? 'flex' : 'none';
 
     // Size card to fit content
     sizeCard();
