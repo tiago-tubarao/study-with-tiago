@@ -13,8 +13,7 @@
   // ── Deck definitions ──
   var DECKS = [
     { id: 'pharm', label: 'Pharm Exam 2', color: '#0B1D3A', count: 0 },
-    { id: 'ah', label: 'Adult Health', color: '#2B8A3E', count: 0 },
-    { id: 'drugs', label: '84 Drug Cards', color: '#C92A2A', count: 0 },
+    { id: 'exam3', label: 'Exam 3', color: '#2B8A3E', count: 0 },
     { id: 'q3cns', label: 'Quiz 3 CNS', color: '#D9480F', count: 0 },
     { id: 'q3gi', label: 'Quiz 3 GI', color: '#862E9C', count: 0 }
   ];
@@ -57,16 +56,16 @@
     DECKS[0].count = (d.cards || []).length;
   }
 
-  // 2. Adult Health (FLASHCARD_DATA_AH) — traditional format
+  // 2. Adult Health (FLASHCARD_DATA_AH) — merged into Exam 3
   if (window.FLASHCARD_DATA_AH) {
     var d2 = window.FLASHCARD_DATA_AH;
-    (d2.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'ah'); });
+    (d2.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'exam3'); });
     (d2.cards || []).forEach(function(c) {
       allCards.push({
         type: 'traditional',
-        deckId: 'ah',
+        deckId: 'exam3',
         deckLabel: 'AH',
-        sectionKey: 'ah_' + c.section,
+        sectionKey: 'exam3_' + c.section,
         drugName: c.drugName,
         brandName: c.brandName || '',
         drugClass: c.drugClass || '',
@@ -78,19 +77,18 @@
         pillColor: (d2.sections.find(function(s) { return s.id === c.section; }) || {}).color || '#2A9D8F'
       });
     });
-    DECKS[1].count = (d2.cards || []).length;
   }
 
-  // 3. 84 Drug Cards (FLASHCARD_DATA_DRUGS) — 8-category framework
+  // 3. 84 Drug Cards (FLASHCARD_DATA_DRUGS) — merged into Exam 3
   if (window.FLASHCARD_DATA_DRUGS) {
     var d3 = window.FLASHCARD_DATA_DRUGS;
-    (d3.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'drugs'); });
+    (d3.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'exam3'); });
     (d3.cards || []).forEach(function(c) {
       allCards.push({
         type: 'drug8cat',
-        deckId: 'drugs',
+        deckId: 'exam3',
         deckLabel: 'DRUG',
-        sectionKey: 'drugs_' + c.section,
+        sectionKey: 'exam3_' + c.section,
         drugName: c.drugName,
         brandName: c.brandName || '',
         drugClass: c.drugClass || '',
@@ -103,7 +101,12 @@
         pillColor: (d3.sections.find(function(s) { return s.id === c.section; }) || {}).color || '#C92A2A'
       });
     });
-    DECKS[2].count = (d3.cards || []).length;
+  }
+
+  // Update Exam 3 deck count (AH + Drugs combined)
+  var exam3Deck = DECKS.find(function(d) { return d.id === 'exam3'; });
+  if (exam3Deck) {
+    exam3Deck.count = allCards.filter(function(c) { return c.deckId === 'exam3'; }).length;
   }
 
   // 4. Quiz 3 CNS (FLASHCARD_DATA_Q3) — visual format
@@ -127,7 +130,7 @@
         pillColor: (d4.sections.find(function(s) { return s.id === c.section; }) || {}).color || '#D9480F'
       });
     });
-    DECKS[3].count = (d4.cards || []).length;
+    DECKS[2].count = (d4.cards || []).length;
   }
 
   // 5. Quiz 3 GI (FLASHCARD_DATA_Q3_GI) — visual format
@@ -151,7 +154,7 @@
         pillColor: (d5.sections.find(function(s) { return s.id === c.section; }) || {}).color || '#862E9C'
       });
     });
-    DECKS[4].count = (d5.cards || []).length;
+    DECKS[3].count = (d5.cards || []).length;
   }
 
   // ── State ──
