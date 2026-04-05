@@ -6,6 +6,7 @@
 (function() {
   var STORAGE_KEY = 'swt_unified_cbr';
   var IMG_BASE_DRUGS = 'assets/drug-cards/';
+  var IMG_BASE_AH = 'assets/study-images/';
   var IMG_BASE_Q3 = 'exam2/';
   var AUDIO_BASE = 'exam3/audio/';
 
@@ -73,7 +74,7 @@
         icon: c.icon || '',
         facts: c.facts || [],
         mnemonic: c.mnemonic || '',
-        image: null,
+        image: c.image ? IMG_BASE_AH + c.image : null,
         pillColor: (d2.sections.find(function(s) { return s.id === c.section; }) || {}).color || '#2A9D8F'
       });
     });
@@ -193,46 +194,76 @@
     });
   }
 
-  // ── Render deck filters ──
+  // ── Custom Dropdown Helper ──
+  function setupDropdown(btnId, menuId, items, onSelect) {
+    var btn = document.getElementById(btnId);
+    var menu = document.getElementById(menuId);
+    if (!btn || !menu) return;
+    menu.innerHTML = '';
+    items.forEach(function(item) {
+      var el = document.createElement('div');
+      el.className = 'ufc-dropdown-item' + (item.active ? ' active' : '');
+      el.textContent = item.label;
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        btn.textContent = item.label;
+        menu.classList.remove('show');
+        btn.classList.remove('open');
+        onSelect(item.value);
+      });
+      menu.appendChild(el);
+    });
+    btn.onclick = function(e) {
+      e.stopPropagation();
+      // Close other dropdowns
+      document.querySelectorAll('.ufc-dropdown-menu.show').forEach(function(m) { if (m !== menu) m.classList.remove('show'); });
+      document.querySelectorAll('.ufc-dropdown-btn.open').forEach(function(b) { if (b !== btn) b.classList.remove('open'); });
+      menu.classList.toggle('show');
+      btn.classList.toggle('open');
+    };
+  }
+  // Close dropdowns on outside click
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.ufc-dropdown-menu.show').forEach(function(m) { m.classList.remove('show'); });
+    document.querySelectorAll('.ufc-dropdown-btn.open').forEach(function(b) { b.classList.remove('open'); });
+  });
+
+  // ── Render deck filters (custom dropdown) ──
   function renderDeckFilters() {
-    var wrap = document.getElementById('ufcDeckFilters');
-    var html = '<button type="button" class="ufc-deck-btn active" data-deck="all" style="--btn-color:#0B1D3A">All (' + allCards.length + ')</button>';
+    var items = [{ value: 'all', label: '📚 All Decks (' + allCards.length + ')', active: activeDeck === 'all' }];
+    var icons = { pharm: '💊', ah: '🏥', drugs: '💉', q3cns: '🧠', q3gi: '🫁' };
     DECKS.forEach(function(d) {
       if (d.count > 0) {
-        html += '<button type="button" class="ufc-deck-btn" data-deck="' + d.id + '" style="--btn-color:' + d.color + '">' + d.label + ' (' + d.count + ')</button>';
+        items.push({ value: d.id, label: (icons[d.id] || '') + ' ' + d.label + ' (' + d.count + ')', active: activeDeck === d.id });
       }
     });
-    wrap.innerHTML = html;
-    wrap.querySelectorAll('.ufc-deck-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        wrap.querySelectorAll('.ufc-deck-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        activeDeck = btn.dataset.deck;
-        activeSection = 'all';
-        renderSectionFilters();
-        resetQueue();
-      });
+    var activeItem = items.find(function(i) { return i.active; });
+    var btn = document.getElementById('ufcDeckBtn');
+    if (btn && activeItem) btn.textContent = activeItem.label;
+    setupDropdown('ufcDeckBtn', 'ufcDeckMenu', items, function(val) {
+      activeDeck = val;
+      activeSection = 'all';
+      renderDeckFilters();
+      renderSectionFilters();
+      resetQueue();
     });
   }
 
-  // ── Render section filters ──
+  // ── Render section filters (custom dropdown) ──
   function renderSectionFilters() {
-    var wrap = document.getElementById('ufcSectionFilters');
     var sections = allSections.filter(function(s) { return activeDeck === 'all' || s.deckId === activeDeck; });
-    if (sections.length <= 1) { wrap.innerHTML = ''; return; }
-    var html = '<button type="button" class="ufc-section-btn active" data-section="all">All</button>';
+    var items = [{ value: 'all', label: '🎯 All Topics', active: activeSection === 'all' }];
     sections.forEach(function(s) {
       var count = allCards.filter(function(c) { return c.sectionKey === s.id; }).length;
-      html += '<button type="button" class="ufc-section-btn" data-section="' + s.id + '">' + s.icon + ' ' + s.label + ' (' + count + ')</button>';
+      items.push({ value: s.id, label: s.icon + ' ' + s.label + ' (' + count + ')', active: activeSection === s.id });
     });
-    wrap.innerHTML = html;
-    wrap.querySelectorAll('.ufc-section-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        wrap.querySelectorAll('.ufc-section-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        activeSection = btn.dataset.section;
-        resetQueue();
-      });
+    var activeItem = items.find(function(i) { return i.active; });
+    var btn = document.getElementById('ufcSectionBtn');
+    if (btn && activeItem) btn.textContent = activeItem.label;
+    setupDropdown('ufcSectionBtn', 'ufcSectionMenu', items, function(val) {
+      activeSection = val;
+      renderSectionFilters();
+      resetQueue();
     });
   }
 

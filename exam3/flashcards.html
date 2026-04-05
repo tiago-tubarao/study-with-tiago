@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adult Health Exam 3 Flashcards — Study with Tiago</title>
-  <meta name="description" content="60 flashcards with custom AI-generated artwork covering Diabetes, Thyroid, Pituitary/Adrenal, Renal, and Hematology for Adult Health Exam 3.">
+  <meta name="description" content="75 flashcards with custom AI-generated artwork covering Diabetes, Thyroid, Pituitary/Adrenal, Renal, Hematology, and Urinary for Adult Health Exam 3.">
   <meta property="og:title" content="Adult Health Exam 3 Flashcards | Study with Tiago">
-  <meta property="og:description" content="60 visual flashcards with mastery tracking. Diabetes, Thyroid, Renal, Hematology — everything on Exam 3.">
+  <meta property="og:description" content="75 visual flashcards with mastery tracking. Diabetes, Thyroid, Renal, Urinary, Hematology — everything on Exam 3.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Study with Tiago">
   <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png?v=2">
@@ -152,6 +152,14 @@
     }
 
     /* ── Card Styles ── */
+    .fc-search-wrap { position: relative; max-width: 400px; margin: 0 auto 1em; padding: 0 1em; }
+    .fc-search-input { width: 100%; padding: .6em 1em .6em 2.5em; border-radius: 2em; border: 1.5px solid #dee2e6; font-size: .85em; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.442.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E") .8em center no-repeat; outline: none; transition: border-color .2s; }
+    .fc-search-input:focus { border-color: #2A9D8F; }
+    .fc-search-results { position: absolute; top: 100%; left: 1em; right: 1em; background: #fff; border: 1px solid #dee2e6; border-radius: .8em; box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 20; overflow: hidden; display: none; max-height: 300px; overflow-y: auto; }
+    .fc-search-item { padding: .6em 1em; cursor: pointer; font-size: .85em; border-bottom: 1px solid #f1f3f5; transition: background .15s; }
+    .fc-search-item:hover { background: #f1f3f5; }
+    .fc-search-section { font-size: .7em; opacity: .5; margin-left: .5em; }
+
     .fc-counter {
       text-align: center;
       font-size: 0.8em;
@@ -165,24 +173,21 @@
       margin: 0 auto;
       padding: 0 1em;
       cursor: pointer;
-      min-height: 420px;
     }
     .fc-card {
-      position: relative;
+      display: grid;
       width: 100%;
-      min-height: 400px;
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       transform-style: preserve-3d;
     }
     .fc-card.flipped { transform: rotateY(180deg); }
     .fc-card-face {
-      position: absolute;
+      grid-area: 1 / 1;
       width: 100%;
-      min-height: 400px;
+      height: 100%;
       backface-visibility: hidden;
       border-radius: 1.2em;
       border-top: 5px solid #2A9D8F;
-      overflow: hidden;
     }
 
     /* ── Front face ── */
@@ -241,7 +246,6 @@
       padding: 1.5em;
       box-shadow: 0 8px 32px rgba(0,0,0,0.08);
       overflow-y: auto;
-      max-height: 480px;
     }
     .fc-back-section {
       font-size: 0.7em;
@@ -319,7 +323,7 @@
       display: flex;
       justify-content: center;
       gap: 0.6em;
-      margin: 1em 0 0.5em;
+      margin: 0.5em 0;
     }
     .fc-mastery-btn {
       padding: 0.5em 1.2em;
@@ -444,8 +448,7 @@
     @media (max-width: 600px) {
       .fc-hero { padding: 2em 1em 1.5em; }
       .fc-hero-title { font-size: 1.6em; }
-      .fc-card-stage { min-height: 380px; }
-      .fc-card, .fc-card-face { min-height: 360px; }
+      .fc-card-drug { font-size: 1.1em; }
       .fc-card-drug { font-size: 1.25em; }
       .fc-stats-bar { flex-wrap: wrap; justify-content: center; }
       .fc-stat-bar-wrap { order: 3; width: 100%; }
@@ -487,7 +490,7 @@
     <div class="fc-hero-glow"></div>
     <div class="fc-hero-content">
       <div class="fc-hero-badge">ADULT HEALTH EXAM 3</div>
-      <h1 class="fc-hero-title">60 Visual Flashcards</h1>
+      <h1 class="fc-hero-title">75 Visual Flashcards</h1>
       <p class="fc-hero-sub">Every testable topic for your exam.<br>Diabetes. Thyroid. Renal. Hematology. All of it.</p>
     </div>
   </div>
@@ -508,8 +511,14 @@
     <!-- Category Filters -->
     <div class="fc-filters" id="fcFilters"></div>
 
+    <!-- Search -->
+    <div class="fc-search-wrap">
+      <input type="text" class="fc-search-input" id="fcSearch" placeholder="Search cards... (e.g. metformin, DKA, kidney)" autocomplete="off">
+      <div class="fc-search-results" id="fcSearchResults"></div>
+    </div>
+
     <!-- Card Counter -->
-    <div class="fc-counter" id="fcCounter">Card 1 / 60</div>
+    <div class="fc-counter" id="fcCounter">Card 1 / 75</div>
 
     <!-- The Card -->
     <div class="fc-card-stage" id="fcCardStage">
@@ -578,7 +587,7 @@
       <a href="../flashcards-hub.html" style="color:var(--teal, #2A9D8F);font-weight:700;text-decoration:none">🃏 All 270+ Flashcards (Pharm + Adult Health) &rarr;</a>
     </p>
     <p style="text-align:center;opacity:0.4;font-size:0.8em;margin:0.5em 0 2em;">
-      60 cards, 6 sections, 1,034 lines of nursing gold.
+      75 cards, 6 sections — Diabetes, Thyroid, Renal, Urinary, Hematology + exam strategies.
     </p>
   </div>
 
@@ -602,8 +611,8 @@
   </div>
 </footer>
 
-<script src="../js/flashcard-data-ah.js?v=2"></script>
-<script src="../js/flashcards-ah-v2.js"></script>
+<script src="../js/flashcard-data-ah.js?v=3"></script>
+<script src="../js/flashcards-ah-v2.js?v=2"></script>
 <script src="../js/nav.js?v=5"></script>
 <script src="../js/theme.js"></script>
 </body>

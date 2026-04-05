@@ -7,6 +7,7 @@
   var data = window.FLASHCARD_DATA_AH;
   if (!data) return;
 
+  var IMG_BASE = '../assets/study-images/';
   var STORAGE_KEY = 'swt_ah_cbr';
 
   var allCards = data.cards.slice();
@@ -215,8 +216,32 @@
     // Reset flip
     cardEl.classList.remove('flipped');
 
+    // Front — study image
+    var imgContainer = document.getElementById('fcStudyImage');
+    if (!imgContainer) {
+      imgContainer = document.createElement('div');
+      imgContainer.id = 'fcStudyImage';
+      imgContainer.style.cssText = 'text-align:center;margin:0.5em 0;cursor:pointer;';
+      var iconEl = document.getElementById('fcFrontIcon');
+      iconEl.parentNode.insertBefore(imgContainer, iconEl.nextSibling);
+    }
+    if (card.image) {
+      imgContainer.innerHTML = '<img src="' + IMG_BASE + card.image + '" alt="' + card.drugName + '" style="max-width:100%;max-height:200px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.15);object-fit:contain;pointer-events:none;">';
+      imgContainer.style.display = 'block';
+      imgContainer.onclick = null;
+    } else {
+      imgContainer.innerHTML = '';
+      imgContainer.style.display = 'none';
+    }
+
     // Front
-    document.getElementById('fcFrontIcon').textContent = card.icon || '';
+    var iconEl2 = document.getElementById('fcFrontIcon');
+    if (card.image) {
+      iconEl2.style.display = 'none';
+    } else {
+      iconEl2.style.display = '';
+      iconEl2.textContent = card.icon || '';
+    }
 
     var drugNameEl = document.getElementById('fcDrugName');
     drugNameEl.textContent = card.drugName;

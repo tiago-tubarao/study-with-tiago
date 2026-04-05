@@ -1,6 +1,6 @@
 // ══════════════════════════════════════════════
 // Flashcard Audio — Podcast + Read Card (both pre-recorded Edge TTS)
-// Podcast = two-host discussion | Read Card = Ava reads the 8 categories
+// Podcast = two-host discussion | Read Card = Ava reads the 12-point framework
 // ══════════════════════════════════════════════
 
 (function() {
@@ -69,32 +69,31 @@
     'Tacrolimus': 'tacrolimus_podcast.mp3',
     'Tolvaptan': 'tolvaptan_podcast.mp3',
     'Warfarin': 'warfarin_podcast.mp3',
-    // Pronunciation only (no full podcast yet)
-    'Aspart': 'aspart_pron.mp3',
-    'Glulisine': 'glulisine_pron.mp3',
-    'Afrezza': 'afrezza_pron.mp3',
-    'Degludec': 'degludec_pron.mp3',
-    'Detemir': 'detemir_pron.mp3',
-    'Glyburide': 'glyburide_pron.mp3',
-    'Exenatide': 'exenatide_pron.mp3',
-    'Liraglutide': 'liraglutide_pron.mp3',
-    'Glucagon': 'glucagon_pron.mp3',
-    'Dextrose 50%': 'dextrose50_pron.mp3',
-    'Dexamethasone': 'dexamethasone_pron.mp3',
-    'Octreotide': 'octreotide_pron.mp3',
-    'Pamidronate': 'pamidronate_pron.mp3',
-    'Phenoxybenzamine': 'phenoxybenzamine_pron.mp3',
-    'Phentolamine': 'phentolamine_pron.mp3',
-    'Eplerenone': 'eplerenone_pron.mp3',
-    'Metoclopramide': 'metoclopramide_pron.mp3',
-    'HCTZ': 'hctz_pron.mp3',
-    'Kayexalate': 'kayexalate_pron.mp3',
-    'Patiromer': 'patiromer_pron.mp3',
-    'Mycophenolate': 'mycophenolate_pron.mp3',
-    'Magnesium Sulfate': 'magnesium_sulfate_pron.mp3',
-    'Ketorolac': 'ketorolac_pron.mp3',
-    'Morphine': 'morphine_pron.mp3',
-    'DDAVP': 'ddavp_pron.mp3'
+    'Aspart': 'aspart_podcast.mp3',
+    'Glulisine': 'glulisine_podcast.mp3',
+    'Afrezza': 'afrezza_podcast.mp3',
+    'Degludec': 'degludec_podcast.mp3',
+    'Detemir': 'detemir_podcast.mp3',
+    'Glyburide': 'glyburide_podcast.mp3',
+    'Exenatide': 'exenatide_podcast.mp3',
+    'Liraglutide': 'liraglutide_podcast.mp3',
+    'Glucagon': 'glucagon_podcast.mp3',
+    'Dextrose 50%': 'dextrose50_podcast.mp3',
+    'Dexamethasone': 'dexamethasone_podcast.mp3',
+    'Octreotide': 'octreotide_podcast.mp3',
+    'Pamidronate': 'pamidronate_podcast.mp3',
+    'Phenoxybenzamine': 'phenoxybenzamine_podcast.mp3',
+    'Phentolamine': 'phentolamine_podcast.mp3',
+    'Eplerenone': 'eplerenone_podcast.mp3',
+    'Metoclopramide': 'metoclopramide_podcast.mp3',
+    'HCTZ': 'hctz_podcast.mp3',
+    'Kayexalate': 'kayexalate_podcast.mp3',
+    'Patiromer': 'patiromer_podcast.mp3',
+    'Mycophenolate': 'mycophenolate_podcast.mp3',
+    'Magnesium Sulfate': 'magnesium_sulfate_podcast.mp3',
+    'Ketorolac': 'ketorolac_podcast.mp3',
+    'Morphine': 'morphine_podcast.mp3',
+    'DDAVP': 'ddavp_podcast.mp3'
   };
 
   // Drug name → read card file (Ava reads the 8 categories)

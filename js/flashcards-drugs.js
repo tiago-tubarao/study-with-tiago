@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════
-// 84 Drug Flashcards Engine — Image Front + 8-Category Back
+// 84 Drug Flashcards Engine — Image Front + 12-Point Clinical Framework Back
 // Features: mastery tracking, category drill, search, image lightbox
 // ══════════════════════════════════════════════
 
@@ -7,16 +7,38 @@
   var data = window.FLASHCARD_DATA_DRUGS;
   if (!data) return;
 
-  var STORAGE_KEY = 'swt_drugs84_cbr';
-  var IMG_BASE = '../assets/drug-cards/';
+  var STORAGE_KEY = 'swt_exam3_cbr';
+  var IMG_BASE_DRUGS = '../assets/drug-cards/';
+  var IMG_BASE_AH = '../assets/study-images/';
 
-  var allCards = data.cards.slice();
-  var queue = [];
-  var currentIndex = 0;
+  // Tag drug cards with their image base
+  var allCards = data.cards.slice().map(function(c) {
+    c.imgBase = IMG_BASE_DRUGS;
+    return c;
+  });
+
+  // Merge AH condition cards if available
+  var ahData = window.FLASHCARD_DATA_AH;
+  if (ahData) {
+    ahData.cards.forEach(function(c) {
+      c.imgBase = IMG_BASE_AH;
+      c.groupId = c.groupId || 'ah_' + c.section;
+      allCards.push(c);
+    });
+    // Merge sections (avoid duplicates)
+    var existingIds = data.sections.map(function(s) { return s.id; });
+    ahData.sections.forEach(function(s) {
+      if (existingIds.indexOf(s.id) === -1) {
+        data.sections.push(s);
+      }
+    });
+  }
+  var orderedPool = []; // current filtered list in display order
+  var poolPos = 0;      // position within orderedPool
   var isFlipped = false;
   var activeSection = 'all';
   var activeMode = 'all';
-  var activeCatDrill = null; // null = show all 8 categories
+  var activeCatDrill = null; // null = show all 12 categories
 
   function loadRatings() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
@@ -35,10 +57,14 @@
     { key: 'NURSE DOES', label: 'Nurse Does', cls: 'fc-cat-nurse', icon: '\u{1F469}\u200D\u2695\uFE0F' },
     { key: 'TEACH', label: 'Teach', cls: 'fc-cat-teach', icon: '\u{1F4DA}' },
     { key: 'PRIORITY', label: 'Priority', cls: 'fc-cat-priority', icon: '\u{1F6A8}' },
-    { key: "CAN'T MIX", label: "Can't Mix", cls: 'fc-cat-cant', icon: '\u26D4' }
+    { key: "CAN'T MIX", label: "Can't Mix", cls: 'fc-cat-cant', icon: '\u26D4' },
+    { key: 'SIMILAR', label: 'Similar', cls: 'fc-cat-similar', icon: '\u{1F504}' },
+    { key: 'EMERGENCY', label: 'Emergency', cls: 'fc-cat-emergency', icon: '\u{1F198}' },
+    { key: 'ASSESS FIRST', label: 'Assess First', cls: 'fc-cat-assess', icon: '\u{1F4CB}' },
+    { key: 'CHAIN', label: 'Chain', cls: 'fc-cat-chain', icon: '\u26D3\uFE0F' }
   ];
 
-  function getPool() {
+  function getFilteredCards() {
     var pool = activeSection === 'all' ? allCards : allCards.filter(function(c) { return c.section === activeSection; });
     if (activeMode === 'unseen') {
       pool = pool.filter(function(c) { return ratings[getCardKey(c)] === undefined; });
@@ -48,44 +74,46 @@
     return pool;
   }
 
-  function buildQueue() {
-    var pool = getPool();
-    queue = [];
-    pool.forEach(function(card) {
-      var idx = allCards.indexOf(card);
-      var r = ratings[getCardKey(card)];
-      var w = (r === undefined) ? 3 : (r < 4 ? 4 : 1);
-      for (var i = 0; i < w; i++) queue.push(idx);
-    });
-    for (var i = queue.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = queue[i]; queue[i] = queue[j]; queue[j] = t;
-    }
+  function rebuildPool() {
+    orderedPool = getFilteredCards();
+    poolPos = 0;
   }
 
-  function nextCard() {
-    if (!queue.length) buildQueue();
+  function shufflePool() {
+    orderedPool = getFilteredCards();
+    for (var i = orderedPool.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = orderedPool[i]; orderedPool[i] = orderedPool[j]; orderedPool[j] = t;
+    }
+    poolPos = 0;
+  }
+
+  function showCurrentCard() {
     var stage = document.getElementById('fcCardStage');
     var empty = document.getElementById('fcEmpty');
-    if (!queue.length) {
+    if (!orderedPool.length) {
       if (stage) stage.style.display = 'none';
       if (empty) empty.style.display = 'block';
       return;
     }
     if (stage) stage.style.display = '';
     if (empty) empty.style.display = 'none';
-    currentIndex = queue.shift();
+    if (poolPos < 0) poolPos = orderedPool.length - 1;
+    if (poolPos >= orderedPool.length) poolPos = 0;
     isFlipped = false;
     renderCard();
   }
 
+  function nextCard() {
+    poolPos++;
+    if (poolPos >= orderedPool.length) poolPos = 0;
+    showCurrentCard();
+  }
+
   function prevCard() {
-    var pool = getPool();
-    var indices = pool.map(function(c) { return allCards.indexOf(c); });
-    var pos = indices.indexOf(currentIndex);
-    currentIndex = pos > 0 ? indices[pos - 1] : indices[indices.length - 1];
-    isFlipped = false;
-    renderCard();
+    poolPos--;
+    if (poolPos < 0) poolPos = orderedPool.length - 1;
+    showCurrentCard();
   }
 
   // ── Init ──
@@ -93,9 +121,9 @@
   if (deckWrap) {
     deckWrap.style.display = 'block';
     deckWrap.style.opacity = '1';
-    buildQueue();
+    rebuildPool();
     renderStats();
-    nextCard();
+    showCurrentCard();
   }
 
   // ── Section Filters ──
@@ -123,7 +151,7 @@
       filtersEl.querySelectorAll('.fc-filter').forEach(function(x) { x.classList.remove('active'); });
       b.classList.add('active');
       activeSection = b.dataset.section;
-      buildQueue(); renderStats(); nextCard();
+      rebuildPool(); renderStats(); showCurrentCard();
     });
   }
 
@@ -133,7 +161,7 @@
       document.querySelectorAll('.fc-mode-btn').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       activeMode = btn.dataset.mode;
-      buildQueue(); renderStats(); nextCard();
+      rebuildPool(); renderStats(); showCurrentCard();
     });
   });
 
@@ -143,7 +171,7 @@
     var allCatBtn = document.createElement('button');
     allCatBtn.className = 'fc-drill-btn active';
     allCatBtn.dataset.cat = 'all';
-    allCatBtn.textContent = 'All 8';
+    allCatBtn.textContent = 'All';
     drillEl.appendChild(allCatBtn);
 
     catDefs.forEach(function(cat) {
@@ -187,7 +215,12 @@
         item.className = 'fc-search-item';
         item.textContent = card.drugName + ' (' + card.brandName + ')';
         item.addEventListener('click', function() {
-          currentIndex = allCards.indexOf(card);
+          var idx = orderedPool.indexOf(card);
+          if (idx === -1) {
+            rebuildPool();
+            idx = orderedPool.indexOf(card);
+          }
+          if (idx !== -1) poolPos = idx;
           isFlipped = false;
           renderCard();
           renderStats();
@@ -228,9 +261,7 @@
 
     var counter = document.getElementById('fcCounter');
     if (counter) {
-      var p = getPool();
-      var pos = p.map(function(c) { return allCards.indexOf(c); }).indexOf(currentIndex) + 1;
-      counter.textContent = 'Card ' + pos + ' / ' + p.length;
+      counter.textContent = 'Card ' + (orderedPool.length ? poolPos + 1 : 0) + ' / ' + orderedPool.length;
     }
     var prog = document.getElementById('fcProgress');
     if (prog) prog.style.width = gp + '%';
@@ -238,7 +269,7 @@
 
   // ── Render Card ──
   function renderCard() {
-    var card = allCards[currentIndex];
+    var card = orderedPool[poolPos];
     if (!card) return;
     var cardEl = document.getElementById('fcCard');
     var sec = data.sections.find(function(s) { return s.id === card.section; });
@@ -254,7 +285,7 @@
     var overlayEl = document.getElementById('fcFrontOverlay');
 
     if (card.image) {
-      imgEl.src = IMG_BASE + card.image;
+      imgEl.src = (card.imgBase || IMG_BASE_DRUGS) + card.image;
       imgEl.alt = card.drugName;
       imgEl.style.display = 'block';
       frontEl.classList.add('fc-has-image');
@@ -284,7 +315,7 @@
       }
     }
 
-    // ── Back: 8 Categories ──
+    // ── Back: 12-Point Framework ──
     document.getElementById('fcBackHeader').textContent = card.drugName + ' \u2014 ' + card.brandName;
     var backSec = document.getElementById('fcBackSection');
     if (backSec) {
@@ -358,20 +389,14 @@
     document.body.appendChild(ov);
   }
 
-  // Click image on front to open lightbox
-  var frontImg = document.getElementById('fcFrontImg');
-  if (frontImg) {
-    frontImg.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (frontImg.src) openLightbox(frontImg.src, frontImg.alt);
-    });
-  }
+  // Image click — no lightbox, just flip the card
+  // (lightbox was blocking card flip on mobile)
 
   // ── Flip ──
   var cardStage = document.getElementById('fcCardStage');
   if (cardStage) {
     cardStage.addEventListener('click', function(e) {
-      if (e.target.closest('#fcFrontImg') || e.target.closest('.fc-mastery-btn') || e.target.closest('.fc-nav-btn')) return;
+      if (e.target.closest('.fc-mastery-btn') || e.target.closest('.fc-nav-btn')) return;
       var el = document.getElementById('fcCard');
       isFlipped = !isFlipped;
       if (isFlipped) el.classList.add('flipped');
@@ -381,7 +406,7 @@
 
   // ── Mastery ──
   function rateCard(gotIt) {
-    var card = allCards[currentIndex];
+    var card = orderedPool[poolPos];
     if (!card) return;
     ratings[getCardKey(card)] = gotIt ? 4 : 2;
     saveRatings(ratings);
@@ -395,7 +420,7 @@
 
   // ── Nav ──
   var sb = document.getElementById('fcShuffle');
-  if (sb) sb.addEventListener('click', function(e) { e.stopPropagation(); buildQueue(); nextCard(); });
+  if (sb) sb.addEventListener('click', function(e) { e.stopPropagation(); shufflePool(); showCurrentCard(); });
   var pb = document.getElementById('fcPrev');
   if (pb) pb.addEventListener('click', function(e) { e.stopPropagation(); prevCard(); });
   var nb = document.getElementById('fcNext');
@@ -447,7 +472,7 @@
         document.querySelectorAll('.fc-mode-btn').forEach(function(b) { b.classList.remove('active'); });
         var amBtn = document.querySelector('.fc-mode-btn[data-mode="all"]');
         if (amBtn) amBtn.classList.add('active');
-        buildQueue(); nextCard(); renderStats();
+        rebuildPool(); showCurrentCard(); renderStats();
       }
     });
   }

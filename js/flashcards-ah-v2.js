@@ -7,6 +7,7 @@
   var data = window.FLASHCARD_DATA_AH;
   if (!data) return;
 
+  var IMG_BASE = '../assets/study-images/';
   var STORAGE_KEY = 'swt_ah_cbr';
 
   var allCards = data.cards.slice();
@@ -61,21 +62,33 @@
     renderCard();
   }
 
+  var isShuffled = false;
+
   function nextCard() {
-    if (!queue.length) buildQueue();
-    if (!queue.length) {
+    var pool = getPool();
+    if (!pool.length) {
       document.getElementById('fcCardStage').style.display = 'none';
       document.getElementById('fcEmpty').style.display = 'block';
       return;
     }
     document.getElementById('fcCardStage').style.display = '';
     document.getElementById('fcEmpty').style.display = 'none';
-    currentIndex = queue.shift();
+    if (isShuffled && queue.length) {
+      currentIndex = queue.shift();
+    } else {
+      // Sequential: find current position in pool, go to next
+      var poolIndices = pool.map(function(c) { return allCards.indexOf(c); });
+      var pos = poolIndices.indexOf(currentIndex);
+      if (pos < poolIndices.length - 1) {
+        currentIndex = poolIndices[pos + 1];
+      } else {
+        currentIndex = poolIndices[0]; // wrap to start
+      }
+    }
     showCard();
   }
 
   function prevCard() {
-    // Simple: go to previous index in allCards within current pool
     var pool = getPool();
     var poolIndices = pool.map(function(c) { return allCards.indexOf(c); });
     var pos = poolIndices.indexOf(currentIndex);
@@ -84,6 +97,7 @@
     } else if (poolIndices.length > 0) {
       currentIndex = poolIndices[poolIndices.length - 1]; // wrap around
     }
+    isShuffled = false;
     showCard();
   }
 
@@ -92,9 +106,13 @@
   if (deckWrap) {
     deckWrap.style.display = 'block';
     deckWrap.style.opacity = '1';
-    buildQueue();
     renderStats();
-    nextCard();
+    // Start at first card sequentially
+    var pool = getPool();
+    if (pool.length) {
+      currentIndex = allCards.indexOf(pool[0]);
+      showCard();
+    }
   }
 
   // ── Build section filter buttons ──
@@ -190,8 +208,32 @@
     // Reset flip
     cardEl.classList.remove('flipped');
 
-    // Front
-    document.getElementById('fcFrontIcon').textContent = card.icon || '';
+    // Front — study image
+    var imgContainer = document.getElementById('fcStudyImage');
+    if (!imgContainer) {
+      imgContainer = document.createElement('div');
+      imgContainer.id = 'fcStudyImage';
+      imgContainer.style.cssText = 'text-align:center;margin:0.5em 0;cursor:pointer;';
+      var iconEl = document.getElementById('fcFrontIcon');
+      iconEl.parentNode.insertBefore(imgContainer, iconEl.nextSibling);
+    }
+    if (card.image) {
+      imgContainer.innerHTML = '<img src="' + IMG_BASE + card.image + '" alt="' + card.drugName + '" style="max-width:100%;max-height:200px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.15);object-fit:contain;pointer-events:none;">';
+      imgContainer.style.display = 'block';
+      imgContainer.onclick = null;
+    } else {
+      imgContainer.innerHTML = '';
+      imgContainer.style.display = 'none';
+    }
+
+    // Front — hide icon when image present
+    var iconEl2 = document.getElementById('fcFrontIcon');
+    if (card.image) {
+      iconEl2.style.display = 'none';
+    } else {
+      iconEl2.style.display = '';
+      iconEl2.textContent = card.icon || '';
+    }
 
     var drugNameEl = document.getElementById('fcDrugName');
     drugNameEl.textContent = card.drugName;
@@ -291,13 +333,61 @@
 
   // ── Navigation ──
   var shuffleBtn = document.getElementById('fcShuffle');
-  if (shuffleBtn) shuffleBtn.addEventListener('click', function(e) { e.stopPropagation(); buildQueue(); nextCard(); });
+  if (shuffleBtn) shuffleBtn.addEventListener('click', function(e) { e.stopPropagation(); isShuffled = true; buildQueue(); nextCard(); });
 
   var prevBtn = document.getElementById('fcPrev');
   if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prevCard(); });
 
   var nextBtn = document.getElementById('fcNext');
   if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); nextCard(); });
+
+  // ── Search ──
+  var searchEl = document.getElementById('fcSearch');
+  if (searchEl) {
+    searchEl.addEventListener('input', function() {
+      var q = searchEl.value.trim().toLowerCase();
+      if (!q) {
+        document.getElementById('fcSearchResults').style.display = 'none';
+        return;
+      }
+      var results = allCards.filter(function(c) {
+        return c.drugName.toLowerCase().indexOf(q) !== -1 ||
+               (c.brandName && c.brandName.toLowerCase().indexOf(q) !== -1) ||
+               (c.drugClass && c.drugClass.toLowerCase().indexOf(q) !== -1) ||
+               (c.purpose && c.purpose.toLowerCase().indexOf(q) !== -1);
+      }).slice(0, 10);
+
+      var container = document.getElementById('fcSearchResults');
+      container.innerHTML = '';
+      container.style.display = results.length ? 'block' : 'none';
+      results.forEach(function(card) {
+        var item = document.createElement('div');
+        item.className = 'fc-search-item';
+        var sectionData = data.sections.find(function(s) { return s.id === card.section; });
+        item.innerHTML = card.drugName + (card.brandName ? ' <span class="fc-search-section">' + card.brandName + '</span>' : '') +
+          (sectionData ? ' <span class="fc-search-section">' + sectionData.icon + ' ' + sectionData.label + '</span>' : '');
+        item.addEventListener('click', function() {
+          currentIndex = allCards.indexOf(card);
+          isShuffled = false;
+          isFlipped = false;
+          showCard();
+          renderStats();
+          searchEl.value = '';
+          container.style.display = 'none';
+        });
+        container.appendChild(item);
+      });
+    });
+    // Prevent keyboard nav while typing
+    searchEl.addEventListener('keydown', function(e) { e.stopPropagation(); });
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.fc-search-wrap')) {
+        var r = document.getElementById('fcSearchResults');
+        if (r) r.style.display = 'none';
+      }
+    });
+  }
 
   // ── Keyboard ──
   document.addEventListener('keydown', function(e) {

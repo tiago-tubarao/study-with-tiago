@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>84 Drug Flashcards — Study with Tiago</title>
-  <meta name="description" content="84 individual drug flashcards with AI-generated visual cards. 8-category clinical framework with category drill mode and search.">
-  <meta property="og:title" content="84 Drug Flashcards | Study with Tiago">
-  <meta property="og:description" content="84 visual drug flashcards. Image front, 8-category clinical framework back. Diabetes, Endocrine, Renal, Hematology.">
+  <title>159 Exam 3 Flashcards — Study with Tiago</title>
+  <meta name="description" content="159 Exam 3 flashcards — 84 drugs + 75 conditions with AI-generated visuals. 12-point clinical framework, drill mode, search, audio.">
+  <meta property="og:title" content="159 Exam 3 Flashcards | Study with Tiago">
+  <meta property="og:description" content="159 Exam 3 flashcards — drugs + conditions. Image front, 12-point clinical framework back. Diabetes, Endocrine, Renal, Hematology.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Study with Tiago">
   <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-drug-cards.png?v=2">
@@ -15,8 +15,8 @@
   <meta property="og:image:type" content="image/png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-drug-cards.png?v=2">
-  <meta name="twitter:title" content="84 Drug Flashcards with Audio | Study with Tiago">
-  <meta name="twitter:description" content="84 visual drug flashcards with podcast audio, 8-category clinical framework, mastery tracking. Diabetes, Endocrine, Renal, Hematology.">
+  <meta name="twitter:title" content="159 Exam 3 Flashcards with Audio | Study with Tiago">
+  <meta name="twitter:description" content="159 Exam 3 flashcards — drugs + conditions with podcast audio, 12-point clinical framework, mastery tracking. Diabetes, Endocrine, Renal, Hematology.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link href="https://fonts.googleapis.com/css2?Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css?v=22">
@@ -154,7 +154,7 @@
 
     /* Front — Image */
     .fc-card-front{background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5em;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.08);position:relative}
-    .fc-front-img{width:100%;max-height:280px;object-fit:contain;border-radius:.8em;margin-bottom:.8em;display:none}
+    .fc-front-img{width:100%;max-height:280px;object-fit:contain;border-radius:.8em;margin-bottom:.8em;display:none;pointer-events:none}
     .fc-has-image .fc-front-img{display:block}
     .fc-has-image .fc-card-purpose{display:none}
     .fc-card-drug{font-family:'Syne',sans-serif;font-size:1.4em;font-weight:800;margin-bottom:.15em;line-height:1.2;word-break:break-word}
@@ -166,10 +166,11 @@
     /* Back */
     .fc-card-back{background:#fff;transform:rotateY(180deg);padding:1.2em;box-shadow:0 8px 32px rgba(0,0,0,.08);overflow-y:auto;max-height:520px}
     .fc-back-section{font-size:.68em;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:.2em}
-    .fc-back-header{font-family:'Syne',sans-serif;font-size:1em;font-weight:800;margin-bottom:.5em;padding-bottom:.4em;border-bottom:2px solid #e9ecef}
+    .fc-back-header{font-family:'Syne',sans-serif;font-size:1.1em;font-weight:800;margin-bottom:.5em;padding-bottom:.4em;border-bottom:2px solid #2A9D8F;color:#0B1D3A}
     .fc-facts{list-style:none;padding:0;margin:0 0 .6em}
-    .fc-facts li{padding:.45em 0;font-size:.8em;line-height:1.45;border-bottom:1px solid rgba(0,0,0,.04)}
+    .fc-facts li{padding:.5em 0;font-size:.85em;line-height:1.5;border-bottom:1px solid rgba(0,0,0,.06)}
     .fc-facts li:last-child{border-bottom:none}
+    .fc-facts li strong{font-weight:800;letter-spacing:0.02em}
 
     /* Category colors */
     .fc-cat{display:inline;font-size:.85em;font-weight:800;letter-spacing:.3px}
@@ -181,6 +182,10 @@
     .fc-cat-teach{color:#E67700}
     .fc-cat-priority{color:#C92A2A}
     .fc-cat-cant{color:#862E9C}
+    .fc-cat-similar{color:#D9480F}
+    .fc-cat-emergency{color:#E03131}
+    .fc-cat-assess{color:#1098AD}
+    .fc-cat-chain{color:#5C940D}
 
     .fc-mnemonic{background:linear-gradient(135deg,#FFF9DB,#FFF3BF);padding:.5em .8em;border-radius:.6em;font-size:.8em;font-weight:600;border-left:4px solid #F59F00;margin-bottom:.5em}
 
@@ -259,8 +264,8 @@
     <div class="fc-hero-glow"></div>
     <div class="fc-hero-content">
       <div class="fc-hero-badge">ADULT HEALTH EXAM 3</div>
-      <h1 class="fc-hero-title">84 Drug Flashcards</h1>
-      <p class="fc-hero-sub"><strong>Visual drug cards</strong> on front. <strong>8-category clinical framework</strong> on back.<br>Tap image to zoom. Tap card to flip. Drill by category.</p>
+      <h1 class="fc-hero-title">159 Exam 3 Flashcards</h1>
+      <p class="fc-hero-sub"><strong>Visual drug cards</strong> on front. <strong>12-point clinical framework</strong> on back.<br>Tap image to zoom. Tap card to flip. Drill by category.</p>
     </div>
   </div>
 
@@ -296,7 +301,7 @@
           <div class="fc-card-brand" id="fcBrandName"></div>
           <div class="fc-card-class-pill" id="fcClassPill"></div>
           <div class="fc-card-purpose" id="fcPurpose"></div>
-          <div class="fc-card-tap">Tap card to flip | Tap image to zoom</div>
+          <div class="fc-card-tap">Tap to flip</div>
         </div>
         <div class="fc-card-face fc-card-back" id="fcBack">
           <div class="fc-back-section" id="fcBackSection"></div>
@@ -351,7 +356,7 @@
       <a href="flashcards.html" style="color:#2A9D8F;font-weight:700;text-decoration:none">🃏 Original 60 Flashcards →</a>
     </p>
     <p style="text-align:center;opacity:.4;font-size:.8em;margin:.5em 0 2em">
-      84 drugs. 26 drug classes. 4 body systems. 8 clinical categories per card.
+      159 cards. 84 drugs + 75 conditions. 4 body systems. 12 clinical points per drug card.
     </p>
   </div>
 
@@ -374,9 +379,10 @@
   </div>
 </footer>
 
-<script src="../js/flashcard-data-drugs.js?v=2"></script>
-<script src="../js/flashcards-drugs.js?v=3"></script>
-<script src="../js/flashcard-audio.js?v=1"></script>
+<script src="../js/flashcard-data-ah.js?v=2"></script>
+<script src="../js/flashcard-data-drugs.js?v=3"></script>
+<script src="../js/flashcards-drugs.js?v=6"></script>
+<script src="../js/flashcard-audio.js?v=2"></script>
 <script src="../js/nav.js?v=5"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/feedback.js"></script>
