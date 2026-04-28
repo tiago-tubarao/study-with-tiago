@@ -8,13 +8,14 @@
 
   // Figure out relative path to root
   let base = './';
-  if (path.includes('/exam2/') || path.includes('/exam3/')) base = '../';
+  if (path.includes('/exam2/') || path.includes('/exam3/') || path.includes('/methods/')) base = '../';
 
   const links = [
     { label: 'Home', href: base + 'index.html', icon: '🏠' },
     { label: 'Pharmacology', href: base + 'exam2/index.html', icon: '💊' },
     { label: 'Adult Health', href: base + 'exam3/index.html', icon: '🩺' },
     { label: 'Flashcards', href: base + 'all-flashcards.html', icon: '🃏' },
+    { label: 'Methods', href: base + 'methods/', icon: '🛡️' },
     { label: 'Resources', href: base + 'resources.html', icon: '📦' },
     { label: 'About', href: base + 'about.html', icon: '👤' },
     { label: 'YouTube', href: 'https://www.youtube.com/@life-ofstudy', icon: '▶', external: true },
