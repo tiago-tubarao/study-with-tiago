@@ -17,9 +17,9 @@
   banner.innerHTML = `
     <div class="signup-inner">
       <div class="signup-text">
-        <div class="signup-badge">FREE UPDATES</div>
-        <h3 class="signup-title">Get notified when new study materials drop.</h3>
-        <p class="signup-sub">New videos, practice questions, and exam prep — straight to your inbox. No spam, ever.</p>
+        <div class="signup-badge">FREE — ONE QUESTION A WEEK</div>
+        <h3 class="signup-title">Get one NCLEX-style trap question every week — with the answer broken down.</h3>
+        <p class="signup-sub">Pulled straight from the bank I'm using to study. Real prof traps, real rationales, no fluff. Unsubscribe anytime.</p>
       </div>
       <form class="signup-form" id="signupForm">
         <div class="signup-input-wrap">
