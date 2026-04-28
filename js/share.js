@@ -54,7 +54,7 @@
 
     // Unified flashcards page
     if (p.includes('all-flashcards')) {
-      return '🃏 275+ Nursing Flashcards in ONE page — Pharmacology, Adult Health, 84 Drug Cards with Audio, Quiz 3\n\n'
+      return '🃏 290 Nursing Flashcards in ONE page — Pharmacology, Adult Health, 84 Drug Cards with Audio, Quiz 3\n\n'
         + '🔍 Search any drug or condition\n'
         + '📊 Mastery tracking across all decks\n'
         + '🎙 Audio for 84 drug cards\n\n'
