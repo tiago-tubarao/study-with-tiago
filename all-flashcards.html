@@ -346,6 +346,17 @@
   <!-- Counter -->
   <div class="ufc-counter" id="ufcCounter"></div>
 
+  <!-- Audio (shown for drug cards before the card so sound is findable) -->
+  <div class="ufc-audio-bar" id="ufcAudioBar" style="display:none">
+    <button type="button" class="ufc-audio-btn ufc-audio-podcast" id="ufcPodcastBtn" title="Listen to podcast discussion" aria-label="Listen to podcast discussion for this drug card" aria-describedby="ufcAudioStatus">
+      <span class="ufc-audio-icon">🎙</span> Podcast
+    </button>
+    <button type="button" class="ufc-audio-btn ufc-audio-read" id="ufcReadBtn" title="Read card aloud" aria-label="Read this drug card aloud" aria-describedby="ufcAudioStatus">
+      <span class="ufc-audio-icon">🔊</span> Read Card
+    </button>
+  </div>
+  <div class="ufc-audio-status" id="ufcAudioStatus" role="status" aria-live="polite"></div>
+
   <!-- Card -->
   <div class="ufc-card-stage" id="ufcCardStage">
     <div class="ufc-card" id="ufcCard">
@@ -359,17 +370,6 @@
     <div style="font-size:3em">🎉</div>
     <p>No cards match. Try a different filter.</p>
   </div>
-
-  <!-- Audio (shown only for drug cards) -->
-  <div class="ufc-audio-bar" id="ufcAudioBar" style="display:none">
-    <button type="button" class="ufc-audio-btn ufc-audio-podcast" id="ufcPodcastBtn" title="Listen to podcast discussion" aria-label="Listen to podcast discussion for this drug card" aria-describedby="ufcAudioStatus">
-      <span class="ufc-audio-icon">🎙</span> Podcast
-    </button>
-    <button type="button" class="ufc-audio-btn ufc-audio-read" id="ufcReadBtn" title="Read card aloud" aria-label="Read this drug card aloud" aria-describedby="ufcAudioStatus">
-      <span class="ufc-audio-icon">🔊</span> Read Card
-    </button>
-  </div>
-  <div class="ufc-audio-status" id="ufcAudioStatus" role="status" aria-live="polite"></div>
 
   <!-- Mastery -->
   <div class="ufc-mastery-actions">
