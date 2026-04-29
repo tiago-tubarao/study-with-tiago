@@ -30,7 +30,7 @@
   </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=25">
+  <link rel="stylesheet" href="style.css?v=26">
   <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
@@ -46,6 +46,8 @@
     <div class="home-chip-row">
       <a href="exam3/index.html" class="home-chip teal">Adult Health</a>
       <a href="all-flashcards.html" class="home-chip purple">290 Cards</a>
+      <a href="videos.html" class="home-chip outline-teal">Videos</a>
+      <a href="blog/" class="home-chip outline-purple">Study Blog</a>
       <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener" class="home-chip outline-teal">AH Review</a>
       <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener" class="home-chip outline-purple">Practice Qs</a>
     </div>
@@ -70,6 +72,32 @@
     <div style="text-align:center">
       <div style="font-size:1.8em;font-weight:800;color:var(--green);font-family:'Syne',sans-serif">3</div>
       <div style="font-size:0.78em;color:var(--muted);text-transform:uppercase;font-weight:600;letter-spacing:0.5px">Study Bundles</div>
+    </div>
+  </div>
+
+  <div class="content-band">
+    <h2>Use the site like a study loop</h2>
+    <div class="resource-grid">
+      <a class="resource-card" href="videos.html">
+        <span class="eyebrow">Watch</span>
+        <h3>Video Hub</h3>
+        <p>Every video organized by course and topic.</p>
+      </a>
+      <a class="resource-card" href="all-flashcards.html?audio=1">
+        <span class="eyebrow">Review</span>
+        <h3>Audio Flashcards</h3>
+        <p>Open the unified flashcards with audio mode visible.</p>
+      </a>
+      <a class="resource-card" href="blog/">
+        <span class="eyebrow">Read</span>
+        <h3>Study Notes Blog</h3>
+        <p>Short explainers built from real study sessions.</p>
+      </a>
+      <a class="resource-card" href="drug-card-checklist.html">
+        <span class="eyebrow">Print</span>
+        <h3>Drug Card Checklist</h3>
+        <p>A printable checklist for safer drug-card review.</p>
+      </a>
     </div>
   </div>
 
@@ -185,11 +213,11 @@
 
 <script src="js/data.js"></script>
 <script src="js/data-ah.js"></script>
-<script src="js/nav.js?v=6"></script>
+<script src="js/nav.js?v=7"></script>
 <script src="js/theme.js"></script>
 <script src="js/feedback.js?v=2"></script>
 <script src="js/share.js?v=3"></script>
-<script src="js/signup.js?v=2"></script>
+<script src="js/signup.js?v=3"></script>
 <script>
   // ── Course Cards (Pharmacology + Adult Health) ──
   document.getElementById('courseCards').innerHTML = `

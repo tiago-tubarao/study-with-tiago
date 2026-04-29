@@ -10,6 +10,7 @@
   // Google Form backend (studywithtiago@gmail.com)
   const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdNKzXnH7ZK5zgPD-HPtg3bOOKa77iyPBpFYLMOzUYvetn7EQ/formResponse';
   const GOOGLE_FORM_ENTRY  = 'entry.398576954';
+  const signupBase = (location.pathname.includes('/exam2/') || location.pathname.includes('/exam3/') || location.pathname.includes('/methods/') || location.pathname.includes('/blog/')) ? '../' : './';
 
   // Build the banner (sits between hero and cards on index, or top of exam pages)
   const banner = document.createElement('div');
@@ -19,14 +20,14 @@
       <div class="signup-text">
         <div class="signup-badge">FREE — ONE QUESTION A WEEK</div>
         <h3 class="signup-title">Get one NCLEX-style practice question every week — with the answer broken down.</h3>
-        <p class="signup-sub">Written from what I'm studying, then explained in plain language. No copied test banks, no course screenshots, no fluff. Unsubscribe anytime.</p>
+        <p class="signup-sub">Written from what I'm studying, then explained in plain language. No copied test banks, no course screenshots, no fluff. Start with the free <a href="${signupBase}drug-card-checklist.html" style="color:var(--gold);font-weight:700">drug-card checklist</a>.</p>
       </div>
       <form class="signup-form" id="signupForm">
         <div class="signup-input-wrap">
           <input type="email" id="signupEmail" class="signup-input" placeholder="your@email.com" required autocomplete="email">
           <button type="submit" class="signup-btn">Subscribe</button>
         </div>
-        <p class="signup-note">Unsubscribe anytime. I only email when there's something real.</p>
+        <p class="signup-note">Unsubscribe anytime. I only email when there's something real. <a href="${signupBase}privacy.html" style="color:rgba(255,255,255,0.75)">Privacy</a></p>
       </form>
       <div class="signup-success" id="signupSuccess" style="display:none">
         <div style="font-size:1.5em;margin-bottom:6px">You're in.</div>

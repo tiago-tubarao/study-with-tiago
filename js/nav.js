@@ -8,7 +8,7 @@
 
   // Figure out relative path to root
   let base = './';
-  if (path.includes('/exam2/') || path.includes('/exam3/') || path.includes('/methods/')) base = '../';
+  if (path.includes('/exam2/') || path.includes('/exam3/') || path.includes('/methods/') || path.includes('/blog/')) base = '../';
 
   // Phase 1.3 (2026-04-29): keep the main nav focused on public study assets.
   const links = [
@@ -16,9 +16,10 @@
     { label: 'Pharmacology', href: base + 'exam2/index.html', icon: '💊' },
     { label: 'Adult Health', href: base + 'exam3/index.html', icon: '🩺' },
     { label: 'Flashcards', href: base + 'all-flashcards.html', icon: '🃏' },
+    { label: 'Videos', href: base + 'videos.html', icon: '🎥' },
+    { label: 'Blog', href: base + 'blog/', icon: '📝' },
     { label: 'Resources', href: base + 'resources.html', icon: '📦' },
     { label: 'About', href: base + 'about.html', icon: '👤' },
-    { label: 'YouTube', href: 'https://www.youtube.com/@life-ofstudy', icon: '▶', external: true },
   ];
 
   // Determine active page

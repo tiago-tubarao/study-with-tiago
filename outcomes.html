@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Feedback — Study with Tiago</title>
+  <meta name="description" content="Tell Study with Tiago what helped, what was confusing, and what should be built next.">
+  <link rel="canonical" href="https://tiago-tubarao.github.io/study-with-tiago/outcomes.html">
+  <meta property="og:title" content="Study Feedback | Study with Tiago">
+  <meta property="og:description" content="Share what helped and what should be improved on Study with Tiago.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiago-tubarao.github.io/study-with-tiago/outcomes.html">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=26">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">What helped?</h1>
+    <p class="hero-sub">A tiny feedback form so the site improves around real nursing-student use, not guesses.</p>
+  </div>
+
+  <section class="content-band">
+    <div class="legal-note">
+      Please do not submit private health information, school identifiers, professor names, or actual exam questions. Keep it general: topic, resource, what helped, and what was confusing.
+    </div>
+  </section>
+
+  <section class="content-band">
+    <form class="survey-form" id="outcomeForm">
+      <label for="resource">What did you use?</label>
+      <select id="resource" required>
+        <option value="">Choose one...</option>
+        <option>Flashcards</option>
+        <option>Audio flashcards</option>
+        <option>Practice questions</option>
+        <option>Video walkthrough</option>
+        <option>Gumroad study bundle</option>
+        <option>Blog / checklist</option>
+      </select>
+
+      <label for="topic">Topic</label>
+      <input id="topic" type="text" placeholder="Example: DKA vs HHS, heparin, renal, thyroid storm">
+
+      <label for="helped">What helped?</label>
+      <textarea id="helped" rows="4" placeholder="What made the topic click?"></textarea>
+
+      <label for="confusing">What was still confusing?</label>
+      <textarea id="confusing" rows="4" placeholder="What should be clearer or easier to find?"></textarea>
+
+      <button type="submit" class="cta-button">Prepare feedback email</button>
+      <p id="surveyStatus" style="margin-top:12px;color:var(--muted)"></p>
+    </form>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Do not submit actual exam questions or private personal information.
+    <a href="terms.html">Full disclaimer</a>.
+  </div>
+</footer>
+
+<script src="js/nav.js?v=7"></script>
+<script src="js/theme.js"></script>
+<script src="js/share.js?v=3"></script>
+<script>
+  document.getElementById('outcomeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = {
+      resource: document.getElementById('resource').value,
+      topic: document.getElementById('topic').value.trim(),
+      helped: document.getElementById('helped').value.trim(),
+      confusing: document.getElementById('confusing').value.trim(),
+      page: location.href,
+      date: new Date().toISOString()
+    };
+    var saved = JSON.parse(localStorage.getItem('swt_outcome_feedback') || '[]');
+    saved.push(data);
+    localStorage.setItem('swt_outcome_feedback', JSON.stringify(saved));
+
+    var body = [
+      'Resource: ' + data.resource,
+      'Topic: ' + data.topic,
+      '',
+      'What helped:',
+      data.helped,
+      '',
+      'What was confusing:',
+      data.confusing,
+      '',
+      'Page: ' + data.page
+    ].join('\n');
+
+    document.getElementById('surveyStatus').innerHTML = 'Saved on this device. Opening your email app now so you can send it to Tiago.';
+    location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent('Study with Tiago feedback') + '&body=' + encodeURIComponent(body);
+  });
+</script>
+</body>
+</html>

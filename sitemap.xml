@@ -14,9 +14,57 @@
   </url>
   <url>
     <loc>https://tiago-tubarao.github.io/study-with-tiago/resources.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tiago-tubarao.github.io/study-with-tiago/videos.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tiago-tubarao.github.io/study-with-tiago/drug-card-checklist.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tiago-tubarao.github.io/study-with-tiago/study-setup.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tiago-tubarao.github.io/study-with-tiago/outcomes.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tiago-tubarao.github.io/study-with-tiago/blog/</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tiago-tubarao.github.io/study-with-tiago/blog/dka-vs-hhs.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tiago-tubarao.github.io/study-with-tiago/blog/audio-flashcards.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tiago-tubarao.github.io/study-with-tiago/blog/missed-question-review.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tiago-tubarao.github.io/study-with-tiago/about.html</loc>
