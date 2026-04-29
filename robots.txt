@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /creator-inbox.html
 
 Sitemap: https://tiago-tubarao.github.io/study-with-tiago/sitemap.xml
