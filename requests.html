@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Card or Fix — Study with Tiago</title>
+  <meta name="description" content="Request a missing nursing study card, ask for audio coverage, report a bug, or suggest what Study with Tiago should build next.">
+  <link rel="canonical" href="https://tiago-tubarao.github.io/study-with-tiago/requests.html">
+  <meta property="og:title" content="Request a Card or Fix | Study with Tiago">
+  <meta property="og:description" content="Tell Study with Tiago what card, audio, topic, or site fix would help you study.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiago-tubarao.github.io/study-with-tiago/requests.html">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=29">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Request a card or fix</h1>
+    <p class="hero-sub">If you searched for something and could not find it, send a clean request so I know what to build next.</p>
+  </div>
+
+  <section class="content-band">
+    <div class="legal-note">
+      Please keep requests general. Do not submit actual exam questions, private health information, school identifiers, professor names, patient details, or anything from a protected test bank.
+    </div>
+  </section>
+
+  <section class="content-band">
+    <form class="survey-form" id="requestForm">
+      <label for="requestType">What do you need?</label>
+      <select id="requestType" required>
+        <option value="">Choose one...</option>
+        <option value="card">Missing flashcard / drug card</option>
+        <option value="audio">Audio for a card or deck</option>
+        <option value="topic">Topic explanation</option>
+        <option value="bug">Site bug or broken link</option>
+        <option value="resource">Resource idea</option>
+      </select>
+
+      <label for="requestTopic">Topic, drug, card, or page</label>
+      <input id="requestTopic" type="text" placeholder="Example: captopril, DKA vs HHS, Exam 3 renal audio" required>
+
+      <label for="requestDetails">What would help?</label>
+      <textarea id="requestDetails" rows="5" placeholder="What were you trying to study? What felt missing or confusing?"></textarea>
+
+      <label for="requestEmail">Your email (optional)</label>
+      <input id="requestEmail" type="email" placeholder="Only if you want a reply">
+
+      <label style="display:flex;gap:10px;align-items:flex-start;margin:18px 0">
+        <input id="requestSafe" type="checkbox" required style="margin-top:5px">
+        <span>I am not sending actual exam questions, private health information, school identifiers, professor names, or protected test-bank content.</span>
+      </label>
+
+      <button type="submit" class="cta-button">Prepare request email</button>
+      <p id="requestStatus" style="margin-top:12px;color:var(--muted)" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="content-band">
+    <h2>What happens next?</h2>
+    <div class="resource-grid">
+      <div class="resource-card" style="cursor:default">
+        <span class="eyebrow">1</span>
+        <h3>Saved locally</h3>
+        <p>The request is saved on this browser first, so you do not lose it if the email app opens slowly.</p>
+      </div>
+      <div class="resource-card" style="cursor:default">
+        <span class="eyebrow">2</span>
+        <h3>Email draft opens</h3>
+        <p>Your email app opens a prepared message to <code>studywithtiago@gmail.com</code>. Nothing sends unless you press send.</p>
+      </div>
+      <div class="resource-card" style="cursor:default">
+        <span class="eyebrow">3</span>
+        <h3>I use requests to pick updates</h3>
+        <p>Requests help prioritize new cards, audio coverage, blog posts, and fixes.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. Do not submit actual exam questions or private personal information.
+    <a href="terms.html">Full disclaimer</a>.
+  </div>
+</footer>
+
+<script src="js/nav.js?v=7"></script>
+<script src="js/theme.js"></script>
+<script src="js/share.js?v=4"></script>
+<script>
+  (function() {
+    var params = new URLSearchParams(location.search);
+    var typeMap = {
+      card: 'Missing flashcard / drug card',
+      audio: 'Audio for a card or deck',
+      topic: 'Topic explanation',
+      bug: 'Site bug or broken link',
+      resource: 'Resource idea'
+    };
+    var typeEl = document.getElementById('requestType');
+    var topicEl = document.getElementById('requestTopic');
+    var detailsEl = document.getElementById('requestDetails');
+    var statusEl = document.getElementById('requestStatus');
+    var emailEl = document.getElementById('requestEmail');
+
+    if (params.get('type') && typeMap[params.get('type')]) typeEl.value = params.get('type');
+    var topic = params.get('topic') || params.get('card') || params.get('q') || '';
+    if (topic) topicEl.value = topic;
+    if (params.get('page')) {
+      detailsEl.value = 'Page where I noticed it: ' + params.get('page') + '\n\n';
+    }
+
+    function subjectPrefix(type) {
+      if (type === 'audio') return '[SWT AUDIO REQUEST]';
+      if (type === 'bug') return '[SWT BUG]';
+      if (type === 'topic' || type === 'resource') return '[SWT FEEDBACK]';
+      return '[SWT CARD REQUEST]';
+    }
+
+    document.getElementById('requestForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = {
+        type: typeEl.value,
+        topic: topicEl.value.trim(),
+        details: detailsEl.value.trim(),
+        email: emailEl.value.trim(),
+        sourcePage: params.get('page') || document.referrer || '',
+        page: location.href,
+        date: new Date().toISOString()
+      };
+      var saved = [];
+      try { saved = JSON.parse(localStorage.getItem('swt_site_requests') || '[]'); } catch(err) { saved = []; }
+      saved.push(data);
+      localStorage.setItem('swt_site_requests', JSON.stringify(saved));
+
+      var body = [
+        'Type: ' + (typeMap[data.type] || data.type),
+        'Topic/card/page: ' + data.topic,
+        data.email ? 'Reply email: ' + data.email : 'Reply email: not provided',
+        data.sourcePage ? 'Source page: ' + data.sourcePage : '',
+        '',
+        'What would help:',
+        data.details,
+        '',
+        'Safety note: I am not sending actual exam questions, private health information, school identifiers, professor names, or protected test-bank content.',
+        '',
+        'Request page: ' + data.page
+      ].filter(Boolean).join('\n');
+
+      statusEl.textContent = 'Saved on this device. Opening your email app now so you can send it to Tiago.';
+      location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent(subjectPrefix(data.type) + ' ' + data.topic) + '&body=' + encodeURIComponent(body);
+    });
+  })();
+</script>
+</body>
+</html>

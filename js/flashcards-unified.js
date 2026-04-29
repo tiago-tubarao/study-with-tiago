@@ -568,16 +568,7 @@
     try { requests = JSON.parse(localStorage.getItem('swt_missing_card_requests') || '[]'); } catch(e) { requests = []; }
     requests.push({ type: 'card-request', query: q, page: location.pathname, date: new Date().toISOString() });
     localStorage.setItem('swt_missing_card_requests', JSON.stringify(requests));
-    var body = [
-      'Type: Card request',
-      'Requested card/topic: ' + q,
-      'Page: ' + location.href,
-      '',
-      'What I was trying to study:',
-      '',
-      'Please do not send actual exam questions, private health information, school identifiers, or professor names.'
-    ].join('\n');
-    location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent('[SWT CARD REQUEST] ' + q) + '&body=' + encodeURIComponent(body);
+    location.href = 'requests.html?type=card&topic=' + encodeURIComponent(q) + '&page=' + encodeURIComponent(location.href);
   }
 
   function requestAudioCoverage() {
@@ -587,16 +578,7 @@
     try { requests = JSON.parse(localStorage.getItem('swt_audio_requests') || '[]'); } catch(e) { requests = []; }
     requests.push({ type: 'audio-request', card: label, page: location.pathname, date: new Date().toISOString() });
     localStorage.setItem('swt_audio_requests', JSON.stringify(requests));
-    var body = [
-      'Type: Audio request',
-      'Requested audio/card: ' + label,
-      'Page: ' + location.href,
-      '',
-      'What would help:',
-      '',
-      'Please do not send actual exam questions, private health information, school identifiers, or professor names.'
-    ].join('\n');
-    location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent('[SWT AUDIO REQUEST] ' + label) + '&body=' + encodeURIComponent(body);
+    location.href = 'requests.html?type=audio&topic=' + encodeURIComponent(label) + '&page=' + encodeURIComponent(location.href);
   }
 
   searchInput.addEventListener('input', function() {
