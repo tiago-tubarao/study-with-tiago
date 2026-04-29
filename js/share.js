@@ -12,6 +12,7 @@
   btn.className = 'share-float';
   btn.innerHTML = '\uD83D\uDD17';
   btn.title = 'Share this page';
+  btn.setAttribute('aria-label', 'Share this page');
 
   const toast = document.createElement('div');
   toast.className = 'share-toast';
@@ -19,9 +20,19 @@
   document.body.appendChild(toast);
 
   // Build a share message based on which page we're on
+  function cleanShareUrl() {
+    var u = new URL(location.href);
+    var keepAudio = u.searchParams.get('audio') === '1';
+    u.search = '';
+    u.hash = '';
+    if (keepAudio) u.searchParams.set('audio', '1');
+    return u.toString();
+  }
+
   function getShareText() {
     var p = location.pathname;
     var base = 'https://tiago-tubarao.github.io/study-with-tiago/';
+    var cleanUrl = cleanShareUrl();
     var isAH = p.includes('/exam3/');
 
     // Adult Health Exam 3 pages
@@ -54,11 +65,14 @@
 
     // Unified flashcards page
     if (p.includes('all-flashcards')) {
-      return '🃏 290 Nursing Flashcards in ONE page — Pharmacology, Adult Health, 84 Drug Cards with Audio, Quiz 3\n\n'
+      var audioMode = new URL(location.href).searchParams.get('audio') === '1';
+      return (audioMode
+        ? '🎙 84 Adult Health drug flashcards with podcast + read-card audio\n\n'
+        : '🃏 290 Nursing Flashcards in ONE page — Pharmacology, Adult Health, 84 Drug Cards with Audio, Quiz 3\n\n')
         + '🔍 Search any drug or condition\n'
         + '📊 Mastery tracking across all decks\n'
         + '🎙 Audio for 84 drug cards\n\n'
-        + '🔗 ' + base + 'all-flashcards.html';
+        + '🔗 ' + cleanUrl;
     }
 
     // Pharmacology Exam 2 pages
@@ -99,7 +113,7 @@
     var shareData = {
       title: isAH ? 'Study with Tiago — Free Adult Health Exam Prep' : 'Study with Tiago — Free Nursing Exam Prep',
       text: text,
-      url: location.href
+      url: cleanShareUrl()
     };
 
     if (navigator.share) {

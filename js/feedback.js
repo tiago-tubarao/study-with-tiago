@@ -10,7 +10,7 @@
   kofiWrap.className = 'kofi-wrap';
   kofiWrap.innerHTML = `
     <div class="kofi-bubble">Support this project ☕</div>
-    <a href="https://ko-fi.com/tiagolifeofstudy" target="_blank" rel="noopener" class="kofi-float" title="Buy me a coffee">☕</a>
+    <a href="https://ko-fi.com/tiagolifeofstudy" target="_blank" rel="noopener" class="kofi-float" title="Buy me a coffee" aria-label="Support this project on Ko-fi">☕</a>
   `;
   document.body.appendChild(kofiWrap);
 
@@ -34,6 +34,7 @@
   fbBtn.className = 'feedback-float';
   fbBtn.innerHTML = '💬';
   fbBtn.title = 'Send feedback';
+  fbBtn.setAttribute('aria-label', 'Send feedback');
   fbBtn.onclick = () => {
     const modal = document.getElementById('feedbackModal');
     if (modal) modal.classList.toggle('show');
