@@ -174,12 +174,21 @@
     /* Card */
     .ufc-counter { text-align: center; font-size: 0.8em; font-weight: 600; opacity: 0.5; margin-bottom: 0.5em; }
     .ufc-card-stage { perspective: 1200px; max-width: 440px; margin: 0 auto; padding: 0 1em; cursor: pointer; }
-    .ufc-card { display: grid; width: 100%; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); transform-style: preserve-3d; }
+    /* Fixed responsive shell: the long back side scrolls inside instead of making
+       the front card huge and oddly blank. */
+    .ufc-card {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: clamp(430px, 68vh, 560px);
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+      transform-style: preserve-3d;
+    }
     .ufc-card.flipped { transform: rotateY(180deg); }
-    .ufc-card-face { grid-area: 1 / 1; width: 100%; backface-visibility: hidden; border-radius: 1.2em; overflow: visible; }
+    .ufc-card-face { position: absolute; inset: 0; width: 100%; backface-visibility: hidden; border-radius: 1.2em; overflow: hidden; }
 
-    .ufc-card-front { background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5em; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.08); position: relative; border-top: 5px solid #2A9D8F; }
-    .ufc-front-img { width: 100%; max-height: 260px; object-fit: contain; border-radius: 0.8em; margin-bottom: 0.8em; }
+    .ufc-card-front { background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.25em; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.08); position: absolute; border-top: 5px solid #2A9D8F; }
+    .ufc-front-img { width: 100%; max-height: clamp(180px, 34vh, 260px); object-fit: contain; border-radius: 0.8em; margin-bottom: 0.8em; }
     .ufc-card-icon { font-size: 2.5em; margin-bottom: 0.3em; }
     .ufc-card-title { font-family: 'Syne', sans-serif; font-size: 1.35em; font-weight: 800; margin-bottom: 0.15em; line-height: 1.2; word-break: break-word; }
     .ufc-card-subtitle { font-size: 0.85em; opacity: 0.6; margin-bottom: 0.5em; }
@@ -187,7 +196,6 @@
     .ufc-card-purpose { font-size: 0.82em; opacity: 0.78; line-height: 1.4; max-width: 44ch; }
     .ufc-card-tap { font-size: 0.68em; opacity: 0.3; margin-top: 0.6em; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
     .ufc-deck-badge { position: absolute; top: 0.8em; left: 0.8em; padding: 0.2em 0.7em; border-radius: 2em; font-size: 0.62em; font-weight: 700; z-index: 2; letter-spacing: 0.5px; color: #fff; }
-    .ufc-mastery-badge { position: absolute; top: 0.8em; right: 0.8em; padding: 0.2em 0.7em; border-radius: 2em; font-size: 0.7em; font-weight: 700; z-index: 2; }
     .ufc-mastery-got { background: rgba(43,138,62,0.15); color: #2B8A3E; border: 1px solid rgba(43,138,62,0.3); }
     .ufc-mastery-weak { background: rgba(230,119,0,0.15); color: #E67700; border: 1px solid rgba(230,119,0,0.3); }
 
