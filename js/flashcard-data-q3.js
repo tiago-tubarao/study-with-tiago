@@ -1,9 +1,9 @@
 // ══════════════════════════════════════════════
-// Flashcard Data — 28 Visual Cards for NURS 210 Quiz 3
+// Flashcard Data — 28 Visual Cards for CNS / Neuro / Opioids review
 // CNS / Neuro / Opioids — Chapters 46-53
 // ADHD-optimized: emoji front connects to visual back
 // Back = Gemini image + teaching notes that explain what you SEE
-// Based on Dr. Barkley's dual coding + externalized WM research
+// Built around visual cueing + externalized working-memory support
 // ══════════════════════════════════════════════
 
 window.FLASHCARD_DATA_Q3 = {
@@ -26,7 +26,7 @@ window.FLASHCARD_DATA_Q3 = {
       notes: [
         'LEFT side (red) = Sympathetic = Fight or Flight. See the kid running with wide eyes? That\'s your SNS firing. HR goes UP, BP goes UP, pupils dilate, bronchi open, glucose rises. The body is prepping to survive.',
         'RIGHT side (blue) = Parasympathetic = Rest & Digest. Same kid, now relaxed and eating. HR slows DOWN, pupils constrict, digestion kicks in, bladder contracts. This is your vagus nerve running the show (75% of PNS).',
-        'EXAM TIP: If a drug is "sympathomimetic" it MIMICS the left side (fight). If it\'s "parasympathomimetic" it mimics the right side (rest). Adrenergic = SNS. Cholinergic = PNS.'
+        'STUDY TIP: If a drug is "sympathomimetic" it MIMICS the left side (fight). If it\'s "parasympathomimetic" it mimics the right side (rest). Adrenergic = SNS. Cholinergic = PNS.'
       ]
     },
     {
@@ -87,7 +87,7 @@ window.FLASHCARD_DATA_Q3 = {
         'See the SEESAW? That\'s the whole disease. Dopamine is DOWN (small, on the high side) and ACh is UP (big blob, weighing it down). The imbalance causes all the symptoms.',
         'The character on the right shows the 4 cardinal signs: pill-rolling tremor (hands), rigidity (stiff posture), bradykinesia (slow movement), postural instability (leaning). Know all 4.',
         'Treatment strategy is simple: either INCREASE dopamine (Levodopa, bromocriptine, amantadine) OR DECREASE ACh (benztropine, trihexyphenidyl). Both restore the balance.',
-        'EXAM TIP: The tremor in Parkinson\'s is a RESTING tremor — it stops when they move intentionally. If tremor gets worse with movement, it\'s something else.'
+        'STUDY TIP: The tremor in Parkinson\'s is a RESTING tremor — it often improves with intentional movement. If tremor gets worse with movement, think of a different pattern.'
       ]
     },
     {
@@ -97,7 +97,7 @@ window.FLASHCARD_DATA_Q3 = {
       notes: [
         'See the wall in the center? That\'s the blood-brain barrier (BBB). Dopamine itself CAN\'T cross it. So we give Levodopa — a precursor that CAN cross, then converts to dopamine inside the brain.',
         'The little shield character (Carbidopa) stays OUTSIDE the wall. Its job: block peripheral conversion so the Levodopa doesn\'t turn into dopamine before it reaches the brain. Less side effects, more drug gets through.',
-        'See the WARNING icons around the edges? These are your exam traps: NO MAOIs (hypertensive crisis). NO high-protein meals (amino acids compete for absorption). NO high-dose vitamin B6 (reduces effectiveness). NEVER stop abruptly (can cause NMS-like syndrome).',
+        'See the WARNING icons around the edges? These are common mix-ups: NO MAOIs (hypertensive crisis). Avoid high-protein timing around doses (amino acids compete for absorption). Avoid high-dose vitamin B6 unless directed (reduces effectiveness). Do not stop abruptly (can cause NMS-like syndrome).',
         'Dark urine = harmless. Patients freak out — reassure them.'
       ]
     },
@@ -372,7 +372,7 @@ window.FLASHCARD_DATA_Q3 = {
         'The three bullies: Phenytoin, Carbamazepine, Phenobarbital. All three are AEDs (anti-epileptic drugs). All three are CYP450 inducers.',
         'Their victims (being pushed down): oral contraceptives (pregnancy!), warfarin (clots!), corticosteroids (disease flare!). If your patient starts one of these AEDs, their OTHER medications may stop working.',
         'The angel with the halo on the right = Levetiracetam (Keppra). NO CYP450 interactions. The safest choice when a patient is on multiple medications.',
-        'EXAM APPLICATION: If a question says "patient on warfarin starts phenytoin, what happens?" → warfarin levels DROP → increased clot risk → monitor INR closely.'
+        'STUDY APPLICATION: If a patient on warfarin starts phenytoin, warfarin levels can DROP → increased clot risk → monitor INR closely.'
       ]
     }
   ]

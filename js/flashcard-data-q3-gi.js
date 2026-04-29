@@ -1,10 +1,10 @@
 // ══════════════════════════════════════════════
-// Flashcard Data — 37 Visual Cards for NURS 210 Quiz 3
+// Flashcard Data — 37 Visual Cards for GI pharmacology review
 // GI System Drugs — Chapters 34-40
 // ADHD-optimized: emoji front connects to visual back
 // Back = Gemini image + teaching notes that explain what you SEE
-// Based on Dr. Barkley's dual coding + externalized WM research
-// Updated 2026-03-31: Added Scopolamine + Dronabinol cards from ATI extraction
+// Built around visual cueing + externalized working-memory support
+// Updated 2026-03-31: Added Scopolamine + Dronabinol study cards
 // ══════════════════════════════════════════════
 
 window.FLASHCARD_DATA_Q3_GI = {
@@ -107,7 +107,7 @@ window.FLASHCARD_DATA_Q3_GI = {
       front: { icon: '\uD83D\uDEAB\uD83E\uDD30', title: 'Misoprostol (Cytotec)', subtitle: 'CATEGORY X — absolutely NO in pregnancy' },
       image: 'quiz3-gi-images/07_misoprostol_pregnancy_x.png',
       notes: [
-        'The giant red X over the pregnant woman says it all — misoprostol is ABSOLUTELY CONTRAINDICATED in pregnancy (Category X). It causes uterine contractions that can lead to miscarriage and birth defects.',
+        'The giant red X over the pregnant woman says it all — misoprostol is contraindicated in pregnancy for ulcer prevention because it causes uterine contractions and can lead to miscarriage.',
         'Purpose: Prevents NSAID-induced gastric ulcers. NSAIDs deplete protective prostaglandins from the stomach lining. Misoprostol is a synthetic prostaglandin E1 analog that replaces them.',
         'THREE requirements for women of childbearing age: (1) Negative pregnancy test BEFORE starting, (2) Reliable contraception DURING therapy, (3) Start on Day 2-3 of menstrual period to confirm not pregnant.',
         'Most common side effect: DIARRHEA — up to 40% of patients, dose-related. Also cramping and menstrual irregularities.',
@@ -124,8 +124,8 @@ window.FLASHCARD_DATA_Q3_GI = {
       notes: [
         'LEFT: Aluminum hydroxide (Amphojel) = CONSTIPATION. Mnemonic: AlumiNUM = NUMbs the bowels. Also binds phosphate — causes hypophosphatemia. Monitor phosphorus levels!',
         'CENTER: Magnesium hydroxide (Milk of Magnesia) = DIARRHEA. Mnemonic: MagNESIUM = Milk of MagNESIa = loose stools. Osmotic effect pulls water into the bowel.',
-        'RIGHT: MYLANTA = professor\'s prototype. Aluminum + Magnesium + Simethicone. The combo BALANCES bowel effects (constipation + diarrhea cancel out). Simethicone = anti-gas.',
-        'Professor\'s note: Aluminum compounds are "rarely used alone" for acid-peptic disorders. That\'s why combo products like Mylanta exist.',
+        'RIGHT: MYLANTA = a common combination product. Aluminum + Magnesium + Simethicone. The combo BALANCES bowel effects (constipation + diarrhea cancel out). Simethicone = anti-gas.',
+        'Study note: Aluminum compounds are rarely used alone for acid-peptic disorders. That\'s why combo products like Mylanta exist.',
         'ALL antacids: separate from other oral drugs by 1-2 HOURS. They raise pH and chelate drugs, blocking absorption of tetracyclines, fluoroquinolones, iron, digoxin, H2 blockers, levothyroxine, ketoconazole.',
         'Best timing: 1-3 hours AFTER meals (when acid peaks) + at bedtime.'
       ]
@@ -151,12 +151,12 @@ window.FLASHCARD_DATA_Q3_GI = {
       notes: [
         'Crown = FIRST-LINE status. This is THE drug for chemotherapy-induced and post-operative nausea/vomiting. Blocks serotonin 5-HT3 receptors in the CTZ and vagal nerve terminals. SAME CLASS: granisetron (Kytril), palonosetron (Aloxi) — all end in -SETRON. Same MOA, same side effects.',
         'TIMING IS EVERYTHING: 30 min BEFORE chemo, infuse IV over 15 min, repeat 4 hours AFTER. Mnemonic: "30 Before, 15 Slow, 4 After."',
-        'Side effects per professor: DIARRHEA (most common), headache, and transient liver enzyme elevation (monitor LFTs). Generally WELL TOLERATED — mild to moderate effects.',
-        'ATI BOXED WARNING: Risk of SEROTONIN SYNDROME if combined with SSRIs, SNRIs, TCAs, MAOIs, triptans, lithium, fentanyl, tramadol. Watch for: agitation, confusion, rapid HR, muscle rigidity.',
-        'ATI SAFETY: QT PROLONGATION risk — get baseline ECG. Monitor electrolytes (Na, K, Ca, Mg). TERATOGENIC — can cause septal defects and cleft palate in pregnancy.',
+        'Common effects: headache, constipation or diarrhea, and transient liver enzyme elevation (monitor LFTs if ordered). Generally WELL TOLERATED — mild to moderate effects.',
+        'SAFETY: Serotonin syndrome has been reported with serotonergic drugs (SSRIs, SNRIs, TCAs, MAOIs, triptans, lithium, fentanyl, tramadol). Watch for: agitation, confusion, rapid HR, muscle rigidity.',
+        'SAFETY: QT PROLONGATION risk — ECG/electrolyte monitoring may be ordered for high-risk patients. In pregnancy, use only with provider guidance after risks/benefits are reviewed.',
         'Available forms: IV (max 16 mg/dose), PO, and ODT (orally disintegrating tablet — dissolves on the tongue, great for patients who can\'t swallow). Also oral film and IM.',
-        'ATI WARNING: ODT (orally disintegrating tablet) contains ASPARTAME — contraindicated in clients with PKU (phenylketonuria). Also: do NOT use with APOMORPHINE (risk of hypotension + decreased consciousness).',
-        'ATI TRAP: Ondansetron does NOT cause tardive dyskinesia or EPS — that\'s METOCLOPRAMIDE. Don\'t confuse them!'
+        'ODT (orally disintegrating tablet) may contain ASPARTAME — check product labeling for patients with PKU (phenylketonuria). Also: do NOT use with APOMORPHINE (risk of hypotension + decreased consciousness).',
+        'COMMON MIX-UP: Ondansetron does NOT cause tardive dyskinesia or EPS — that\'s METOCLOPRAMIDE. Don\'t confuse them!'
       ]
     },
     {
@@ -164,27 +164,27 @@ window.FLASHCARD_DATA_Q3_GI = {
       front: { icon: '\u2600\uFE0F\uD83D\uDC8A', title: 'Promethazine (Phenergan)', subtitle: 'CNS depression + photosensitivity + QT changes' },
       image: 'quiz3-gi-images/11_promethazine_phenergan.png',
       notes: [
-        'Four effects Dr. Lee emphasized — each in a colored box on the card:',
+        'Four effects to keep straight — each in a colored box on the card:',
         'RED = CNS DEPRESSION: drowsiness, confusion, sedation. This drug hits hard. Avoid other CNS depressants and alcohol.',
         'YELLOW = PHOTOSENSITIVITY: educate on sun protection — sunscreen, protective clothing, avoid prolonged sun exposure.',
         'BLUE = ORTHOSTATIC HYPOTENSION: blood pressure drops when standing. Teach: change positions SLOWLY, sit on edge of bed before standing.',
         'PURPLE = Q/T WAVE CHANGES on ECG: monitor cardiac rhythm. This is why you don\'t just hand this drug out casually.',
         'Also: anticholinergic effects (blurred vision, dry mouth, urinary retention). PO, rectal, or IM preferred routes. NEVER give subcutaneous — causes tissue damage.',
-        'ATI: Risk of NEUROLEPTIC MALIGNANT SYNDROME (NMS) — fever, muscle rigidity, altered mental status, variable BP, tachycardia. Also cholestatic jaundice + bone marrow suppression.',
+        'SAFETY: Risk of neuroleptic malignant syndrome (NMS) — fever, muscle rigidity, altered mental status, variable BP, tachycardia. Also cholestatic jaundice + bone marrow suppression.',
         'RED SKULL: Children <2 years = FATAL RESPIRATORY DEPRESSION (BOXED WARNING + KIDs list). Beers Criteria in elderly. Never give to these groups.'
       ]
     },
     {
       section: 'antiemetics',
-      front: { icon: '\u2764\uFE0F\uD83D\uDCC8', title: 'Hydroxyzine (Vistaril)', subtitle: 'Professor\'s #1 concern: QT prolongation + torsades' },
+      front: { icon: '\u2764\uFE0F\uD83D\uDCC8', title: 'Hydroxyzine (Vistaril)', subtitle: 'QT prolongation + torsades risk' },
       image: 'quiz3-gi-images/12_hydroxyzine_cardiac.png',
       notes: [
-        'Heart monitor showing dangerous rhythm = the whole point of this card. The professor emphasizes THREE cardiac effects:',
+        'Heart monitor showing dangerous rhythm = the whole point of this card. Keep three cardiac effects together:',
         'QT PROLONGATION — the heart takes too long to reset between beats. This sets the stage for deadly arrhythmias.',
         'TACHYCARDIA — heart rate goes up. Monitor heart rate.',
         'TORSADES DE POINTES — a life-threatening arrhythmia that can degenerate into ventricular fibrillation. This is the big one.',
         'Uses: anxiety, N/V, pruritus (itching), pre-op sedation. It\'s an H1 histamine blocker with mild anxiolytic properties.',
-        'NURSING PEARL: MONITOR CARDIAC RHYTHM/STATUS. If the exam asks "what do you monitor with hydroxyzine?" — the answer is the heart, not the liver, not the kidneys.',
+        'NURSING PEARL: Monitor cardiac rhythm/status in high-risk patients. The key system to remember is cardiac, not liver or kidneys.',
         'Other effects: drowsiness, dry mouth, urinary retention. Avoid CNS depressants.'
       ]
     },
@@ -197,8 +197,8 @@ window.FLASHCARD_DATA_Q3_GI = {
         'BROKEN SHIELD over birth control pills = aprepitant DECREASES oral contraceptive effectiveness. Women MUST use backup contraception during treatment. This is a major teaching point.',
         'SHRINKING WARFARIN pill = aprepitant DECREASES warfarin effectiveness. Monitor INR closely. Report unusual bruising or bleeding.',
         'Administration: Day 1 = 1 hour before chemo. Days 2-3 = morning dose. Often part of a triple regimen: aprepitant + ondansetron + dexamethasone.',
-        'ATI SAFETY: STEVENS-JOHNSON SYNDROME risk — monitor for any rash or skin changes. Also ANAPHYLAXIS risk — have emergency equipment ready.',
-        'ATI INTERACTION: Do NOT use with PIMOZIDE — risk of torsades de pointes. Also decreases PHENYTOIN effectiveness.',
+        'SAFETY: Stevens-Johnson syndrome risk — monitor for any rash or skin changes. Also anaphylaxis risk — have emergency equipment ready.',
+        'INTERACTION: Do NOT use with pimozide — risk of torsades de pointes. Also decreases phenytoin effectiveness.',
         'It\'s a CYP3A4 substrate AND inhibitor — lots of interaction potential. Also increases dexamethasone and methylprednisolone levels (dose reduction needed for those).'
       ]
     },
@@ -213,22 +213,22 @@ window.FLASHCARD_DATA_Q3_GI = {
         'TWO superpowers shown: (1) Antiemetic — blocks dopamine in the CTZ, and (2) Prokinetic — increases gastric emptying. It is the ONLY antiemetic that also speeds up the stomach.',
         'MAX 12 WEEKS of use. Risk of tardive dyskinesia increases with duration and cumulative dose.',
         'Used for: diabetic gastroparesis (stomach empties too slowly), GERD, N/V.',
-        'CONTRAINDICATED in: Parkinson disease (blocks dopamine = PD worse), GI OBSTRUCTION (ATI Safety Alert: can cause severe pain and intestinal rupture with mechanical obstruction — must determine cause BEFORE giving), GI bleed, seizure disorders, hypertension.',
+        'CONTRAINDICATED in: Parkinson disease (blocks dopamine = PD worse), GI obstruction (can worsen mechanical obstruction — determine cause BEFORE giving), GI bleed, seizure disorders, hypertension.',
         'Mnemonic: REGLANd of no return — TD may be irreversible after 12 weeks.',
         'Teaching: Report ANY involuntary facial movements, lip smacking, or tongue movements IMMEDIATELY.'
       ]
     },
     {
       section: 'antiemetics',
-      front: { icon: '\uD83D\uDD0D\u274C', title: 'Antiemetic Exam Traps', subtitle: '6 trick answers to watch for on test day' },
+      front: { icon: '\uD83D\uDD0D\u274C', title: 'Antiemetic Mix-Ups', subtitle: '6 look-alike points to keep separate' },
       image: 'quiz3-gi-images/15_antiemetic_traps.png',
       notes: [
-        'TRAP 1: Tardive dyskinesia = METOCLOPRAMIDE, NOT ondansetron. If the question says "5-HT3 antagonist" it\'s ondansetron — no TD risk there.',
-        'TRAP 2: EPS (extrapyramidal symptoms) = metoclopramide or prochlorperazine, NOT loperamide. Loperamide is an antidiarrheal — totally different drug.',
-        'TRAP 3: Torsades de pointes = HYDROXYZINE (per professor). The test won\'t say "bradycardia" — it\'ll say QT prolongation or torsades.',
-        'TRAP 4: Photosensitivity = PROMETHAZINE (per professor). Not ondansetron, not loperamide.',
-        'TRAP 5: Dronabinol = synthetic THC, Schedule III. It\'s a cannabinoid antiemetic for refractory chemo N/V.',
-        'TRAP 6: Give antiemetics 30-60 min BEFORE the nausea-producing event, not after symptoms start. Timing is everything.'
+        'MIX-UP 1: Tardive dyskinesia = METOCLOPRAMIDE, NOT ondansetron. If the drug is a 5-HT3 antagonist, think ondansetron — not TD.',
+        'MIX-UP 2: EPS (extrapyramidal symptoms) = metoclopramide or prochlorperazine, NOT loperamide. Loperamide is an antidiarrheal — totally different drug.',
+        'MIX-UP 3: Torsades de pointes risk = HYDROXYZINE. Watch for QT prolongation or torsades language.',
+        'MIX-UP 4: Photosensitivity = PROMETHAZINE. Not ondansetron, not loperamide.',
+        'MIX-UP 5: Dronabinol = synthetic THC. It\'s a cannabinoid antiemetic for refractory chemo N/V.',
+        'MIX-UP 6: Give antiemetics 30-60 min BEFORE the nausea-producing event, not after symptoms start. Timing is everything.'
       ]
     },
 
@@ -281,8 +281,8 @@ window.FLASHCARD_DATA_Q3_GI = {
       front: { icon: '\uD83D\uDEBD\uD83D\uDC8A', title: 'Antidiarrheal Comparison', subtitle: 'Lomotil, Imodium, Pepto + the infection rule' },
       image: 'quiz3-gi-images/19_antidiarrheal_comparison.png',
       notes: [
-        'LOMOTIL (diphenoxylate/atropine): Schedule V opioid. Atropine is added in subtherapeutic doses to DISCOURAGE ABUSE. In IBD patients = risk of TOXIC MEGACOLON (slows inflamed bowel). High doses = hypotension + respiratory depression per Dr. Lee.',
-        'LOPERAMIDE (Imodium): OTC, acts locally on GI mu-opioid receptors. Causes sedation and dizziness — avoid activities requiring alertness. Does NOT cause EPS (ATI trap — that\'s metoclopramide). For dry mouth: sugarless gum/candy, NOT alcohol-based mouthwash.',
+        'LOMOTIL (diphenoxylate/atropine): Schedule V opioid. Atropine is added in subtherapeutic doses to DISCOURAGE ABUSE. In IBD patients = risk of TOXIC MEGACOLON (slows inflamed bowel). High doses can cause hypotension + respiratory depression.',
+        'LOPERAMIDE (Imodium): OTC, acts locally on GI mu-opioid receptors. Causes sedation and dizziness — avoid activities requiring alertness. Does NOT cause EPS (that\'s metoclopramide). For dry mouth: sugarless gum/candy, NOT alcohol-based mouthwash.',
         'BISMUTH (Pepto-Bismol): Black stool + black tongue = HARMLESS (bismuth + sulfur reaction). Contains SALICYLATE — no aspirin-allergic patients, no kids with viral illness (Reye syndrome risk). Also used in H. pylori quadruple therapy.',
         'PROBIOTICS: Take 2 HOURS away from antibiotics (antibiotics kill the beneficial bacteria). Restore normal GI flora. Contraindicated in severely immunocompromised patients.',
         'THE BIG RULE: NEVER give antidiarrheals if infection is suspected (C. diff, E. coli, Shigella). You\'d be trapping the pathogen in the bowel. Let the body flush it out.'
@@ -307,7 +307,7 @@ window.FLASHCARD_DATA_Q3_GI = {
       front: { icon: '\uD83D\uDC65\u274C', title: 'Population Restrictions', subtitle: 'Who gets WHAT drug restricted' },
       image: 'quiz3-gi-images/21_avoid_in_populations.png',
       notes: [
-        'PREGNANT WOMAN + X = Misoprostol (Category X). Causes uterine contractions and miscarriage. This is the most absolute contraindication in GI pharm.',
+        'PREGNANT WOMAN + X = Misoprostol. Contraindicated for ulcer prevention in pregnancy because it causes uterine contractions and can cause miscarriage.',
         'KIDNEY + warning = Magnesium hydroxide (fatal hypermagnesemia) and aluminum hydroxide (toxicity). Magnesium is MORE dangerous.',
         'IBD COLON = Diphenoxylate/atropine (Lomotil). Slowing motility in an inflamed bowel = toxic megacolon.',
         'CHILD WITH CHICKENPOX = Bismuth subsalicylate (Pepto). Contains salicylate = Reye syndrome risk in kids with viral illness.',
@@ -326,7 +326,7 @@ window.FLASHCARD_DATA_Q3_GI = {
         'Lactulose (hepatic encephalopathy) \u2192 AMMONIA (NH3). Goal is to lower ammonia levels. Also monitor electrolytes if diarrhea is excessive.',
         'Metoclopramide \u2192 MOVEMENT ASSESSMENT. Screen for tardive dyskinesia at every visit. Involuntary face/tongue movements = stop the drug.',
         'Warfarin + aprepitant \u2192 INR. Aprepitant decreases warfarin effectiveness, so INR may drop.',
-        'Misoprostol \u2192 PREGNANCY TEST (hCG). Must be negative before starting. Category X — no exceptions.'
+        'Misoprostol \u2192 PREGNANCY TEST (hCG). Must be negative before starting when used for ulcer prevention.'
       ]
     },
 
@@ -371,7 +371,7 @@ window.FLASHCARD_DATA_Q3_GI = {
         'CONTRAINDICATIONS: Neonates, breastfeeding. Caution with CNS depressants — additive sedation with alcohol, opioids, benzos.',
         'COMPARISON TO MECLIZINE: Dramamine = MORE sedating, shorter acting, cheaper OTC. Meclizine = LESS sedating, lasts 24 hrs, better for ongoing vertigo. Exam will test this difference.',
         'TEACHING: Avoid activities requiring alertness. Increase fluid and fiber (constipation prevention). Do NOT combine with alcohol.',
-        'EXAM LOGIC: "Motion sickness" + "sedation as main concern" = DIMENHYDRINATE. "OTC motion sickness pill" = DIMENHYDRINATE. If they want LESS sedation = switch to meclizine.'
+        'STUDY LOGIC: "Motion sickness" + "sedation as main concern" = DIMENHYDRINATE. "OTC motion sickness pill" = DIMENHYDRINATE. If they want LESS sedation = switch to meclizine.'
       ]
     },
     {
@@ -385,7 +385,7 @@ window.FLASHCARD_DATA_Q3_GI = {
         'BLACK BOX WARNING: Increased mortality in elderly with DEMENTIA-RELATED PSYCHOSIS. Do NOT use for dementia patients. This is for chemo N/V only.',
         'OTHER EFFECTS: Sedation (can be therapeutic — patients rest), orthostatic hypotension (rise slowly).',
         'WHEN TO USE: Added to ondansetron + dexamethasone for HIGHLY emetogenic chemo. It\'s the rescue drug when standard triple therapy isn\'t controlling N/V.',
-        'EXAM LOGIC: "Breakthrough chemo N/V" = OLANZAPINE. "Atypical antipsychotic as antiemetic" = OLANZAPINE. "Metabolic syndrome from antiemetic" = OLANZAPINE. "Black Box dementia" = OLANZAPINE.'
+        'STUDY LOGIC: "Breakthrough chemo N/V" = OLANZAPINE. "Atypical antipsychotic as antiemetic" = OLANZAPINE. "Metabolic syndrome from antiemetic" = OLANZAPINE. "Black Box dementia" = OLANZAPINE.'
       ]
     },
 
@@ -396,13 +396,13 @@ window.FLASHCARD_DATA_Q3_GI = {
       image: 'quiz3-gi-images/35_meclizine_antivert.png',
       notes: [
         'WHAT IT DOES: H1 antihistamine that suppresses the VESTIBULAR system — blocks signals from the inner ear that cause motion sickness and vertigo. Same class as dimenhydrinate (Dramamine) but LESS SEDATING.',
-        'INDICATIONS: (1) Motion sickness prevention, (2) Vertigo (Meniere\'s disease). ATI specifically mentions meclizine as the SAFER alternative for motion sickness compared to scopolamine (fewer anticholinergic effects).',
+        'INDICATIONS: (1) Motion sickness prevention, (2) Vertigo (Meniere\'s disease). Meclizine is often preferred when fewer anticholinergic effects are desired compared with scopolamine.',
         'TIMING: Take 1 HOUR before travel. Lasts up to 24 hours — longer duration than most motion sickness drugs. One dose covers a full day of travel.',
         'SIDE EFFECTS: Sedation (LESS than diphenhydramine or dimenhydrinate — that\'s why it\'s preferred), dry mouth, blurred vision. Mild anticholinergic effects.',
         'WHO TO AVOID: Children under 12 (safety not established). Caution in elderly (anticholinergic effects). Caution with BPH, glaucoma, asthma.',
-        'COMPARISON: Meclizine (Antivert) = LESS sedating, longer acting. Dimenhydrinate (Dramamine) = MORE sedating, shorter acting. Scopolamine = patch, strongest anticholinergic effects. For motion sickness on exam: meclizine is the go-to oral option.',
+        'COMPARISON: Meclizine (Antivert) = LESS sedating, longer acting. Dimenhydrinate (Dramamine) = MORE sedating, shorter acting. Scopolamine = patch, stronger anticholinergic effects. For oral motion-sickness treatment, meclizine is a common choice.',
         'OTC STATUS: Available over the counter — patients can self-treat. But still needs nurse education about drowsiness and not combining with alcohol/CNS depressants.',
-        'EXAM LOGIC: "Motion sickness" + "less sedating" = MECLIZINE. "Vertigo treatment" = MECLIZINE. "Safer than scopolamine for dizziness" = MECLIZINE (per ATI Safety When Dizzy box).'
+        'STUDY LOGIC: "Motion sickness" + "less sedating" = MECLIZINE. "Vertigo treatment" = MECLIZINE. "Fewer anticholinergic effects than scopolamine" = MECLIZINE.'
       ]
     },
 
@@ -413,16 +413,16 @@ window.FLASHCARD_DATA_Q3_GI = {
       image: 'quiz3-gi-images/34_octreotide_sandostatin.png',
       notes: [
         'WHAT IT IS: Synthetic version of somatostatin — a hormone that INHIBITS many GI functions. It slows everything down: decreases GI motility, decreases secretions, decreases splanchnic blood flow.',
-        'INDICATIONS: (1) Secretory diarrhea (carcinoid tumors, VIPomas), (2) Acromegaly (excess growth hormone), (3) Esophageal variceal bleeding (decreases portal blood flow). For this exam: focus on the DIARRHEA use.',
+        'INDICATIONS: (1) Secretory diarrhea (carcinoid tumors, VIPomas), (2) Acromegaly (excess growth hormone), (3) Esophageal variceal bleeding (decreases portal blood flow). For this deck, focus on the DIARRHEA use.',
         'ADMINISTRATION: SubQ injection — ROTATE injection sites. Also available IV for acute variceal bleeding. NOT oral — peptide would be destroyed in the GI tract.',
         'ADVERSE EFFECTS: GALLSTONES (most important — somatostatin inhibits gallbladder contraction = bile stasis = stones). Also BRADYCARDIA, hyperglycemia OR hypoglycemia (alters insulin/glucagon), nausea, abdominal pain.',
         'WHAT THE NURSE MONITORS: Gallbladder symptoms (RUQ pain, N/V after fatty meals). Blood glucose (can swing either way). Heart rate (bradycardia). Thyroid function (long-term use can suppress TSH).',
         'PATIENT TEACHING: Report any right upper quadrant pain. Monitor blood sugar if diabetic. Rotate injection sites. May need long-acting depot injection (Sandostatin LAR) monthly for chronic use.',
-        'EXAM LOGIC: "Synthetic somatostatin" = OCTREOTIDE. "Secretory diarrhea" = OCTREOTIDE. "Carcinoid tumor diarrhea" = OCTREOTIDE. "Gallstones as side effect" = OCTREOTIDE.'
+        'STUDY LOGIC: "Synthetic somatostatin" = OCTREOTIDE. "Secretory diarrhea" = OCTREOTIDE. "Carcinoid tumor diarrhea" = OCTREOTIDE. "Gallstones as side effect" = OCTREOTIDE.'
       ]
     },
 
-    // ═══ NEW ATI ANTIEMETIC CARDS (2026-03-31) ═══
+    // ═══ ANTIEMETIC CARDS (2026-03-31) ═══
     {
       section: 'antiemetics',
       front: { icon: '\uD83E\uDE79\uD83D\uDC42', title: 'Scopolamine (Transderm Scop)', subtitle: 'Anticholinergic — patch behind ear, motion sickness + PONV' },
@@ -434,7 +434,7 @@ window.FLASHCARD_DATA_Q3_GI = {
         'ANTICHOLINERGIC SIDE EFFECTS (the "Can\'t See, Can\'t Pee, Can\'t Spit, Can\'t Sh*t" mnemonic): Blurred vision, urinary hesitancy/retention, dry mouth, constipation. Also tachycardia and dilated pupils.',
         'WASH HANDS before AND after handling the patch. Do NOT touch eyes after — scopolamine causes pupil dilation on contact. Use ice chips or sugarless gum for dry mouth.',
         'WHO TO AVOID: Elderly (confusion risk — Beers Criteria), glaucoma (angle-closure — increases intraocular pressure), BPH, GI obstruction, cardiac disease, myasthenia gravis.',
-        'ATI SAFETY: Risk of ANTICHOLINERGIC TOXIDROME — flushed skin, tachycardia, agitation, confusion, urinary retention. Also OVERHEATING in hot weather (can\'t sweat properly). Monitor body temperature.',
+        'SAFETY: Risk of anticholinergic toxidrome — flushed skin, tachycardia, agitation, confusion, urinary retention. Also overheating in hot weather (can\'t sweat properly). Monitor body temperature.',
         'DRUG INTERACTIONS: Additive effects with other anticholinergics, antihistamines, antidepressants, opioids, alcohol, sedatives. May slow GI tract = can affect absorption of PO medications.'
       ]
     },
@@ -444,13 +444,13 @@ window.FLASHCARD_DATA_Q3_GI = {
       image: 'quiz3-gi-images/33_dronabinol_marinol.png',
       notes: [
         'WHAT IT IS: Synthetic THC (delta-9-tetrahydrocannabinol). Schedule III CONTROLLED SUBSTANCE. Only used for CINV in clients who FAILED all other antiemetics. This is a LAST RESORT drug — never first-line.',
-        'HOW IT WORKS: Binds to cannabinoid receptors in different parts of the CNS. Reduces nausea/vomiting AND increases appetite (used in AIDS wasting too, but that\'s not on this exam).',
+        'HOW IT WORKS: Binds to cannabinoid receptors in different parts of the CNS. Reduces nausea/vomiting AND increases appetite (also used in AIDS wasting).',
         'SIDE EFFECTS (CNS-heavy): Dysphoria (sadness), sedation, confusion, euphoria, dry mouth (xerostomia), hypotension. Think: it\'s THC — same effects as marijuana.',
         'ADVERSE EFFECTS: SEIZURES (serious). CANNABINOID HYPEREMESIS SYNDROME (CHS) — paradoxical: the anti-nausea drug causes SEVERE nausea/vomiting + compulsive hot bathing. Report immediately.',
         'WHO TO SCREEN: Assess for CANNABIS USE DISORDER history (substance abuse risk). Assess hepatic AND renal function. Check pregnancy status — not safe in pregnancy.',
         'WHO TO AVOID: Clients with psychiatric history (can worsen anxiety, psychosis, paranoia). Avoid with other CNS depressants, anticholinergics. Caution with cardiac disease (tachycardia risk).',
         'NURSING ACTIONS: Monitor for substance misuse. Assess mental status (mood changes, confusion). Monitor vital signs (hypotension, tachycardia). Educate: NO driving — causes significant CNS impairment.',
-        'EXAM LOGIC: "Schedule III antiemetic" = DRONABINOL. "Synthetic THC" = DRONABINOL. "Failed conventional therapy" = DRONABINOL. "Cannabinoid hyperemesis" = DRONABINOL. Four unique identifiers.'
+        'STUDY LOGIC: "Schedule III antiemetic" = DRONABINOL. "Synthetic THC" = DRONABINOL. "Failed conventional therapy" = DRONABINOL. "Cannabinoid hyperemesis" = DRONABINOL. Four unique identifiers.'
       ]
     },
 
@@ -466,7 +466,7 @@ window.FLASHCARD_DATA_Q3_GI = {
         'THE REMS PROGRAM: Requires signed patient-physician agreement BEFORE prescribing. Both must acknowledge risks. This is one of the strictest prescribing programs in GI pharm.',
         'WHAT THE NURSE MONITORS: Bowel frequency — if constipation develops, STOP immediately. Report abdominal pain, bloody stools, or rectal bleeding (ischemic colitis signs).',
         'WHAT TO TEACH: This drug is a last resort, not a first-line treatment. Stop and call provider if you have no bowel movement for 3+ days or notice blood in stool.',
-        'EXAM LOGIC: "Requires signed agreement" = ALOSETRON. "5-HT3 blocker for IBS" = ALOSETRON. "Females only" = ALOSETRON. Three unique identifiers — hard to confuse with anything else.'
+        'STUDY LOGIC: "Requires signed agreement" = ALOSETRON. "5-HT3 blocker for IBS" = ALOSETRON. "Females only" = ALOSETRON. Three unique identifiers — hard to confuse with anything else.'
       ]
     },
     {
@@ -490,7 +490,7 @@ window.FLASHCARD_DATA_Q3_GI = {
       front: { icon: '\uD83C\uDF3F\u2705', title: 'GERD Lifestyle Modifications', subtitle: 'FIRST LINE — Try these BEFORE starting medications' },
       image: 'quiz3-gi-images/29_gerd_lifestyle.png',
       notes: [
-        'THE PRIORITY: Per Dr. Lee — lifestyle changes are FIRST-LINE for GERD. Before ANY medication, try these. This is a nursing priority question — "which intervention FIRST?"',
+        'THE PRIORITY: Lifestyle changes are FIRST-LINE for GERD. Before ANY medication, try these when appropriate. This is a common nursing priority point.',
         'RULE 1: Do NOT lie down for 1-2 HOURS after eating. Gravity prevents reflux. This is the most commonly tested lifestyle modification.',
         'RULE 2: Elevate HEAD OF BED 6-8 INCHES using blocks or wedges. NOT just extra pillows (that flexes the neck, not the body). The whole upper body must be elevated.',
         'RULE 3: Small, frequent meals. Avoid fatty, spicy, acidic, irritating foods. Large meals increase gastric distension = more reflux.',
@@ -498,7 +498,7 @@ window.FLASHCARD_DATA_Q3_GI = {
         'RULE 5: Maintain IDEAL BODY WEIGHT. Obesity increases intra-abdominal pressure dramatically. Weight loss alone can resolve mild GERD.',
         'RULE 6: Avoid BENDING or STOOPING after meals. Same logic as lying down — position matters.',
         'RULE 7: SMOKING CESSATION — smoking decreases lower esophageal sphincter pressure, allowing more reflux. This ties into the next card.',
-        'EXAM LOGIC: "Which should the nurse teach FIRST?" = lifestyle modifications. "Which intervention is PRIORITY before medication?" = position, diet, weight.'
+        'STUDY LOGIC: For teaching questions, remember position, diet, weight, and smoking before jumping straight to medication.'
       ]
     },
     {
@@ -512,21 +512,21 @@ window.FLASHCARD_DATA_Q3_GI = {
         'CLINICAL RESULT: Patients who smoke heal MORE SLOWLY and have MORE RECURRENT ULCERS despite taking the correct medications. The drugs work — but smoking undoes the benefit.',
         'WHAT THE NURSE DOES: Smoking cessation counseling is part of the CARE PLAN for EVERY ulcer patient. It\'s not optional teaching — it\'s a nursing intervention.',
         'APPLIES TO ALL GI DRUGS: Smoking decreases the effectiveness of H2 blockers AND PPIs. If the patient won\'t quit, at minimum advise: avoid smoking after the last daily dose.',
-        'EXAM LOGIC: "Which patient statement shows understanding?" = "I will stop smoking to help my ulcer heal." "Which factor delays healing?" = continued smoking.'
+        'STUDY LOGIC: If the patient says they will stop smoking to help the ulcer heal, that shows the key teaching landed. Continued smoking delays healing.'
       ]
     },
     {
       section: 'lifestyle',
-      front: { icon: '\uD83E\uDE78\u26D4', title: 'Bismuth: NEVER Alone for Ulcers', subtitle: 'Causes SERIOUS BLEEDING if used without combo therapy' },
+      front: { icon: '\uD83E\uDE78\u26D4', title: 'Bismuth: Not Enough Alone for H. pylori', subtitle: 'Use in combo therapy; watch salicylate risks' },
       image: 'quiz3-gi-images/31_bismuth_warning.png',
       notes: [
-        'THE DANGER: Bismuth subsalicylate (Pepto-Bismol) can cause SERIOUS BLEEDING when used ALONE in patients with ulcers. The salicylate component has antiplatelet effects — it thins the blood at the ulcer site.',
-        'THE RULE: Bismuth must ONLY be used as part of TRIPLE or QUADRUPLE therapy — combined with antibiotics + acid reducer. Never as monotherapy for ulcers.',
+        'THE DANGER: Bismuth subsalicylate contains a salicylate, so bleeding risk matters in aspirin allergy, anticoagulant use, active GI bleeding, or children/teens with viral illness.',
+        'THE RULE: For H. pylori ulcers, bismuth is not enough alone. It is used as part of quadruple therapy with antibiotics + acid suppression.',
         'SAFE COMBO: Bismuth + PPI + 2 antibiotics = quadruple therapy for H. pylori. The other drugs protect while bismuth helps eradicate the bacteria.',
         'BLACK STOOL + BLACK TONGUE: These are HARMLESS. Bismuth reacts with sulfur in the GI tract. Do NOT confuse with GI bleeding. Teach patients this is expected and normal.',
         'SALICYLATE CONTENT: Contains salicylate = NO aspirin-allergic patients. NO children with viral illness (Reye syndrome risk). NO patients on anticoagulants (additive bleeding).',
         'WHAT THE NURSE MONITORS: Signs of GI bleeding — melena (BLACK TARRY stool from upper GI), hematemesis (vomiting blood), coffee-ground emesis. These are different from the harmless black discoloration.',
-        'EXAM TRAP: "Black stool" in a patient on bismuth alone = concerning (possible bleeding). "Black stool" in a patient on quadruple therapy = expected (bismuth effect). Context changes the answer.'
+        'COMMON MIX-UP: Black stool after bismuth can be expected, but black tarry stool with weakness, dizziness, or vomiting blood is GI bleeding until proven otherwise. Context changes the answer.'
       ]
     },
     {
@@ -539,14 +539,14 @@ window.FLASHCARD_DATA_Q3_GI = {
         'THE BIG DRUG INTERACTION: Cholestyramine binds MANY drugs in the GI tract, preventing their absorption. This is the most interaction-heavy drug in the class.',
         'TIMING IS CRITICAL: Give other medications 1 HOUR BEFORE or 4-6 HOURS AFTER cholestyramine. This is a LONGER separation than sucralfate (2 hrs) or antacids (1-2 hrs). Heavily tested.',
         'WHAT IT DEPLETES: Fat-soluble vitamins A, D, E, K. Bile is needed for fat absorption. No bile = no fat absorption = no fat-soluble vitamins. Monitor for deficiency signs.',
-        'ALSO CAUSES CONSTIPATION: Ironic — it treats diarrhea but can overshoot into constipation. It\'s on the professor\'s 13-drug constipation list.',
+        'ALSO CAUSES CONSTIPATION: Ironic — it treats diarrhea but can overshoot into constipation. Keep it on the constipating-drug list.',
         'WHAT TO TEACH: Mix powder with liquid (don\'t take dry — esophageal irritation). Take other meds on schedule around it. Report easy bruising (vitamin K depletion = bleeding risk).',
         'EXAM PAIR: Cholestyramine = longest drug separation (1 hr before / 4-6 hrs after). Sucralfate = 2 hrs. Antacids = 1-2 hrs. Probiotics + antibiotics = 2 hrs.'
       ]
     },
     {
       section: 'lifestyle',
-      front: { icon: '\uD83D\uDEBD\uD83D\uDCCB', title: '13 Drugs That Cause Constipation', subtitle: 'Professor\'s full assessment list — know them ALL' },
+      front: { icon: '\uD83D\uDEBD\uD83D\uDCCB', title: '13 Drugs That Cause Constipation', subtitle: 'Assessment list — know the big offenders' },
       image: 'quiz3-gi-images/28_constipation_drug_list.png',
       notes: [
         '#1 OPIOID ANALGESICS — The #1 cause of drug-induced constipation. EVERY patient on opioids needs a bowel regimen (usually docusate + stimulant laxative). This is a nursing PRIORITY.',
