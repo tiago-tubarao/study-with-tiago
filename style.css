@@ -2001,12 +2001,30 @@ button.conf-dot,
   }
 
   /* Floating utilities were covering hero CTAs and answer buttons on phones.
-     Mobile already has visible share/support CTAs in-page, so suppress them. */
-  .kofi-wrap,
+     Keep the Ko-fi donation path, but make it a small quiet coffee icon. */
   .feedback-float,
   .share-float,
   .quiz-float {
     display: none !important;
+  }
+
+  .kofi-wrap {
+    display: flex !important;
+    bottom: 14px !important;
+    right: 14px !important;
+    z-index: 120;
+  }
+
+  .kofi-bubble {
+    display: none !important;
+  }
+
+  .kofi-float {
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 1.2em !important;
+    animation: none !important;
+    box-shadow: 0 4px 14px rgba(255,94,91,0.35);
   }
 }
 
