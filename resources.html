@@ -107,7 +107,7 @@
     NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
     Content created by a nursing student — always verify against current guidelines and your instructor's direction.
     <a href="terms.html">Full disclaimer</a>.<br><br>
-    <strong>Disclosure:</strong> Some YouTube videos linked from this site include Amazon Associates links in their descriptions. If you buy through those YouTube links, I may earn from qualifying purchases at no extra cost to you. Gumroad bundles linked here are my own study products, not affiliate links.
+    <strong>Disclosure:</strong> Some YouTube videos linked from this site include Amazon Associates links in their descriptions. If you buy through those Amazon links, I earn from qualifying purchases at no extra cost to you. Gumroad bundles linked here are my own study products, not affiliate links.
   </div>
   <div style="margin-top:12px">
     Study with Tiago &copy; 2026 &bull;
@@ -131,12 +131,27 @@
   // Pharm videos from data.js
   const pharmVideos = STUDY_DATA.videos.filter(v => v.youtubeId).map(v =>
     `<div style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)">
-      <img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" style="width:160px;border-radius:8px" alt="YouTube thumbnail for ${v.title}">
+      <img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" width="160" height="90" loading="lazy" decoding="async" style="width:160px;border-radius:8px" alt="YouTube thumbnail for ${v.title}">
       <div>
         <div style="font-weight:700;margin-bottom:4px">${v.title}</div>
         <div style="font-size:0.85em;color:var(--muted)">${v.subtitle}</div>
         <span style="display:inline-block;padding:2px 8px;border-radius:2em;font-size:0.7em;font-weight:700;background:#0B1D3A;color:#fff;margin:4px 0">PHARM</span>
         <a href="https://www.youtube.com/watch?v=${v.youtubeId}" target="_blank" rel="noopener" style="font-size:0.85em;color:var(--teal);font-weight:600;display:block">Watch on YouTube &rarr;</a>
+      </div>
+    </div>`
+  ).join('');
+
+  // Extra pharmacology videos that do not have a dedicated topic page yet.
+  const extraPharmVideos = [
+    { id: 'lN-Ssb4cNX8', title: 'GI Pharmacology Crash Course', subtitle: 'PPIs, antiemetics, laxatives — NCLEX-tested GI meds' },
+  ].map(v =>
+    `<div style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)">
+      <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" width="160" height="90" loading="lazy" decoding="async" style="width:160px;border-radius:8px" alt="YouTube thumbnail for ${v.title}">
+      <div>
+        <div style="font-weight:700;margin-bottom:4px">${v.title}</div>
+        <div style="font-size:0.85em;color:var(--muted)">${v.subtitle}</div>
+        <span style="display:inline-block;padding:2px 8px;border-radius:2em;font-size:0.7em;font-weight:700;background:#0B1D3A;color:#fff;margin:4px 0">PHARM</span>
+        <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener" style="font-size:0.85em;color:var(--teal);font-weight:600;display:block">Watch on YouTube &rarr;</a>
       </div>
     </div>`
   ).join('');
@@ -149,7 +164,7 @@
     { id: '7Ctl6uAWgms', title: 'Hematology Review', subtitle: '35 min — Anemias, clotting, transfusions, cancers' },
   ].map(v =>
     `<div style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)">
-      <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" style="width:160px;border-radius:8px" alt="YouTube thumbnail for ${v.title}">
+      <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" width="160" height="90" loading="lazy" decoding="async" style="width:160px;border-radius:8px" alt="YouTube thumbnail for ${v.title}">
       <div>
         <div style="font-weight:700;margin-bottom:4px">${v.title}</div>
         <div style="font-size:0.85em;color:var(--muted)">${v.subtitle}</div>
@@ -159,7 +174,7 @@
     </div>`
   ).join('');
 
-  document.getElementById('videoList').innerHTML = pharmVideos + ahVideos;
+  document.getElementById('videoList').innerHTML = pharmVideos + extraPharmVideos + ahVideos;
 </script>
 </body>
 </html>

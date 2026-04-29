@@ -170,16 +170,21 @@
   function cardKey(c) { return (c.deckId + '_' + c.drugName).replace(/\s+/g, '_').toLowerCase(); }
   var ratings = loadRatings();
 
-  // ── Audio maps (from flashcard-audio.js data) ──
+  // ── Audio maps (from exam3/audio inventory) ──
   var podcastMap = {};
   var readMap = {};
-  // Pull from existing audio script data if available
+  var podcastAliases = {
+    'Lispro': 'insulin_lispro_podcast.mp3',
+    'Regular Insulin': 'insulin_regular_podcast.mp3',
+    'Glargine': 'insulin_glargine_podcast.mp3',
+    'Dextrose 50%': 'dextrose50_podcast.mp3',
+    'Epoetin Alfa': 'epoetin_podcast.mp3'
+  };
   if (window.FLASHCARD_DATA_DRUGS) {
-    // Build maps from known file patterns
     (window.FLASHCARD_DATA_DRUGS.cards || []).forEach(function(c) {
       var name = c.drugName;
-      var slug = name.toLowerCase().replace(/\s+/g, '_').replace(/%/g, '');
-      podcastMap[name] = slug + '_podcast.mp3';
+      var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+      podcastMap[name] = podcastAliases[name] || (slug + '_podcast.mp3');
       readMap[name] = slug + '_readcard.mp3';
     });
   }
