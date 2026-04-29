@@ -68,7 +68,7 @@
       var audioMode = new URL(location.href).searchParams.get('audio') === '1';
       return (audioMode
         ? '🎙 84 Adult Health drug flashcards with podcast + read-card audio\n\n'
-        : '🃏 290 Nursing Flashcards in ONE page — Pharmacology, Adult Health, 84 Drug Cards with Audio, Quiz 3\n\n')
+        : '🃏 291 Nursing Flashcards in ONE page — Pharmacology, Adult Health, 84 Drug Cards with Audio, Quiz 3\n\n')
         + '🔍 Search any drug or condition\n'
         + '📊 Mastery tracking across all decks\n'
         + '🎙 Audio for 84 drug cards\n\n'

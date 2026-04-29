@@ -532,18 +532,73 @@
   var searchInput = document.getElementById('ufcSearch');
   var searchResults = document.getElementById('ufcSearchResults');
 
+  function searchText(c) {
+    return [
+      c.drugName || '',
+      c.brandName || '',
+      c.drugClass || '',
+      c.purpose || '',
+      c.mnemonic || '',
+      (c.facts || []).join(' ')
+    ].join(' ').toLowerCase();
+  }
+
+  function escapeHTML(value) {
+    return String(value || '').replace(/[&<>"']/g, function(ch) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+    });
+  }
+
+  function matchNote(c, q) {
+    var direct = (c.drugName || '').toLowerCase().indexOf(q) !== -1 ||
+                 (c.brandName || '').toLowerCase().indexOf(q) !== -1;
+    if (direct) return 'Direct card';
+    if ((c.drugClass || '').toLowerCase().indexOf(q) !== -1) return 'Matched class';
+    if ((c.purpose || '').toLowerCase().indexOf(q) !== -1) return 'Matched purpose';
+    if ((c.mnemonic || '').toLowerCase().indexOf(q) !== -1) return 'Matched memory hook';
+    var fact = (c.facts || []).find(function(f) { return f.toLowerCase().indexOf(q) !== -1; });
+    if (fact) return 'Mentioned inside this card';
+    return 'Related card';
+  }
+
+  function requestMissingCard(query) {
+    var q = (query || '').trim();
+    if (!q) return;
+    var requests = [];
+    try { requests = JSON.parse(localStorage.getItem('swt_missing_card_requests') || '[]'); } catch(e) { requests = []; }
+    requests.push({ query: q, page: location.pathname, date: new Date().toISOString() });
+    localStorage.setItem('swt_missing_card_requests', JSON.stringify(requests));
+    var body = 'Missing card request: ' + q + '\n\nPage: ' + location.href + '\n\nWhat I was trying to study:';
+    location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent('Missing flashcard: ' + q) + '&body=' + encodeURIComponent(body);
+  }
+
   searchInput.addEventListener('input', function() {
     var q = searchInput.value.trim().toLowerCase();
     if (q.length < 2) { searchResults.style.display = 'none'; return; }
     var matches = getPool().filter(function(c) {
-      return c.drugName.toLowerCase().indexOf(q) !== -1 ||
-             c.brandName.toLowerCase().indexOf(q) !== -1 ||
-             c.drugClass.toLowerCase().indexOf(q) !== -1 ||
-             c.facts.some(function(f) { return f.toLowerCase().indexOf(q) !== -1; });
+      return searchText(c).indexOf(q) !== -1;
     }).slice(0, 12);
-    if (!matches.length) { searchResults.style.display = 'none'; return; }
+    if (!matches.length) {
+      searchResults.innerHTML =
+        '<div class="ufc-search-empty">' +
+          '<strong>No card found for “' + escapeHTML(searchInput.value.trim()) + '” yet.</strong>' +
+          '<span>Save it as a missing-card request so it can be added to the deck.</span>' +
+          '<button type="button" class="ufc-request-card-btn" id="ufcRequestCardBtn">Request this card</button>' +
+        '</div>';
+      searchResults.style.display = 'block';
+      var reqBtn = document.getElementById('ufcRequestCardBtn');
+      if (reqBtn) reqBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        requestMissingCard(searchInput.value);
+      });
+      return;
+    }
     searchResults.innerHTML = matches.map(function(c, i) {
-      return '<div class="ufc-search-item" data-idx="' + allCards.indexOf(c) + '">' + c.drugName + (c.brandName ? ' (' + c.brandName + ')' : '') + '<span class="ufc-search-deck">' + c.deckLabel + '</span></div>';
+      return '<div class="ufc-search-item" data-idx="' + allCards.indexOf(c) + '">' +
+        '<strong>' + escapeHTML(c.drugName) + (c.brandName ? ' (' + escapeHTML(c.brandName) + ')' : '') + '</strong>' +
+        '<span class="ufc-search-deck">' + escapeHTML(c.deckLabel) + '</span>' +
+        '<span class="ufc-search-note">' + escapeHTML(matchNote(c, q)) + '</span>' +
+      '</div>';
     }).join('');
     searchResults.style.display = 'block';
     searchResults.querySelectorAll('.ufc-search-item').forEach(function(item) {

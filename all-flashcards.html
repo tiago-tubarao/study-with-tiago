@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Flashcards — 290 Cards — Study with Tiago</title>
-  <meta name="description" content="290 nursing flashcards in one place. Pharmacology, Adult Health, Drug Cards with Audio, Quiz 3 CNS & GI. Search, filter, mastery tracking.">
-  <meta property="og:title" content="All 290 Flashcards | Study with Tiago">
+  <title>All Flashcards — 291 Cards — Study with Tiago</title>
+  <meta name="description" content="291 nursing flashcards in one place. Pharmacology, Adult Health, Drug Cards with Audio, Quiz 3 CNS & GI. Search, filter, mastery tracking.">
+  <meta property="og:title" content="All 291 Flashcards | Study with Tiago">
   <meta property="og:description" content="Every flashcard deck combined. Pharmacology, Adult Health, 84 Drug Cards with audio, Quiz 3 visual cards. One page, all filters.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tiago-tubarao.github.io/study-with-tiago/all-flashcards.html">
@@ -16,11 +16,11 @@
   <meta property="og:image:type" content="image/png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png?v=2">
-  <meta name="twitter:title" content="All 290 Flashcards | Study with Tiago">
+  <meta name="twitter:title" content="All 291 Flashcards | Study with Tiago">
   <meta name="twitter:description" content="Every flashcard deck combined. Pharmacology, Adult Health, 84 Drug Cards with audio, Quiz 3 visual cards.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=26">
+  <link rel="stylesheet" href="style.css?v=27">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <style>
     .page-container {
@@ -76,6 +76,10 @@
     .ufc-search-item:hover { background: #f1f3f5; }
     .ufc-search-item:last-child { border-bottom: none; }
     .ufc-search-deck { font-size: 0.7em; opacity: 0.5; margin-left: 0.5em; }
+    .ufc-search-note { display: block; margin-top: 0.18em; color: #868E96; font-size: 0.74em; font-weight: 600; }
+    .ufc-search-empty { padding: 1em; font-size: 0.88em; line-height: 1.45; }
+    .ufc-search-empty strong, .ufc-search-empty span { display: block; margin-bottom: 0.5em; }
+    .ufc-request-card-btn { border: 0; border-radius: 2em; background: #2A9D8F; color: #fff; font-weight: 800; font-size: 0.82em; padding: 0.65em 1em; cursor: pointer; }
 
     /* Stats */
     .ufc-stats-bar { display: flex; align-items: center; gap: 1em; padding: 0.8em 1.2em; background: #fff; border-radius: 1em; margin: 0 1em 1em; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
@@ -313,6 +317,7 @@
     [data-theme="dark"] .ufc-search-input::placeholder { color: #cbd5e1; }
     [data-theme="dark"] .ufc-search-results { background: #111827; border-color: #475569; color: #f8fafc; }
     [data-theme="dark"] .ufc-search-deck { color: #cbd5e1; opacity: 1; }
+    [data-theme="dark"] .ufc-search-note { color: #cbd5e1; }
     [data-theme="dark"] .ufc-search-item:hover { background: #2d2d44; }
     [data-theme="dark"] .fc-cat-what { color: #74c0fc; } [data-theme="dark"] .fc-cat-looks { color: #69db7c; }
     [data-theme="dark"] .fc-cat-wrong, [data-theme="dark"] .fc-cat-priority, [data-theme="dark"] .fc-cat-emergency { color: #ff8787; }
@@ -329,7 +334,7 @@
     <div class="fc-hero-glow"></div>
     <div class="fc-hero-content">
       <div class="fc-hero-badge">EVERY CARD IN ONE PLACE</div>
-      <h1 class="fc-hero-title"><span id="ufcTotalCount">290</span> Flashcards</h1>
+      <h1 class="fc-hero-title"><span id="ufcTotalCount">291</span> Flashcards</h1>
       <p class="fc-hero-sub"><strong>Pharmacology + Adult Health + Drug Cards + Quiz 3</strong><br>Search anything. Filter by deck or topic. Audio is ready on the 84 Adult Health drug cards.</p>
     </div>
   </div>
@@ -444,15 +449,15 @@
 
 <!-- Load ALL 5 data files -->
 <script src="js/flashcard-data.js?v=2"></script>
-<script src="js/flashcard-data-ah.js?v=5"></script>
+<script src="js/flashcard-data-ah.js?v=8"></script>
 <script src="js/flashcard-data-drugs.js?v=4"></script>
 <script src="js/flashcard-data-q3.js?v=2"></script>
 <script src="js/flashcard-data-q3-gi.js?v=3"></script>
 <!-- Unified engine -->
-<script src="js/flashcards-unified.js?v=5"></script>
+<script src="js/flashcards-unified.js?v=8"></script>
 <script src="js/nav.js?v=7"></script>
 <script src="js/theme.js"></script>
 <script src="js/feedback.js?v=2"></script>
-<script src="js/share.js?v=3"></script>
+<script src="js/share.js?v=4"></script>
 </body>
 </html>
