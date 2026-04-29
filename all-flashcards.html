@@ -112,10 +112,58 @@
     }
     .ufc-dropdown-item:hover { background: #f0faf8; }
     .ufc-dropdown-item.active { background: #2A9D8F; color: #fff; border-radius: 0.5em; margin: 0 0.3em; }
+    .ufc-audio-callout {
+      max-width: 440px;
+      margin: 0 auto 1em;
+      padding: 0 1em;
+    }
+    .ufc-audio-callout-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75em;
+      padding: 0.85em 1em;
+      border: 1.5px solid rgba(201,42,42,0.35);
+      border-radius: 1em;
+      background: linear-gradient(135deg, rgba(201,42,42,0.08), rgba(42,157,143,0.08));
+      color: #1a1a2e;
+    }
+    .ufc-audio-callout-title {
+      display: block;
+      font-size: 0.86em;
+      font-weight: 800;
+      color: #0B1D3A;
+    }
+    .ufc-audio-callout-copy {
+      display: block;
+      margin-top: 0.15em;
+      font-size: 0.74em;
+      line-height: 1.35;
+      color: #495057;
+    }
+    .ufc-audio-filter-btn {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 2em;
+      background: #C92A2A;
+      color: #fff !important;
+      font-size: 0.78em;
+      font-weight: 800;
+      padding: 0.65em 1em;
+      min-height: 44px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(201,42,42,0.18);
+    }
+    .ufc-audio-filter-btn.active {
+      background: #0B1D3A;
+    }
     [data-theme="dark"] .ufc-dropdown-btn { background: #2a2a3e; color: #e0e0e0; border-color: #444; }
     [data-theme="dark"] .ufc-dropdown-menu { background: #2a2a3e; border-color: #444; }
     [data-theme="dark"] .ufc-dropdown-item:hover { background: #3a3a4e; }
     [data-theme="dark"] .ufc-dropdown-item.active { background: #2A9D8F; color: #fff; }
+    [data-theme="dark"] .ufc-audio-callout-inner { background: #1a1a2e; color: #e0e0e0; border-color: rgba(201,42,42,0.65); }
+    [data-theme="dark"] .ufc-audio-callout-title { color: #fff; }
+    [data-theme="dark"] .ufc-audio-callout-copy { color: #adb5bd; }
 
     /* Legacy — hidden */
     .ufc-deck-filters, .ufc-section-filters { display: none; }
@@ -258,7 +306,7 @@
     <div class="fc-hero-content">
       <div class="fc-hero-badge">EVERY CARD IN ONE PLACE</div>
       <h1 class="fc-hero-title"><span id="ufcTotalCount">290</span> Flashcards</h1>
-      <p class="fc-hero-sub"><strong>Pharmacology + Adult Health + Drug Cards + Quiz 3</strong><br>Search anything. Filter by deck or topic. Mastery tracking across all cards.</p>
+      <p class="fc-hero-sub"><strong>Pharmacology + Adult Health + Drug Cards + Quiz 3</strong><br>Search anything. Filter by deck or topic. Audio is ready on the 84 Adult Health drug cards.</p>
     </div>
   </div>
 
@@ -280,6 +328,15 @@
     <div class="ufc-dropdown" id="ufcSectionDropdown">
       <button class="ufc-dropdown-btn" id="ufcSectionBtn" type="button">All Topics</button>
       <div class="ufc-dropdown-menu" id="ufcSectionMenu"></div>
+    </div>
+  </div>
+  <div class="ufc-audio-callout" id="ufcAudioCallout">
+    <div class="ufc-audio-callout-inner">
+      <span>
+        <span class="ufc-audio-callout-title">Need sound?</span>
+        <span class="ufc-audio-callout-copy">Audio is installed on the 84 Adult Health drug cards right now. More decks can be added later.</span>
+      </span>
+      <button type="button" class="ufc-audio-filter-btn" id="ufcAudioOnlyBtn">Show audio cards</button>
     </div>
   </div>
   <!-- Legacy containers for JS compat -->
@@ -368,7 +425,7 @@
 <script src="js/flashcard-data-q3.js?v=2"></script>
 <script src="js/flashcard-data-q3-gi.js?v=3"></script>
 <!-- Unified engine -->
-<script src="js/flashcards-unified.js?v=4"></script>
+<script src="js/flashcards-unified.js?v=5"></script>
 <script src="js/nav.js?v=6"></script>
 <script src="js/theme.js"></script>
 <script src="js/feedback.js"></script>

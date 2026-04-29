@@ -163,6 +163,9 @@
   var isFlipped = false;
   var activeDeck = 'all';
   var activeSection = 'all';
+  var audioOnly = new URLSearchParams(window.location.search).get('audio') === '1' ||
+                  window.location.hash === '#audio';
+  if (audioOnly) activeDeck = 'exam3';
 
   // ── Mastery ──
   function loadRatings() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; } }
@@ -198,6 +201,7 @@
     return allCards.filter(function(c) {
       if (activeDeck !== 'all' && c.deckId !== activeDeck) return false;
       if (activeSection !== 'all' && c.sectionKey !== activeSection) return false;
+      if (audioOnly && !(c.deckId === 'exam3' && c.type === 'drug8cat')) return false;
       return true;
     });
   }
@@ -257,12 +261,25 @@
     });
   }
 
+  function renderAudioFilter() {
+    var btn = document.getElementById('ufcAudioOnlyBtn');
+    if (!btn) return;
+    btn.classList.toggle('active', audioOnly);
+    btn.textContent = audioOnly ? 'Showing 84 audio cards' : 'Show audio cards';
+    btn.setAttribute('aria-pressed', audioOnly ? 'true' : 'false');
+  }
+
   // ── Render section filters (custom dropdown) ──
   function renderSectionFilters() {
     var sections = allSections.filter(function(s) { return activeDeck === 'all' || s.deckId === activeDeck; });
     var items = [{ value: 'all', label: '🎯 All Topics', active: activeSection === 'all' }];
     sections.forEach(function(s) {
-      var count = allCards.filter(function(c) { return c.sectionKey === s.id; }).length;
+      var count = allCards.filter(function(c) {
+        if (c.sectionKey !== s.id) return false;
+        if (audioOnly && !(c.deckId === 'exam3' && c.type === 'drug8cat')) return false;
+        return true;
+      }).length;
+      if (!count) return;
       items.push({ value: s.id, label: s.icon + ' ' + s.label + ' (' + count + ')', active: activeSection === s.id });
     });
     var activeItem = items.find(function(i) { return i.active; });
@@ -518,7 +535,7 @@
   searchInput.addEventListener('input', function() {
     var q = searchInput.value.trim().toLowerCase();
     if (q.length < 2) { searchResults.style.display = 'none'; return; }
-    var matches = allCards.filter(function(c) {
+    var matches = getPool().filter(function(c) {
       return c.drugName.toLowerCase().indexOf(q) !== -1 ||
              c.brandName.toLowerCase().indexOf(q) !== -1 ||
              c.drugClass.toLowerCase().indexOf(q) !== -1 ||
@@ -534,11 +551,10 @@
         var globalIdx = parseInt(item.dataset.idx);
         var card = allCards[globalIdx];
         // Reset filters to show this card
-        activeDeck = 'all';
+        activeDeck = audioOnly ? 'exam3' : 'all';
         activeSection = 'all';
-        document.querySelectorAll('.ufc-deck-btn').forEach(function(b) { b.classList.remove('active'); });
-        var allBtn = document.querySelector('.ufc-deck-btn[data-deck="all"]');
-        if (allBtn) allBtn.classList.add('active');
+        renderAudioFilter();
+        renderDeckFilters();
         renderSectionFilters();
         var pool = getPool();
         currentIndex = pool.indexOf(card);
@@ -556,6 +572,27 @@
 
   // ── Controls ──
   function resetQueue() { currentIndex = 0; stopAudio(); renderCard(); }
+
+  var audioOnlyBtn = document.getElementById('ufcAudioOnlyBtn');
+  if (audioOnlyBtn) {
+    audioOnlyBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      audioOnly = !audioOnly;
+      if (audioOnly) {
+        activeDeck = 'exam3';
+        activeSection = 'all';
+        history.replaceState(null, '', window.location.pathname + '?audio=1');
+      } else {
+        activeDeck = 'all';
+        activeSection = 'all';
+        history.replaceState(null, '', window.location.pathname);
+      }
+      renderAudioFilter();
+      renderDeckFilters();
+      renderSectionFilters();
+      resetQueue();
+    });
+  }
 
   document.getElementById('ufcCardStage').addEventListener('click', function() {
     isFlipped = !isFlipped;
@@ -626,6 +663,7 @@
   // ── Init ──
   renderDeckFilters();
   renderSectionFilters();
+  renderAudioFilter();
   renderCard();
 
 })();
