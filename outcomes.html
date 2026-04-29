@@ -72,6 +72,7 @@
   document.getElementById('outcomeForm').addEventListener('submit', function(e) {
     e.preventDefault();
     var data = {
+      type: 'feedback',
       resource: document.getElementById('resource').value,
       topic: document.getElementById('topic').value.trim(),
       helped: document.getElementById('helped').value.trim(),
@@ -84,6 +85,7 @@
     localStorage.setItem('swt_outcome_feedback', JSON.stringify(saved));
 
     var body = [
+      'Type: Feedback / outcome',
       'Resource: ' + data.resource,
       'Topic: ' + data.topic,
       '',
@@ -97,7 +99,7 @@
     ].join('\n');
 
     document.getElementById('surveyStatus').innerHTML = 'Saved on this device. Opening your email app now so you can send it to Tiago.';
-    location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent('Study with Tiago feedback') + '&body=' + encodeURIComponent(body);
+    location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent('[SWT FEEDBACK] ' + (data.topic || data.resource || 'Study with Tiago')) + '&body=' + encodeURIComponent(body);
   });
 </script>
 </body>

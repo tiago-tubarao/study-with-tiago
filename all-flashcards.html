@@ -148,6 +148,12 @@
       line-height: 1.35;
       color: #495057;
     }
+    .ufc-audio-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45em;
+      flex: 0 0 auto;
+    }
     .ufc-audio-filter-btn {
       flex: 0 0 auto;
       border: 0;
@@ -171,6 +177,19 @@
     [data-theme="dark"] .ufc-audio-callout-inner { background: #1a1a2e; color: #e0e0e0; border-color: rgba(201,42,42,0.65); }
     [data-theme="dark"] .ufc-audio-callout-title { color: #fff; }
     [data-theme="dark"] .ufc-audio-callout-copy { color: #adb5bd; }
+    @media (max-width: 440px) {
+      .ufc-audio-callout-inner {
+        align-items: stretch;
+        flex-direction: column;
+      }
+      .ufc-audio-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .ufc-audio-filter-btn {
+        flex: 1 1 130px;
+      }
+    }
 
     /* Legacy — hidden */
     .ufc-deck-filters, .ufc-section-filters { display: none; }
@@ -365,7 +384,10 @@
         <span class="ufc-audio-callout-title">Need sound?</span>
         <span class="ufc-audio-callout-copy">Audio is installed on the 84 Adult Health drug cards right now. More decks can be added later.</span>
       </span>
-      <button type="button" class="ufc-audio-filter-btn" id="ufcAudioOnlyBtn">Show audio cards</button>
+      <span class="ufc-audio-actions">
+        <button type="button" class="ufc-audio-filter-btn" id="ufcAudioOnlyBtn">Show audio cards</button>
+        <button type="button" class="ufc-audio-filter-btn" id="ufcAudioRequestBtn">Request audio</button>
+      </span>
     </div>
   </div>
   <!-- Legacy containers for JS compat -->
@@ -454,7 +476,7 @@
 <script src="js/flashcard-data-q3.js?v=2"></script>
 <script src="js/flashcard-data-q3-gi.js?v=3"></script>
 <!-- Unified engine -->
-<script src="js/flashcards-unified.js?v=8"></script>
+<script src="js/flashcards-unified.js?v=9"></script>
 <script src="js/nav.js?v=7"></script>
 <script src="js/theme.js"></script>
 <script src="js/feedback.js?v=2"></script>

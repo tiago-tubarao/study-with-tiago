@@ -566,10 +566,37 @@
     if (!q) return;
     var requests = [];
     try { requests = JSON.parse(localStorage.getItem('swt_missing_card_requests') || '[]'); } catch(e) { requests = []; }
-    requests.push({ query: q, page: location.pathname, date: new Date().toISOString() });
+    requests.push({ type: 'card-request', query: q, page: location.pathname, date: new Date().toISOString() });
     localStorage.setItem('swt_missing_card_requests', JSON.stringify(requests));
-    var body = 'Missing card request: ' + q + '\n\nPage: ' + location.href + '\n\nWhat I was trying to study:';
-    location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent('Missing flashcard: ' + q) + '&body=' + encodeURIComponent(body);
+    var body = [
+      'Type: Card request',
+      'Requested card/topic: ' + q,
+      'Page: ' + location.href,
+      '',
+      'What I was trying to study:',
+      '',
+      'Please do not send actual exam questions, private health information, school identifiers, or professor names.'
+    ].join('\n');
+    location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent('[SWT CARD REQUEST] ' + q) + '&body=' + encodeURIComponent(body);
+  }
+
+  function requestAudioCoverage() {
+    var card = queue[currentIndex] || {};
+    var label = [card.drugName || '', card.brandName ? '(' + card.brandName + ')' : ''].join(' ').trim() || 'Audio coverage';
+    var requests = [];
+    try { requests = JSON.parse(localStorage.getItem('swt_audio_requests') || '[]'); } catch(e) { requests = []; }
+    requests.push({ type: 'audio-request', card: label, page: location.pathname, date: new Date().toISOString() });
+    localStorage.setItem('swt_audio_requests', JSON.stringify(requests));
+    var body = [
+      'Type: Audio request',
+      'Requested audio/card: ' + label,
+      'Page: ' + location.href,
+      '',
+      'What would help:',
+      '',
+      'Please do not send actual exam questions, private health information, school identifiers, or professor names.'
+    ].join('\n');
+    location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent('[SWT AUDIO REQUEST] ' + label) + '&body=' + encodeURIComponent(body);
   }
 
   searchInput.addEventListener('input', function() {
@@ -620,6 +647,14 @@
       });
     });
   });
+
+  var audioRequestBtn = document.getElementById('ufcAudioRequestBtn');
+  if (audioRequestBtn) {
+    audioRequestBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      requestAudioCoverage();
+    });
+  }
 
   document.addEventListener('click', function(e) {
     if (!searchResults.contains(e.target) && e.target !== searchInput) searchResults.style.display = 'none';

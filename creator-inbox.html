@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Creator Inbox — Study with Tiago</title>
+  <meta name="description" content="Private operating checklist for monitoring Study with Tiago requests, feedback, signups, support, and weekly updates.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=29">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+<div class="page-container">
+  <div class="hero">
+    <h1 class="hero-title">Creator Inbox</h1>
+    <p class="hero-sub">A simple operating console for checking what students asked for, what needs fixing, and what to publish next.</p>
+  </div>
+
+  <section class="content-band">
+    <div class="legal-note">
+      This is a creator workflow page, not a password-protected dashboard. It is marked <code>noindex</code> and blocked in <code>robots.txt</code>, but anything on GitHub Pages can be opened by someone with the URL. Do not put private data, passwords, student identifiers, or paid analytics here.
+    </div>
+  </section>
+
+  <section class="content-band">
+    <h2>Check these first</h2>
+    <div class="resource-grid">
+      <a class="resource-card" href="https://mail.google.com/mail/u/0/#search/%5BSWT%20CARD%20REQUEST%5D" target="_blank" rel="noopener">
+        <span class="eyebrow">Gmail</span>
+        <h3>Card requests</h3>
+        <p>Missing-card emails from the flashcard search.</p>
+      </a>
+      <a class="resource-card" href="https://mail.google.com/mail/u/0/#search/%5BSWT%20FEEDBACK%5D" target="_blank" rel="noopener">
+        <span class="eyebrow">Gmail</span>
+        <h3>Feedback emails</h3>
+        <p>Outcome and “what helped?” messages from the feedback page.</p>
+      </a>
+      <a class="resource-card" href="https://mail.google.com/mail/u/0/#search/%5BSWT%20AUDIO%20REQUEST%5D" target="_blank" rel="noopener">
+        <span class="eyebrow">Gmail</span>
+        <h3>Audio requests</h3>
+        <p>Requests for future flashcard audio coverage.</p>
+      </a>
+      <a class="resource-card" href="https://docs.google.com/forms/u/0/" target="_blank" rel="noopener">
+        <span class="eyebrow">Google Forms</span>
+        <h3>Email signups</h3>
+        <p>Open the signup form responses or linked response Sheet.</p>
+      </a>
+      <a class="resource-card" href="https://app.gumroad.com/dashboard" target="_blank" rel="noopener">
+        <span class="eyebrow">Gumroad</span>
+        <h3>Bundle sales</h3>
+        <p>Check sales, downloads, customers, and product performance.</p>
+      </a>
+      <a class="resource-card" href="https://ko-fi.com/manage" target="_blank" rel="noopener">
+        <span class="eyebrow">Ko-fi</span>
+        <h3>Support</h3>
+        <p>Check tips/donations and supporter messages.</p>
+      </a>
+      <a class="resource-card" href="https://studio.youtube.com/channel/UC/analytics" target="_blank" rel="noopener">
+        <span class="eyebrow">YouTube</span>
+        <h3>Video signals</h3>
+        <p>Open YouTube Studio, then choose the Study with Tiago channel.</p>
+      </a>
+      <a class="resource-card" href="https://github.com/tiago-tubarao/study-with-tiago/actions" target="_blank" rel="noopener">
+        <span class="eyebrow">GitHub</span>
+        <h3>Deploy status</h3>
+        <p>Confirm GitHub Pages deploys passed after a site update.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="content-band">
+    <h2>Local test queues on this browser</h2>
+    <p>These counts are only from this browser. They help you test the buttons. Real visitor requests only reach you if they send the prepared email, until a Google Form/Sheet request backend is added.</p>
+    <div class="resource-grid" id="localQueueGrid"></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+      <button type="button" class="cta-button" id="exportLocalQueues">Export local queues</button>
+      <button type="button" class="cta-button" id="clearLocalQueues" style="background:var(--red)">Clear local test queues</button>
+    </div>
+    <pre id="localQueueExport" style="display:none;white-space:pre-wrap;margin-top:16px"></pre>
+  </section>
+
+  <section class="content-band">
+    <h2>Weekly triage checklist</h2>
+    <ol>
+      <li>Check Gmail labels/searches for <strong>[SWT CARD REQUEST]</strong>, <strong>[SWT FEEDBACK]</strong>, and <strong>[SWT AUDIO REQUEST]</strong>.</li>
+      <li>Check Google Forms for new email signups.</li>
+      <li>Check Gumroad and Ko-fi for paid support signals.</li>
+      <li>Pick one topic students asked for or one thing you personally studied.</li>
+      <li>Add or improve 3-10 cards, one short blog/update, and one email draft.</li>
+      <li>Run the legal check: no private info, no actual exam questions, no school/professor names, no medical advice claims.</li>
+      <li>Ask Codex to ship and verify: static audit, browser spot-check, commit, deploy, memory update.</li>
+    </ol>
+  </section>
+
+  <section class="content-band">
+    <h2>What this does not do yet</h2>
+    <ul>
+      <li>No password-protected admin login.</li>
+      <li>No database of visitor flashcard progress.</li>
+      <li>No automatic Google Sheet request capture yet.</li>
+      <li>No newsletter automation yet.</li>
+      <li>No comments/community moderation dashboard yet.</li>
+    </ul>
+    <p>The next backend step is one Google Form called <strong>Study with Tiago Requests + Feedback</strong>, then wiring every request button to that Sheet.</p>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-disclaimer">
+    For educational purposes only. Not medical advice. For creator operations only. Do not store private student information here. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a>.
+  </div>
+</footer>
+
+<script src="js/nav.js?v=7"></script>
+<script src="js/theme.js"></script>
+<script>
+  (function() {
+    var queues = [
+      { key: 'swt_missing_card_requests', label: 'Missing-card requests' },
+      { key: 'swt_audio_requests', label: 'Audio requests' },
+      { key: 'swt_outcome_feedback', label: 'Outcome feedback' },
+      { key: 'tiago_feedback', label: 'Floating feedback votes' },
+      { key: 'tiago_emails', label: 'Local signup backup' }
+    ];
+    var grid = document.getElementById('localQueueGrid');
+    function read(key) {
+      try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch(e) { return []; }
+    }
+    function render() {
+      grid.innerHTML = queues.map(function(q) {
+        var items = read(q.key);
+        return '<div class="resource-card" style="cursor:default">' +
+          '<span class="eyebrow">localStorage</span>' +
+          '<h3>' + q.label + '</h3>' +
+          '<p><strong>' + items.length + '</strong> saved on this browser.</p>' +
+        '</div>';
+      }).join('');
+    }
+    document.getElementById('exportLocalQueues').addEventListener('click', function() {
+      var data = {};
+      queues.forEach(function(q) { data[q.key] = read(q.key); });
+      var out = document.getElementById('localQueueExport');
+      out.style.display = 'block';
+      out.textContent = JSON.stringify(data, null, 2);
+    });
+    document.getElementById('clearLocalQueues').addEventListener('click', function() {
+      if (!confirm('Clear local test queues on this browser? This does not affect Google Forms, Gmail, Gumroad, Ko-fi, or any visitor data.')) return;
+      queues.forEach(function(q) { localStorage.removeItem(q.key); });
+      document.getElementById('localQueueExport').style.display = 'none';
+      render();
+    });
+    render();
+  })();
+</script>
+</body>
+</html>
