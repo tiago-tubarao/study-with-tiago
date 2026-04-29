@@ -18,8 +18,8 @@
     <div class="signup-inner">
       <div class="signup-text">
         <div class="signup-badge">FREE — ONE QUESTION A WEEK</div>
-        <h3 class="signup-title">Get one NCLEX-style trap question every week — with the answer broken down.</h3>
-        <p class="signup-sub">Pulled straight from the bank I'm using to study. Real prof traps, real rationales, no fluff. Unsubscribe anytime.</p>
+        <h3 class="signup-title">Get one NCLEX-style practice question every week — with the answer broken down.</h3>
+        <p class="signup-sub">Written from what I'm studying, then explained in plain language. No copied test banks, no course screenshots, no fluff. Unsubscribe anytime.</p>
       </div>
       <form class="signup-form" id="signupForm">
         <div class="signup-input-wrap">
