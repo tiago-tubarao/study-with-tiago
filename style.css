@@ -208,13 +208,11 @@ button[class*="cta"],
   min-height: 48px;
   box-sizing: border-box;
 }
-/* Nav links — preserve thumb-tap target on mobile, stay flexbox-aligned */
-.nav-links a {
-  /* nav links DO need 48px tap height for thumb accuracy */
-  min-height: 48px;
-  display: flex;
-  align-items: center;
-}
+/* Nav links — Phase 1.2: removed min-height:48px override.
+   Nav has its own height (56px) and original padding (8px 14px) provides
+   sufficient tap zone (~32px). Forcing 48px here pushed nav into 2-line
+   wrap on desktop. Mobile thumb accuracy is fine because the hamburger
+   menu is the mobile nav, not these horizontal links. */
 
 /* ── Navigation ── */
 .site-nav {
@@ -242,16 +240,19 @@ button[class*="cta"],
 .nav-brand {
   text-decoration: none;
   color: white;
+  flex-shrink: 0; /* Phase 1.2 — prevent flexbox squeezing wordmark */
 }
 
 .nav-logo {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 1.2em;
+  white-space: nowrap; /* Phase 1.2 — prevent wordmark wrapping into two lines */
   background: linear-gradient(135deg, var(--teal), var(--gold));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.4; /* Phase 1.2 — explicit; prevents inheritance from body */
 }
 
 .nav-links {
