@@ -191,18 +191,29 @@
   var podcastBtn = document.getElementById('fcPodcastBtn');
   var readBtn = document.getElementById('fcReadBtn');
 
-  function playFile(file, btn, icon) {
+  function setAudioStatus(message) {
+    var status = document.getElementById('fcAudioStatus');
+    if (status) status.textContent = message || '';
+  }
+
+  function playFile(file, btn, icon, label) {
     stopAll();
     currentAudio = new Audio(AUDIO_BASE + file);
     activeBtn = btn;
     btn.classList.add('playing');
     btn.querySelector('.fc-audio-icon').textContent = '\u23F9';
-    currentAudio.play();
+    setAudioStatus('Playing ' + label + '...');
+    currentAudio.play().catch(function() {
+      btn.querySelector('.fc-audio-icon').textContent = '\u274C';
+      setAudioStatus('Audio could not play. Try again after the page finishes loading.');
+      setTimeout(function() { btn.querySelector('.fc-audio-icon').textContent = icon; }, 1500);
+    });
     currentAudio.addEventListener('ended', function() {
       btn.classList.remove('playing');
       btn.querySelector('.fc-audio-icon').textContent = icon;
       currentAudio = null;
       activeBtn = null;
+      setAudioStatus('');
     });
   }
 
@@ -220,6 +231,7 @@
     podcastBtn.querySelector('.fc-audio-icon').textContent = '\uD83C\uDF99';
     readBtn.classList.remove('playing');
     readBtn.querySelector('.fc-audio-icon').textContent = '\uD83D\uDD0A';
+    setAudioStatus('');
   }
 
   // ── Podcast Button (toggle) ──
@@ -230,10 +242,11 @@
     var file = podcastMap[drugName];
     if (!file) {
       podcastBtn.querySelector('.fc-audio-icon').textContent = '\u274C';
+      setAudioStatus('Podcast audio is not available for this card yet.');
       setTimeout(function() { podcastBtn.querySelector('.fc-audio-icon').textContent = '\uD83C\uDF99'; }, 1500);
       return;
     }
-    playFile(file, podcastBtn, '\uD83C\uDF99');
+    playFile(file, podcastBtn, '\uD83C\uDF99', 'podcast audio');
   });
 
   // ── Read Card Button (toggle) ──
@@ -244,10 +257,11 @@
     var file = readMap[drugName];
     if (!file) {
       readBtn.querySelector('.fc-audio-icon').textContent = '\u274C';
+      setAudioStatus('Read-card audio is not available for this card yet.');
       setTimeout(function() { readBtn.querySelector('.fc-audio-icon').textContent = '\uD83D\uDD0A'; }, 1500);
       return;
     }
-    playFile(file, readBtn, '\uD83D\uDD0A');
+    playFile(file, readBtn, '\uD83D\uDD0A', 'read-card audio');
   });
 
   // Stop audio when navigating to a new card

@@ -144,6 +144,7 @@
     .fc-audio-read:hover,.fc-audio-read.playing{background:#5F3DC4;color:#fff}
     .fc-audio-icon{font-size:1.1em}
     .fc-audio-btn.playing{animation:fc-pulse 1.5s infinite}
+    .fc-audio-status{min-height:1.25em;margin:-.4em 1em .6em;text-align:center;font-size:.78em;color:var(--muted)}
     @keyframes fc-pulse{0%,100%{opacity:1}50%{opacity:.6}}
 
     .fc-counter{text-align:center;font-size:.8em;font-weight:600;opacity:.5;margin-bottom:.5em}
@@ -296,7 +297,7 @@
       <div class="fc-card" id="fcCard">
         <div class="fc-card-face fc-card-front" id="fcFront">
           <div class="fc-mastery-badge" id="fcMasteryBadge"></div>
-          <img class="fc-front-img" id="fcFrontImg" src="" alt="" loading="eager">
+          <img class="fc-front-img" id="fcFrontImg" src="" alt="" width="800" height="800" loading="eager" decoding="async">
           <div class="fc-card-drug" id="fcDrugName"></div>
           <div class="fc-card-brand" id="fcBrandName"></div>
           <div class="fc-card-class-pill" id="fcClassPill"></div>
@@ -319,13 +320,14 @@
     </div>
 
     <div class="fc-audio-bar" id="fcAudioBar">
-      <button class="fc-audio-btn fc-audio-podcast" id="fcPodcastBtn" title="Listen to podcast discussion">
+      <button class="fc-audio-btn fc-audio-podcast" id="fcPodcastBtn" title="Listen to podcast discussion" aria-label="Listen to podcast discussion for this drug card" aria-describedby="fcAudioStatus">
         <span class="fc-audio-icon">&#x1F399;</span> Podcast
       </button>
-      <button class="fc-audio-btn fc-audio-read" id="fcReadBtn" title="Read card aloud">
+      <button class="fc-audio-btn fc-audio-read" id="fcReadBtn" title="Read card aloud" aria-label="Read this drug card aloud" aria-describedby="fcAudioStatus">
         <span class="fc-audio-icon">&#x1F50A;</span> Read Card
       </button>
     </div>
+    <div class="fc-audio-status" id="fcAudioStatus" role="status" aria-live="polite"></div>
 
     <div class="fc-mastery-actions">
       <button class="fc-mastery-btn fc-mastery-btn-got" id="fcGotIt">✓ Got It</button>
@@ -380,10 +382,10 @@
   </div>
 </footer>
 
-<script src="../js/flashcard-data-ah.js?v=4"></script>
+<script src="../js/flashcard-data-ah.js?v=5"></script>
 <script src="../js/flashcard-data-drugs.js?v=4"></script>
 <script src="../js/flashcards-drugs.js?v=6"></script>
-<script src="../js/flashcard-audio.js?v=2"></script>
+<script src="../js/flashcard-audio.js?v=3"></script>
 <script src="../js/nav.js?v=6"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/feedback.js"></script>

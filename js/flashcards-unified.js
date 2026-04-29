@@ -350,6 +350,7 @@
         '<div class="ufc-card-title">' + c.drugName + '</div>' +
         (c.brandName ? '<div class="ufc-card-subtitle">' + c.brandName + '</div>' : '') +
         (c.drugClass ? '<div class="ufc-card-pill" style="background:' + borderColor + '">' + c.drugClass + '</div>' : '') +
+        (c.purpose ? '<div class="ufc-card-purpose">' + c.purpose + '</div>' : '') +
         '<div class="ufc-card-tap">Tap to flip | Tap image to zoom</div>';
       // Handle image load, error, lightbox click
       var img = front.querySelector('.ufc-front-img');
@@ -436,7 +437,7 @@
   function showLightbox(src, label) {
     var lb = document.createElement('div');
     lb.className = 'ufc-lightbox';
-    lb.innerHTML = '<div style="position:relative;text-align:center"><button type="button" class="ufc-lightbox-close">&times;</button><img src="' + src + '" alt="' + label + '"><div style="color:#fff;font-size:0.9em;font-weight:600;margin-top:0.8em;opacity:0.8">' + label + '</div></div>';
+    lb.innerHTML = '<div style="position:relative;text-align:center"><button type="button" class="ufc-lightbox-close" aria-label="Close image preview">&times;</button><img src="' + src + '" alt="' + label + '"><div style="color:#fff;font-size:0.9em;font-weight:600;margin-top:0.8em;opacity:0.8">' + label + '</div></div>';
     document.body.appendChild(lb);
     lb.addEventListener('click', function() { lb.remove(); });
     lb.querySelector('.ufc-lightbox-close').addEventListener('click', function(e) { e.stopPropagation(); lb.remove(); });
@@ -446,6 +447,11 @@
   var currentAudio = null;
   var activeAudioBtn = null;
 
+  function setAudioStatus(message) {
+    var status = document.getElementById('ufcAudioStatus');
+    if (status) status.textContent = message || '';
+  }
+
   function stopAudio() {
     if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; currentAudio = null; }
     if (activeAudioBtn) { activeAudioBtn.classList.remove('playing'); activeAudioBtn = null; }
@@ -453,16 +459,19 @@
     var rb = document.getElementById('ufcReadBtn');
     if (pb) { pb.classList.remove('playing'); pb.querySelector('.ufc-audio-icon').textContent = '🎙'; }
     if (rb) { rb.classList.remove('playing'); rb.querySelector('.ufc-audio-icon').textContent = '🔊'; }
+    setAudioStatus('');
   }
 
-  function playAudio(file, btn, icon) {
+  function playAudio(file, btn, icon, label) {
     stopAudio();
     currentAudio = new Audio(AUDIO_BASE + file);
     activeAudioBtn = btn;
     btn.classList.add('playing');
     btn.querySelector('.ufc-audio-icon').textContent = '⏹';
+    setAudioStatus('Playing ' + label + '...');
     currentAudio.play().catch(function() {
       btn.querySelector('.ufc-audio-icon').textContent = '❌';
+      setAudioStatus('Audio could not play. Try again after the page finishes loading.');
       setTimeout(function() { btn.querySelector('.ufc-audio-icon').textContent = icon; }, 1500);
     });
     currentAudio.addEventListener('ended', function() { stopAudio(); });
@@ -476,8 +485,13 @@
     if (!pool.length) return;
     var c = pool[currentIndex];
     var file = podcastMap[c.drugName];
-    if (!file) { pb.querySelector('.ufc-audio-icon').textContent = '❌'; setTimeout(function() { pb.querySelector('.ufc-audio-icon').textContent = '🎙'; }, 1500); return; }
-    playAudio(file, pb, '🎙');
+    if (!file) {
+      pb.querySelector('.ufc-audio-icon').textContent = '❌';
+      setAudioStatus('Podcast audio is not available for this card yet.');
+      setTimeout(function() { pb.querySelector('.ufc-audio-icon').textContent = '🎙'; }, 1500);
+      return;
+    }
+    playAudio(file, pb, '🎙', 'podcast audio');
   });
 
   document.getElementById('ufcReadBtn').addEventListener('click', function(e) {
@@ -488,8 +502,13 @@
     if (!pool.length) return;
     var c = pool[currentIndex];
     var file = readMap[c.drugName];
-    if (!file) { rb.querySelector('.ufc-audio-icon').textContent = '❌'; setTimeout(function() { rb.querySelector('.ufc-audio-icon').textContent = '🔊'; }, 1500); return; }
-    playAudio(file, rb, '🔊');
+    if (!file) {
+      rb.querySelector('.ufc-audio-icon').textContent = '❌';
+      setAudioStatus('Read-card audio is not available for this card yet.');
+      setTimeout(function() { rb.querySelector('.ufc-audio-icon').textContent = '🔊'; }, 1500);
+      return;
+    }
+    playAudio(file, rb, '🔊', 'read-card audio');
   });
 
   // ── Search ──
