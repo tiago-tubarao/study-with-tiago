@@ -10,14 +10,16 @@
   let base = './';
   if (path.includes('/exam2/') || path.includes('/exam3/') || path.includes('/methods/')) base = '../';
 
-  // Phase 1 (2026-04-28): Methods promoted to slot #2 — it's the killer feature
-  // (Verbal Underline Method = NCLEX trap-question strategy). Per BUILD-PLAN-v2 §1B.11.
+  // Phase 1.1 (2026-04-29): nav order restored close to original.
+  // Original Phase 1 promoted Methods to slot #2 with sublabel "NCLEX trap-Q strategy"
+  // — that over-promised internal coaching content as a public marquee feature.
+  // The /methods/ page exists (Thomas wrote it), so it stays in nav, but doesn't lead.
   const links = [
     { label: 'Home', href: base + 'index.html', icon: '🏠' },
-    { label: 'Methods', href: base + 'methods/', icon: '🛡️', sublabel: 'NCLEX trap-Q strategy' },
     { label: 'Pharmacology', href: base + 'exam2/index.html', icon: '💊' },
     { label: 'Adult Health', href: base + 'exam3/index.html', icon: '🩺' },
     { label: 'Flashcards', href: base + 'all-flashcards.html', icon: '🃏' },
+    { label: 'Methods', href: base + 'methods/', icon: '🛡️' },
     { label: 'Resources', href: base + 'resources.html', icon: '📦' },
     { label: 'About', href: base + 'about.html', icon: '👤' },
     { label: 'YouTube', href: 'https://www.youtube.com/@life-ofstudy', icon: '▶', external: true },

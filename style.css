@@ -148,24 +148,31 @@
 .theme-toggle:hover { background: rgba(255,255,255,0.1); }
 
 /* ── Typography Override (Pico uses system fonts, we add custom) ──
-   Phase 1 (2026-04-28): added Atkinson Hyperlegible body font for character
-   disambiguation (1/l/I, O/0 — critical for nursing dosages); Braille Institute design.
-   ADHD/dyslexia readability via letter/word spacing + line-height + max-width.
-   Per BUILD-PLAN-v2 Phase 1A + mobile-attention-research §3.
+   Phase 1 (2026-04-28): Atkinson Hyperlegible body font for 1/l/I, O/0
+   disambiguation (Braille Institute) — critical for nursing dosages.
+
+   Phase 1.1 (2026-04-29): SCOPE FIX. Original Phase 1 applied letter-spacing,
+   word-spacing, line-height, and max-width:65ch GLOBALLY at the body level —
+   that cascaded into nav, headings, and every UI element, breaking desktop
+   layout. Now scoped to body content only (paragraphs/lists/article).
 */
 body {
   font-family: 'Atkinson Hyperlegible', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg);
-  color: #1A1A1A; /* WCAG AAA contrast — was var(--text) #212529; now eye-fatigue safe */
+  color: #1A1A1A; /* WCAG AAA contrast — was system #212529; eye-fatigue safe */
   padding-top: 60px; /* space for fixed nav */
-  letter-spacing: 0.02em;
-  word-spacing: 0.05em;
-  line-height: 1.6;
-  text-align: left; /* never justify — dyslexia tracking */
 }
 
-p, li {
-  max-width: 65ch; /* 45-75 char ideal line length for sustained reading */
+/* Body content readability — scoped, NOT global. Applies to prose only. */
+p, li, dd, blockquote, td:not(.fc-card-front):not([class*="fc-"]) {
+  line-height: 1.6;
+  letter-spacing: 0.01em; /* lighter than 0.02em — desktop wasn't choking on 0.01 */
+}
+.page-container > .video-section p,
+.page-container > .download-cta p,
+article p {
+  /* Long-form prose only gets the 65ch reading width — heroes/CTAs stay full-width */
+  max-width: 65ch;
 }
 
 [data-theme="dark"] body { color: var(--text); } /* dark mode keeps existing var */
@@ -174,33 +181,34 @@ h1, h2, h3, h4 {
   font-family: 'Inter', 'Atkinson Hyperlegible', sans-serif;
   font-weight: 700;
   color: var(--navy);
-  max-width: none; /* headings can stretch; only paragraphs are 65ch */
+  line-height: 1.25; /* tighter for headings — overrides any inherited 1.6 */
 }
 
 .hero-title {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: clamp(1.75rem, 5vw, 2.5rem); /* fluid sizing — fixes 393px wonky hero */
+  /* Fluid sizing — clamp keeps it sane between 393px mobile and 1440px desktop */
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  line-height: 1.15;
 }
 
-/* ── Phase 1 global touch targets (Material Design 48dp / Apple HIG 44pt) ──
-   Override Pico defaults; ensure every clickable hits min 48px tap zone on mobile.
-   Confidence dots intentionally exempt — tight cluster of 5 needs 36px. */
-a, button {
+/* ── Touch targets — scoped, NOT global. ──
+   Original Phase 1 applied min-height:48px to ALL <a> and <button>, which
+   broke nav (links are visual brand, not buttons), broke icon buttons, and
+   added unwanted padding to inline UI. Now: only true CTAs + form buttons. */
+.cta-button,
+button[type="submit"],
+button[class*="cta"],
+.fc-mode-btn,
+.fc-drill-btn,
+.fc-nav-btn,
+.fc-mastery-btn,
+.fc-reset-btn,
+.fc-audio-btn {
   min-height: 48px;
-  min-width: 48px;
   box-sizing: border-box;
 }
-a:not(.nav-brand):not(.share-float):not([class*="conf-"]),
-button:not([class*="conf-"]):not(.nav-toggle):not(.theme-toggle) {
-  padding: 12px 16px;
-}
-/* Inline links inside paragraphs don't need padding — let them flow */
-p a, li a, .footer-links a, .nav-links a {
-  min-height: 0;
-  min-width: 0;
-  padding: revert;
-}
+/* Nav links — preserve thumb-tap target on mobile, stay flexbox-aligned */
 .nav-links a {
   /* nav links DO need 48px tap height for thumb accuracy */
   min-height: 48px;
