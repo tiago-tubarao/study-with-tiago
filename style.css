@@ -353,8 +353,8 @@ button[class*="cta"],
 }
 
 .home-avatar {
-  width: 72px;
-  height: 72px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   margin-bottom: 16px;
   border: 3px solid var(--teal);
@@ -1637,7 +1637,7 @@ button.conf-dot,
 @media (max-width: 700px) {
   .hero-title { font-size: 1.5em; }
   .home-hero { padding: 30px 16px 26px; border-radius: 18px; }
-  .home-avatar { width: 64px; height: 64px; }
+  .home-avatar { width: 84px; height: 84px; }
   .home-title {
     max-width: 100%;
     font-size: clamp(1.55rem, 6vw, 1.75rem);
