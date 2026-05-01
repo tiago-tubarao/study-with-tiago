@@ -16,6 +16,33 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=29">
   <link rel="icon" type="image/png" href="assets/favicon.png">
+  <style>
+    .outcome-fallback {
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid rgba(42, 157, 143, 0.3);
+      border-radius: 14px;
+      background: rgba(42, 157, 143, 0.08);
+    }
+    .outcome-fallback[hidden] { display: none; }
+    .outcome-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+    .outcome-copy {
+      width: 100%;
+      min-height: 150px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.86rem;
+      resize: vertical;
+    }
+    [data-theme="dark"] .outcome-fallback {
+      background: rgba(42, 157, 143, 0.16);
+      border-color: rgba(99, 230, 190, 0.45);
+    }
+  </style>
 </head>
 <body>
 <div class="page-container">
@@ -52,9 +79,19 @@
       <label for="confusing">What was still confusing?</label>
       <textarea id="confusing" rows="4" placeholder="What should be clearer or easier to find?"></textarea>
 
-      <button type="submit" class="cta-button">Prepare feedback email</button>
+      <button type="submit" class="cta-button">Open feedback email draft</button>
       <p style="margin-top:12px"><a href="requests.html?type=card">Need a missing card, audio, or bug fix instead?</a></p>
-      <p id="surveyStatus" style="margin-top:12px;color:var(--muted)"></p>
+      <p id="surveyStatus" style="margin-top:12px;color:var(--muted)" role="status" aria-live="polite"></p>
+      <div class="outcome-fallback" id="outcomeFallback" hidden>
+        <strong>Email app did not open?</strong>
+        <p style="margin:8px 0 0">Your feedback is saved on this device. Use either fallback below so it actually reaches Tiago.</p>
+        <div class="outcome-actions">
+          <a class="cta-button" id="outcomeMailtoLink" href="#">Open email draft again</a>
+          <button type="button" class="secondary" id="outcomeCopyButton">Copy feedback text</button>
+        </div>
+        <label for="outcomeCopyText">Feedback text</label>
+        <textarea class="outcome-copy" id="outcomeCopyText" readonly></textarea>
+      </div>
     </form>
   </section>
 </div>
@@ -81,7 +118,13 @@
       page: location.href,
       date: new Date().toISOString()
     };
-    var saved = JSON.parse(localStorage.getItem('swt_outcome_feedback') || '[]');
+    var saved = [];
+    try {
+      saved = JSON.parse(localStorage.getItem('swt_outcome_feedback') || '[]');
+      if (!Array.isArray(saved)) saved = [];
+    } catch(err) {
+      saved = [];
+    }
     saved.push(data);
     localStorage.setItem('swt_outcome_feedback', JSON.stringify(saved));
 
@@ -99,8 +142,25 @@
       'Page: ' + data.page
     ].join('\n');
 
-    document.getElementById('surveyStatus').innerHTML = 'Saved on this device. Opening your email app now so you can send it to Tiago.';
-    location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent('[SWT FEEDBACK] ' + (data.topic || data.resource || 'Study with Tiago')) + '&body=' + encodeURIComponent(body);
+    var subject = '[SWT FEEDBACK] ' + (data.topic || data.resource || 'Study with Tiago');
+    var mailtoHref = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    document.getElementById('outcomeMailtoLink').href = mailtoHref;
+    document.getElementById('outcomeCopyText').value = 'To: studywithtiago@gmail.com\nSubject: ' + subject + '\n\n' + body;
+    document.getElementById('outcomeFallback').hidden = false;
+    document.getElementById('surveyStatus').textContent = 'Saved on this device. Opening your email app now. Feedback is not sent until you press send in your email app.';
+    location.href = mailtoHref;
+  });
+
+  document.getElementById('outcomeCopyButton').addEventListener('click', function() {
+    var copyText = document.getElementById('outcomeCopyText');
+    copyText.select();
+    copyText.setSelectionRange(0, copyText.value.length);
+    try {
+      navigator.clipboard.writeText(copyText.value);
+    } catch(err) {
+      document.execCommand('copy');
+    }
+    document.getElementById('surveyStatus').textContent = 'Feedback text copied. Paste it into an email to studywithtiago@gmail.com.';
   });
 </script>
 </body>

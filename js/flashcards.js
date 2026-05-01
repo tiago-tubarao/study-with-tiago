@@ -79,7 +79,13 @@
       }
 
       // Save locally
-      const subs = JSON.parse(localStorage.getItem('tiago_emails') || '[]');
+      let subs = [];
+      try {
+        subs = JSON.parse(localStorage.getItem('tiago_emails') || '[]');
+        if (!Array.isArray(subs)) subs = [];
+      } catch (err) {
+        subs = [];
+      }
       subs.push({ email, date: new Date().toISOString(), page: 'flashcards', source: 'exam-day-gate' });
       localStorage.setItem('tiago_emails', JSON.stringify(subs));
       localStorage.setItem('tiago_subscribed', 'true');

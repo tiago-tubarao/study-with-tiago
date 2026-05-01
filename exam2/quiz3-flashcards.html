@@ -689,13 +689,17 @@
     setTimeout(() => { form.remove(); iframe.remove(); }, 3000);
 
     // Save locally
+    let subs = [];
     try {
-      const subs = JSON.parse(localStorage.getItem('tiago_emails') || '[]');
-      subs.push({ email, date: new Date().toISOString(), page: 'quiz3-flashcards', deck: 'q3-cns' });
-      localStorage.setItem('tiago_emails', JSON.stringify(subs));
-      localStorage.setItem(GATE_KEY, 'true');
-      localStorage.setItem('tiago_subscribed', 'true');
-    } catch(e) {}
+      subs = JSON.parse(localStorage.getItem('tiago_emails') || '[]');
+      if (!Array.isArray(subs)) subs = [];
+    } catch(e) {
+      subs = [];
+    }
+    subs.push({ email, date: new Date().toISOString(), page: 'quiz3-flashcards', deck: 'q3-cns' });
+    localStorage.setItem('tiago_emails', JSON.stringify(subs));
+    localStorage.setItem(GATE_KEY, 'true');
+    localStorage.setItem('tiago_subscribed', 'true');
 
     gate.style.display = 'none';
     deck.style.display = 'block';
