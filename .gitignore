@@ -1,4 +1,6 @@
 NEXT_SESSION_HANDOFF.md
+creator-inbox.local.html
+*.local.html
 
 # Local working assets; only commit intentionally reviewed media.
 assets/audio/

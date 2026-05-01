@@ -284,7 +284,7 @@ window.DRUG_DEEP_ANTIBIOTICS = {
             'Neither is concerning — these are expected side effects',
           ],
           correct: 1,
-          rationale: 'Both are serious, but ototoxicity (Patient B) is IRREVERSIBLE. Nephrotoxicity (Patient A) is typically reversible if caught early and the drug is stopped. This distinction is a guaranteed exam question for aminoglycosides.',
+          rationale: 'Both are serious, but ototoxicity (Patient B) is IRREVERSIBLE. Nephrotoxicity (Patient A) is typically reversible if caught early and the drug is stopped. This distinction is a high-yield aminoglycoside safety point.',
         },
       ],
       y: [
@@ -701,7 +701,7 @@ window.DRUG_DEEP_ANTIBIOTICS = {
             '4 — tendon rupture, peripheral neuropathy, CNS effects, and myasthenia gravis exacerbation',
           ],
           correct: 3,
-          rationale: 'Fluoroquinolones have FOUR BBWs — the most of almost any antibiotic class. Know all four: (1) Tendon rupture, (2) Peripheral neuropathy, (3) CNS effects (seizures, confusion), (4) Myasthenia gravis exacerbation. This is a guaranteed exam question.',
+          rationale: 'Fluoroquinolones have FOUR BBWs — the most of almost any antibiotic class. Know all four: (1) Tendon rupture, (2) Peripheral neuropathy, (3) CNS effects (seizures, confusion), (4) Myasthenia gravis exacerbation. This is a high-yield fluoroquinolone safety point.',
         },
       ],
       y: [

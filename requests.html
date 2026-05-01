@@ -18,6 +18,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=29">
   <link rel="icon" type="image/png" href="assets/favicon.png">
+  <style>
+    .request-fallback {
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid rgba(42, 157, 143, 0.3);
+      border-radius: 14px;
+      background: rgba(42, 157, 143, 0.08);
+    }
+    .request-fallback[hidden] { display: none; }
+    .request-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+    .request-copy {
+      width: 100%;
+      min-height: 160px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.86rem;
+      resize: vertical;
+    }
+    [data-theme="dark"] .request-fallback {
+      background: rgba(42, 157, 143, 0.16);
+      border-color: rgba(99, 230, 190, 0.45);
+    }
+  </style>
 </head>
 <body>
 <div class="page-container">
@@ -58,8 +85,18 @@
         <span>I am not sending actual exam questions, private health information, school identifiers, professor names, or protected test-bank content.</span>
       </label>
 
-      <button type="submit" class="cta-button">Prepare request email</button>
+      <button type="submit" class="cta-button">Open request email draft</button>
       <p id="requestStatus" style="margin-top:12px;color:var(--muted)" role="status" aria-live="polite"></p>
+      <div class="request-fallback" id="requestFallback" hidden>
+        <strong>Email app did not open?</strong>
+        <p style="margin:8px 0 0">Your request is saved on this device. Use either fallback below so the request actually reaches Tiago.</p>
+        <div class="request-actions">
+          <a class="cta-button" id="requestMailtoLink" href="#">Open email draft again</a>
+          <button type="button" class="secondary" id="requestCopyButton">Copy request text</button>
+        </div>
+        <label for="requestCopyText">Request text</label>
+        <textarea class="request-copy" id="requestCopyText" readonly></textarea>
+      </div>
     </form>
   </section>
 
@@ -110,6 +147,10 @@
     var detailsEl = document.getElementById('requestDetails');
     var statusEl = document.getElementById('requestStatus');
     var emailEl = document.getElementById('requestEmail');
+    var fallbackEl = document.getElementById('requestFallback');
+    var mailtoLinkEl = document.getElementById('requestMailtoLink');
+    var copyButtonEl = document.getElementById('requestCopyButton');
+    var copyTextEl = document.getElementById('requestCopyText');
 
     if (params.get('type') && typeMap[params.get('type')]) typeEl.value = params.get('type');
     var topic = params.get('topic') || params.get('card') || params.get('q') || '';
@@ -155,8 +196,26 @@
         'Request page: ' + data.page
       ].filter(Boolean).join('\n');
 
-      statusEl.textContent = 'Saved on this device. Opening your email app now so you can send it to Tiago.';
-      location.href = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent(subjectPrefix(data.type) + ' ' + data.topic) + '&body=' + encodeURIComponent(body);
+      var subject = subjectPrefix(data.type) + ' ' + data.topic;
+      var mailtoHref = 'mailto:studywithtiago@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+      mailtoLinkEl.href = mailtoHref;
+      copyTextEl.value = 'To: studywithtiago@gmail.com\nSubject: ' + subject + '\n\n' + body;
+      fallbackEl.hidden = false;
+      statusEl.textContent = 'Saved on this device. Opening your email app now. The request is not sent until you press send in your email app.';
+      location.href = mailtoHref;
+    });
+
+    copyButtonEl.addEventListener('click', function() {
+      copyTextEl.select();
+      copyTextEl.setSelectionRange(0, copyTextEl.value.length);
+      try {
+        navigator.clipboard.writeText(copyTextEl.value);
+        statusEl.textContent = 'Request text copied. Paste it into an email to studywithtiago@gmail.com.';
+      } catch(err) {
+        document.execCommand('copy');
+        statusEl.textContent = 'Request text copied. Paste it into an email to studywithtiago@gmail.com.';
+      }
     });
   })();
 </script>

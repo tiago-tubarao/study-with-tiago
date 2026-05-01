@@ -250,7 +250,7 @@
 
 <script src="js/nav.js?v=7"></script>
 <script src="js/theme.js"></script>
-<script src="js/feedback.js?v=2"></script>
+<script src="js/feedback.js?v=3"></script>
 <script src="js/share.js?v=4"></script>
 <script>
   // Subscribe form (same Google Form backend as homepage)
@@ -285,7 +285,13 @@
     setTimeout(() => { form.remove(); iframe.remove(); }, 3000);
 
     // Save locally
-    const subs = JSON.parse(localStorage.getItem('tiago_emails') || '[]');
+    let subs = [];
+    try {
+      subs = JSON.parse(localStorage.getItem('tiago_emails') || '[]');
+      if (!Array.isArray(subs)) subs = [];
+    } catch (err) {
+      subs = [];
+    }
     subs.push({ email, date: new Date().toISOString(), page: 'updates' });
     localStorage.setItem('tiago_emails', JSON.stringify(subs));
     localStorage.setItem('tiago_subscribed', 'true');

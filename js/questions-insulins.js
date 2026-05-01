@@ -47,7 +47,7 @@ window.DRUG_DEEP_INSULINS = {
             'Document the patient\'s refusal to eat and monitor',
           ],
           correct: 1,
-          rationale: 'Lispro was already given — it\'s active. No food intake = guaranteed hypoglycemia in 30-60 min. The priority is assess glucose and prepare treatment. Option A sounds reasonable but forcing food on a nauseous patient risks aspiration. Option D is dangerous passivity.',
+          rationale: 'Lispro was already given — it\'s active. No food intake after lispro creates a high hypoglycemia risk within 30-60 min. The priority is assess glucose and prepare treatment. Option A sounds reasonable but forcing food on a nauseous patient risks aspiration. Option D is dangerous passivity.',
         },
       ],
       y: [
