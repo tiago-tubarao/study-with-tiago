@@ -99,11 +99,11 @@
       return '📋 FREE Pharmacology Exam 2 study hub — 486+ questions, 4 video lectures, confidence tracking\n\n🔗 ' + base + 'exam2/';
     }
     // Main page / default
-    return '📚 Nursing exam coming up? This student built a FREE study site with videos, flashcards, 650+ practice questions & study bundles\n\n'
+    return '📚 Nursing exam coming up? This student built a FREE study site with videos, flashcards, practice questions & optional study bundles\n\n'
       + '🃏 Exam Day Flashcards\n'
       + '📝 NCLEX-style questions with rationales\n'
       + '🎥 9 full video lectures\n'
-      + '📦 Free PDF study bundles\n\n'
+      + '📦 Optional $5 study bundles\n\n'
       + '🔗 ' + base;
   }
 
