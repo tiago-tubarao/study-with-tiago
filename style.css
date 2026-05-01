@@ -23,6 +23,12 @@
   --glass-border: rgba(255, 255, 255, 0.3);
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* ── Dark Mode ── */
 [data-theme="dark"] {
   --bg: #0d1117;
@@ -1913,6 +1919,7 @@ button.conf-dot,
   margin: 16px 0 24px;
   border-radius: 16px;
   overflow: hidden;
+  max-width: 100%;
   background: linear-gradient(135deg, var(--navy) 0%, #0B3D6B 60%, var(--teal) 100%);
   color: white;
   padding: 0;
@@ -1945,6 +1952,7 @@ button.conf-dot,
   color: white;
   margin: 0 0 6px;
   padding-right: 32px;
+  overflow-wrap: anywhere;
 }
 
 .signup-sub {
@@ -1952,6 +1960,7 @@ button.conf-dot,
   font-size: 0.88em;
   margin: 0 0 16px;
   max-width: 480px;
+  overflow-wrap: anywhere;
 }
 
 .signup-form {
@@ -1962,6 +1971,7 @@ button.conf-dot,
   display: flex;
   gap: 8px;
   max-width: 440px;
+  min-width: 0;
 }
 
 .signup-form input[type="email"].signup-input {

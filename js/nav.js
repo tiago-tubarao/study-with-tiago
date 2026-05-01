@@ -15,6 +15,7 @@
     { label: 'Home', href: base + 'index.html', icon: '🏠' },
     { label: 'Pharmacology', href: base + 'exam2/index.html', icon: '💊' },
     { label: 'Adult Health', href: base + 'exam3/index.html', icon: '🩺' },
+    { label: 'Final Prep', href: base + 'adult-health-final.html', icon: '📚' },
     { label: 'Flashcards', href: base + 'all-flashcards.html', icon: '🃏' },
     { label: 'Videos', href: base + 'videos.html', icon: '🎥' },
     { label: 'Blog', href: base + 'blog/', icon: '📝' },
