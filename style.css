@@ -368,14 +368,17 @@ button[class*="cta"],
 }
 
 .home-title {
-  max-width: 760px;
+  width: 100%;
+  max-width: min(760px, calc(100vw - 64px));
   margin: 0 auto 12px;
   font-size: clamp(2rem, 4vw, 3.25rem);
   line-height: 1.04;
+  text-wrap: balance;
 }
 
 .home-sub {
-  max-width: 620px;
+  width: 100%;
+  max-width: min(620px, calc(100vw - 64px));
   margin: 14px auto 0;
   font-size: 1.02em;
 }
@@ -386,6 +389,9 @@ button[class*="cta"],
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
+  max-width: min(680px, calc(100vw - 64px));
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .home-cta-row { margin-top: 24px; }
@@ -2769,11 +2775,14 @@ button.conf-dot,
   .home-hero { padding: 30px 16px 26px; border-radius: 18px; }
   .home-avatar { width: 140px; height: 140px; }
   .home-title {
-    max-width: 100%;
+    max-width: 280px;
     font-size: clamp(1.55rem, 6vw, 1.75rem);
     line-height: 1.12;
   }
-  .home-sub { font-size: 0.98em; }
+  .home-sub {
+    max-width: 280px;
+    font-size: 0.98em;
+  }
   .home-cta-row .cta-button {
     width: min(100%, 280px);
     justify-content: center;
@@ -2781,7 +2790,7 @@ button.conf-dot,
   .home-chip-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: 100%;
+    width: min(100%, 280px);
     gap: 8px;
   }
   .home-chip {
