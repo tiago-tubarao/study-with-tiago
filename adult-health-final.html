@@ -16,84 +16,162 @@
   <meta name="twitter:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png?v=2">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=30">
+  <link rel="stylesheet" href="style.css?v=34">
   <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
-<body>
+<body class="study-room-page">
 <div class="page-container">
   <div class="hero">
     <h1 class="hero-title">Adult Health<br>Final Prep</h1>
-    <p class="hero-sub">A staging shelf for the final push: GI first, Neuro next, MSK/Ortho after that, with videos and review packs added only when they are ready.</p>
+    <p class="hero-sub">GI is live now: two Adult Health Final videos, GI My Notes, and a Final GI flashcard deck. Neuro and MSK/Ortho stay staged until they are public-ready.</p>
   </div>
 
   <aside class="trust-note" style="background:rgba(42,157,143,0.08);border-left:3px solid var(--teal);padding:14px 18px;margin:16px 0;border-radius:8px;font-size:0.92em;line-height:1.55">
     <strong style="color:var(--navy)">Built like a study shelf, not a fake course platform.</strong>
-    I am organizing the exact final-review lanes as I build them. If something says "coming next," that means it is not being sold or linked yet.
+    GI is ready to study here. If Neuro or MSK/Ortho says "coming next," that means it is not being sold or linked yet.
   </aside>
 
   <section class="content-band">
-    <h2>Build status</h2>
-    <p>Use this page to see what is ready, what is being recorded, and what needs to be built next. Public links stay conservative so nobody lands on a ghost button.</p>
-    <div class="resource-grid">
-      <a class="resource-card" href="videos.html#adult-health-final-videos">
-        <span class="eyebrow">Active lane</span>
-        <h3>GI final prep</h3>
-        <p>GI videos and the GI My Notes packet are the live final-prep lane. Start here if upper GI, lower GI, liver, pancreas, or gallbladder are the weak spots.</p>
-      </a>
-      <a class="resource-card" href="requests.html?topic=adult-health-final-neuro">
-        <span class="eyebrow">Next build</span>
-        <h3>Neuro final prep</h3>
-        <p>Neuro has source material ready in the study brain, but it still needs the full GI-level review sheet before it becomes a public pack.</p>
-      </a>
-      <a class="resource-card" href="requests.html?topic=adult-health-final-msk-ortho">
-        <span class="eyebrow">Next after Neuro</span>
-        <h3>MSK and Ortho prep</h3>
-        <p>MSK/Ortho source material exists, but it is not packaged yet. This lane stays visible so it is easy to add when ready.</p>
-      </a>
-      <a class="resource-card" href="blog/index.html">
-        <span class="eyebrow">Later lane</span>
-        <h3>Cumulative quick locks</h3>
-        <p>Short review notes for repeated safety patterns: assess first, unstable first, labs that matter, and teaching traps.</p>
-      </a>
+    <h2>GI final-review home</h2>
+    <p>Start with the video that matches the weak spot, keep GI My Notes open beside it, then drill the Final GI cards while the map is fresh.</p>
+    <a class="video-card" href="#upper-lower-video">
+      <img src="exam2/quiz3-gi-images/29_gerd_lifestyle.png" width="320" height="180" alt="GERD and upper GI study visual" loading="lazy" decoding="async">
+      <div>
+        <span class="eyebrow">Video 1 · GI live</span>
+        <h3>GI Upper/Lower Crash Course</h3>
+        <p>GERD, PUD, H. pylori, hiatal hernia, gastritis, IBS vs IBD, UC vs Crohn, toxic megacolon, diverticulitis, obstruction, and colorectal screening.</p>
+      </div>
+    </a>
+    <a class="video-card" href="#liver-pancreas-video">
+      <img src="exam2/quiz3-gi-images/17_lactulose_ammonia_trap.png" width="320" height="180" alt="Lactulose and ammonia liver study visual" loading="lazy" decoding="async">
+      <div>
+        <span class="eyebrow">Video 2 · GI live</span>
+        <h3>Liver, Pancreas, and Gallbladder Crash Course</h3>
+        <p>Cirrhosis, ascites, varices, hepatic encephalopathy, lactulose, hepatitis A/B/C, pancreatitis, cholecystitis, and domino chains.</p>
+      </div>
+    </a>
+    <div class="final-video-grid" aria-label="Playable GI final videos">
+      <article class="final-video-player" id="upper-lower-video">
+        <span class="eyebrow">Play here</span>
+        <h3>Upper/Lower GI Crash Course</h3>
+        <div class="video-embed">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/9Hh1A-MYmK0" title="GI Upper/Lower Crash Course | Adult Health Final + NCLEX-Style Priorities" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <a class="study-room-action flashcard-lane" href="all-flashcards.html?deck=finalgi">Flip Final GI cards</a>
+      </article>
+      <article class="final-video-player" id="liver-pancreas-video">
+        <span class="eyebrow">Play here</span>
+        <h3>Liver, Pancreas, Gallbladder Crash Course</h3>
+        <div class="video-embed">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/54xQ65nuZGc" title="Liver and Pancreas Crash Course - Adult Health Final NCLEX-Style Priorities" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <a class="study-room-action flashcard-lane" href="all-flashcards.html?deck=finalgi">Flip Final GI cards</a>
+      </article>
     </div>
   </section>
 
   <section class="content-band">
-    <h2>Study loop for the final push</h2>
+    <h2>Study loop</h2>
     <div class="resource-grid">
-      <a class="resource-card" href="videos.html#adult-health-final-videos">
-        <span class="eyebrow">Watch</span>
-        <h3>Final video shelf</h3>
-        <p>GI video slots are ready to receive uploads. Existing Adult Health videos stay in the main Video Hub.</p>
+      <a class="resource-card" href="#upper-lower-video">
+        <span class="eyebrow">1 · Watch</span>
+        <h3>Upper/Lower GI</h3>
+        <p>Use this for reflux, ulcers, IBS/IBD, obstruction, and colorectal screening.</p>
       </a>
-      <a class="resource-card" href="all-flashcards.html?audio=1">
-        <span class="eyebrow">Review</span>
-        <h3>All flashcards</h3>
-        <p>Use the 291-card unified deck while final-specific cards are being added.</p>
+      <a class="resource-card" href="#liver-pancreas-video">
+        <span class="eyebrow">1 · Watch</span>
+        <h3>Liver/Pancreas/Gallbladder</h3>
+        <p>Use this for cirrhosis, varices, encephalopathy, pancreatitis, and cholecystitis.</p>
       </a>
-      <a class="resource-card" href="exam3/index.html">
-        <span class="eyebrow">Practice</span>
-        <h3>Current Adult Health practice</h3>
-        <p>Diabetes, endocrine, renal, hematology, drug cards, and practice pages remain here.</p>
+      <a class="resource-card" href="#gi-my-notes">
+        <span class="eyebrow">2 · My Notes</span>
+        <h3>GI My Notes</h3>
+        <p>Use the packet as the map while the videos explain the chains and priority traps.</p>
       </a>
-      <a class="resource-card" href="requests.html?topic=adult-health-final">
-        <span class="eyebrow">Ask</span>
-        <h3>Request a missing card</h3>
-        <p>If a final topic feels missing, send it through the request page so it can become a card, post, or review section.</p>
+      <a class="resource-card" href="all-flashcards.html?deck=finalgi">
+        <span class="eyebrow">3 · Drill</span>
+        <h3>Final GI flashcards</h3>
+        <p>32 high-yield cards for Upper GI, Lower GI, liver, pancreas, gallbladder, emergencies, labs, and nursing priorities.</p>
       </a>
     </div>
   </section>
 
-  <section class="download-cta">
+  <section class="content-band" id="next-final-study-rooms">
+    <h2>Next study rooms</h2>
+    <p>These are prepared spaces for tomorrow's recording flow. They are intentionally staged until the video, My Notes preview, and flashcards are public-safe.</p>
+    <div class="resource-grid">
+      <article class="resource-card" id="neuro-final-stage">
+        <span class="eyebrow">Recording lane coming next</span>
+        <h3>Neuro final prep</h3>
+        <p>Reserved for the embedded Neuro video, Neuro My Notes preview, and Neuro final flashcards after recording and QA. Not linked as a public video yet. Not sold as a public product yet.</p>
+      </article>
+      <article class="resource-card" id="ortho-final-stage">
+        <span class="eyebrow">Recording lane coming next</span>
+        <h3>MSK/Ortho final prep</h3>
+        <p>Reserved for the embedded Ortho video, Ortho My Notes preview, and Ortho final flashcards after recording and QA. Not linked as a public video yet. Not sold as a public product yet.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="content-band">
+    <h2>What is ready vs next</h2>
+    <div class="resource-grid">
+      <a class="resource-card" href="all-flashcards.html?deck=finalgi">
+        <span class="eyebrow">Ready</span>
+        <h3>GI final deck</h3>
+        <p>Final-specific GI cards are live in the unified flashcard system. This is separate from the older Quiz 3 GI pharmacology deck.</p>
+      </a>
+      <a class="resource-card" href="requests.html?type=card&topic=Adult%20Health%20Final%20GI">
+        <span class="eyebrow">Request</span>
+        <h3>Missing GI card</h3>
+        <p>If a GI final topic still feels missing, send it through the request page so it can become a card, post, or review section.</p>
+      </a>
+      <a class="resource-card" href="requests.html?type=topic&topic=Adult%20Health%20Final%20Neuro">
+        <span class="eyebrow">Next lane</span>
+        <h3>Neuro final prep</h3>
+        <p>Neuro has a strong packet candidate, but it is not linked here as a public product or video lane yet.</p>
+      </a>
+      <a class="resource-card" href="requests.html?type=topic&topic=Adult%20Health%20Final%20MSK%20Ortho">
+        <span class="eyebrow">Next after Neuro</span>
+        <h3>MSK/Ortho final prep</h3>
+        <p>MSK/Ortho is staged, not fake-ready. It gets linked only after the public-safe packet and study loop are finished.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="review-pack-preview" id="gi-my-notes-preview" aria-label="GI My Notes preview">
+    <div class="preview-layout">
+      <div class="preview-copy">
+        <span class="preview-kicker">Preview the packet</span>
+        <h2>See how GI My Notes is laid out.</h2>
+        <p>GI My Notes is built for follow-along studying: visual pages, priority boxes, comparison tables, and practice-style prompts that match the two GI final-review videos.</p>
+        <p class="preview-disclaimer">Preview shows sample format, not the full packet. No actual exam or ATI questions. No score promises.</p>
+        <div class="preview-actions">
+          <a href="all-flashcards.html?deck=finalgi" class="cta-button" style="background:var(--teal);color:#fff">Study Final GI Cards</a>
+          <a href="https://medpro3.gumroad.com/l/adult-health-gi-my-notes" rel="noopener" class="cta-button">Open GI My Notes - $7.99</a>
+        </div>
+      </div>
+      <div class="preview-visuals">
+        <div class="preview-image-strip">
+          <img src="assets/product-previews/gi-my-notes-preview-1500x844.png" width="1500" height="844" alt="GI My Notes Gumroad preview collage" loading="lazy" decoding="async">
+          <img src="assets/product-previews/gi-my-notes-page-012.png" width="398" height="513" alt="Sample GI My Notes page preview" loading="lazy" decoding="async">
+          <img src="assets/product-previews/gi-my-notes-page-024.png" width="398" height="513" alt="Sample GI My Notes table page preview" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="download-cta" id="gi-my-notes">
     <div class="cta-glow"></div>
     <div class="cta-content">
       <div class="cta-badge" style="background:var(--teal)">STUDY PACKS</div>
       <h2 class="cta-title">Current packs now, final pack later</h2>
       <p class="cta-sub">The GI My Notes packet is live for the final push. Existing Adult Health review and practice exams remain available too.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px">
-        <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener" class="cta-button" style="background:var(--teal);color:#fff">Current AH Review - $5</a>
-        <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener" class="cta-button" style="background:var(--purple);color:#fff">Practice Exams - $5</a>
-        <a href="https://medpro3.gumroad.com/l/adult-health-gi-my-notes" target="_blank" rel="noopener" class="cta-button">GI My Notes - $7.99</a>
+        <a href="all-flashcards.html?deck=finalgi" class="cta-button" style="background:var(--teal);color:#fff">Study Final GI Cards</a>
+        <a href="#gi-my-notes-preview" class="cta-button">Preview GI My Notes</a>
+        <a href="https://medpro3.gumroad.com/l/sdwsfx" rel="noopener" class="cta-button" style="background:var(--teal);color:#fff">Current AH Review - $5</a>
+        <a href="https://medpro3.gumroad.com/l/qwrbv" rel="noopener" class="cta-button" style="background:var(--purple);color:#fff">Practice Exams - $5</a>
       </div>
       <p class="cta-note">Gumroad links are my own study products, not affiliate links.</p>
     </div>
@@ -103,7 +181,7 @@
     <h2>What gets added when new material is ready</h2>
     <ul>
       <li>Video link and thumbnail after each YouTube upload is live.</li>
-      <li>GI review sheet and Gumroad link are live; Neuro and MSK/Ortho links stay hidden until public-safe.</li>
+      <li>GI review sheet, Gumroad link, and Final GI flashcards are live; Neuro and MSK/Ortho links stay hidden until public-safe.</li>
       <li>Flashcards only after cards are searchable and tested on phone and desktop.</li>
       <li>Blog notes only after the explanation is cleaned for public wording.</li>
     </ul>
@@ -124,6 +202,5 @@
 <script src="js/theme.js"></script>
 <script src="js/feedback.js?v=3"></script>
 <script src="js/share.js?v=4"></script>
-<script src="js/signup.js?v=4"></script>
 </body>
 </html>

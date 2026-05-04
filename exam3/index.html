@@ -35,10 +35,10 @@
   </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css?v=30">
+  <link rel="stylesheet" href="../style.css?v=32">
   <link rel="icon" type="image/png" href="../assets/favicon.png">
 </head>
-<body>
+<body class="visual-hub-page">
 <div class="page-container">
   <div class="hero">
     <h1 class="hero-title">Adult Health Nursing</h1>
@@ -53,19 +53,16 @@
     The $5 bundles below are study guides I built myself. Your purchase keeps the rest of this page free.
   </aside>
 
-  <section class="content-band" style="margin-top:16px">
-    <h2>Adult Health Final Prep has its own shelf</h2>
-    <p>This page stays focused on the current Adult Health practice topics: diabetes, endocrine, renal, hematology, and drug cards. GI, Neuro, MSK/Ortho, and cumulative final-review material now live on the Final Prep shelf as each lane is built.</p>
-    <a href="../adult-health-final.html" class="cta-button" style="background:var(--teal);color:#fff">Open Adult Health Final Prep &rarr;</a>
+  <section class="visual-launcher-shell" aria-labelledby="adultVisualTitle">
+    <div class="visual-launcher-topline">
+      <div>
+        <span class="visual-launcher-kicker">Visual topic launcher</span>
+        <h2 id="adultVisualTitle">Pick the body system by sight.</h2>
+        <p>Each topic opens the video first, then the matching flashcards and question loop. GI Final stays clearly marked as final prep so Neuro and Ortho are not implied ready.</p>
+      </div>
+    </div>
+    <div class="visual-topic-grid" id="visualTopicGrid"></div>
   </section>
-
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Video available</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Content ready, no video</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> More topics post-graduation</div>
-  </div>
-
-  <div class="deck-grid" id="deckGrid"></div>
 
   <a href="drug-flashcards.html" class="download-cta" style="text-decoration:none;display:block;cursor:pointer;border:2px solid #C92A2A">
     <div class="cta-content" style="text-align:center">
@@ -132,68 +129,84 @@
 <script src="../js/nav.js?v=8"></script>
 <script src="../js/theme.js"></script>
 <script>
-  const topics = [
+  const VISUAL_TOPICS_AH = [
     {
       id: 'hematology',
       title: 'Hematology & Blood Disorders',
-      subtitle: 'RBC, WBC, lymphoma, hemostasis &bull; Ch 23-25',
+      subtitle: 'RBC, WBC, lymphoma, hemostasis',
       color: '#C92A2A',
-      status: 'uploaded',
-      statusText: 'VIDEO AVAILABLE',
-      questionCount: '~50',
-      conditions: 'Sickle Cell, Anemia, DIC, ITP, Leukemia, Lymphoma, Myeloma, Thalassemia, Polycythemia, Transfusions',
-      href: 'hematology.html'
+      statusText: 'Video + cards',
+      image: '../assets/study-images/cbc_values.jpg',
+      chips: ['Ch 23-25', '~50 questions', 'Blood + clotting'],
+      href: 'hematology.html',
+      flashHref: '../all-flashcards.html?deck=exam3&section=exam3_hematology'
     },
     {
       id: 'diabetes',
       title: 'Diabetes & Emergencies',
-      subtitle: 'Insulins, oral agents, DKA, HHS &bull; Ch 41',
+      subtitle: 'Insulins, oral agents, DKA, HHS',
       color: '#2B8A3E',
-      status: 'uploaded',
-      statusText: 'VIDEO AVAILABLE',
-      questionCount: '~40',
-      conditions: 'Type 1 vs Type 2, Insulin Types, Oral Agents, DKA, HHS, Hypoglycemia, Dawn vs Somogyi',
-      href: 'diabetes.html'
+      statusText: 'Video + cards',
+      image: '../assets/study-images/dka_vs_hhs.jpg',
+      chips: ['Ch 41', '~40 questions', 'DKA vs HHS'],
+      href: 'diabetes.html',
+      flashHref: '../all-flashcards.html?deck=exam3&section=exam3_diabetes'
     },
     {
       id: 'endocrine',
       title: 'Thyroid, Pituitary & Adrenal',
-      subtitle: 'Thyroid storm, DI, SIADH, Addison vs Cushing &bull; Ch 42-44',
+      subtitle: 'Thyroid storm, DI, SIADH, Addison vs Cushing',
       color: '#5F3DC4',
-      status: 'uploaded',
-      statusText: 'VIDEO AVAILABLE',
-      questionCount: '~40',
-      conditions: 'Hypothyroid, Hyperthyroid, Thyroid Storm, DI, SIADH, Addison, Cushing, Acromegaly',
-      href: 'endocrine.html'
+      statusText: 'Video + cards',
+      image: '../assets/study-images/thyroid_storm_vs_myxedema.jpg',
+      chips: ['Ch 42-44', '~40 questions', 'Endocrine traps'],
+      href: 'endocrine.html',
+      flashHref: '../all-flashcards.html?deck=exam3&section=exam3_thyroid'
     },
     {
       id: 'renal',
       title: 'Renal & Urologic',
-      subtitle: 'AKI, CKD, dialysis, kidney stones &bull; Ch 37',
+      subtitle: 'AKI, CKD, dialysis, kidney stones',
       color: '#0891B2',
-      status: 'uploaded',
-      statusText: 'VIDEO AVAILABLE',
-      questionCount: '~35',
-      conditions: 'AKI Phases, CKD Staging, Hemodialysis, Peritoneal Dialysis, Kidney Stones, Uremia',
-      href: 'renal.html'
+      statusText: 'Video + cards',
+      image: '../assets/study-images/kidney_stones_renal_calculi.jpg',
+      chips: ['Ch 37', '~35 questions', 'Dialysis + stones'],
+      href: 'renal.html',
+      flashHref: '../all-flashcards.html?deck=exam3&section=exam3_renal'
+    },
+    {
+      id: 'final-gi',
+      title: 'Adult Health Final: GI Review',
+      subtitle: 'Two public GI final videos, GI My Notes, and the final-specific GI flashcards.',
+      color: '#2A9D8F',
+      statusText: 'Final prep shelf',
+      image: '../exam2/quiz3-gi-images/04_ppi_mechanism.png',
+      chips: ['Final GI', '2 videos', '32 cards'],
+      href: '../adult-health-final.html',
+      flashHref: '../all-flashcards.html?deck=finalgi',
+      featured: true
     }
   ];
 
-  const statusClass = { ready: 'status-not-recorded', uploaded: 'status-uploaded', coming: 'status-no-video' };
-
-  const grid = document.getElementById('deckGrid');
-  grid.innerHTML = topics.map(t => `
-    <a href="${t.href}" class="deck-card">
-      <div class="deck-card-header" style="background:${t.color}">
+  const grid = document.getElementById('visualTopicGrid');
+  grid.innerHTML = VISUAL_TOPICS_AH.map(t => `
+    <article class="visual-topic-card ${t.featured ? 'featured-final' : ''}" style="--topic-color:${t.color}">
+      <div class="visual-topic-media">
+        <img src="${t.image}" alt="${t.title}" loading="lazy" width="640" height="360">
+        <span class="visual-topic-status">${t.statusText}</span>
+      </div>
+      <div class="visual-topic-body">
         <h3>${t.title}</h3>
-        <div class="meta">${t.subtitle}</div>
-        <span class="video-status ${statusClass[t.status]}">${t.statusText}</span>
+        <p>${t.subtitle}</p>
+        <div class="visual-topic-chip-row">
+          ${t.chips.map(chip => `<span class="visual-topic-chip">${chip}</span>`).join('')}
+        </div>
+        <div class="visual-topic-actions">
+          <a class="visual-topic-action primary" href="${t.href}">Open study room</a>
+          <a class="visual-topic-action flashcard-lane" href="${t.flashHref}">Flip matching flashcards</a>
+        </div>
       </div>
-      <div class="deck-card-body">
-        <div class="deck-card-stat"><strong>${t.questionCount}</strong> practice questions available</div>
-        <div class="deck-card-stat" style="font-size:12px;color:var(--muted);margin-top:4px">${t.conditions}</div>
-      </div>
-    </a>
+    </article>
   `).join('');
 </script>
 </body>

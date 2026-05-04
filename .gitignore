@@ -5,3 +5,7 @@ creator-inbox.local.html
 # Local working assets; only commit intentionally reviewed media.
 assets/audio/
 assets/study-images/metformin_card_v2.jpeg
+
+# Local render/promo scratch output; do not publish through GitHub Pages.
+.tmp-cover/
+.tmp-promo/

@@ -41,13 +41,14 @@ function calcScores(deckId, dataSource) {
     if (v.notRecorded) {
       (v.slidesHave || []).forEach(() => { totalBP++; untracked++; });
     } else {
-      v.said.forEach((s, i) => {
+      const coveredItems = Array.isArray(v.said) ? v.said : (v.slidesHave || []);
+      coveredItems.forEach((s, i) => {
         totalBP++;
         if (s.weak) weak++; else covered++;
         if (LS.get(v.id + '_s_' + i) === '1') reviewed++;
       });
     }
-    v.gaps.forEach(() => { totalBP++; missing++; });
+    (v.gaps || []).forEach(() => { totalBP++; missing++; });
   });
 
   return { totalBP, covered, weak, missing, reviewed, untracked };

@@ -38,25 +38,28 @@
   </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css?v=30">
+  <link rel="stylesheet" href="../style.css?v=32">
   <link rel="icon" type="image/png" href="../assets/favicon.png">
 </head>
-<body>
+<body class="visual-hub-page">
 <div class="page-container">
   <div class="hero">
     <h1 class="hero-title">Pharmacology Exam 2</h1>
-    <p class="hero-sub">50-55 questions &bull; 4 topic areas</p>
+    <p class="hero-sub">50-55 questions &bull; 4 core topic areas + GI study flow</p>
   </div>
+
+  <section class="visual-launcher-shell" aria-labelledby="pharmVisualTitle">
+    <div class="visual-launcher-topline">
+      <div>
+        <span class="visual-launcher-kicker">Visual topic launcher</span>
+        <h2 id="pharmVisualTitle">Find the drug family by image.</h2>
+        <p>Each launcher opens the video walkthrough and keeps the matching flashcards one tap away. GI is included as a study flow without pretending it belongs to the old four-topic Exam 2 shelf.</p>
+      </div>
+    </div>
+    <div class="visual-topic-grid" id="visualTopicGrid"></div>
+  </section>
 
   <div class="score-bar" id="scoreBar"></div>
-
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Covered in video</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> In slides, not recorded</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Not covered yet</div>
-  </div>
-
-  <div class="deck-grid" id="deckGrid"></div>
 
   <a href="quiz3-gi-flashcards.html" style="text-decoration:none;display:block;cursor:pointer;border:2px solid #2A9D8F;border-radius:16px;padding:24px;margin:16px 0;background:linear-gradient(135deg,rgba(42,157,143,0.08),rgba(42,157,143,0.02));text-align:center">
     <div style="font-size:2.5em;margin-bottom:8px">🃏</div>
@@ -106,43 +109,94 @@
 </footer>
 
 <script src="../js/data.js"></script>
-<script src="../js/tracker.js?v=5"></script>
+<script src="../js/tracker.js?v=7"></script>
 <script src="../js/nav.js?v=8"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/feedback.js?v=3"></script>
-<script src="../js/signup.js?v=4"></script>
 <script src="../js/share.js?v=4"></script>
 <script>
-  const pages = { deck3: 'diabetes.html', deck4: 'endocrine.html', deck2: 'antimicrobials.html', deck1: 'hematology.html' };
-  const statusMap = { uploaded: 'status-uploaded', 'not-recorded': 'status-not-recorded', 'no-video': 'status-no-video' };
-  const statusLabel = { uploaded: 'UPLOADED', 'not-recorded': 'NOT RECORDED', 'no-video': 'COMING SOON' };
+  const VISUAL_TOPICS_PHARM = [
+    {
+      id: 'deck1',
+      title: 'Hematology, Immunity & Clotting',
+      subtitle: 'Heparin, warfarin, DOACs, immune drugs, anemia anchors',
+      color: '#C92A2A',
+      statusText: 'Video + cards',
+      image: '../assets/drug-cards/heparin_card.jpeg',
+      chips: ['Blood meds', '40 min video', 'Heme cards'],
+      href: 'hematology.html',
+      flashHref: '../all-flashcards.html?deck=pharm&section=pharm_hematology'
+    },
+    {
+      id: 'deck2',
+      title: 'Infectious Disease & Antimicrobials',
+      subtitle: 'Antibiotics, antivirals, antifungals, TB, HIV',
+      color: '#0B7285',
+      statusText: 'Video + cards',
+      image: '../assets/study-images/bactrim_vs_pyridium.jpg',
+      chips: ['Largest section', '18-22 questions', 'Antibiotic traps'],
+      href: 'antimicrobials.html',
+      flashHref: '../all-flashcards.html?deck=pharm&section=pharm_antimicrobials'
+    },
+    {
+      id: 'deck3',
+      title: 'Diabetes Drugs Made Simple',
+      subtitle: 'Insulins, metformin, SGLT-2, GLP-1, DKA/HHS',
+      color: '#2B8A3E',
+      statusText: 'Video + cards',
+      image: '../assets/study-images/insulin_timeline.jpg',
+      chips: ['Ch 41', '12-13 questions', 'Insulin timing'],
+      href: 'diabetes.html',
+      flashHref: '../all-flashcards.html?deck=pharm&section=pharm_diabetes'
+    },
+    {
+      id: 'deck4',
+      title: 'Thyroid, Pituitary & Adrenal',
+      subtitle: 'Levothyroxine, PTU, DDAVP, steroids, adrenal drugs',
+      color: '#5F3DC4',
+      statusText: 'Video + cards',
+      image: '../assets/drug-cards/levothyroxine_card.jpeg',
+      chips: ['Ch 42-44', '12-13 questions', 'Hormone rules'],
+      href: 'endocrine.html',
+      flashHref: '../all-flashcards.html?deck=pharm&section=pharm_endocrine'
+    },
+    {
+      id: 'q3gi',
+      title: 'GI Drugs Visual Flashcards',
+      subtitle: 'H2 blockers, PPIs, antacids, antiemetics, laxatives, antidiarrheals',
+      color: '#2A9D8F',
+      statusText: 'GI study flow',
+      image: '../exam2/quiz3-gi-images/04_ppi_mechanism.png',
+      chips: ['37 visual cards', 'GI meds', 'Final-useful'],
+      href: 'quiz3-gi-flashcards.html',
+      flashHref: '../all-flashcards.html?deck=q3gi',
+      featured: true
+    }
+  ];
 
   // Render score bar (all decks)
   renderScores('scoreBar', null);
 
-  // Render deck cards
-  const grid = document.getElementById('deckGrid');
-  grid.innerHTML = STUDY_DATA.videos.map(v => {
-    const totalItems = v.said.length + (v.slidesHave || []).length + v.gaps.length;
-    const coveredItems = v.said.length;
-    const pct = totalItems > 0 ? Math.round((coveredItems / totalItems) * 100) : 0;
-    return `<a href="${pages[v.id]}" class="deck-card">
-      <div class="deck-card-header" style="background:${v.color}">
-        <h3>${v.title}</h3>
-        <div class="meta">${v.subtitle}</div>
-        <span class="video-status ${statusMap[v.status]}">${statusLabel[v.status]}</span>
+  const grid = document.getElementById('visualTopicGrid');
+  grid.innerHTML = VISUAL_TOPICS_PHARM.map(t => `
+    <article class="visual-topic-card ${t.featured ? 'featured-final' : ''}" style="--topic-color:${t.color}">
+      <div class="visual-topic-media">
+        <img src="${t.image}" alt="${t.title}" loading="lazy" width="640" height="360">
+        <span class="visual-topic-status">${t.statusText}</span>
       </div>
-      <div class="deck-card-body">
-        <div class="deck-card-stat"><strong>${v.questionCount}</strong> estimated exam questions</div>
-        <div class="deck-card-stat"><strong>${coveredItems}/${totalItems}</strong> syllabus items covered (${pct}%)</div>
-        <div class="deck-card-stat" style="margin-top:8px">
-          <div style="height:6px;background:#e9ecef;border-radius:3px;overflow:hidden">
-            <div style="height:100%;width:${pct}%;background:${v.color};border-radius:3px;transition:width 0.3s"></div>
-          </div>
+      <div class="visual-topic-body">
+        <h3>${t.title}</h3>
+        <p>${t.subtitle}</p>
+        <div class="visual-topic-chip-row">
+          ${t.chips.map(chip => `<span class="visual-topic-chip">${chip}</span>`).join('')}
+        </div>
+        <div class="visual-topic-actions">
+          <a class="visual-topic-action primary" href="${t.href}">Open study room</a>
+          <a class="visual-topic-action flashcard-lane" href="${t.flashHref}">Flip matching flashcards</a>
         </div>
       </div>
-    </a>`;
-  }).join('');
+    </article>
+  `).join('');
 </script>
 </body>
 </html>

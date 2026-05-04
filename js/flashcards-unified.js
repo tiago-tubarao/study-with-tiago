@@ -1,6 +1,6 @@
 // ══════════════════════════════════════════════
 // Unified Flashcard Engine — ALL decks in one page
-// Normalizes 5 data sources into one card system
+// Normalizes 6 data sources into one card system
 // ══════════════════════════════════════════════
 
 (function() {
@@ -13,6 +13,7 @@
   // ── Deck definitions ──
   var DECKS = [
     { id: 'pharm', label: 'Pharm Exam 2', color: '#0B1D3A', count: 0 },
+    { id: 'finalgi', label: 'Final GI', color: '#2A9D8F', count: 0 },
     { id: 'exam3', label: 'Exam 3', color: '#2B8A3E', count: 0 },
     { id: 'q3cns', label: 'Quiz 3 CNS', color: '#D9480F', count: 0 },
     { id: 'q3gi', label: 'Quiz 3 GI', color: '#862E9C', count: 0 }
@@ -56,7 +57,32 @@
     DECKS[0].count = (d.cards || []).length;
   }
 
-  // 2. Adult Health (FLASHCARD_DATA_AH) — merged into Exam 3
+  // 2. Adult Health Final GI (FLASHCARD_DATA_FINAL_GI) — clinical final-prep deck
+  if (window.FLASHCARD_DATA_FINAL_GI) {
+    var fg = window.FLASHCARD_DATA_FINAL_GI;
+    (fg.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'finalgi'); });
+    (fg.cards || []).forEach(function(c) {
+      allCards.push({
+        type: 'traditional',
+        deckId: 'finalgi',
+        deckLabel: 'FINAL GI',
+        sectionKey: 'finalgi_' + c.section,
+        drugName: c.drugName,
+        brandName: c.brandName || '',
+        drugClass: c.drugClass || '',
+        purpose: c.purpose || '',
+        icon: c.icon || '',
+        facts: c.facts || [],
+        mnemonic: c.mnemonic || '',
+        image: null,
+        pillColor: (fg.sections.find(function(s) { return s.id === c.section; }) || {}).color || '#2A9D8F'
+      });
+    });
+    var finalGiDeck = DECKS.find(function(d) { return d.id === 'finalgi'; });
+    if (finalGiDeck) finalGiDeck.count = (fg.cards || []).length;
+  }
+
+  // 3. Adult Health (FLASHCARD_DATA_AH) — merged into Exam 3
   if (window.FLASHCARD_DATA_AH) {
     var d2 = window.FLASHCARD_DATA_AH;
     (d2.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'exam3'); });
@@ -79,7 +105,7 @@
     });
   }
 
-  // 3. 84 Drug Cards (FLASHCARD_DATA_DRUGS) — merged into Exam 3
+  // 4. 84 Drug Cards (FLASHCARD_DATA_DRUGS) — merged into Exam 3
   if (window.FLASHCARD_DATA_DRUGS) {
     var d3 = window.FLASHCARD_DATA_DRUGS;
     (d3.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'exam3'); });
@@ -109,7 +135,7 @@
     exam3Deck.count = allCards.filter(function(c) { return c.deckId === 'exam3'; }).length;
   }
 
-  // 4. Quiz 3 CNS (FLASHCARD_DATA_Q3) — visual format
+  // 5. Quiz 3 CNS (FLASHCARD_DATA_Q3) — visual format
   if (window.FLASHCARD_DATA_Q3) {
     var d4 = window.FLASHCARD_DATA_Q3;
     (d4.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'q3cns'); });
@@ -130,10 +156,11 @@
         pillColor: (d4.sections.find(function(s) { return s.id === c.section; }) || {}).color || '#D9480F'
       });
     });
-    DECKS[2].count = (d4.cards || []).length;
+    var q3CnsDeck = DECKS.find(function(d) { return d.id === 'q3cns'; });
+    if (q3CnsDeck) q3CnsDeck.count = (d4.cards || []).length;
   }
 
-  // 5. Quiz 3 GI (FLASHCARD_DATA_Q3_GI) — visual format
+  // 6. Quiz 3 GI (FLASHCARD_DATA_Q3_GI) — visual format
   if (window.FLASHCARD_DATA_Q3_GI) {
     var d5 = window.FLASHCARD_DATA_Q3_GI;
     (d5.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'q3gi'); });
@@ -154,16 +181,20 @@
         pillColor: (d5.sections.find(function(s) { return s.id === c.section; }) || {}).color || '#862E9C'
       });
     });
-    DECKS[3].count = (d5.cards || []).length;
+    var q3GiDeck = DECKS.find(function(d) { return d.id === 'q3gi'; });
+    if (q3GiDeck) q3GiDeck.count = (d5.cards || []).length;
   }
 
   // ── State ──
+  var params = new URLSearchParams(window.location.search);
   var queue = [];
   var currentIndex = 0;
   var isFlipped = false;
-  var activeDeck = 'all';
-  var activeSection = 'all';
-  var audioOnly = new URLSearchParams(window.location.search).get('audio') === '1' ||
+  var requestedDeck = params.get('deck') || 'all';
+  var activeDeck = DECKS.some(function(d) { return d.id === requestedDeck && d.count > 0; }) ? requestedDeck : 'all';
+  var requestedSection = params.get('section') || 'all';
+  var activeSection = allSections.some(function(s) { return s.id === requestedSection; }) ? requestedSection : 'all';
+  var audioOnly = params.get('audio') === '1' ||
                   window.location.hash === '#audio';
   if (audioOnly) activeDeck = 'exam3';
 
@@ -243,7 +274,7 @@
   // ── Render deck filters (custom dropdown) ──
   function renderDeckFilters() {
     var items = [{ value: 'all', label: '📚 All Decks (' + allCards.length + ')', active: activeDeck === 'all' }];
-    var icons = { pharm: '💊', ah: '🏥', drugs: '💉', q3cns: '🧠', q3gi: '🫁' };
+    var icons = { pharm: '💊', finalgi: '🧭', ah: '🏥', drugs: '💉', q3cns: '🧠', q3gi: '🫁' };
     DECKS.forEach(function(d) {
       if (d.count > 0) {
         items.push({ value: d.id, label: (icons[d.id] || '') + ' ' + d.label + ' (' + d.count + ')', active: activeDeck === d.id });
@@ -615,7 +646,7 @@
         var globalIdx = parseInt(item.dataset.idx);
         var card = allCards[globalIdx];
         // Reset filters to show this card
-        activeDeck = audioOnly ? 'exam3' : 'all';
+        activeDeck = audioOnly ? 'exam3' : (card.deckId || 'all');
         activeSection = 'all';
         renderAudioFilter();
         renderDeckFilters();

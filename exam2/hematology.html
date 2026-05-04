@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="Anticoagulants, vaccines, growth factors with NCLEX practice questions. Free, no sign-up.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css?v=30">
+  <link rel="stylesheet" href="../style.css?v=32">
   <link rel="icon" type="image/png" href="../assets/favicon.png">
 </head>
-<body>
+<body class="study-room-page">
 
 <div class="page-container">
   <div class="hero">
@@ -31,6 +31,18 @@
     <p class="hero-sub">34 slides &bull; 40 min video &bull; ~4-6 exam questions &bull; Ch 9, 11, 32</p>
     <p><span class="video-status status-uploaded">VIDEO LIVE — 40 min</span></p>
   </div>
+
+  <section class="study-room-shell" style="--topic-color:#C92A2A" aria-label="Pharmacology hematology video and flashcard study room">
+    <div class="study-room-copy">
+      <span class="study-room-kicker">Study room</span>
+      <h2>Watch clotting drugs, then flip the heme cards.</h2>
+      <p>Keep heparin, warfarin, DOACs, antidotes, immune modifiers, and blood-drug safety rules in one visual study loop.</p>
+    </div>
+    <div class="study-room-actions">
+      <a class="study-room-action primary" href="#video">Watch Heme Pharm video</a>
+      <a class="study-room-action flashcard-lane" href="../all-flashcards.html?deck=pharm&section=pharm_hematology">Flip Heme Pharm cards</a>
+    </div>
+  </section>
 
   <div class="score-bar" id="scoreBar"></div>
   <div class="legend">
@@ -107,13 +119,12 @@
 <script src="../js/questions-hematology.js"></script>
 <script src="../js/hints.js"></script>
 <script src="../js/questions.js"></script>
-<script src="../js/tracker.js?v=5"></script>
-<script src="../js/player.js"></script>
+<script src="../js/tracker.js?v=7"></script>
+<script src="../js/player.js?v=2"></script>
 <script src="../js/quiz.js"></script>
 <script src="../js/nav.js?v=8"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/feedback.js?v=3"></script>
-<script src="../js/signup.js?v=4"></script>
 <script src="../js/share.js?v=4"></script>
 <script>
   window._currentDeckId = 'deck1';

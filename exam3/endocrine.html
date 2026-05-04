@@ -17,16 +17,29 @@
   <meta name="twitter:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png?v=2">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css?v=30">
+  <link rel="stylesheet" href="../style.css?v=34">
   <link rel="icon" type="image/png" href="../assets/favicon.png">
 </head>
-<body>
+<body class="study-room-page">
 <div class="page-container">
   <div class="hero">
     <h1 class="hero-title">Thyroid, Pituitary & Adrenal</h1>
     <p class="hero-sub">Ch 42-44 &bull; Thyroid Storm, DI, SIADH, Addison vs Cushing &bull; ~40 practice questions</p>
     <p><span class="video-status status-uploaded">VIDEO AVAILABLE</span></p>
   </div>
+
+  <section class="study-room-shell" style="--topic-color:#5F3DC4" aria-label="Endocrine video and flashcard study room">
+    <div class="study-room-copy">
+      <span class="study-room-kicker">Study room</span>
+      <h2>Watch endocrine, then split the cards by hormone system.</h2>
+      <p>The thyroid and pituitary/adrenal flashcard filters are one tap away, so you can keep storm, myxedema, DI, SIADH, Addison, and Cushing visually separated.</p>
+    </div>
+    <div class="study-room-actions">
+      <a class="study-room-action primary" href="#video">Watch Endocrine video</a>
+      <a class="study-room-action flashcard-lane" href="../all-flashcards.html?deck=exam3&section=exam3_thyroid">Flip Thyroid flashcards</a>
+      <a class="study-room-action" href="../all-flashcards.html?deck=exam3&section=exam3_pitadrenal">Flip Pituitary/Adrenal cards</a>
+    </div>
+  </section>
 
   <div class="score-bar" id="scoreBar"></div>
   <div class="legend">
@@ -46,6 +59,37 @@
         allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
+
+  <section class="review-pack-preview compact" id="adult-health-review-preview" aria-label="Adult Health review pack preview">
+    <div class="preview-layout">
+      <div class="preview-copy">
+        <span class="preview-kicker">Preview the review pack</span>
+        <h2>See the format before Gumroad opens.</h2>
+        <p>The current Adult Health review uses priority grids, comparison tables, and practice-style prompts with rationales for hematology, diabetes, endocrine, and renal.</p>
+        <p class="preview-disclaimer">Preview is educational study support. No actual exam or ATI questions. No score promises.</p>
+      </div>
+      <div class="preview-mini-grid" aria-hidden="true">
+        <div class="preview-mini-sheet">
+          <h4>Priority grid</h4>
+          <div class="preview-row"><span class="preview-pill red"></span><span>Danger signs</span></div>
+          <div class="preview-row"><span class="preview-pill gold"></span><span>Common trap</span></div>
+          <div class="preview-row"><span class="preview-pill green"></span><span>Nursing action</span></div>
+        </div>
+        <div class="preview-mini-sheet">
+          <h4>Compare fast</h4>
+          <div class="preview-row"><span class="preview-pill"></span><span>What looks alike?</span></div>
+          <div class="preview-row"><span class="preview-pill purple"></span><span>What changes first?</span></div>
+          <div class="preview-row"><span class="preview-pill green"></span><span>What do I do?</span></div>
+        </div>
+        <div class="preview-mini-sheet">
+          <h4>Practice-style prompts</h4>
+          <div class="preview-row"><span class="preview-pill gold"></span><span>Question setup</span></div>
+          <div class="preview-row"><span class="preview-pill red"></span><span>Wrong-answer trap</span></div>
+          <div class="preview-row"><span class="preview-pill green"></span><span>Rationale lock</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div class="download-cta">
     <div class="cta-glow"></div>
@@ -135,8 +179,8 @@
 <script src="../js/questions-ah-endocrine.js"></script>
 <script src="../js/questions-ah-endocrine-v2.js"></script>
 <script src="../js/questions-ah.js"></script>
-<script src="../js/data-ah.js"></script>
-<script src="../js/tracker.js?v=6"></script>
+<script src="../js/data-ah.js?v=2"></script>
+<script src="../js/tracker.js?v=7"></script>
 <script src="../js/quiz.js"></script>
 <script src="../js/share.js?v=4"></script>
 <script src="../js/nav.js?v=8"></script>
