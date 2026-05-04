@@ -311,10 +311,10 @@ window.STUDY_DATA = {
       ],
       gaps: [],
       offbp: [
-        { name: 'NSAIDs / COX-1 vs COX-2', detail: 'Ch 29, NOT on Exam 2' },
-        { name: 'Ketorolac (Toradol)', detail: 'Ch 29, NOT on Exam 2' },
-        { name: 'Aspirin vs Acetaminophen', detail: 'Ch 29, NOT on Exam 2' },
-        { name: 'Antigout (Colchicine, Allopurinol)', detail: 'Ch 29, NOT on Exam 2' },
+        { name: 'NSAIDs / COX-1 vs COX-2', detail: 'Ch 29, outside this pharmacology topic set' },
+        { name: 'Ketorolac (Toradol)', detail: 'Ch 29, outside this pharmacology topic set' },
+        { name: 'Aspirin vs Acetaminophen', detail: 'Ch 29, outside this pharmacology topic set' },
+        { name: 'Antigout (Colchicine, Allopurinol)', detail: 'Ch 29, outside this pharmacology topic set' },
         { name: 'Oseltamivir (Tamiflu)', detail: 'Not in blueprint antiviral list' },
         { name: 'Linezolid vs Clindamycin', detail: 'Not named on blueprint' },
       ]

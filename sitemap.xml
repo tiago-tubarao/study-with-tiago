@@ -90,7 +90,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-  <!-- Pharmacology Exam 2 -->
+  <!-- Pharmacology Study Hub -->
   <url>
     <loc>https://tiago-tubarao.github.io/study-with-tiago/exam2/</loc>
     <lastmod>2026-03-31</lastmod>
@@ -139,7 +139,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <!-- Adult Health Exam 3 -->
+  <!-- Adult Health Topic Hub -->
   <url>
     <loc>https://tiago-tubarao.github.io/study-with-tiago/exam3/</loc>
     <lastmod>2026-03-31</lastmod>

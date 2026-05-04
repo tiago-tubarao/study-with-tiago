@@ -12,9 +12,9 @@
 
   // ── Deck definitions ──
   var DECKS = [
-    { id: 'pharm', label: 'Pharm Exam 2', color: '#0B1D3A', count: 0 },
+    { id: 'pharm', label: 'Pharmacology', color: '#0B1D3A', count: 0 },
     { id: 'finalgi', label: 'Final GI', color: '#2A9D8F', count: 0 },
-    { id: 'exam3', label: 'Exam 3', color: '#2B8A3E', count: 0 },
+    { id: 'exam3', label: 'Adult Health', color: '#2B8A3E', count: 0 },
     { id: 'q3cns', label: 'Quiz 3 CNS', color: '#D9480F', count: 0 },
     { id: 'q3gi', label: 'Quiz 3 GI', color: '#862E9C', count: 0 }
   ];
@@ -33,7 +33,7 @@
     return key;
   }
 
-  // 1. Pharm Exam 2 (FLASHCARD_DATA) — traditional format
+  // 1. Pharmacology (FLASHCARD_DATA) — traditional format
   if (window.FLASHCARD_DATA) {
     var d = window.FLASHCARD_DATA;
     (d.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'pharm'); });
@@ -82,7 +82,7 @@
     if (finalGiDeck) finalGiDeck.count = (fg.cards || []).length;
   }
 
-  // 3. Adult Health (FLASHCARD_DATA_AH) — merged into Exam 3
+  // 3. Adult Health (FLASHCARD_DATA_AH) — merged into the Adult Health deck
   if (window.FLASHCARD_DATA_AH) {
     var d2 = window.FLASHCARD_DATA_AH;
     (d2.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'exam3'); });
@@ -105,7 +105,7 @@
     });
   }
 
-  // 4. 84 Drug Cards (FLASHCARD_DATA_DRUGS) — merged into Exam 3
+  // 4. 84 Drug Cards (FLASHCARD_DATA_DRUGS) — merged into the Adult Health deck
   if (window.FLASHCARD_DATA_DRUGS) {
     var d3 = window.FLASHCARD_DATA_DRUGS;
     (d3.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'exam3'); });
@@ -129,7 +129,7 @@
     });
   }
 
-  // Update Exam 3 deck count (AH + Drugs combined)
+  // Update Adult Health deck count (AH + Drugs combined)
   var exam3Deck = DECKS.find(function(d) { return d.id === 'exam3'; });
   if (exam3Deck) {
     exam3Deck.count = allCards.filter(function(c) { return c.deckId === 'exam3'; }).length;

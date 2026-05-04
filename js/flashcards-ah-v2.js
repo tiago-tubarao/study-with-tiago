@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════
-// Confidence-Based Repetition Flashcards — Adult Health Exam 3
+// Confidence-Based Repetition Flashcards — Adult Health
 // Got It / Study More mastery + Prev/Next/Shuffle navigation
 // ══════════════════════════════════════════════
 

@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════
-// 84 Individual Drug Flashcards — Adult Health Exam 3
+// 84 Individual Drug Flashcards — Adult Health
 // Image on front, 12-Point Clinical Framework on back
 // Generated from 26 drug groups × individual drugs
 // ══════════════════════════════════════════════

@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════
-// Confidence-Based Repetition Flashcards — Adult Health Exam 3
+// Confidence-Based Repetition Flashcards — Adult Health
 // 1-5 rating system with weighted repetition + mastered state
 // ══════════════════════════════════════════════
 

@@ -108,7 +108,8 @@ test('Study-room paths do not load the newsletter popup over the video and flash
     'exam2/hematology.html',
     'exam2/endocrine.html',
     'exam2/antimicrobials.html',
-    'adult-health-final.html',
+    'adult-health-final-gi-upper-lower.html',
+    'adult-health-final-gi-liver-pancreas.html',
   ].forEach((path) => {
     assert.doesNotMatch(read(path), /signup\.js/);
   });
@@ -117,25 +118,27 @@ test('Study-room paths do not load the newsletter popup over the video and flash
 test('Adult Health Final GI video cards use local study visuals instead of YouTube thumbnail URLs', () => {
   const html = read('adult-health-final.html');
 
-  assert.match(html, /<body class="study-room-page">/);
+  assert.match(html, /<body class="visual-hub-page final-prep-hub-page">/);
   assert.doesNotMatch(html, /img\.youtube\.com/);
   assert.match(html, /exam2\/quiz3-gi-images\/29_gerd_lifestyle\.png/);
   assert.match(html, /exam2\/quiz3-gi-images\/17_lactulose_ammonia_trap\.png/);
 });
 
-test('Adult Health Final GI videos are playable on-page and watch clicks stay inside the study shelf', () => {
-  const html = read('adult-health-final.html');
+test('Adult Health Final hub opens dedicated on-site GI study rooms', () => {
+  const hub = read('adult-health-final.html');
 
-  assert.match(html, /youtube\.com\/embed\/9Hh1A-MYmK0/);
-  assert.match(html, /youtube\.com\/embed\/54xQ65nuZGc/);
-  assert.match(html, /<a class="video-card" href="#upper-lower-video"/);
-  assert.match(html, /<a class="video-card" href="#liver-pancreas-video"/);
-  assert.match(html, /<a class="resource-card" href="#upper-lower-video"/);
-  assert.match(html, /<a class="resource-card" href="#liver-pancreas-video"/);
-  assert.match(html, /<a class="resource-card" href="#gi-my-notes"/);
-  assert.doesNotMatch(html, /href="https:\/\/youtu\.be\//);
+  assert.match(hub, /href="adult-health-final-gi-upper-lower\.html"/);
+  assert.match(hub, /href="adult-health-final-gi-liver-pancreas\.html"/);
+  assert.doesNotMatch(hub, /href="#upper-lower-video"/);
+  assert.doesNotMatch(hub, /href="#liver-pancreas-video"/);
+  assert.doesNotMatch(hub, /href="https:\/\/youtu\.be\//);
 
-  const gumroadLinks = html.match(/<a[^>]+href="https:\/\/medpro3\.gumroad\.com\/l\/adult-health-gi-my-notes"[^>]*>/g) || [];
+  [
+    ['adult-health-final-gi-upper-lower.html', 'youtube.com/embed/9Hh1A-MYmK0'],
+    ['adult-health-final-gi-liver-pancreas.html', 'youtube.com/embed/54xQ65nuZGc'],
+  ].forEach(([path, embed]) => assert.match(read(path), new RegExp(embed.replace(/[.?]/g, '\\$&'))));
+
+  const gumroadLinks = hub.match(/<a[^>]+href="https:\/\/medpro3\.gumroad\.com\/l\/adult-health-gi-my-notes"[^>]*>/g) || [];
   assert.equal(gumroadLinks.length, 1);
   gumroadLinks.forEach((link) => assert.doesNotMatch(link, /target="_blank"/));
 });

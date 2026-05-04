@@ -19,7 +19,7 @@
   <meta name="twitter:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-preview.png?v=2">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=34">
+  <link rel="stylesheet" href="style.css?v=38">
   <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
@@ -93,7 +93,7 @@
 
   <div class="video-section" id="pharm-bundle">
     <div class="video-header" style="background:linear-gradient(135deg, var(--navy), var(--teal))">
-      <h2>Pharmacology Exam 2 — Study Bundle</h2>
+      <h2>Pharmacology Study Bundle</h2>
       <div class="meta">8 PDFs — drug lists, study guides, clinical cases + 162-question practice exam</div>
       <span class="video-status status-uploaded">$5</span>
     </div>
@@ -144,13 +144,13 @@
       <span class="video-status status-recorded">GI LIVE</span>
     </div>
     <div style="padding:20px">
-      <p>The final-prep shelf is where GI, Neuro, MSK/Ortho, and cumulative review material is added as it becomes public-ready. GI is live now with two videos, GI My Notes, and a focused Final GI card deck; Neuro and MSK/Ortho stay staged until they are public-safe.</p>
+      <p>The final-prep shelf is where GI, Neuro, MSK/Ortho, and cumulative review material is added as it becomes public-ready. GI is live now with two embedded study rooms, GI My Notes, and a focused Final GI card deck; Neuro and MSK/Ortho stay staged until they are public-safe.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
         <a href="https://medpro3.gumroad.com/l/adult-health-gi-my-notes" target="_blank" rel="noopener" class="cta-button" style="background:var(--teal);color:#fff">GI My Notes - $7.99 &rarr;</a>
         <a href="all-flashcards.html?deck=finalgi" class="cta-button" style="background:var(--teal);color:#fff">Study Final GI Cards &rarr;</a>
         <a href="adult-health-final.html" class="cta-button" style="background:var(--teal);color:#fff">Open Final Prep Shelf &rarr;</a>
-        <a href="adult-health-final.html#upper-lower-video" class="cta-button">Upper/Lower GI Study Room</a>
-        <a href="adult-health-final.html#liver-pancreas-video" class="cta-button">Liver/Pancreas Study Room</a>
+        <a href="adult-health-final-gi-upper-lower.html" class="cta-button">Upper/Lower GI Study Room</a>
+        <a href="adult-health-final-gi-liver-pancreas.html" class="cta-button">Liver/Pancreas Study Room</a>
         <a href="https://medpro3.gumroad.com/l/sdwsfx" target="_blank" rel="noopener" class="cta-button">Current AH Review - $5</a>
         <a href="https://medpro3.gumroad.com/l/qwrbv" target="_blank" rel="noopener" class="cta-button" style="background:var(--purple);color:#fff">Practice Exams - $5</a>
       </div>
@@ -161,7 +161,7 @@
     <div class="cta-content" style="text-align:center">
       <div style="font-size:2.5em;margin-bottom:8px">&#127183;</div>
       <h3 class="cta-title">All Flashcards — 323 Cards</h3>
-      <p class="cta-sub">5 decks: Pharm Exam 2, Adult Health Final GI, Adult Health, Quiz 3 CNS, and Quiz 3 GI. Filter by course or study them all.</p>
+      <p class="cta-sub">5 decks: Pharmacology, Adult Health Final GI, Adult Health, Quiz 3 CNS, and Quiz 3 GI. Filter by course or study them all.</p>
       <span class="cta-button" style="display:inline-block;margin-top:8px">Flashcard Hub &rarr;</span>
     </div>
   </a>
@@ -241,7 +241,7 @@
 <script src="js/theme.js"></script>
 <script src="js/feedback.js?v=3"></script>
 <script src="js/signup.js?v=4"></script>
-<script src="js/share.js?v=4"></script>
+<script src="js/share.js?v=5"></script>
 <script>
   const renderVideoRow = (v) =>
     `<a href="${v.localHref}" style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit">
@@ -300,8 +300,8 @@
   })).join('');
 
   const finalGiVideos = [
-    { id: '9Hh1A-MYmK0', title: 'GI Upper/Lower Crash Course', subtitle: 'Adult Health Final — GERD, PUD, IBD, obstructions, and priority traps', localHref: 'adult-health-final.html#upper-lower-video' },
-    { id: '54xQ65nuZGc', title: 'Liver and Pancreas Crash Course', subtitle: 'Adult Health Final — cirrhosis, hepatitis, pancreatitis, and gallbladder priorities', localHref: 'adult-health-final.html#liver-pancreas-video' },
+    { id: '9Hh1A-MYmK0', title: 'GI Upper/Lower Crash Course', subtitle: 'Adult Health Final — GERD, PUD, IBD, obstructions, and priority traps', localHref: 'adult-health-final-gi-upper-lower.html' },
+    { id: '54xQ65nuZGc', title: 'Liver and Pancreas Crash Course', subtitle: 'Adult Health Final — cirrhosis, hepatitis, pancreatitis, and gallbladder priorities', localHref: 'adult-health-final-gi-liver-pancreas.html' },
   ].map(v => renderVideoRow({
     thumbId: v.id,
     title: v.title,

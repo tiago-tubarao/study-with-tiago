@@ -10,6 +10,13 @@ const previewAssets = [
   'assets/product-previews/gi-my-notes-page-012.png',
   'assets/product-previews/gi-my-notes-page-024.png',
   'assets/product-previews/gi-my-notes-page-089.png',
+  'assets/product-previews/gi-kawaii/gi-kawaii-gerd.jpg',
+  'assets/product-previews/gi-kawaii/gi-kawaii-ibd.jpg',
+  'assets/product-previews/gi-kawaii/gi-kawaii-obstruction.jpg',
+  'assets/product-previews/gi-kawaii/gi-kawaii-cirrhosis.jpg',
+  'assets/product-previews/gi-kawaii/gi-kawaii-encephalopathy.jpg',
+  'assets/product-previews/gi-kawaii/gi-kawaii-pancreatitis.jpg',
+  'assets/product-previews/gi-kawaii/gi-kawaii-gallbladder.jpg',
 ];
 
 test('GI My Notes preview assets are present in the public website asset tree', () => {

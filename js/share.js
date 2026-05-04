@@ -35,7 +35,7 @@
     var cleanUrl = cleanShareUrl();
     var isAH = p.includes('/exam3/');
 
-    // Adult Health Exam 3 pages
+    // Adult Health pages
     if (isAH) {
       if (p.includes('drug-flashcards')) {
         return '💊 84 Drug Flashcards with Audio — AI-generated card images + 8-category clinical framework\n\n'
@@ -60,7 +60,7 @@
       if (p.includes('renal')) {
         return '🫘 Adult Health Renal review — AKI, CKD, dialysis, kidney stones + practice questions\n\n🔗 ' + base + 'exam3/renal.html';
       }
-      return '🩺 FREE Adult Health Exam 3 study hub — hematology, diabetes, endocrine, renal + practice questions\n\n🔗 ' + base + 'exam3/';
+      return '🩺 FREE Adult Health study hub — hematology, diabetes, endocrine, renal + practice questions\n\n🔗 ' + base + 'exam3/';
     }
 
     // Unified flashcards page
@@ -75,7 +75,7 @@
         + '🔗 ' + cleanUrl;
     }
 
-    // Pharmacology Exam 2 pages
+    // Pharmacology pages
     if (p.includes('flashcards')) {
       return '🃏 Exam day? Here are 66 FREE flip flashcards — every drug on the blueprint.\n\n'
         + '✅ Antidotes, mnemonics, key facts\n'
@@ -96,7 +96,7 @@
       return '🩸 Anticoagulants, growth factors & blood products — free video + practice questions\n\n🔗 ' + base + 'exam2/hematology.html';
     }
     if (p.includes('exam2')) {
-      return '📋 FREE Pharmacology Exam 2 study hub — 486+ questions, 4 video lectures, confidence tracking\n\n🔗 ' + base + 'exam2/';
+      return '📋 FREE Pharmacology study hub — 486+ questions, 4 video lectures, confidence tracking\n\n🔗 ' + base + 'exam2/';
     }
     // Main page / default
     return '📚 Nursing exam coming up? This student built a FREE study site with videos, flashcards, practice questions & optional study bundles\n\n'
@@ -111,7 +111,7 @@
     var text = getShareText();
     var isAH = location.pathname.includes('/exam3/');
     var shareData = {
-      title: isAH ? 'Study with Tiago — Free Adult Health Exam Prep' : 'Study with Tiago — Free Nursing Exam Prep',
+      title: isAH ? 'Study with Tiago — Free Adult Health Study Tools' : 'Study with Tiago — Free Nursing Study Tools',
       text: text,
       url: cleanShareUrl()
     };

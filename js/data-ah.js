@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════
-// ADULT HEALTH DATA — Study topics for Exam 3
+// ADULT HEALTH DATA — study topics by body system
 // Structure matches STUDY_DATA for tracker.js compatibility
 // ══════════════════════════════════════════════
 

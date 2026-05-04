@@ -17,12 +17,14 @@ const localVideoIds = [
   '7Ctl6uAWgms',
 ];
 
-test('Video Hub GI Final cards route to embedded on-site players', () => {
+test('Video Hub GI Final cards route to dedicated on-site study rooms', () => {
   const html = read('videos.html');
 
-  assert.match(html, /href="adult-health-final\.html#upper-lower-video"/);
-  assert.match(html, /href="adult-health-final\.html#liver-pancreas-video"/);
-  assert.match(html, /Open inside the GI study loop/);
+  assert.match(html, /href="adult-health-final-gi-upper-lower\.html"/);
+  assert.match(html, /href="adult-health-final-gi-liver-pancreas\.html"/);
+  assert.match(html, /Open the study room/);
+  assert.doesNotMatch(html, /href="adult-health-final\.html#upper-lower-video"/);
+  assert.doesNotMatch(html, /href="adult-health-final\.html#liver-pancreas-video"/);
 
   ['9Hh1A-MYmK0', '54xQ65nuZGc'].forEach((id) => {
     assert.doesNotMatch(html, new RegExp(`href="https://youtu\\.be/${id}`));
@@ -39,8 +41,8 @@ test('Resources generated video list uses local study-room routes for embedded v
   assert.match(html, /Open study room/);
 
   [
-    'adult-health-final.html#upper-lower-video',
-    'adult-health-final.html#liver-pancreas-video',
+    'adult-health-final-gi-upper-lower.html',
+    'adult-health-final-gi-liver-pancreas.html',
     'exam3/diabetes.html#video',
     'exam3/endocrine.html#video',
     'exam3/renal.html#video',
