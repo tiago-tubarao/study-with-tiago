@@ -19,14 +19,30 @@
   toast.textContent = 'Share message copied!';
   document.body.appendChild(toast);
 
-  // Build a share message based on which page we're on
+  const PUBLIC_SITE_BASE = 'https://tiago-tubarao.github.io/study-with-tiago/';
+  const PUBLIC_SITE_PATH = '/study-with-tiago/';
+  const SHARE_QUERY_ALLOWLIST = ['audio', 'deck', 'section'];
+
+  // Build a public, bookmark-safe URL even while testing from localhost/127.0.0.1.
   function cleanShareUrl() {
-    var u = new URL(location.href);
-    var keepAudio = u.searchParams.get('audio') === '1';
-    u.search = '';
-    u.hash = '';
-    if (keepAudio) u.searchParams.set('audio', '1');
-    return u.toString();
+    var sourceUrl = new URL(location.href);
+    var cleanPath = sourceUrl.pathname;
+
+    if (cleanPath.indexOf(PUBLIC_SITE_PATH) === 0) {
+      cleanPath = cleanPath.slice(PUBLIC_SITE_PATH.length);
+    } else {
+      cleanPath = cleanPath.replace(/^\/+/, '');
+    }
+
+    var publicUrl = new URL(cleanPath, PUBLIC_SITE_BASE);
+    SHARE_QUERY_ALLOWLIST.forEach(function(param) {
+      var value = sourceUrl.searchParams.get(param);
+      if (!value) return;
+      if (param === 'audio' && value !== '1') return;
+      publicUrl.searchParams.set(param, value);
+    });
+    publicUrl.hash = sourceUrl.hash;
+    return publicUrl.toString();
   }
 
   function getShareText() {
