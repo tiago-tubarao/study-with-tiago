@@ -92,7 +92,9 @@ test('Dedicated GI study rooms embed the right video, chapters, flashcard lane, 
     room.kawaiiAssets.forEach((asset) => assert.match(html, new RegExp(asset.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))));
     assert.equal((html.match(/class="preview-slide/g) || []).length, room.previewSlides);
     assert.equal((html.match(/class="preview-carousel-dot(?:\s|")/g) || []).length, room.previewSlides);
-    assert.match(html, /No actual exam or ATI questions/);
+    assert.doesNotMatch(html, /Preview shows sample format/i);
+    assert.doesNotMatch(html, /No actual exam or ATI questions/i);
+    assert.doesNotMatch(html, /No score promises/i);
     assert.match(html, new RegExp(`requests\\.html\\?type=topic&topic=${room.requestTopic}`));
     assert.doesNotMatch(html, /href="https:\/\/youtu\.be\//);
     assert.doesNotMatch(html, /href="https:\/\/www\.youtube\.com\/watch/);
