@@ -202,7 +202,7 @@ window.STUDY_DATA = {
       notRecorded: false,
       questionCount: '18-22',
       chapter: 'Chapters 39-40',
-      subtitle: '~48 slides (blueprint-aligned) • ~18-22 exam questions • LARGEST section',
+      subtitle: '~48 slides (blueprint-aligned) • ~18-22 exam questions • High-volume section',
       timestamps: [
         ['00:00','Intro — Why This Section = 18-22 Exam Questions'],
         ['00:45','Antimicrobial Cheat Sheet Overview'],

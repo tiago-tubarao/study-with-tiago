@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════
-// 84 Drug Flashcards Engine — Image Front + 12-Point Clinical Framework Back
+// 160 Adult Health Flashcards Engine — 84 drugs + 76 conditions, 12-point clinical backs
 // Features: mastery tracking, category drill, search, image lightbox
 // ══════════════════════════════════════════════
 

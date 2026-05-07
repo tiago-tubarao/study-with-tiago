@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 
-test('Adult Health hub renders a visual topic launcher for every public-ready topic', () => {
+test('Adult Health hub renders a visual topic launcher for every ready topic', () => {
   const html = read('exam3/index.html');
 
   assert.match(html, /visual-topic-grid/);

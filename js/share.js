@@ -54,15 +54,15 @@
     // Adult Health pages
     if (isAH) {
       if (p.includes('drug-flashcards')) {
-        return '💊 84 Drug Flashcards with Audio — AI-generated card images + 8-category clinical framework\n\n'
-          + '🎙 Podcast audio for every drug\n'
+        return '💊 160 Adult Health flashcards — 84 drugs + 76 conditions with 12-point clinical backs\n\n'
+          + '🎙 Podcast audio for the drug cards\n'
           + '🔊 Read-aloud mode\n'
-          + '🔍 Search any drug instantly\n'
+          + '🔍 Search any drug or condition instantly\n'
           + '📊 Mastery tracking\n\n'
           + '🔗 ' + base + 'exam3/drug-flashcards.html';
       }
       if (p.includes('flashcards')) {
-        return '🩺 FREE Adult Health flashcards — hematology, diabetes, endocrine, renal\n\n🔗 ' + base + 'exam3/flashcards.html';
+        return '🩺 Adult Health flashcards — hematology, diabetes, endocrine, renal, with visual hooks and mastery tracking\n\n🔗 ' + base + 'exam3/flashcards.html';
       }
       if (p.includes('diabetes')) {
         return '💉 Adult Health Diabetes review — DKA, HHS, insulins, oral agents + practice questions\n\n🔗 ' + base + 'exam3/diabetes.html';
@@ -76,7 +76,7 @@
       if (p.includes('renal')) {
         return '🫘 Adult Health Renal review — AKI, CKD, dialysis, kidney stones + practice questions\n\n🔗 ' + base + 'exam3/renal.html';
       }
-      return '🩺 FREE Adult Health study hub — hematology, diabetes, endocrine, renal + practice questions\n\n🔗 ' + base + 'exam3/';
+      return '🩺 Adult Health study hub — hematology, diabetes, endocrine, renal, 592 practice questions, videos, and flashcards\n\n🔗 ' + base + 'exam3/';
     }
 
     // Unified flashcards page
@@ -84,7 +84,7 @@
       var audioMode = new URL(location.href).searchParams.get('audio') === '1';
       return (audioMode
         ? '🎙 84 Adult Health drug flashcards with podcast + read-card audio\n\n'
-        : '🃏 323 Nursing Flashcards in ONE page — Pharmacology, Adult Health Final GI, Adult Health, 84 Drug Cards with Audio, Quiz 3\n\n')
+        : '🃏 323 Nursing Flashcards in ONE page — Pharmacology, Adult Health Final GI, Adult Health, 84 audio-ready drug cards, Quiz 3\n\n')
         + '🔍 Search any drug or condition\n'
         + '📊 Mastery tracking across all decks\n'
         + '🎙 Audio for 84 drug cards\n\n'
@@ -93,14 +93,14 @@
 
     // Pharmacology pages
     if (p.includes('flashcards')) {
-      return '🃏 Exam day? Here are 66 FREE flip flashcards — every drug on the blueprint.\n\n'
+      return '🃏 66 pharmacology quick-review flashcards — core drugs from the blueprint.\n\n'
         + '✅ Antidotes, mnemonics, key facts\n'
         + '✅ Filter by topic, shuffle, swipe through\n'
         + '✅ Built by a nursing student, for nursing students\n\n'
         + '🔗 ' + base + 'exam2/flashcards.html';
     }
     if (p.includes('diabetes')) {
-      return '💉 12 diabetes drugs you NEED to know for your pharm exam — free video + 150+ practice questions\n\n🔗 ' + base + 'exam2/diabetes.html';
+      return '💉 12 diabetes pharmacology drugs — free video + 150+ practice questions\n\n🔗 ' + base + 'exam2/diabetes.html';
     }
     if (p.includes('endocrine')) {
       return '🦋 Thyroid, pituitary & adrenal drugs — free video + practice questions with rationales\n\n🔗 ' + base + 'exam2/endocrine.html';
@@ -112,14 +112,14 @@
       return '🩸 Anticoagulants, growth factors & blood products — free video + practice questions\n\n🔗 ' + base + 'exam2/hematology.html';
     }
     if (p.includes('exam2')) {
-      return '📋 FREE Pharmacology study hub — 486+ questions, 4 video lectures, confidence tracking\n\n🔗 ' + base + 'exam2/';
+      return '📋 Pharmacology study hub — 600+ questions, 5 video links, confidence tracking\n\n🔗 ' + base + 'exam2/';
     }
     // Main page / default
-    return '📚 Nursing exam coming up? This student built a FREE study site with videos, flashcards, practice questions & optional study bundles\n\n'
-      + '🃏 Exam Day Flashcards\n'
-      + '📝 NCLEX-style questions with rationales\n'
-      + '🎥 9 full video lectures\n'
-      + '📦 Optional $5 study bundles\n\n'
+    return '📚 Study with Tiago: nursing study tools made by a BSN student\n\n'
+      + '🎥 Videos for Pharmacology and Adult Health\n'
+      + '🃏 323 flashcards for quick review\n'
+      + '📝 My Notes, practice questions, and study loops\n'
+      + '📦 Optional study bundles when you want the full packet\n\n'
       + '🔗 ' + base;
   }
 
@@ -127,7 +127,7 @@
     var text = getShareText();
     var isAH = location.pathname.includes('/exam3/');
     var shareData = {
-      title: isAH ? 'Study with Tiago — Free Adult Health Study Tools' : 'Study with Tiago — Free Nursing Study Tools',
+      title: isAH ? 'Study with Tiago — Adult Health Study Tools' : 'Study with Tiago — Nursing Study Tools',
       text: text,
       url: cleanShareUrl()
     };

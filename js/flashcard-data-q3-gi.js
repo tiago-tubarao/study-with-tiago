@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════════
 // Flashcard Data — 37 Visual Cards for GI pharmacology review
 // GI System Drugs — Chapters 34-40
-// ADHD-optimized: emoji front connects to visual back
+// Visual-memory design: emoji front connects to visual back
 // Back = Gemini image + teaching notes that explain what you SEE
 // Built around visual cueing + externalized working-memory support
 // Updated 2026-03-31: Added Scopolamine + Dronabinol study cards

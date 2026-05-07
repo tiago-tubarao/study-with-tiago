@@ -10,7 +10,7 @@
   <meta property="og:description" content="Tell Study with Tiago what card, audio, topic, or site fix would help you study.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tiago-tubarao.github.io/study-with-tiago/requests.html">
-  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-study-with-tiago-banner.png?v=1">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-study-with-tiago-clean.png?v=1">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +50,7 @@
 <div class="page-container">
   <div class="hero">
     <h1 class="hero-title">Request a card or fix</h1>
-    <p class="hero-sub">If you searched for something and could not find it, send a clean request so I know what to build next.</p>
+    <p class="hero-sub">If you searched for something and could not find it, send a clean request so the next update can target the right gap.</p>
   </div>
 
   <section class="content-band">
@@ -82,7 +82,7 @@
 
       <label style="display:flex;gap:10px;align-items:flex-start;margin:18px 0">
         <input id="requestSafe" type="checkbox" required style="margin-top:5px">
-        <span>I am not sending actual exam questions, private health information, school identifiers, professor names, or protected test-bank content.</span>
+        <span>This request does not include actual exam questions, private health information, school identifiers, professor names, or protected test-bank content.</span>
       </label>
 
       <button type="submit" class="cta-button">Open request email draft</button>
@@ -115,7 +115,7 @@
       </div>
       <div class="resource-card" style="cursor:default">
         <span class="eyebrow">3</span>
-        <h3>I use requests to pick updates</h3>
+        <h3>Requests guide future updates</h3>
         <p>Requests help prioritize new cards, audio coverage, blog posts, and fixes.</p>
       </div>
     </div>
@@ -156,7 +156,7 @@
     var topic = params.get('topic') || params.get('card') || params.get('q') || '';
     if (topic) topicEl.value = topic;
     if (params.get('page')) {
-      detailsEl.value = 'Page where I noticed it: ' + params.get('page') + '\n\n';
+      detailsEl.value = 'Page where it was noticed: ' + params.get('page') + '\n\n';
     }
 
     function subjectPrefix(type) {
@@ -191,7 +191,7 @@
         'What would help:',
         data.details,
         '',
-        'Safety note: I am not sending actual exam questions, private health information, school identifiers, professor names, or protected test-bank content.',
+        'Safety note: This request does not include actual exam questions, private health information, school identifiers, professor names, or protected test-bank content.',
         '',
         'Request page: ' + data.page
       ].filter(Boolean).join('\n');

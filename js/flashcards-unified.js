@@ -105,7 +105,7 @@
     });
   }
 
-  // 4. 84 Drug Cards (FLASHCARD_DATA_DRUGS) — merged into the Adult Health deck
+  // 4. Adult Health visual cards (FLASHCARD_DATA_DRUGS + conditions)
   if (window.FLASHCARD_DATA_DRUGS) {
     var d3 = window.FLASHCARD_DATA_DRUGS;
     (d3.sections || []).forEach(function(s) { addSection(s.id, s.label, s.icon, s.color, 'exam3'); });
@@ -430,7 +430,7 @@
     back.style.borderTopColor = borderColor;
     var factsHTML = '';
     if (c.type === 'drug8cat') {
-      // 8-category framework — apply category colors
+      // 12-point clinical framework — apply category colors
       var catMap = {
         'WHAT IS IT': 'fc-cat-what', 'LOOKS LIKE': 'fc-cat-looks', 'GOES WRONG': 'fc-cat-wrong',
         'MONITOR': 'fc-cat-monitor', 'NURSE DOES': 'fc-cat-nurse', 'TEACH': 'fc-cat-teach',

@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════════
 // Flashcard Data — 28 Visual Cards for CNS / Neuro / Opioids review
 // CNS / Neuro / Opioids — Chapters 46-53
-// ADHD-optimized: emoji front connects to visual back
+// Visual-memory design: emoji front connects to visual back
 // Back = Gemini image + teaching notes that explain what you SEE
 // Built around visual cueing + externalized working-memory support
 // ══════════════════════════════════════════════

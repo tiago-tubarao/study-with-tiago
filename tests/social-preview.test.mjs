@@ -24,16 +24,17 @@ const genericPages = [
   'about.html',
 ];
 
-test('generic share cards use the Study with Tiago banner social preview', () => {
+test('generic share cards use the clean Study with Tiago social preview', () => {
   genericPages.forEach((page) => {
     const html = read(page);
-    assert.match(html, /assets\/og-study-with-tiago-banner\.png\?v=1/, `${page} should use the banner social preview`);
+    assert.match(html, /assets\/og-study-with-tiago-clean\.png\?v=1/, `${page} should use the clean social preview`);
+    assert.doesNotMatch(html, /assets\/og-study-with-tiago-banner\.png\?v=1/, `${page} should not use the busy banner social preview`);
     assert.doesNotMatch(html, /assets\/og-preview\.png\?v=2/, `${page} should not use the stale generic preview`);
   });
 });
 
-test('banner social preview is Open Graph sized and under common share-card limits', () => {
-  const asset = 'assets/og-study-with-tiago-banner.png';
+test('clean social preview is Open Graph sized and under common share-card limits', () => {
+  const asset = 'assets/og-study-with-tiago-clean.png';
   assert.ok(exists(asset), `${asset} should exist`);
 
   const output = execFileSync('sips', ['-g', 'pixelWidth', '-g', 'pixelHeight', path(asset)], { encoding: 'utf8' });

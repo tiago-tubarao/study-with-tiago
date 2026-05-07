@@ -63,14 +63,14 @@ test('Local video IDs are not linked to external watch pages from hub/resource c
   });
 });
 
-test('Adult Health Final shelf has staged Neuro and Ortho receiving spaces without public-ready claims', () => {
+test('Adult Health Final shelf has Neuro and Ortho coming-next spaces without live-product claims', () => {
   const html = read('adult-health-final.html');
 
   assert.match(html, /id="neuro-final-stage"/);
   assert.match(html, /id="ortho-final-stage"/);
-  assert.match(html, /recording lane coming next/i);
-  assert.match(html, /Not linked as a public video yet/);
-  assert.match(html, /Not sold as a public product yet/);
+  assert.match(html, /Coming next/);
+  assert.match(html, /links appear only when ready/);
+  assert.match(html, /not linked or sold yet/);
   assert.doesNotMatch(html, /Neuro My Notes - \$|Ortho My Notes - \$/);
 });
 

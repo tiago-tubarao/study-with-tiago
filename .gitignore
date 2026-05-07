@@ -1,6 +1,8 @@
 NEXT_SESSION_HANDOFF.md
 creator-inbox.local.html
 *.local.html
+*.local.js
+js/flashcard-data-pharm-final.js
 
 # Local working assets; only commit intentionally reviewed media.
 assets/audio/

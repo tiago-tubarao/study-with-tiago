@@ -18,20 +18,20 @@
   banner.innerHTML = `
     <div class="signup-inner">
       <div class="signup-text">
-        <div class="signup-badge">FREE — ONE QUESTION A WEEK</div>
+        <div class="signup-badge">Weekly practice question</div>
         <h3 class="signup-title">Get one NCLEX-style practice question every week — with the answer broken down.</h3>
-        <p class="signup-sub">Written from what I'm studying, then explained in plain language. No copied test banks, no course screenshots, no fluff. Start with the free <a href="${signupBase}drug-card-checklist.html" style="color:var(--gold);font-weight:700">drug-card checklist</a>.</p>
+        <p class="signup-sub">Plain-language nursing review. No copied test banks, no course screenshots. Start with the free <a href="${signupBase}drug-card-checklist.html" style="color:var(--gold);font-weight:700">drug-card checklist</a>.</p>
       </div>
       <form class="signup-form" id="signupForm">
         <div class="signup-input-wrap">
           <input type="email" id="signupEmail" class="signup-input" placeholder="your@email.com" required autocomplete="email">
           <button type="submit" class="signup-btn">Subscribe</button>
         </div>
-        <p class="signup-note">Unsubscribe anytime. I only email when there's something real. <a href="${signupBase}privacy.html" style="color:rgba(255,255,255,0.75)">Privacy</a></p>
+        <p class="signup-note">Unsubscribe anytime. Email only when new study material is ready. <a href="${signupBase}privacy.html" style="color:rgba(255,255,255,0.75)">Privacy</a></p>
       </form>
       <div class="signup-success" id="signupSuccess" style="display:none">
         <div style="font-size:1.5em;margin-bottom:6px">You're in.</div>
-        <p style="font-size:0.88em;opacity:0.8;margin:0">I'll email you when new study materials are ready. Now go study.</p>
+        <p style="font-size:0.88em;opacity:0.8;margin:0">New study materials will go to your inbox when they are ready.</p>
       </div>
       <button class="signup-dismiss" id="signupDismiss" title="Maybe later">&times;</button>
     </div>
