@@ -115,21 +115,28 @@
       return '📋 Pharmacology study hub — 600+ questions, 5 video links, confidence tracking\n\n🔗 ' + base + 'exam2/';
     }
     // Main page / default
-    return '📚 Study with Tiago: nursing study tools made by a BSN student\n\n'
+    return '📚 I am a nursing student trying to make the material make sense, so I built the study room I wish I had.\n\n'
       + '🎥 Videos for Pharmacology and Adult Health\n'
       + '🃏 323 flashcards for quick review\n'
-      + '📝 My Notes, practice questions, and study loops\n'
-      + '📦 Optional study bundles when you want the full packet\n\n'
+      + '📝 My Notes, practice questions, and topic review loops\n'
+      + '📦 Optional study bundles if you want the full packet\n\n'
       + '🔗 ' + base;
+  }
+
+  function removeInlineShareUrl(text) {
+    return text.split('\n').filter(function(line) {
+      return line.trim().indexOf('🔗 ') !== 0;
+    }).join('\n').replace(/\n{3,}/g, '\n\n').trim();
   }
 
   btn.addEventListener('click', async function() {
     var text = getShareText();
     var isAH = location.pathname.includes('/exam3/');
+    var shareUrl = cleanShareUrl();
     var shareData = {
-      title: isAH ? 'Study with Tiago — Adult Health Study Tools' : 'Study with Tiago — Nursing Study Tools',
-      text: text,
-      url: cleanShareUrl()
+      title: isAH ? 'Study with Tiago — Adult Health Study Tools' : 'Study with Tiago — Nursing Study Room',
+      text: removeInlineShareUrl(text),
+      url: shareUrl
     };
 
     if (navigator.share) {
