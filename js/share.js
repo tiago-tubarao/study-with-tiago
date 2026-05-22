@@ -64,7 +64,7 @@
           + '🔗 ' + base + 'exam3/drug-flashcards.html';
       }
       if (p.includes('flashcards')) {
-        return 'A nursing student built these Adult Health flashcards for classmates trying to pass Med-Surg.\n\n🩺 Hematology, diabetes, endocrine, renal, visual hooks, and mastery tracking\n\n🔗 ' + base + 'exam3/flashcards.html';
+        return 'A nursing student built these Adult Health flashcards for classmates studying Med-Surg.\n\n🩺 Hematology, diabetes, endocrine, renal, visual hooks, and mastery tracking\n\n🔗 ' + base + 'exam3/flashcards.html';
       }
       if (p.includes('diabetes')) {
         return '💉 Adult Health Diabetes review — DKA, HHS, insulins, oral agents + practice questions\n\n🔗 ' + base + 'exam3/diabetes.html';
@@ -109,7 +109,7 @@
       return '🦋 Thyroid, pituitary & adrenal drugs — free video + practice questions with rationales\n\n🔗 ' + base + 'exam2/endocrine.html';
     }
     if (p.includes('antimicrobials')) {
-      return '🦠 Every antibiotic on the blueprint — free video + 180+ NCLEX-style questions\n\n🔗 ' + base + 'exam2/antimicrobials.html';
+      return '🦠 Antimicrobial families and safety traps — free video + practice questions\n\n🔗 ' + base + 'exam2/antimicrobials.html';
     }
     if (p.includes('hematology')) {
       return '🩸 Anticoagulants, growth factors & blood products — free video + practice questions\n\n🔗 ' + base + 'exam2/hematology.html';

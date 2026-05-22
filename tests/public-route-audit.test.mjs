@@ -81,7 +81,7 @@ test('tracked public HTML pages only point to existing local routes and assets',
 test('homepage exposes the student-first Pharm and Med-Surg learning paths', () => {
   const html = read('index.html');
 
-  assert.match(html, /Pass Pharmacology and Med-Surg/);
+  assert.match(html, /Study Pharmacology and Med-Surg/);
   assert.match(html, /href="videos\.html"/);
   assert.match(html, /href="all-flashcards\.html"/);
   assert.match(html, /href="resources\.html"/);
@@ -98,4 +98,67 @@ test('updates page and popup signup tell the app/newsletter story', () => {
   assert.match(updates, /Newsletter \+ App Updates/);
   assert.match(signup, /App \+ study updates/);
   assert.match(signup, /Study with Tiago app is built/);
+});
+
+test('public marketing copy avoids unsupported promise-style claims', () => {
+  const scanFiles = [
+    ...trackedHtml.filter((file) => !['privacy.html', 'terms.html', 'requests.html', 'outcomes.html'].includes(file)),
+    'js/share.js',
+  ];
+  const bannedClaims = [
+    /\bhelps nursing students pass\b/i,
+    /\bpass pharmacology\b/i,
+    /\bpass med-surg\b/i,
+    /\btrying to pass\b/i,
+    /\b100% free\b/i,
+    /\bno spam\b/i,
+    /\btriple verification\b/i,
+    /\bno guessing\b/i,
+    /\bevery testable\b/i,
+    /\bstandard curricula\b/i,
+    /\bmust-know facts\b/i,
+    /\bComplete Exam Review\b/,
+    /\bfull rationales for every answer\b/i,
+    /"@type"\s*:\s*"Course"/,
+    /"@type"\s*:\s*"CourseInstance"/,
+    /"instructor"\s*:/,
+  ];
+  const failures = [];
+
+  for (const file of scanFiles) {
+    const content = read(file);
+    for (const pattern of bannedClaims) {
+      if (pattern.test(content)) {
+        failures.push(`${file} contains ${pattern}`);
+      }
+    }
+  }
+
+  assert.deepEqual(failures, []);
+});
+
+test('public drill room does not expose internal school or source-route labels', () => {
+  const scanFiles = ['adult-health-final-drill.html', 'js/adult-health-final-drill-bank.js'];
+  const bannedInternalRouteTerms = [
+    /\bTighe\b/i,
+    /\bCoursePoint\b/i,
+    /\bPrepU\b/i,
+    /\bATI\b/i,
+    /\bprofessor\b/i,
+    /\bNURS327\b/i,
+    /\blive class intel\b/i,
+    /\bexact live exam\b/i,
+  ];
+  const failures = [];
+
+  for (const file of scanFiles) {
+    const content = read(file);
+    for (const pattern of bannedInternalRouteTerms) {
+      if (pattern.test(content)) {
+        failures.push(`${file} contains ${pattern}`);
+      }
+    }
+  }
+
+  assert.deepEqual(failures, []);
 });

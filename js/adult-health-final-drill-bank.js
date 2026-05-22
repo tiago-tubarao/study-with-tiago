@@ -1,6 +1,6 @@
 // Adult Health Final drill bank v2.
 // Source route: school/NURS-327-Adult-Health/study-guides/ADULT_HEALTH_FINAL_QUESTION_GENERATOR_ROUTE_2026-05-10.md
-// This file intentionally avoids exact live exam wording. It uses professor/CoursePoint/ATI-style patterns from saved study sources.
+// This file intentionally uses public-safe wording and avoids internal source-route labels.
 
 (function () {
   const inStudySite = location.pathname.includes("/projects/study-website/") || !location.pathname.includes("/school/");
@@ -19,7 +19,7 @@
       why: "This is the stable CAD-prevention lane. BP, central obesity, BMI, lipids, diet/activity, and exertional fatigue create the risk pattern.",
       trap: "SpO2 is normal, so do not turn this into an acute oxygen problem. The stem is asking prevention/risk reduction.",
       repair: "Stable CAD case: I prioritize the modifiable risk cluster, not one normal vital sign.",
-      source: "Cardiac CoursePoint CAD extraction; final generator route"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "cad-case-angina-nitro-v2",
@@ -29,10 +29,10 @@
       prompt: "A client with predictable exertional chest pressure receives nitroglycerin teaching. Which statement shows the teaching worked?",
       choices: ["I will stop exercising completely.", "If pain is not relieved after the third nitroglycerin dose, I will seek emergency care.", "Chest pain from stable angina always means permanent heart damage.", "I can use any over-the-counter cold medicine without asking."],
       answer: 1,
-      why: "CoursePoint framed stable angina as predictable/reversible ischemia and taught escalation after the third nitro dose 5 minutes apart.",
+      why: "Stable angina is predictable/reversible ischemia. Escalate if pain is not relieved after the ordered nitro sequence.",
       trap: "Stopping all activity is not the teaching goal; safe modification and knowing when to escalate are the point.",
       repair: "Stable angina teaching: nitro sequence, safe activity modification, and emergency care if not relieved.",
-      source: "Cardiac CoursePoint angina extraction"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "mi-ed-first-action-v2",
@@ -45,7 +45,7 @@
       why: "This is acute ischemia until proven otherwise. ECG/monitoring/IV/labs/troponin and rapid ACS care protect perfusion.",
       trap: "Waiting for perfect proof delays the ACS pathway. Diet teaching is later.",
       repair: "Chest pain plus radiation, diaphoresis, and nausea means monitor, ECG, IV/labs, troponin, and rapid ACS care.",
-      source: "Cardiac CoursePoint MI extraction"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "radial-cath-monitoring-v2",
@@ -58,7 +58,7 @@
       why: "Radial cath care focuses on the radial access site and distal perfusion of that hand/arm.",
       trap: "Do not apply femoral-cath logic or unrelated GI checks when the access site is radial.",
       repair: "Radial cath: check site bleeding/hematoma and distal circulation in the affected hand.",
-      source: "Cardiac CoursePoint MI extraction; Brunner cardiac cath care"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "pulmonary-edema-priority-meds-v2",
@@ -68,10 +68,10 @@
       prompt: "A 72-year-old with heart failure is pale, diaphoretic, breathing rapidly, says he feels like he is drowning, has pink frothy sputum, crackles, BNP 1100, and SpO2 86% on room air. Which provider orders best match the priority problem?",
       choices: ["Ambulate in the hall and encourage deep-breathing exercises", "IV furosemide and IV dobutamine as ordered", "High-fiber diet and stool softener", "Hold oxygen until the BNP is repeated"],
       answer: 1,
-      why: "CoursePoint framed this as pulmonary edema with impaired oxygenation and cardiac output. Furosemide reduces fluid/preload; dobutamine supports contractility/output.",
+      why: "This is pulmonary edema with impaired oxygenation and cardiac output. Furosemide reduces fluid/preload; dobutamine supports contractility/output.",
       trap: "Deep breathing is not enough when alveoli are full of fluid and the patient is in acute distress.",
       repair: "Pulmonary edema: sit up, oxygenate, monitor, reduce fluid, support cardiac output.",
-      source: "Pulmonary edema CoursePoint extraction"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "afib-rvr-first-diagnostic-v2",
@@ -84,7 +84,7 @@
       why: "Rate/rhythm with perfusion symptoms needs ECG first to identify rhythm and guide treatment.",
       trap: "Clear lungs do not erase a rhythm/perfusion problem.",
       repair: "Irregular rapid pulse plus dizziness/chest pain: ECG first, then rate/perfusion treatment.",
-      source: "Dysrhythmia CoursePoint extraction"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "stroke-swallow-screen-v3",
@@ -98,7 +98,7 @@
       why: "Stroke can impair swallowing and gag/cough protection. Oral intake waits until swallow safety is checked to prevent aspiration.",
       trap: "Being alert or thirsty does not prove the swallow is safe.",
       repair: "Stroke plus facial droop/slurred speech: keep NPO until swallow screen/evaluation clears oral intake.",
-      source: "Tighe CVA questions; PrepU stroke rationales; Neuro review"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "csf-leak-no-nasal-tube-v2",
@@ -112,7 +112,7 @@
       why: "Clear drainage after head injury can be CSF. Avoid packing and blind nasal tubes because of intracranial risk.",
       trap: "The exam may hide CSF leak behind simple words like clear drainage or halo.",
       repair: "Clear drainage after head trauma: collect loosely, notify, no packing, no blind nasal tubes.",
-      source: "Neuro v6 professor coverage correction; Tighe head trauma questions"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "sci-ad-trigger-v2",
@@ -126,7 +126,7 @@
       why: "High SCI plus severe hypertension/headache/flushing is autonomic dysreflexia. Sit up, check BP, remove the trigger, bladder first.",
       trap: "Neurogenic shock is hypotension/bradycardia/warm dry skin. This stem is the opposite.",
       repair: "AD: sit up, check BP, remove trigger, bladder first.",
-      source: "Tighe spinal trauma questions"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "gcs-six-trauma-priority-v3",
@@ -139,7 +139,7 @@
       why: "A GCS of 6 is severe brain injury. Snoring respirations and falling oxygenation make airway the first danger.",
       trap: "Neuro detail matters, but airway beats a detailed neuro assessment when breathing is unsafe.",
       repair: "Severe TBI with poor airway/oxygenation: airway first, then neuro assessment and escalation.",
-      source: "Tighe head trauma questions; Neuro v6 professor coverage pass"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "compartment-pain-v2",
@@ -153,7 +153,7 @@
       why: "Pain out of proportion/unrelieved plus neurovascular changes is compartment syndrome until proven otherwise.",
       trap: "Pulselessness is late. Waiting for it is unsafe.",
       repair: "Cast pain unrelieved plus numbness/tightness: compartment syndrome, escalate now.",
-      source: "Tighe ortho questions; Ortho recording proof"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "fat-embolism-triad-v2",
@@ -167,7 +167,7 @@
       why: "Long-bone fracture plus respiratory distress, neuro change, and petechiae is the classic fat embolism pattern.",
       trap: "Compartment syndrome is local pressure/perfusion; this is systemic respiratory/neuro.",
       repair: "Femur fracture plus hypoxia/confusion/petechiae: fat embolism.",
-      source: "Tighe ortho questions"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "traction-weights-v2",
@@ -180,7 +180,7 @@
       why: "Traction weights must hang freely to maintain prescribed pull/alignment.",
       trap: "Never remove or support weights casually just to make the room look neat.",
       repair: "Traction: weights hang freely, alignment maintained, pin care monitored.",
-      source: "Tighe ortho questions; Ortho v6 source manifest"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "bowel-obstruction-ng-v2",
@@ -194,7 +194,7 @@
       why: "Obstruction care protects fluid/electrolyte balance, decompresses, and watches for bowel compromise.",
       trap: "Fiber/laxatives can worsen an obstruction pattern.",
       repair: "Obstruction: NPO, decompression, fluids/electrolytes, watch perforation/perfusion.",
-      source: "GI final review; CoursePoint practice-learn pattern"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "ibd-crohn-clue-v2",
@@ -208,7 +208,7 @@
       why: "Crohn is skip/transmural/anywhere. UC is continuous, colon/rectum, mucosal.",
       trap: "Both are IBD. The question is asking what makes them different.",
       repair: "Skip/transmural/anywhere is Crohn; continuous colon mucosa is UC.",
-      source: "GI final review"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "hepatic-encephalopathy-lactulose-v2",
@@ -222,7 +222,7 @@
       why: "Lactulose lowers ammonia by promoting stooling; improved mentation and ammonia trend show the goal.",
       trap: "No stools means the drug is not doing its job. Severe diarrhea can create dehydration risk.",
       repair: "Lactulose works when ammonia/mental status improves with an expected stool pattern.",
-      source: "PrepU Ch44 hepatic rationales; GI liver review"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "vent-high-pressure-v2",
@@ -235,7 +235,7 @@
       why: "High pressure means resistance/obstruction. Assess the patient and airway, then fix the cause fast.",
       trap: "Low pressure is leak/disconnection. Do not silence the alarm and walk away.",
       repair: "Vent high pressure: obstruction/resistance. Low pressure: leak/disconnection.",
-      source: "Respiratory vent rescue extraction"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "chest-tube-continuous-bubbling-v3",
@@ -248,7 +248,7 @@
       why: "Intermittent tidaling can be expected. Continuous bubbling in the water-seal chamber suggests an air leak that needs assessment.",
       trap: "Do not confuse normal tidaling with continuous bubbling.",
       repair: "Chest tube water seal: tidaling can be normal; continuous bubbling means possible air leak.",
-      source: "Respiratory chest-tube rescue extraction; ATI chest drainage"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "copd-venturi-v2",
@@ -261,7 +261,7 @@
       why: "COPD oxygen is controlled, not absent. Venturi provides precise FiO2 when needed.",
       trap: "The common wrong shortcut is 'never give oxygen.' The safer rule is controlled oxygen and reassessment.",
       repair: "COPD: give controlled oxygen, often 88-92%, and reassess work of breathing/ABGs.",
-      source: "Respiratory rescue extraction; CoursePoint COPD tutorial"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "thyroidectomy-hypocalcemia-v2",
@@ -275,7 +275,7 @@
       why: "Post-thyroidectomy parathyroid injury can cause low calcium. Tingling, Chvostek/Trousseau, spasms, and tetany are the clues.",
       trap: "Thomas remembered this as tinnitus/tetanus; the exam word is tetany from hypocalcemia.",
       repair: "After thyroidectomy, tingling/spasm means low calcium/tetany until proven otherwise.",
-      source: "ATI Gold review; Thomas thyroidectomy memory"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "thyroid-storm-sequence-v2",
@@ -289,7 +289,7 @@
       why: "PTU blocks synthesis before iodine is given to block release. Beta blockers control dangerous sympathetic symptoms. Aspirin can worsen thyroid storm physiology.",
       trap: "Iodine before PTU can feed hormone synthesis.",
       repair: "Thyroid storm: PTU before iodine; beta blocker for HR/symptoms.",
-      source: "NURS327 ATI Gold review; Exam3 action drill"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "addisonian-crisis-fluid-steroid-v3",
@@ -302,7 +302,7 @@
       why: "Addisonian crisis is cortisol/mineralocorticoid failure with shock risk, hypoglycemia, vomiting/dehydration, and electrolyte danger.",
       trap: "This can look like generic dehydration, but adrenal insufficiency plus hypotension and hypoglycemia points to crisis.",
       repair: "Addisonian crisis: fluids/glucose support and corticosteroid replacement are the rescue lane.",
-      source: "Final live class intel; NURS327 action drill; endocrine cumulative lane"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "shock-perfusion-v2",
@@ -315,7 +315,7 @@
       why: "Shock is tissue perfusion failure. Brain, skin, pulses, BP, and urine output are major markers.",
       trap: "Do not chase a minor symptom when the perfusion cluster is present.",
       repair: "Shock: mental status, skin, pulses, BP, urine output, oxygenation/lactate.",
-      source: "Shock professor questions; final cumulative danger lane"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "tb-isolation-v2",
@@ -328,7 +328,7 @@
       why: "Active pulmonary TB requires airborne precautions, negative pressure, door closed, and N95/fit-tested respirator.",
       trap: "A surgical mask is for the client during transport, not staff protection inside the room.",
       repair: "TB: airborne, negative pressure, N95, door closed.",
-      source: "Respiratory rescue extraction; final blueprint cumulative item"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "asthma-silent-chest-v2",
@@ -341,7 +341,7 @@
       why: "Quieting breath sounds in a tired asthma patient can mean poor air movement and impending respiratory failure.",
       trap: "Loud wheezing is not always worse than silence. Silence can mean no air movement.",
       repair: "Asthma danger: silent chest, fatigue, altered LOC, falling SpO2, no SABA response.",
-      source: "Respiratory rescue extraction; final live class intel"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "thyroidectomy-sata-safety-v2",
@@ -362,9 +362,9 @@
       ],
       answers: [0, 1, 2, 3, 5],
       why: "The immediate danger set is airway/bleeding plus hypocalcemia from parathyroid injury.",
-      trap: "This is where Prof. Tighe can change the wording. Tingling/spasm/tetany is the low-calcium clue, not tinnitus.",
+      trap: "Wording can change. Tingling/spasm/tetany is the low-calcium clue, not tinnitus.",
       repair: "Thyroidectomy: airway first, trach tray ready, bleeding check, neck support, calcium/tetany watch.",
-      source: "ATI Gold review; Thomas thyroidectomy memory; final generator route"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "pulmonary-edema-sata-priority-v2",
@@ -386,7 +386,7 @@
       why: "The patient is drowning in fluid. Position, oxygen, rapid monitoring, diuresis/support, and escalation protect gas exchange and output.",
       trap: "Deep breathing or extra oral fluids is not the rescue when alveoli are full of fluid.",
       repair: "Pulmonary edema rescue: sit up, oxygen, monitor, diurese/support output, escalate early.",
-      source: "Pulmonary edema CoursePoint extraction"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "vent-high-pressure-sata-rescue-v2",
@@ -408,7 +408,7 @@
       why: "High pressure means resistance/obstruction. The nurse assesses the patient and airway, corrects resistance, and escalates if oxygenation is unsafe.",
       trap: "Low pressure suggests leak/disconnection. High pressure points to obstruction/resistance.",
       repair: "Vent alarm: patient first. High pressure equals obstruction/resistance; low pressure equals leak/disconnect.",
-      source: "Respiratory vent rescue extraction"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "stroke-pre-thrombolytic-sata-v2",
@@ -431,7 +431,7 @@
       why: "Stroke medication decisions require time, imaging, glucose, BP, and bleeding-risk gates.",
       trap: "Do not jump to aspirin or thrombolytics before hemorrhage is excluded.",
       repair: "Stroke gate: last-known-well, glucose, CT, BP, contraindications, then meds.",
-      source: "Tighe CVA questions; PrepU stroke rationales"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "chest-tube-disconnect-order-v2",
@@ -451,7 +451,7 @@
       why: "The first rescue is recreating the water seal; then assess, restore the system, and monitor/escalate.",
       trap: "Casual clamping is the trap. The priority is maintaining a seal and watching for respiratory compromise.",
       repair: "Chest tube disconnect: sterile-water seal, assess, restore system, monitor/notify.",
-      source: "Respiratory chest-tube rescue extraction; ATI chest drainage"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "dka-low-potassium-order-v2",
@@ -471,7 +471,7 @@
       why: "Insulin will drive potassium into cells. Low potassium must be corrected enough to avoid dysrhythmias.",
       trap: "DKA needs insulin, but the test trap is that potassium can come first when K is too low.",
       repair: "DKA K gate: low K means replace/monitor before insulin.",
-      source: "NURS327 action drill; ATI weak spot data"
+      source: "Study with Tiago public review bank"
     },
     {
       id: "status-seizure-order-v2",
@@ -492,7 +492,7 @@
       why: "The priority chain is safety and airway/oxygenation, then rescue medication/escalation for prolonged seizure, then reassessment.",
       trap: "Do not restrain or put anything in the mouth. The prolonged duration changes the urgency.",
       repair: "Seizure sequence: safety, side/airway, time/oxygen, rescue med if prolonged, reassess.",
-      source: "Tighe seizure pattern; final strategy"
+      source: "Study with Tiago public review bank"
     }
   ];
 
