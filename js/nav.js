@@ -10,17 +10,17 @@
   let base = './';
   if (path.includes('/exam2/') || path.includes('/exam3/') || path.includes('/methods/') || path.includes('/blog/')) base = '../';
 
-  // Phase 1.3 (2026-04-29): keep the main nav focused on public study assets.
+  // Keep the main nav focused on what a new nursing student needs first.
   const links = [
-    { label: 'Home', href: base + 'index.html', icon: '🏠' },
-    { label: 'Pharmacology', href: base + 'exam2/index.html', icon: '💊' },
-    { label: 'Adult Health', href: base + 'exam3/index.html', icon: '🩺' },
-    { label: 'Final Prep', href: base + 'adult-health-final.html', icon: '📚' },
-    { label: 'Flashcards', href: base + 'all-flashcards.html', icon: '🃏' },
-    { label: 'Videos', href: base + 'videos.html', icon: '🎥' },
-    { label: 'Blog', href: base + 'blog/', icon: '📝' },
-    { label: 'Resources', href: base + 'resources.html', icon: '📦' },
-    { label: 'About', href: base + 'about.html', icon: '👤' },
+    { label: 'Home', href: base + 'index.html' },
+    { label: 'Pharmacology', href: base + 'exam2/index.html' },
+    { label: 'Med-Surg', href: base + 'exam3/index.html' },
+    { label: 'Final Prep', href: base + 'adult-health-final.html' },
+    { label: 'Videos', href: base + 'videos.html' },
+    { label: 'Flashcards', href: base + 'all-flashcards.html' },
+    { label: 'Packs', href: base + 'resources.html' },
+    { label: 'Updates', href: base + 'updates.html' },
+    { label: 'About', href: base + 'about.html' },
   ];
 
   // Determine active page

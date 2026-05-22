@@ -60,8 +60,9 @@ test('Visual topic cards do not preserve profile/avatar overlay styling', () => 
   const css = read('style.css');
 
   assert.doesNotMatch(css, /visual-topic-avatar/);
-  assert.match(css, /body\.visual-hub-page \.share-float/);
   assert.match(css, /body\.study-room-page \.share-float/);
+  assert.match(css, /body\.flashcard-page \.share-float/);
+  assert.doesNotMatch(css, /body\.visual-hub-page \.share-float/);
 });
 
 test('Adult Health uploaded topic score bars accept slidesHave-only study data', () => {

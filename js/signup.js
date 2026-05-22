@@ -18,29 +18,34 @@
   banner.innerHTML = `
     <div class="signup-inner">
       <div class="signup-text">
-        <div class="signup-badge">Weekly practice question</div>
-        <h3 class="signup-title">Get one NCLEX-style practice question every week — with the answer broken down.</h3>
-        <p class="signup-sub">Plain-language nursing review. No copied test banks, no course screenshots. Start with the free <a href="${signupBase}drug-card-checklist.html" style="color:var(--gold);font-weight:700">drug-card checklist</a>.</p>
+        <div class="signup-badge">App + study updates</div>
+        <h3 class="signup-title">Get new Pharm and Med-Surg study tools, plus updates as the Study with Tiago app is built.</h3>
+        <p class="signup-sub">Videos, cards, packets, and small app-build notes when something useful is ready. Start with the free <a href="${signupBase}drug-card-checklist.html" style="color:var(--gold);font-weight:700">drug-card checklist</a>.</p>
       </div>
       <form class="signup-form" id="signupForm">
         <div class="signup-input-wrap">
           <input type="email" id="signupEmail" class="signup-input" placeholder="your@email.com" required autocomplete="email">
           <button type="submit" class="signup-btn">Subscribe</button>
         </div>
-        <p class="signup-note">Unsubscribe anytime. Email only when new study material is ready. <a href="${signupBase}privacy.html" style="color:rgba(255,255,255,0.75)">Privacy</a></p>
+        <p class="signup-note">Unsubscribe anytime. Email only when new study material or app updates are ready. <a href="${signupBase}privacy.html" style="color:rgba(255,255,255,0.75)">Privacy</a></p>
       </form>
       <div class="signup-success" id="signupSuccess" style="display:none">
         <div style="font-size:1.5em;margin-bottom:6px">You're in.</div>
-        <p style="font-size:0.88em;opacity:0.8;margin:0">New study materials will go to your inbox when they are ready.</p>
+        <p style="font-size:0.88em;opacity:0.8;margin:0">New study materials and app updates will go to your inbox when they are ready.</p>
       </div>
       <button class="signup-dismiss" id="signupDismiss" title="Maybe later">&times;</button>
     </div>
   `;
 
-  // Insert: after hero on index page, or at top of page-container on other pages
+  // Insert after the first useful page choice on non-home pages.
   const hero = document.querySelector('.hero');
+  const firstContentBand = document.querySelector('.content-band');
   const pageContainer = document.querySelector('.page-container');
-  if (hero && hero.nextElementSibling) {
+  if (document.body.classList.contains('home-page') && hero && hero.nextElementSibling) {
+    hero.parentNode.insertBefore(banner, hero.nextElementSibling);
+  } else if (firstContentBand && firstContentBand.nextSibling) {
+    firstContentBand.parentNode.insertBefore(banner, firstContentBand.nextSibling);
+  } else if (hero && hero.nextElementSibling) {
     hero.parentNode.insertBefore(banner, hero.nextElementSibling);
   } else if (pageContainer) {
     pageContainer.insertBefore(banner, pageContainer.firstChild);

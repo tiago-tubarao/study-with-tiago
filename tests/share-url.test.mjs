@@ -101,8 +101,15 @@ test('native share payload sends only one URL field instead of duplicating the l
   const payload = context.navigator.shareCalls[0];
 
   assert.equal(payload.url, 'https://tiago-tubarao.github.io/study-with-tiago/');
+  assert.match(payload.title, /Nursing Study Tools/);
+  assert.match(payload.text, /A nursing student built Study with Tiago|Check this out/);
+  assert.match(payload.text, /students coming behind him/);
   assert.doesNotMatch(payload.text, /https:\/\/tiago-tubarao\.github\.io\/study-with-tiago\//);
   assert.doesNotMatch(payload.text, /🔗/);
+});
+
+test('share button has a quiet classmate reminder hint', () => {
+  assert.match(shareJs, /data-hint', 'Share with a classmate'/);
 });
 
 test('clipboard fallback still copies one complete message with one public link', async () => {
