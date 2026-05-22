@@ -1,0 +1,1357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adult Health Final Drill Room — Study with Tiago</title>
+  <meta name="description" content="A visual multiple-choice Adult Health Final drill room with instant feedback, trap explanations, and repair locks.">
+  <link rel="canonical" href="https://tiago-tubarao.github.io/study-with-tiago/adult-health-final-drill.html">
+  <meta property="og:title" content="Adult Health Final Drill Room | Study with Tiago">
+  <meta property="og:description" content="Click through Adult Health Final case, danger, equipment, and mirror-trap questions with instant repair locks.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tiago-tubarao.github.io/study-with-tiago/adult-health-final-drill.html">
+  <meta property="og:site_name" content="Study with Tiago">
+  <meta property="og:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-study-with-tiago-banner.png?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://tiago-tubarao.github.io/study-with-tiago/assets/og-study-with-tiago-banner.png?v=2">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=38">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <style>
+    :root {
+      --ink: #172026;
+      --muted: #5a6770;
+      --paper: #fbfaf7;
+      --panel: #ffffff;
+      --line: #d9dedb;
+      --blue: #2f6f88;
+      --green: #2f7d5c;
+      --gold: #b87920;
+      --red: #b54848;
+      --rose: #d85c73;
+      --shadow: 0 18px 40px rgba(23, 32, 38, .12);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding-top: 60px;
+      background:
+        linear-gradient(180deg, rgba(47,111,136,.08), transparent 34%),
+        var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    button, select {
+      font: inherit;
+    }
+
+    .app {
+      width: min(1180px, calc(100vw - 28px));
+      margin: 0 auto;
+      padding: 20px 0 34px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: end;
+      padding: 14px 0 18px;
+      border-bottom: 1px solid rgba(23, 32, 38, .12);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 54px);
+      line-height: .98;
+      max-width: 740px;
+    }
+
+    .sub {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+      max-width: 760px;
+    }
+
+    .topControls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .toolBtn, .choice, .primaryBtn {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      min-height: 42px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+    }
+
+    .toolBtn {
+      padding: 9px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .toolBtn:hover, .choice:hover, .primaryBtn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(23, 32, 38, .10);
+      border-color: rgba(47, 111, 136, .45);
+    }
+
+    .primaryBtn {
+      background: var(--ink);
+      color: white;
+      padding: 10px 16px;
+      border-color: var(--ink);
+      font-weight: 800;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: 1.06fr .94fr;
+      gap: 18px;
+      margin-top: 18px;
+      align-items: stretch;
+    }
+
+    .visualPanel, .quizPanel, .statsPanel {
+      background: rgba(255, 255, 255, .86);
+      border: 1px solid rgba(23, 32, 38, .12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .visualPanel {
+      min-height: 610px;
+      display: grid;
+      grid-template-rows: minmax(360px, 1fr) auto;
+    }
+
+    .artWrap {
+      position: relative;
+      background: #edf3f1;
+      min-height: 360px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .artWrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .scene {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      padding: 26px;
+      background:
+        linear-gradient(135deg, rgba(47,111,136,.18), rgba(216,92,115,.10)),
+        linear-gradient(180deg, #f9fbfb, #eaf0ed);
+    }
+
+    .sceneCard {
+      width: min(420px, 92%);
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(23,32,38,.14);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: 0 16px 34px rgba(23,32,38,.14);
+    }
+
+    .sceneIcon {
+      font-size: 72px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .wave {
+      height: 66px;
+      margin: 14px 0;
+      background:
+        linear-gradient(90deg, transparent 0 5%, var(--red) 5% 7%, transparent 7% 15%, var(--red) 15% 17%, transparent 17% 28%, var(--red) 28% 30%, transparent 30% 43%, var(--red) 43% 45%, transparent 45% 61%, var(--red) 61% 63%, transparent 63% 100%);
+      border-top: 2px solid rgba(23,32,38,.12);
+      border-bottom: 2px solid rgba(23,32,38,.12);
+    }
+
+    .artMeta {
+      padding: 16px 18px 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .roomTag {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(47,111,136,.28);
+      color: var(--blue);
+      background: rgba(47,111,136,.08);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .stem {
+      font-size: clamp(24px, 3vw, 37px);
+      line-height: 1.06;
+      font-weight: 900;
+      max-width: 760px;
+    }
+
+    .hintLine {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .quizPanel {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+      min-height: 610px;
+    }
+
+    .modeRow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .modeRow select {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      min-height: 42px;
+      padding: 8px 10px;
+      background: white;
+      color: var(--ink);
+    }
+
+    .progress {
+      display: grid;
+      gap: 8px;
+    }
+
+    .bar {
+      height: 14px;
+      background: #e8ece8;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(23,32,38,.08);
+    }
+
+    .barFill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+      transition: width .25s ease;
+    }
+
+    .progressText {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .choices {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice {
+      text-align: left;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      align-items: center;
+      min-height: 74px;
+    }
+
+    .letter {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: rgba(23,32,38,.08);
+      font-weight: 900;
+    }
+
+    .choice.correct {
+      border-color: rgba(47,125,92,.7);
+      background: rgba(47,125,92,.11);
+    }
+
+    .choice.selected {
+      border-color: rgba(36, 98, 132, .62);
+      background: rgba(36, 98, 132, .10);
+    }
+
+    .choice.wrong {
+      border-color: rgba(181,72,72,.72);
+      background: rgba(181,72,72,.10);
+    }
+
+    .choice.disabled {
+      pointer-events: none;
+    }
+
+    .choiceActions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .miniBtn {
+      min-height: 44px;
+      padding: 10px 14px;
+    }
+
+    .feedback {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      padding: 14px;
+      background: #f8faf9;
+      min-height: 154px;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .feedback.good {
+      border-color: rgba(47,125,92,.65);
+      background: rgba(47,125,92,.10);
+    }
+
+    .feedback.bad {
+      border-color: rgba(181,72,72,.65);
+      background: rgba(181,72,72,.10);
+    }
+
+    .feedback h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .feedback p {
+      margin: 0;
+      color: var(--ink);
+      line-height: 1.38;
+    }
+
+    .repair {
+      border-left: 4px solid var(--gold);
+      padding-left: 10px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .nextRow {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tutorPanel {
+      margin-top: 18px;
+      padding: 16px;
+      display: grid;
+      gap: 14px;
+      box-shadow: none;
+    }
+
+    .tutorHeader {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      flex-wrap: wrap;
+    }
+
+    .tutorHeader h2 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1;
+    }
+
+    .tutorHeader p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 720px;
+      line-height: 1.35;
+    }
+
+    .tutorBox {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) auto;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .tutorInput {
+      min-height: 54px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 13px 14px;
+      font: inherit;
+      color: var(--ink);
+      background: rgba(255,255,255,.78);
+      line-height: 1.35;
+    }
+
+    .tutorChips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tutorChip {
+      min-height: 38px;
+      padding: 8px 11px;
+      font-size: 13px;
+    }
+
+    .tutorResponse {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #f8faf9;
+      padding: 14px;
+      min-height: 120px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .tutorResponse h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .tutorResponse p {
+      margin: 0;
+      line-height: 1.38;
+    }
+
+    .tutorResponse .tag {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .statsPanel {
+      margin-top: 18px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      box-shadow: none;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      border-radius: var(--radius);
+      padding: 12px;
+      min-height: 78px;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .source {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 880px) {
+      header, .board {
+        grid-template-columns: 1fr;
+      }
+
+      .topControls {
+        justify-content: flex-start;
+      }
+
+      .visualPanel, .quizPanel {
+        min-height: auto;
+      }
+
+      .tutorBox {
+        grid-template-columns: 1fr;
+      }
+
+      .statsPanel {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body class="final-drill-page">
+  <main class="app">
+    <header>
+      <div>
+        <h1>Adult Health Final Drill Room</h1>
+        <p class="sub">Click answers. No essay typing. The app scores the pattern: lane, first action, trap, and repair lock.</p>
+      </div>
+      <div class="topControls">
+        <button class="toolBtn" id="shuffleBtn" type="button">Shuffle</button>
+        <button class="toolBtn" id="weakBtn" type="button">Weak Only</button>
+        <button class="toolBtn" id="resetBtn" type="button">Reset</button>
+      </div>
+    </header>
+
+    <section class="board">
+      <article class="visualPanel">
+        <div class="artWrap" id="artWrap"></div>
+        <div class="artMeta">
+          <div class="roomTag" id="roomTag">Room</div>
+          <div class="stem" id="stem">Loading...</div>
+          <div class="hintLine" id="hintLine"></div>
+        </div>
+      </article>
+
+      <article class="quizPanel">
+        <div class="modeRow">
+          <select id="modeSelect" aria-label="Choose drill mode">
+            <option value="mixed">Mixed final sprint</option>
+            <option value="case">Case lane</option>
+            <option value="equipment">Equipment wall</option>
+            <option value="mirror">Mirror traps</option>
+            <option value="danger">Danger first</option>
+          </select>
+          <button class="primaryBtn" id="startBtn" type="button">Start Round</button>
+        </div>
+
+        <div class="progress">
+          <div class="progressText">
+            <span id="roundText">Question 1</span>
+            <span id="scoreText">0 points</span>
+          </div>
+          <div class="bar"><div class="barFill" id="barFill"></div></div>
+        </div>
+
+        <div class="choices" id="choices"></div>
+
+        <section class="feedback" id="feedback" aria-live="polite">
+          <h2>Pick an answer.</h2>
+          <p>Use the room cue first: ER, Equipment Wall, Mirror Room, or Discharge Door.</p>
+        </section>
+
+        <div class="nextRow">
+          <button class="primaryBtn" id="nextBtn" type="button">Next</button>
+          <div class="source" id="sourceText"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="tutorPanel" aria-label="Ask the tutor">
+      <div class="tutorHeader">
+        <div>
+          <h2>Ask Lumen</h2>
+          <p>Type a messy question like “why thyroidectomy tetany?” or “vent high pressure” and get a fast teach-back from the local final-review map.</p>
+        </div>
+        <button class="toolBtn" id="explainCurrentBtn" type="button">Explain Current</button>
+      </div>
+      <div class="tutorBox">
+        <textarea class="tutorInput" id="tutorQuestion" rows="2" placeholder="Ask: why is chest tube disconnect sterile water?"></textarea>
+        <button class="primaryBtn" id="askTutorBtn" type="button">Ask</button>
+      </div>
+      <div class="tutorChips" aria-label="Quick tutor prompts">
+        <button class="toolBtn tutorChip" type="button" data-tutor-prompt="thyroidectomy tingling">thyroidectomy tingling</button>
+        <button class="toolBtn tutorChip" type="button" data-tutor-prompt="vent high pressure">vent high pressure</button>
+        <button class="toolBtn tutorChip" type="button" data-tutor-prompt="chest tube disconnected">chest tube disconnected</button>
+        <button class="toolBtn tutorChip" type="button" data-tutor-prompt="stroke CT before aspirin">stroke CT gate</button>
+        <button class="toolBtn tutorChip" type="button" data-tutor-prompt="DKA potassium before insulin">DKA potassium</button>
+        <button class="toolBtn tutorChip" type="button" data-tutor-prompt="CAD case study lane">CAD case lane</button>
+      </div>
+      <section class="tutorResponse" id="tutorResponse" aria-live="polite">
+        <span class="tag">Local tutor</span>
+        <h3>Ask a concept.</h3>
+        <p>I can teach back the high-yield final concepts from the curated map. If I do not have a clean card, I will say that.</p>
+      </section>
+    </section>
+
+    <section class="statsPanel" aria-label="Study stats">
+      <div class="stat"><b id="greenCount">0</b><span>Green</span></div>
+      <div class="stat"><b id="yellowCount">0</b><span>Yellow</span></div>
+      <div class="stat"><b id="redCount">0</b><span>Red</span></div>
+      <div class="stat"><b id="weakCount">0</b><span>Weak queue</span></div>
+      <div class="stat"><b id="accuracy">0%</b><span>Accuracy</span></div>
+    </section>
+  </main>
+
+  <script src="js/adult-health-final-drill-bank.js?v=2"></script>
+  <script>
+    const questions = window.ADULT_HEALTH_FINAL_DRILL_QUESTIONS || [
+      {
+        id: "cad-acs-lane",
+        mode: ["mixed", "case", "danger"],
+        room: "ER",
+        emoji: "❤️",
+        title: "Acute chest pain lane",
+        prompt: "Crushing chest pain radiates to the jaw/left arm with nausea and diaphoresis. What lane is this?",
+        choices: ["Stable prevention visit", "ACS / MI until proven otherwise", "GERD flare after meals", "Anxiety unless troponin is back"],
+        answer: 1,
+        why: "Radiation, diaphoresis, nausea, and crushing pain are ischemia/ACS cues. Treat as acute cardiac until ruled out.",
+        trap: "The trap is waiting for perfect diagnostic proof before acting on the emergency pattern.",
+        repair: "When chest pain radiates with diaphoresis/nausea, I enter the ACS lane and protect perfusion fast.",
+        source: "Cardiac CoursePoint extraction + CAD case drill"
+      },
+      {
+        id: "cad-first-actions",
+        mode: ["mixed", "case", "danger"],
+        room: "ER",
+        emoji: "📈",
+        title: "First ACS moves",
+        prompt: "Suspected STEMI/ACS: which first-move bundle fits best?",
+        choices: ["Discharge teaching, low-fat diet, outpatient follow-up", "Monitor, 12-lead ECG, IV access/labs/troponin, oxygen if needed, ordered ACS meds", "Give thrombolytics before any assessment", "Restrict all fluids because contrast is coming"],
+        answer: 1,
+        why: "You need rhythm/perfusion monitoring, ECG, IV/labs/troponin, and ordered ACS care while watching oxygenation.",
+        trap: "Teaching is real, but not first in acute ischemia.",
+        repair: "When ACS is possible, I get ECG/monitor/IV/labs/troponin and support oxygenation/perfusion.",
+        source: "Cardiac CoursePoint extraction"
+      },
+      {
+        id: "pulmonary-edema-frame",
+        mode: ["mixed", "case", "danger"],
+        room: "ER",
+        emoji: "🫁",
+        title: "Pulmonary edema",
+        prompt: "Pink frothy sputum, crackles, BNP 1100, O2 sat 86%. What problem is the priority?",
+        choices: ["Impaired oxygenation from fluid backing into lungs", "Stable chronic hypertension teaching", "Dehydration from diuretic overuse", "Pneumonia until sputum culture returns"],
+        answer: 0,
+        why: "The patient is effectively drowning in fluid: oxygenation and cardiac output are the danger lane.",
+        trap: "In the CoursePoint frame, furosemide reduced fluid and dobutamine supported cardiac output.",
+        repair: "When I see pink frothy sputum/crackles/low O2, I think pulmonary edema: sit up, oxygenate, monitor, reduce fluid, support output.",
+        source: "Pulmonary Edema CoursePoint case"
+      },
+      {
+        id: "stroke-ct",
+        mode: ["mixed", "danger"],
+        room: "ER",
+        image: "assets/final-drill/stroke-ct-first.jpg",
+        title: "Stroke first diagnostic",
+        prompt: "Sudden facial droop, slurred speech, arm drift. What diagnostic step matters first?",
+        choices: ["Lumbar puncture", "Noncontrast CT / brain imaging", "Give aspirin immediately", "Swallow screen first"],
+        answer: 1,
+        why: "CT helps separate ischemic from hemorrhagic stroke before thrombolytic decisions.",
+        trap: "Swallow screen matters, but CT comes first for acute stroke pathway.",
+        repair: "When stroke signs hit, I call code stroke and get CT before tPA decisions.",
+        source: "Tighe CVA question pattern + Neuro readiness engine"
+      },
+      {
+        id: "csf-leak",
+        mode: ["mixed", "danger"],
+        room: "ER",
+        image: "assets/final-drill/csf-leak.jpg",
+        title: "CSF leak",
+        prompt: "Clear nasal drainage after head injury. What is the safest nursing move?",
+        choices: ["Pack the nose tightly", "Collect drainage loosely and test/notify; avoid nasal tubes/blowing", "Insert NG tube to prevent aspiration", "Lower the head of bed flat"],
+        answer: 1,
+        why: "Clear drainage can be CSF. Collect, test/notify, do not pack, and avoid blind nasal insertion.",
+        trap: "Packing can increase pressure and risk infection/complication.",
+        repair: "When clear drainage follows head trauma, I suspect CSF leak: collect loosely, notify, no packing/nasal tubes.",
+        source: "Neuro v6 professor coverage correction"
+      },
+      {
+        id: "ad-bladder",
+        mode: ["mixed", "mirror", "danger"],
+        room: "Mirror Room",
+        image: "assets/final-drill/ad-vs-neurogenic-shock.jpg",
+        title: "Autonomic dysreflexia",
+        prompt: "T4 SCI patient has pounding headache, flushed face, and feels hot. What do you suspect first?",
+        choices: ["Neurogenic shock", "Autonomic dysreflexia", "Spinal shock", "Pulmonary embolism"],
+        answer: 1,
+        why: "Above T6 SCI plus headache/flushing/hypertension-type picture points to autonomic dysreflexia.",
+        trap: "Neurogenic shock is the opposite pattern: hypotension/bradycardia/warm dry skin.",
+        repair: "When high SCI has headache/flushing, I think AD, sit up, check BP, remove trigger, bladder first.",
+        source: "Tighe SCI question patterns"
+      },
+      {
+        id: "status-seizure",
+        mode: ["mixed", "danger"],
+        room: "ER",
+        image: "assets/final-drill/status-epilepticus.jpg",
+        title: "Status epilepticus",
+        prompt: "Tonic-clonic seizure continues after two doses of Ativan. What is this becoming?",
+        choices: ["Absence seizure", "Status epilepticus", "Postictal confusion only", "TIA"],
+        answer: 1,
+        why: "Prolonged/repeated seizure activity without recovery is status epilepticus and threatens airway/brain oxygenation.",
+        trap: "Do not label persistent seizure activity as just postictal.",
+        repair: "When seizure does not stop, I treat it as status: airway, oxygen, safety, meds, escalation.",
+        source: "Tighe seizure case + readiness engine"
+      },
+      {
+        id: "compartment",
+        mode: ["mixed", "danger"],
+        room: "Equipment Wall",
+        image: "assets/final-drill/compartment-syndrome.jpg",
+        title: "Compartment syndrome",
+        prompt: "Casted arm has intense pain not relieved by elevation, ice, or analgesic. What problem?",
+        choices: ["Normal healing pain", "Compartment syndrome", "Expected cast tightness", "Phantom limb pain"],
+        answer: 1,
+        why: "Pain out of proportion and unrelieved by usual measures is a compartment syndrome warning.",
+        trap: "Pulse can disappear late. Do not wait for pulselessness.",
+        repair: "When cast pain is severe/unrelieved, I suspect compartment syndrome and report/escalate.",
+        source: "Tighe ortho question pattern"
+      },
+      {
+        id: "fat-embolism",
+        mode: ["mixed", "danger"],
+        room: "ER",
+        image: "assets/final-drill/fat-embolism.jpg",
+        title: "Fat embolism",
+        prompt: "Long-bone fracture patient becomes hypoxic, confused, restless, with petechiae. What complication?",
+        choices: ["Fat embolism syndrome", "Osteomyelitis", "Compartment syndrome", "DKA"],
+        answer: 0,
+        why: "Long-bone fracture plus respiratory distress, neuro changes, and petechiae screams fat embolism.",
+        trap: "Compartment is local pressure/perfusion. Fat embolism is systemic respiratory/neuro.",
+        repair: "When femur fracture plus hypoxia/confusion/petechiae appears, I call fat embolism.",
+        source: "Tighe ortho question pattern"
+      },
+      {
+        id: "bowel-obstruction",
+        mode: ["mixed", "danger", "equipment"],
+        room: "Equipment Wall",
+        image: "assets/final-drill/bowel-obstruction.jpg",
+        title: "Bowel obstruction",
+        prompt: "Bowel obstruction with vomiting/distention: which care bundle fits?",
+        choices: ["High-fiber diet and antidiarrheals", "NPO, NG decompression if ordered, IV fluids/electrolytes, watch perforation/ischemia", "Immediate laxative trial", "Ignore urine output because it is GI"],
+        answer: 1,
+        why: "Obstruction care protects fluids/electrolytes, decompresses, and watches ischemia/perforation.",
+        trap: "Antidiarrheals/laxatives can worsen the wrong situation.",
+        repair: "When obstruction appears, I go NPO, decompression, fluids/electrolytes, and danger signs.",
+        source: "GI final review + readiness engine"
+      },
+      {
+        id: "uc-crohn",
+        mode: ["mixed", "mirror"],
+        room: "Mirror Room",
+        image: "assets/final-drill/ibd-crohns-uc.jpg",
+        title: "Crohn vs UC",
+        prompt: "Which clue points more toward Crohn disease?",
+        choices: ["Continuous disease limited to colon", "Skip lesions, transmural inflammation, can affect anywhere mouth-to-anus", "Always cured by colectomy", "Only mucosal rectal bleeding"],
+        answer: 1,
+        why: "Crohn is skip/transmural/anywhere. UC is continuous, colon/rectum, mucosal.",
+        trap: "Both are IBD. The exam tests the opposite clue.",
+        repair: "When I see skip/transmural/anywhere, I say Crohn; continuous colon mucosa is UC.",
+        source: "GI final review"
+      },
+      {
+        id: "lactulose",
+        mode: ["mixed", "danger"],
+        room: "Discharge Door",
+        image: "assets/final-drill/hepatic-encephalopathy.jpg",
+        title: "Hepatic encephalopathy",
+        prompt: "Lactulose is working when which finding improves?",
+        choices: ["Ammonia/mental status improves with expected soft stools", "Patient becomes constipated", "INR rises sharply", "No bowel movements all day"],
+        answer: 0,
+        why: "Lactulose helps remove ammonia through stooling; improved mentation/ammonia is the point.",
+        trap: "Too much diarrhea can dehydrate; no stools means it is not doing the job.",
+        repair: "When lactulose is ordered, I watch mental status/ammonia and stool pattern.",
+        source: "GI liver review + CoursePoint-style traps"
+      },
+      {
+        id: "vent-high",
+        mode: ["mixed", "equipment"],
+        room: "Equipment Wall",
+        emoji: "🫁",
+        title: "Vent high-pressure alarm",
+        prompt: "Ventilator high-pressure alarm usually means what?",
+        choices: ["Leak/disconnection", "Resistance/obstruction: kink, biting, secretions, bronchospasm", "Battery is fully charged", "Patient is ready for discharge"],
+        answer: 1,
+        why: "High pressure means the ventilator is pushing against resistance.",
+        trap: "Low pressure is the leak/disconnection pattern.",
+        repair: "High pressure = obstruction/resistance. Low pressure = leak/disconnection.",
+        source: "Respiratory rescue extraction"
+      },
+      {
+        id: "chest-tube-bubbling",
+        mode: ["mixed", "equipment"],
+        room: "Equipment Wall",
+        emoji: "🫧",
+        title: "Chest tube water seal",
+        prompt: "Continuous bubbling in the water-seal chamber means what?",
+        choices: ["Normal tidaling", "Air leak", "Tube should be clamped casually", "Lung is fully re-expanded every time"],
+        answer: 1,
+        why: "Continuous bubbling in water seal suggests an air leak; tidaling can be expected.",
+        trap: "Do not casually clamp a chest tube.",
+        repair: "Continuous bubbling = air leak; tidaling can be normal.",
+        source: "Respiratory rescue extraction + ATI chest drainage"
+      },
+      {
+        id: "copd-oxygen",
+        mode: ["mixed", "equipment", "mirror"],
+        room: "Equipment Wall",
+        emoji: "💨",
+        title: "COPD oxygen",
+        prompt: "Advanced COPD patient needs controlled oxygen. Which target/device is best from the final rescue lane?",
+        choices: ["100% nonrebreather forever", "88-92% with controlled FiO2 such as Venturi", "No oxygen ever", "Room air only if short of breath"],
+        answer: 1,
+        why: "Course/professor rescue lane uses controlled oxygen target around 88-92%, often Venturi for exact FiO2.",
+        trap: "The answer is not 'no oxygen'; it is controlled oxygen.",
+        repair: "COPD oxygen is controlled, not absent: think 88-92 and Venturi when exact FiO2 matters.",
+        source: "Respiratory rescue extraction"
+      },
+      {
+        id: "thyroid-tingling",
+        mode: ["mixed", "mirror", "danger"],
+        room: "Mirror Room",
+        image: "assets/study-images/post_thyroidectomy_complications.jpg",
+        title: "Post-thyroidectomy tingling",
+        prompt: "Post-thyroidectomy patient has tingling and muscle stiffness. What is the danger?",
+        choices: ["Hypercalcemia from too much parathyroid hormone", "Hypocalcemia/tetany from parathyroid injury", "Thyroid storm automatically", "Normal anxiety only"],
+        answer: 1,
+        why: "After thyroidectomy, parathyroid injury can drop calcium and cause Chvostek/Trousseau/tetany/laryngospasm risk.",
+        trap: "The Graves/hyperthyroid story can distract you into thyroid storm. Surgery + tingling wins.",
+        repair: "After thyroidectomy, tingling/stiffness means hypocalcemia until proven otherwise.",
+        source: "Cumulative trap sweep + Thomas thyroidectomy memory"
+      },
+      {
+        id: "thyroid-storm-order",
+        mode: ["mixed", "mirror", "danger"],
+        room: "Mirror Room",
+        image: "assets/study-images/thyroid_storm_drug_protocol.jpg",
+        title: "Thyroid storm meds",
+        prompt: "In thyroid storm, what medication sequence logic is safest?",
+        choices: ["Iodine first, then PTU", "PTU first, then iodine; beta blocker helps adrenergic symptoms", "Levothyroxine immediately", "Hold all antithyroid medications"],
+        answer: 1,
+        why: "PTU blocks hormone synthesis; iodine after PTU blocks release. Beta blocker controls sympathetic symptoms.",
+        trap: "Giving iodine before PTU can feed hormone synthesis.",
+        repair: "Thyroid storm: PTU before iodine; beta blocker for the storm symptoms.",
+        source: "Cumulative thyroid sweep"
+      },
+      {
+        id: "dka-k",
+        mode: ["mixed", "danger"],
+        room: "ER",
+        emoji: "🧪",
+        title: "DKA potassium gate",
+        prompt: "DKA patient has K 2.9 and insulin is ordered. What is first?",
+        choices: ["Start insulin immediately", "Hold insulin and replace potassium per order/provider because insulin drives K into cells", "Give lactulose", "Restrict all fluids"],
+        answer: 1,
+        why: "Low K before insulin is dangerous. Insulin shifts potassium into cells and can worsen hypokalemia.",
+        trap: "DKA needs insulin, but potassium safety gate comes first when K is too low.",
+        repair: "DKA plus low K: fix potassium before insulin.",
+        source: "Cumulative trap sweep"
+      },
+      {
+        id: "shock-markers",
+        mode: ["mixed", "danger"],
+        room: "ER",
+        emoji: "🩸",
+        title: "Shock perfusion markers",
+        prompt: "Which findings best show the patient is crashing from poor perfusion?",
+        choices: ["Warm blanket request only", "Altered mental status, low urine output, cool/clammy skin, falling BP or weak pulses", "Normal appetite", "Pain score 2/10 only"],
+        answer: 1,
+        why: "Shock is perfusion failure. Brain, kidneys, skin, BP, pulse quality tell you the body is losing flow.",
+        trap: "Do not chase a single minor symptom when perfusion markers are present.",
+        repair: "Shock = poor perfusion: mental status, urine output, skin, BP, pulses.",
+        source: "Cumulative trap sweep"
+      },
+      {
+        id: "anaphylaxis",
+        mode: ["mixed", "danger"],
+        room: "ER",
+        emoji: "💉",
+        title: "Anaphylaxis first med",
+        prompt: "Airway swelling, wheeze, hypotension after allergen exposure. First medication?",
+        choices: ["Diphenhydramine only", "Epinephrine", "Acetaminophen", "Levothyroxine"],
+        answer: 1,
+        why: "Anaphylaxis kills by airway/vascular collapse. Epinephrine is first-line.",
+        trap: "Antihistamines are not the first rescue for life-threatening anaphylaxis.",
+        repair: "Anaphylaxis = epinephrine first.",
+        source: "Clinical safety rule + cumulative trap sweep"
+      }
+    ];
+
+    const state = {
+      mode: "mixed",
+      order: [],
+      index: 0,
+      answered: {},
+      weakOnly: false,
+      points: 0,
+      selection: []
+    };
+
+    const roomIcons = {
+      "ER": "🚨",
+      "Case Lane": "📋",
+      "Equipment Wall": "🛠️",
+      "Mirror Room": "🪞",
+      "Discharge Door": "🚪"
+    };
+
+    const tutorTopics = window.ADULT_HEALTH_FINAL_TUTOR_TOPICS || [];
+
+    const $ = (id) => document.getElementById(id);
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function questionType(q) {
+      return q.type || "mcq";
+    }
+
+    function typeLabel(q) {
+      if (questionType(q) === "sata") return "Select all that apply";
+      if (questionType(q) === "ordering") return "Put in order";
+      return "Best answer";
+    }
+
+    function correctSequence(q) {
+      if (questionType(q) === "ordering") return q.order || [];
+      return Array.isArray(q.answers) ? q.answers : [q.answer];
+    }
+
+    function sameMembers(a, b) {
+      if (a.length !== b.length) return false;
+      const left = [...a].sort((x, y) => x - y);
+      const right = [...b].sort((x, y) => x - y);
+      return left.every((value, idx) => value === right[idx]);
+    }
+
+    function sameOrder(a, b) {
+      return a.length === b.length && a.every((value, idx) => value === b[idx]);
+    }
+
+    function matchesMode(q) {
+      return q.mode.includes(state.mode);
+    }
+
+    function buildOrder() {
+      const pool = questions.filter(matchesMode);
+      const weak = Object.entries(state.answered)
+        .filter(([, result]) => result !== "green")
+        .map(([id]) => id);
+      state.order = state.weakOnly && weak.length
+        ? pool.filter(q => weak.includes(q.id)).map(q => q.id)
+        : pool.map(q => q.id);
+      state.index = 0;
+      state.points = 0;
+      render();
+    }
+
+    function shuffle() {
+      for (let i = state.order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [state.order[i], state.order[j]] = [state.order[j], state.order[i]];
+      }
+      state.index = 0;
+      render();
+    }
+
+    function currentQuestion() {
+      if (!state.order.length) buildOrder();
+      return questions.find(q => q.id === state.order[state.index]);
+    }
+
+    function renderArt(q) {
+      const wrap = $("artWrap");
+      if (q.image) {
+        wrap.innerHTML = `<img src="${q.image}" alt="${q.title} visual">`;
+        return;
+      }
+      wrap.innerHTML = `
+        <div class="scene">
+          <div class="sceneCard">
+            <div class="sceneIcon">${q.emoji || "🩺"}</div>
+            <strong>${q.title}</strong>
+            <div class="wave" aria-hidden="true"></div>
+            <div>${roomIcons[q.room] || "🩺"} ${q.room}: find the threat, then choose the safest nursing move.</div>
+          </div>
+        </div>`;
+    }
+
+    function render() {
+      if (!state.order.length) buildOrder();
+      const q = currentQuestion();
+      if (!q) {
+        $("stem").textContent = "Round complete.";
+        $("choices").innerHTML = "";
+        $("feedback").className = "feedback good";
+        $("feedback").innerHTML = `<h2>Round done.</h2><p>Use Weak Only to repeat yellow/red items.</p>`;
+        updateStats();
+        return;
+      }
+
+      state.selection = [];
+      const qType = questionType(q);
+      renderArt(q);
+      $("roomTag").textContent = `${roomIcons[q.room] || "🩺"} ${q.room}`;
+      $("stem").textContent = q.prompt;
+      $("hintLine").textContent = `${q.title} • ${typeLabel(q)}`;
+      $("roundText").textContent = `Question ${state.index + 1} of ${state.order.length}`;
+      $("barFill").style.width = `${((state.index) / Math.max(state.order.length, 1)) * 100}%`;
+      $("sourceText").textContent = q.source || "Source-routed final review bank";
+      const actionMarkup = qType === "mcq" ? "" : `
+        <div class="choiceActions">
+          <button class="primaryBtn miniBtn" id="submitChoiceBtn" type="button" disabled>Submit</button>
+          <button class="toolBtn miniBtn" id="clearChoiceBtn" type="button">Clear</button>
+        </div>`;
+      $("choices").innerHTML = q.choices.map((choice, idx) => `
+        <button class="choice" type="button" data-idx="${idx}">
+          <span class="letter">${String.fromCharCode(65 + idx)}</span>
+          <span>${choice}</span>
+        </button>`).join("") + actionMarkup;
+      $("feedback").className = "feedback";
+      $("feedback").innerHTML = `<h2>${typeLabel(q)}.</h2><p>${q.instruction || "Your job is not perfection; it is finding what breaks cold."}</p>`;
+      document.querySelectorAll(".choice").forEach(btn => {
+        btn.addEventListener("click", () => selectChoice(Number(btn.dataset.idx)));
+      });
+      const submit = $("submitChoiceBtn");
+      if (submit) submit.addEventListener("click", submitSelection);
+      const clear = $("clearChoiceBtn");
+      if (clear) clear.addEventListener("click", clearSelection);
+      updateStats();
+    }
+
+    function updateSelectedButtons() {
+      const q = currentQuestion();
+      const qType = questionType(q);
+      const buttons = [...document.querySelectorAll(".choice")];
+      buttons.forEach((btn, idx) => {
+        const selectedAt = state.selection.indexOf(idx);
+        btn.classList.toggle("selected", selectedAt !== -1);
+        const letter = btn.querySelector(".letter");
+        if (letter) {
+          letter.textContent = qType === "ordering" && selectedAt !== -1
+            ? String(selectedAt + 1)
+            : String.fromCharCode(65 + idx);
+        }
+      });
+      const submit = $("submitChoiceBtn");
+      if (submit) submit.disabled = state.selection.length === 0;
+    }
+
+    function clearSelection() {
+      state.selection = [];
+      updateSelectedButtons();
+      $("feedback").className = "feedback";
+      $("feedback").innerHTML = `<h2>Selection cleared.</h2><p>Slow down, rebuild the priority chain, then submit.</p>`;
+    }
+
+    function selectChoice(idx) {
+      const q = currentQuestion();
+      const qType = questionType(q);
+      if (qType === "mcq") {
+        evaluateResponse([idx]);
+        return;
+      }
+
+      const existsAt = state.selection.indexOf(idx);
+      if (existsAt === -1) {
+        state.selection.push(idx);
+      } else {
+        state.selection.splice(existsAt, 1);
+      }
+      updateSelectedButtons();
+    }
+
+    function submitSelection() {
+      const q = currentQuestion();
+      const needed = correctSequence(q).length;
+      if (!state.selection.length) {
+        $("feedback").className = "feedback bad";
+        $("feedback").innerHTML = `<h2>Pick first.</h2><p>Select your answer set before submitting.</p>`;
+        return;
+      }
+      if (questionType(q) === "ordering" && state.selection.length !== needed) {
+        $("feedback").className = "feedback bad";
+        $("feedback").innerHTML = `<h2>Finish the sequence.</h2><p>Select all ${needed} steps in order before submitting.</p>`;
+        return;
+      }
+      evaluateResponse([...state.selection]);
+    }
+
+    function evaluateResponse(selected) {
+      const q = currentQuestion();
+      const qType = questionType(q);
+      const buttons = [...document.querySelectorAll(".choice")];
+      const correctAnswers = correctSequence(q);
+      const correct = qType === "ordering"
+        ? sameOrder(selected, correctAnswers)
+        : sameMembers(selected, correctAnswers);
+      const overlap = selected.filter(idx => correctAnswers.includes(idx)).length;
+
+      buttons.forEach(btn => btn.classList.add("disabled"));
+      correctAnswers.forEach(idx => buttons[idx]?.classList.add("correct"));
+      selected.forEach((idx, orderIdx) => {
+        const wrong = qType === "ordering"
+          ? correctAnswers[orderIdx] !== idx
+          : !correctAnswers.includes(idx);
+        if (wrong) buttons[idx]?.classList.add("wrong");
+      });
+      const submit = $("submitChoiceBtn");
+      if (submit) submit.disabled = true;
+      const clear = $("clearChoiceBtn");
+      if (clear) clear.disabled = true;
+
+      const result = correct ? "green" : overlap ? "yellow" : "red";
+      state.answered[q.id] = result;
+      state.points += correct ? 2 : overlap ? 1 : 0;
+      save();
+
+      const picked = qType === "mcq" ? "" : `<p><strong>Your pick:</strong> ${selected.map(idx => String.fromCharCode(65 + idx)).join(", ")}</p>`;
+      $("feedback").className = `feedback ${correct ? "good" : "bad"}`;
+      $("feedback").innerHTML = `
+        <h2>${correct ? "Green." : result === "yellow" ? "Close, repair the details." : "Repair this one."}</h2>
+        ${picked}
+        <p><strong>Why:</strong> ${q.why}</p>
+        <p><strong>Trap:</strong> ${q.trap}</p>
+        <p class="repair">${q.repair}</p>`;
+      updateStats();
+    }
+
+    function normalizeTutorText(value) {
+      return String(value || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9+ ]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function scoreTutorTopic(query, topic) {
+      const haystack = normalizeTutorText([
+        topic.title,
+        topic.room,
+        topic.teach,
+        topic.trap,
+        topic.action,
+        topic.say,
+        ...(topic.keywords || [])
+      ].join(" "));
+      return (topic.keywords || []).reduce((score, keyword) => {
+        const key = normalizeTutorText(keyword);
+        if (!key) return score;
+        if (query.includes(key)) return score + Math.max(2, key.split(" ").length + 1);
+        return haystack.includes(query) && query.length > 4 ? score + 1 : score;
+      }, 0);
+    }
+
+    function findTutorTopic(queryText) {
+      const query = normalizeTutorText(queryText);
+      if (!query) return null;
+      return tutorTopics
+        .map(topic => ({ topic, score: scoreTutorTopic(query, topic) }))
+        .sort((a, b) => b.score - a.score)[0]?.score > 0
+        ? tutorTopics.map(topic => ({ topic, score: scoreTutorTopic(query, topic) })).sort((a, b) => b.score - a.score)[0].topic
+        : null;
+    }
+
+    function renderTutorTopic(topic) {
+      $("tutorResponse").innerHTML = `
+        <span class="tag">${escapeHtml(topic.room || "Local tutor")}</span>
+        <h3>${escapeHtml(topic.title)}</h3>
+        <p><strong>Teach-back:</strong> ${escapeHtml(topic.teach)}</p>
+        <p><strong>Trap:</strong> ${escapeHtml(topic.trap)}</p>
+        <p><strong>Nursing move:</strong> ${escapeHtml(topic.action)}</p>
+        <p class="repair">${escapeHtml(topic.say)}</p>`;
+    }
+
+    function renderTutorFallback(queryText) {
+      const options = tutorTopics.slice(0, 8).map(topic => escapeHtml(topic.title)).join(" · ");
+      $("tutorResponse").innerHTML = `
+        <span class="tag">No clean card yet</span>
+        <h3>I do not have a verified tutor card for that wording.</h3>
+        <p>I searched the local final-review map for: <strong>${escapeHtml(queryText)}</strong></p>
+        <p>Try one of these terms: ${options}</p>
+        <p class="repair">If this is important, ask me in chat and I can build the missing card from the saved sources.</p>`;
+    }
+
+    function askTutor() {
+      const queryText = $("tutorQuestion").value.trim();
+      if (!queryText) {
+        $("tutorResponse").innerHTML = `
+          <span class="tag">Local tutor</span>
+          <h3>Type the concept first.</h3>
+          <p>Example: thyroidectomy tingling, chest tube disconnected, vent high pressure, DKA potassium, or CAD case lane.</p>`;
+        return;
+      }
+      const topic = findTutorTopic(queryText);
+      if (topic) renderTutorTopic(topic);
+      else renderTutorFallback(queryText);
+    }
+
+    function explainCurrentQuestion() {
+      const q = currentQuestion();
+      if (!q) return;
+      $("tutorQuestion").value = q.title;
+      $("tutorResponse").innerHTML = `
+        <span class="tag">${escapeHtml(q.room || "Current question")}</span>
+        <h3>${escapeHtml(q.title)}</h3>
+        <p><strong>What it is testing:</strong> ${escapeHtml(q.prompt)}</p>
+        <p><strong>Teach-back:</strong> ${escapeHtml(q.why)}</p>
+        <p><strong>Trap:</strong> ${escapeHtml(q.trap)}</p>
+        <p class="repair">${escapeHtml(q.repair)}</p>`;
+    }
+
+    function updateStats() {
+      const values = Object.values(state.answered);
+      const green = values.filter(v => v === "green").length;
+      const red = values.filter(v => v === "red").length;
+      const yellow = values.filter(v => v === "yellow").length;
+      const total = values.length;
+      const weak = total - green;
+      $("greenCount").textContent = green;
+      $("yellowCount").textContent = yellow;
+      $("redCount").textContent = red;
+      $("weakCount").textContent = weak;
+      $("scoreText").textContent = `${state.points} points`;
+      $("accuracy").textContent = total ? `${Math.round((green / total) * 100)}%` : "0%";
+    }
+
+    function next() {
+      if (state.index < state.order.length - 1) {
+        state.index += 1;
+      } else {
+        $("barFill").style.width = "100%";
+        state.index = state.order.length;
+      }
+      render();
+    }
+
+    function save() {
+      localStorage.setItem("adult-health-final-drill", JSON.stringify({
+        answered: state.answered,
+        points: state.points
+      }));
+    }
+
+    function load() {
+      try {
+        const saved = JSON.parse(localStorage.getItem("adult-health-final-drill"));
+        if (saved) {
+          state.answered = saved.answered || {};
+          state.points = saved.points || 0;
+        }
+      } catch (_) {}
+    }
+
+    $("modeSelect").addEventListener("change", (event) => {
+      state.mode = event.target.value;
+      state.weakOnly = false;
+      buildOrder();
+    });
+    $("startBtn").addEventListener("click", buildOrder);
+    $("shuffleBtn").addEventListener("click", shuffle);
+    $("nextBtn").addEventListener("click", next);
+    $("askTutorBtn").addEventListener("click", askTutor);
+    $("explainCurrentBtn").addEventListener("click", explainCurrentQuestion);
+    $("tutorQuestion").addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        event.stopPropagation();
+        askTutor();
+      }
+    });
+    document.querySelectorAll("[data-tutor-prompt]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        $("tutorQuestion").value = btn.dataset.tutorPrompt;
+        askTutor();
+      });
+    });
+    $("weakBtn").addEventListener("click", () => {
+      state.weakOnly = !state.weakOnly;
+      $("weakBtn").textContent = state.weakOnly ? "All Questions" : "Weak Only";
+      buildOrder();
+    });
+    $("resetBtn").addEventListener("click", () => {
+      state.answered = {};
+      state.points = 0;
+      save();
+      buildOrder();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (["TEXTAREA", "INPUT", "SELECT"].includes(event.target?.tagName)) return;
+      const key = event.key.toLowerCase();
+      if (["1", "2", "3", "4", "5", "6", "a", "b", "c", "d", "e", "f"].includes(key)) {
+        const map = {
+          "1": 0, "a": 0,
+          "2": 1, "b": 1,
+          "3": 2, "c": 2,
+          "4": 3, "d": 3,
+          "5": 4, "e": 4,
+          "6": 5, "f": 5
+        };
+        const btn = document.querySelector(`.choice[data-idx="${map[key]}"]`);
+        if (btn && !btn.classList.contains("disabled")) btn.click();
+      }
+      if (key === "enter") {
+        const submit = $("submitChoiceBtn");
+        if (submit && !submit.disabled) submit.click();
+        else next();
+      }
+    });
+
+    load();
+    buildOrder();
+  </script>
+  <footer class="site-footer">
+    <div class="footer-disclaimer">
+      For educational purposes only. Not medical advice. Not affiliated with any university, hospital, or licensing body.
+      NCLEX-RN&reg; is a registered trademark of NCSBN, Inc. This site is not affiliated with or endorsed by NCSBN.
+      Content created by a nursing student — always verify against current guidelines and your instructor's direction.
+      <a href="terms.html">Full disclaimer</a>.<br><br>
+      <strong>Disclosure:</strong> Some YouTube videos linked from this site include Amazon Associates links in their descriptions. Study with Tiago may earn from qualifying purchases at no extra cost to you. Gumroad bundles linked here are Study with Tiago products, not affiliate links.
+    </div>
+  </footer>
+  <script src="js/nav.js?v=8"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/feedback.js?v=3"></script>
+  <script src="js/share.js?v=9"></script>
+</body>
+</html>
