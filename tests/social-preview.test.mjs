@@ -42,3 +42,11 @@ test('banner social preview is Open Graph sized and under common share-card limi
   assert.match(output, /pixelHeight:\s+630/);
   assert.ok(stat(asset).size < 2_000_000, 'social image should stay comfortably under 2 MB');
 });
+
+test('About page share description explains why someone would share the site', () => {
+  const html = read('about.html');
+
+  assert.match(html, /A nursing student built this site/);
+  assert.match(html, /make Pharm and Med-Surg easier to study/);
+  assert.doesNotMatch(html, /Meet Tiago and Study with Tiago/);
+});
